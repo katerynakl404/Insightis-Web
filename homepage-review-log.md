@@ -23,14 +23,14 @@
 
 |                          | Critical | High | Medium | Low | Total |
 |---|---|---|---|---|---|
-| Pending Review           | 0 | 4 | 26 | 9 | **39** |
+| Pending Review           | 0 | 0 | 0 | 0 | **0** |
 | Accepted                 | 2 | 9 | 31 | 15 | **57** |
-| Declined                 | 0 | 0 | 0 | 1 | **1** |
+| Declined                 | 0 | 5 | 22 | 13 | **40** |
 | Discuss                  | 0 | 0 | 0 | 0 | 0 |
 | Backlog                  | 0 | 0 | 0 | 0 | 0 |
 | Resolved                 | 0 | 0 | 0 | 0 | 0 |
 | Impact Review Required   | 0 | 0 | 0 | 0 | 0 |
-| **Total**                | **2** | **13** | **57** | **25** | **97** |
+| **Total**                | **2** | **14** | **53** | **28** | **97** |
 
 Cross-cut by category (new framework lenses):
 
@@ -345,7 +345,7 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 
 ---
 
-### ISS-07 — Sub-12 px font sizes in pillar illustrations break minimum legibility floor (Status: Pending Review)
+### ISS-07 — Sub-12 px font sizes in pillar illustrations break minimum legibility floor (Status: Declined)
 
 | | |
 |---|---|
@@ -374,6 +374,8 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
 | 2026-05-20 | Pending Review | Rework — recommendation scoped to legibility floor only (mockups exempt from DS type scale). Screenshot evidence needed before fix. |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -441,7 +443,7 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 
 ---
 
-### ISS-10 — Third-party stock portraits in testimonials (Status: Pending Review)
+### ISS-10 — Third-party stock portraits in testimonials (Status: Declined)
 
 | | |
 |---|---|
@@ -470,10 +472,12 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-11 — Avatar image + initials shown redundantly (Status: Pending Review)
+### ISS-11 — Avatar image + initials shown redundantly (Status: Declined)
 
 | | |
 |---|---|
@@ -501,6 +505,8 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -599,7 +605,7 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 
 ---
 
-### ISS-15 — URLs contain unencoded spaces (Status: Pending Review)
+### ISS-15 — URLs contain unencoded spaces (Status: Declined)
 
 | | |
 |---|---|
@@ -627,10 +633,12 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-16 — Primary CTAs use `href="#"` placeholders (Status: Pending Review)
+### ISS-16 — Primary CTAs use `href="#"` placeholders (Status: Declined)
 
 | | |
 |---|---|
@@ -658,6 +666,8 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -693,7 +703,7 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 
 ---
 
-### ISS-18 — Marquee track duplicated without `aria-hidden` (Status: Pending Review)
+### ISS-18 — Marquee track duplicated without `aria-hidden` (Status: Declined)
 
 | | |
 |---|---|
@@ -720,6 +730,8 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -818,7 +830,7 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 
 ---
 
-### ISS-22 — Demo buttons below 44 × 44 minimum tap target (Status: Pending Review)
+### ISS-22 — Demo buttons below 44 × 44 minimum tap target (Status: Declined)
 
 | | |
 |---|---|
@@ -845,6 +857,8 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -912,7 +926,7 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 
 ---
 
-### ISS-25 — Mono font misused for UI labels (Status: Pending Review)
+### ISS-25 — Mono font misused for UI labels (Status: Declined)
 
 | | |
 |---|---|
@@ -939,10 +953,12 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-26 — Active labels using `--ins-text-inactive` where `--ins-text-muted` is correct (Status: Pending Review)
+### ISS-26 — Active labels using `--ins-text-inactive` where `--ins-text-muted` is correct (Status: Declined)
 
 | | |
 |---|---|
@@ -971,6 +987,8 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -1005,7 +1023,7 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 
 ---
 
-### ISS-28 — Hero claim and KPI multipliers conflict (Status: Pending Review)
+### ISS-28 — Hero claim and KPI multipliers conflict (Status: Declined)
 
 | | |
 |---|---|
@@ -1033,10 +1051,12 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-29 — Social links rendered as raw URLs (Status: Pending Review)
+### ISS-29 — Social links rendered as raw URLs (Status: Declined)
 
 | | |
 |---|---|
@@ -1064,6 +1084,8 @@ Net: **12 splits / new, 0 merges**. All twelve filed as new ISS-NN.
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -1165,7 +1187,7 @@ Note: ISS-68 (same button, separately filed) is merged into this finding — Dec
 
 ---
 
-### ISS-33 — Eyebrow label lengths vary too widely (Status: Pending Review)
+### ISS-33 — Eyebrow label lengths vary too widely (Status: Declined)
 
 | | |
 |---|---|
@@ -1192,6 +1214,8 @@ Note: ISS-68 (same button, separately filed) is merged into this finding — Dec
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -1226,7 +1250,7 @@ Note: ISS-68 (same button, separately filed) is merged into this finding — Dec
 
 ---
 
-### ISS-35 — Architecture feature list duplicated in the DOM (Status: Pending Review)
+### ISS-35 — Architecture feature list duplicated in the DOM (Status: Declined)
 
 | | |
 |---|---|
@@ -1254,6 +1278,8 @@ Note: ISS-68 (same button, separately filed) is merged into this finding — Dec
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -1321,7 +1347,7 @@ Note: ISS-68 (same button, separately filed) is merged into this finding — Dec
 
 ---
 
-### ISS-38 — Hero chat input shows truncated / test placeholder (Status: Pending Review)
+### ISS-38 — Hero chat input shows truncated / test placeholder (Status: Declined)
 
 | | |
 |---|---|
@@ -1349,6 +1375,8 @@ Note: ISS-68 (same button, separately filed) is merged into this finding — Dec
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -1574,7 +1602,7 @@ Note: ISS-68 (same button, separately filed) is merged into this finding — Dec
 
 ---
 
-### ISS-46 — Hero trust sentence pushes the connector marquee below the fold on mobile (Status: Pending Review)
+### ISS-46 — Hero trust sentence pushes the connector marquee below the fold on mobile (Status: Declined)
 
 | | |
 |---|---|
@@ -1602,10 +1630,12 @@ Note: ISS-68 (same button, separately filed) is merged into this finding — Dec
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-47 — `responsive.css` uses legacy 600 / 900 px breakpoints (Status: Pending Review)
+### ISS-47 — `responsive.css` uses legacy 600 / 900 px breakpoints (Status: Declined)
 
 | | |
 |---|---|
@@ -1633,6 +1663,8 @@ Note: ISS-68 (same button, separately filed) is merged into this finding — Dec
 |---|---|---|
 | 2026-05-19 | Pending Review | Baseline filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -1729,7 +1761,7 @@ Note: ISS-68 (same button, separately filed) is merged into this finding — Dec
 
 ---
 
-### ISS-51 — Hero has no primary CTA below headline (Status: Pending Review)
+### ISS-51 — Hero has no primary CTA below headline (Status: Declined)
 
 | | |
 |---|---|
@@ -1757,6 +1789,8 @@ Note: ISS-68 (same button, separately filed) is merged into this finding — Dec
 |---|---|---|
 | 2026-05-19 | Pending Review | Iteration 2 filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -1791,7 +1825,7 @@ Note: ISS-68 (same button, separately filed) is merged into this finding — Dec
 
 ---
 
-### ISS-53 — Chat input only 18 px tall — below 44 px target (Status: Pending Review)
+### ISS-53 — Chat input only 18 px tall — below 44 px target (Status: Declined)
 
 | | |
 |---|---|
@@ -1818,10 +1852,12 @@ Note: ISS-68 (same button, separately filed) is merged into this finding — Dec
 |---|---|---|
 | 2026-05-19 | Pending Review | Iteration 2 filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-54 — Trust line lacks scannable proof points (Status: Pending Review)
+### ISS-54 — Trust line lacks scannable proof points (Status: Declined)
 
 | | |
 |---|---|
@@ -1851,6 +1887,8 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 |---|---|---|
 | 2026-05-19 | Pending Review | Iteration 2 filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -1981,7 +2019,7 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 
 ---
 
-### ISS-59 — Eyebrow capitalisation drift (Status: Pending Review)
+### ISS-59 — Eyebrow capitalisation drift (Status: Declined)
 
 | | |
 |---|---|
@@ -2008,6 +2046,8 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 |---|---|---|
 | 2026-05-19 | Pending Review | Iteration 2 filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -2042,7 +2082,7 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 
 ---
 
-### ISS-61 — Pillar feature counts asymmetric (5 vs 4) (Status: Pending Review)
+### ISS-61 — Pillar feature counts asymmetric (5 vs 4) (Status: Declined)
 
 | | |
 |---|---|
@@ -2069,6 +2109,8 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 |---|---|---|
 | 2026-05-19 | Pending Review | Iteration 2 filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -2103,7 +2145,7 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 
 ---
 
-### ISS-63 — Testimonial cards fixed 207 px height (Status: Pending Review)
+### ISS-63 — Testimonial cards fixed 207 px height (Status: Declined)
 
 | | |
 |---|---|
@@ -2131,10 +2173,12 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 |---|---|---|
 | 2026-05-19 | Pending Review | Iteration 2 filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-64 — No hover affordance on testimonial cards (Status: Pending Review)
+### ISS-64 — No hover affordance on testimonial cards (Status: Declined)
 
 | | |
 |---|---|
@@ -2162,6 +2206,8 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 |---|---|---|
 | 2026-05-19 | Pending Review | Iteration 2 filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -2228,7 +2274,7 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 
 ---
 
-### ISS-67 — Final CTA H2 sized 30 px — breaks rhythm (Status: Pending Review)
+### ISS-67 — Final CTA H2 sized 30 px — breaks rhythm (Status: Declined)
 
 | | |
 |---|---|
@@ -2256,6 +2302,8 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 |---|---|---|
 | 2026-05-19 | Pending Review | Iteration 2 filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -2321,7 +2369,7 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 
 ---
 
-### ISS-70 — Final CTA laid out horizontally (Status: Pending Review)
+### ISS-70 — Final CTA laid out horizontally (Status: Declined)
 
 | | |
 |---|---|
@@ -2348,10 +2396,12 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 |---|---|---|
 | 2026-05-19 | Pending Review | Iteration 2 filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-71 — Footer columns end on different rows (Status: Pending Review)
+### ISS-71 — Footer columns end on different rows (Status: Declined)
 
 | | |
 |---|---|
@@ -2379,6 +2429,8 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 |---|---|---|
 | 2026-05-19 | Pending Review | Iteration 2 filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -2413,7 +2465,7 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 
 ---
 
-### ISS-73 — No loading skeletons defined anywhere (Status: Pending Review)
+### ISS-73 — No loading skeletons defined anywhere (Status: Declined)
 
 | | |
 |---|---|
@@ -2441,10 +2493,12 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 |---|---|---|
 | 2026-05-19 | Pending Review | Iteration 2 filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-74 — No empty-state visual for chat widget (Status: Pending Review)
+### ISS-74 — No empty-state visual for chat widget (Status: Declined)
 
 | | |
 |---|---|
@@ -2472,6 +2526,8 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 |---|---|---|
 | 2026-05-19 | Pending Review | Iteration 2 filing |
 | 2026-05-20 | Pending Review | Carried forward |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -2574,7 +2630,7 @@ Note: ISS-39 (declined) proposed a full pill/chip redesign — this finding targ
 
 ---
 
-### ISS-78 — Hero chat widget conflates demo and primary CTA — interactive-vs-illustrative ambiguity (Status: Pending Review)
+### ISS-78 — Hero chat widget conflates demo and primary CTA — interactive-vs-illustrative ambiguity (Status: Declined)
 
 | | |
 |---|---|
@@ -2609,10 +2665,12 @@ Until this is decided, the chat-widget-state findings (ISS-52 / ISS-53 / ISS-74 
 | Date | Status | Rationale |
 |---|---|---|
 | 2026-05-20 | Pending Review | Iteration 3 filing (new lens: UX mental model) |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-79 — Two competing primary actions in the hero region (Status: Pending Review)
+### ISS-79 — Two competing primary actions in the hero region (Status: Declined)
 
 | | |
 |---|---|
@@ -2646,10 +2704,12 @@ The choice depends on what conversion event matters most — and that choice is 
 | Date | Status | Rationale |
 |---|---|---|
 | 2026-05-20 | Pending Review | Iteration 3 filing (new lens: UX mental model) |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-80 — Nine-section page has no in-page navigation (Status: Pending Review)
+### ISS-80 — Nine-section page has no in-page navigation (Status: Declined)
 
 | | |
 |---|---|
@@ -2679,10 +2739,12 @@ The choice depends on what conversion event matters most — and that choice is 
 | Date | Status | Rationale |
 |---|---|---|
 | 2026-05-20 | Pending Review | Iteration 3 filing (new lens: UX scalability) |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-81 — Hero subheadline packs three claims into one ungrammatical fragment (Status: Pending Review)
+### ISS-81 — Hero subheadline packs three claims into one ungrammatical fragment (Status: Declined)
 
 | | |
 |---|---|
@@ -2715,10 +2777,12 @@ The two-line pattern matches modern SaaS landing-page conventions, separates *va
 | Date | Status | Rationale |
 |---|---|---|
 | 2026-05-20 | Pending Review | Iteration 3 filing (new lens: UX content) |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-82 — Pillar pattern doesn't scale past two pillars (Status: Pending Review)
+### ISS-82 — Pillar pattern doesn't scale past two pillars (Status: Declined)
 
 | | |
 |---|---|
@@ -2751,10 +2815,12 @@ Defer the visual design to the DS team; this Homepage stays on the current two-p
 | Date | Status | Rationale |
 |---|---|---|
 | 2026-05-20 | Pending Review | Iteration 3 filing (new lens: scalability + DS maturity) |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-83 — Testimonial 6-card fixed grid doesn't scale to 12+ entries (Status: Pending Review)
+### ISS-83 — Testimonial 6-card fixed grid doesn't scale to 12+ entries (Status: Declined)
 
 | | |
 |---|---|
@@ -2787,10 +2853,12 @@ For the immediate Homepage, the static grid is fine; this finding marks the futu
 | Date | Status | Rationale |
 |---|---|---|
 | 2026-05-20 | Pending Review | Iteration 3 filing (new lens: scalability) |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-84 — No DS pattern for N-column comparison (Status: Pending Review)
+### ISS-84 — No DS pattern for N-column comparison (Status: Declined)
 
 | | |
 |---|---|
@@ -2830,10 +2898,12 @@ Move ISS-40 and ISS-66 to `depends-on: ISS-84` once accepted.
 | Date | Status | Rationale |
 |---|---|---|
 | 2026-05-20 | Pending Review | Iteration 3 filing (new lens: DS maturity) |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-85 — Chat-input component has no DS equivalent (Status: Pending Review)
+### ISS-85 — Chat-input component has no DS equivalent (Status: Declined)
 
 | | |
 |---|---|
@@ -2870,10 +2940,12 @@ This is a multi-week DS effort — move to `Backlog (DS roadmap)`. Once it lands
 | Date | Status | Rationale |
 |---|---|---|
 | 2026-05-20 | Pending Review | Iteration 3 filing (new lens: DS maturity) |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-86 — Connector marquee has no DS logo-wall variant (Status: Pending Review)
+### ISS-86 — Connector marquee has no DS logo-wall variant (Status: Declined)
 
 | | |
 |---|---|
@@ -2907,10 +2979,12 @@ Move ISS-37 and ISS-18 to `depends-on: ISS-86` once accepted.
 | Date | Status | Rationale |
 |---|---|---|
 | 2026-05-20 | Pending Review | Iteration 3 filing (new lens: DS maturity) |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-87 — Section ordering delays social proof to position 6 of 10 (Status: Pending Review)
+### ISS-87 — Section ordering delays social proof to position 6 of 10 (Status: Declined)
 
 | | |
 |---|---|
@@ -2941,10 +3015,12 @@ Front-loading social proof: testimonials right after the hero, KPI as a bridge t
 | Date | Status | Rationale |
 |---|---|---|
 | 2026-05-20 | Pending Review | Iteration 3 filing (new lens: product structure) |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
-### ISS-88 — Two-pillar framing is non-parallel ("Architecture" vs "Decision Velocity") (Status: Pending Review)
+### ISS-88 — Two-pillar framing is non-parallel ("Architecture" vs "Decision Velocity") (Status: Declined)
 
 | | |
 |---|---|
@@ -2982,6 +3058,8 @@ Pick one, apply consistently; ISS-61 and ISS-58 collapse into ISS-88's fix.
 | Date | Status | Rationale |
 |---|---|---|
 | 2026-05-20 | Pending Review | Iteration 3 filing (new lens: product structure) |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -3288,7 +3366,7 @@ The card body (dark surface, border-radius, padding) comes from the DS Glow card
 
 ---
 
-### ISS-97 — Comparison card list items have broken left reading line (Status: Pending Review)
+### ISS-97 — Comparison card list items have broken left reading line (Status: Declined)
 
 | | |
 |---|---|
@@ -3320,6 +3398,8 @@ The card body (dark surface, border-radius, padding) comes from the DS Glow card
 | Date | Status | Rationale |
 |---|---|---|
 | 2026-05-20 | Pending Review | Filed mid-session; user-identified from screenshot |
+| 2026-05-20 | Declined | Declined in iteration 3 review session (see archive/review-decisions-2026-05-20.md for full rationale). |
+
 
 ---
 
@@ -3413,9 +3493,9 @@ Use the DS `.ins-chip` or `.ins-badge--interactive` component if published; othe
 | Outcome | Count | Where recorded |
 |---|---|---|
 | **Accepted** (actionable on Homepage) | **57** | This log, Status-history rows |
-| **Declined** (formally, in log) | **1** | ISS-68 (duplicate of ISS-30 — merged) |
-| **Declined** (decision recorded in archive; remain Pending Review in log per user convention) | ~49 | `archive/review-decisions-2026-05-20.md` |
-| **Pending Review** (no decision yet recorded) | 39 (log status) | — |
+| **Declined** (no homepage action required) | **40** | This log, Status-history rows; full rationale per ID in `archive/review-decisions-2026-05-20.md` |
+| **Pending Review** | **0** | — |
+| **Total** | **97** | — |
 
 ### Accepted findings — action checklist by area
 
