@@ -15,14 +15,13 @@
 
 ## 2. Scope rule (read carefully)
 
-**Implement only findings with `Status: Accepted`** — 57 of 97. Filter the log by that string.
+**Implement everything in `homepage-review-log.md`.** All 57 findings in the working log are `Status: Accepted` and ready to land.
 
-Do **NOT** touch:
-- `Status: Pending Review` (~39 findings) — user has not decided; treat as if absent.
-- `Status: Declined` (1 finding: ISS-68) — explicitly rejected.
-- Findings marked `(from prior session)` in `archive/review-decisions-2026-05-20.md` — these are user-declined and stay declined.
+What's NOT in the working log:
+- **40 Declined findings** have been moved to [`archive/declined-findings.md`](archive/declined-findings.md). They are **never re-proposed** in future iterations — IDs are permanently reserved. **Do not implement anything from the declined archive**, even if a symptom looks similar to an Accepted finding.
+- **0 Pending Review.** Iteration is fully decided.
 
-If you think a Pending Review item *must* be addressed to land an Accepted one, flag it back to the user — do not silently implement it.
+If something in the declined archive looks like it *must* be fixed in passing while implementing an Accepted finding, **stop and flag it back to the user**. Do not silently fix declined items.
 
 ---
 

@@ -14,6 +14,7 @@
 | **Finding** | One `ISS-NN` issue with the schema defined in §1.4 of `review-framework.md` plus the iteration fields defined in §3 below. |
 | **Status** | One of: `Pending Review` · `Accepted` · `Declined` · `Discuss` · `Backlog` · `Resolved` · `Impact Review Required`. |
 | **Locked decision** | A finding with status `Declined` or `Resolved`. The decision is the user's; a future iteration **never overwrites it silently**. `Accepted` findings are **not** locked — they can be directly updated or highlighted with new evidence at any time; the update must be documented transparently via a Status-history row. |
+| **Declined → archived (terminal)** | A `Declined` finding is moved out of the working log into `archive/declined-findings.md` and is **never re-proposed in any future iteration**. The ID is permanently reserved (never reused, never re-filed under the same Section × Category). Re-proposal is a protocol violation; if a previously-Declined symptom genuinely surfaces under a new lens, file a **new** ISS-NN with `Linked: supersedes: ISS-OLD` and require explicit user approval to break the lock. |
 | **Status history** | Every status change is recorded as a row `{date, status, rationale}` on the finding. The history is append-only. |
 | **Impact Review Required** | A signal raised when an iteration detects that the page context around a decision has changed significantly enough to potentially invalidate it. Most useful for `Declined` or `Resolved` findings. For `Accepted` findings, prefer a direct Status-history update unless the context change is large enough to warrant a separate investigation block. |
 | **Source of truth** | The markdown log file (`<page>-review-log.md`). Dashboards, exports, and CSV/JSON derivatives are projections — never the canonical state. |
@@ -51,21 +52,37 @@ In ID order. For each existing finding, classify against the new evidence into e
 
 **The user, not the protocol, decides every Status transition** other than `Pending Review → Pending Review` (i.e. carry-forward). The protocol *proposes*; the user *accepts*.
 
+### 2a. Declined findings — terminal archive rule
+
+When the user decides `Status: Declined` for a finding:
+
+1. **Append the final Status-history row** to the finding (date, status `Declined`, one-line rationale citing the user's reason).
+2. **Move the entire finding section** (heading + metadata table + Problem + Why It Matters + Recommendation + Evidence + Status-history) out of the working log and into `archive/declined-findings.md`. The working log keeps only Accepted findings.
+3. **The ID is permanently reserved.** ISS-NN of a Declined finding is never reused, never re-filed, and never re-proposed in any future iteration — not even under a different lens. The Status summary in the working log shows Declined counts but no entries.
+4. **No exception for "re-evidencing".** If a new iteration sees the same symptom that was previously Declined, the protocol does **not** re-surface it. The decline is the user's standing answer to that symptom.
+5. **Escape valve — supersedes a Declined ID.** If a *different* problem genuinely surfaces in the same Section × Category that happens to share surface details with a Declined finding, file a **new** ISS-NN with `Linked: supersedes: ISS-OLD`. Surface to the user with explicit "this is not the same as the Declined ISS-OLD because…" justification. Filing under this escape valve requires the user's explicit "yes, file as new" — never auto-file.
+6. **Iteration walks skip Declined IDs.** In §2, when walking findings in ID order, Declined entries are absent from the working log and therefore not walked. They do not appear in end-of-pass reports.
+
+This rule overrides the §8 "do not delete entries" anti-pattern for `Declined`-status findings specifically: archival ≠ deletion. The findings remain on disk in `archive/declined-findings.md`, read-only.
+
 ---
 
 ## 3. Duplicate detection for net-new candidate findings
 
 Before filing any new ISS-NN, run it through:
 
-1. **Section × Category bucket** — list every existing finding with the same Section and same Category as the candidate. If that bucket has ≥ 1 existing finding, compare titles + descriptions.
-2. **Title-overlap heuristic** — if the candidate's title shares ≥ 70 % of its key noun phrases with an existing title, treat as a likely duplicate.
-3. **Default action on suspected duplicate** — **merge into the existing ID** by:
+1. **Section × Category bucket — working log.** List every Accepted finding with the same Section and same Category as the candidate. If that bucket has ≥ 1 finding, compare titles + descriptions.
+2. **Section × Category bucket — Declined archive.** Repeat the same lookup against `archive/declined-findings.md`. **If the candidate matches a Declined ID, do not file it.** The decline is the user's standing answer; re-surfacing is a protocol violation per §2a.5.
+3. **Title-overlap heuristic** — if the candidate's title shares ≥ 70 % of its key noun phrases with an existing title (Accepted or Declined), treat as a likely duplicate / re-surfacing attempt.
+4. **Default action on suspected duplicate of an Accepted ID** — **merge into the existing ID** by:
    - appending the new evidence to the existing finding's evidence list
    - adding a Status-history row noting "re-evidenced in iteration N from <screenshot path>"
    - **not** filing a new ID
-4. **Split only on explicit user approval** — when a candidate genuinely names a *different problem* in the same section + category as an existing finding, surface both to the user with "duplicate? merge or split?" before filing.
+5. **Default action on suspected duplicate of a Declined ID** — **do nothing.** The candidate is dropped silently; the iteration's duplicate-detection log records `dropped: candidate matched Declined ISS-NN`.
+6. **Split only on explicit user approval** — when a candidate genuinely names a *different problem* in the same Section + Category as an existing Accepted finding, surface both to the user with "duplicate? merge or split?" before filing.
+7. **Escape valve against Declined** — if the candidate is genuinely distinct from a near-match Declined finding (different root cause, different lens), file a new ISS-NN with `Linked: supersedes: ISS-OLD-DECLINED` and surface to the user for explicit approval before persisting (per §2a.5).
 
-Duplicate decisions are recorded in an appendix in the log: `## Duplicate detection log — iteration N`. This keeps the merge/split history auditable.
+Duplicate decisions (merges, drops against Declined, splits, supersedes-of-Declined) are all recorded in an appendix in the log: `## Duplicate detection log — iteration N`. This keeps the audit trail complete.
 
 ---
 
@@ -222,7 +239,8 @@ The original ISS-NN entry's Status-history gets one row noting `Impact review ra
 
 - **Renumber IDs.** `ISS-NN` is the single canonical primary key, immutable from filing to forever. Even when a finding is `Resolved` and stale, the ID stays.
 - **Edit a baseline finding in place.** All changes are append-only via Status-history. If the Current/Expected text needs amendment because the original was wrong, file a `supersedes` link to a new ID instead.
-- **Delete entries.** A `Declined` finding stays in the log forever — its presence documents that the issue was considered and rejected, with rationale.
+- **Delete entries.** Findings are never deleted. `Declined` findings are *archived* (moved to `archive/declined-findings.md` per §2a) — they remain on disk forever, just out of the working log. Accepted / Pending / Discuss / Backlog / Resolved findings stay in the working log.
+- **Re-propose a Declined finding.** Per §2a, Declined is terminal and the ID is permanently reserved. Re-surfacing the same symptom in a future iteration is a protocol violation. If a genuinely different problem shares surface details, file a new ISS-NN with `Linked: supersedes: ISS-OLD-DECLINED` and require explicit user approval (§2a.5).
 - **Auto-flip any status → Resolved without user confirmation.** Even when the symptom is gone, propose `Resolved (proposed)` and wait for explicit confirmation. This applies to all statuses including `Accepted`.
 - **Silently update an Accepted finding.** `Accepted` ≠ locked — Accepted findings can be directly updated or highlighted with new evidence. But every update must be documented in a Status-history row with a rationale. "Silent" (no Status-history row) is the anti-pattern, not the update itself.
 - **Re-derive a domain from a category.** The Domain (Code / Design / Code+Design) is set once at filing time per `review-framework.md` §1.1. New iterations don't re-derive it.

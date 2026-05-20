@@ -9,11 +9,12 @@
 | File / folder | Purpose | When to read it |
 |---|---|---|
 | **[`IMPLEMENTATION-BRIEF.md`](IMPLEMENTATION-BRIEF.md)** | One-page entry point: scope rule, 8 PR gates, 5 systemic principles, token reference, verification checklist. | **Read first.** |
-| [`homepage-review-log.md`](homepage-review-log.md) | Source of truth — all 97 findings under stable `ISS-NN` IDs with Status, Status-history, recommendation. Filter on `Status: Accepted` (57 items) for implementation scope. | Reference per PR. |
+| [`homepage-review-log.md`](homepage-review-log.md) | Source of truth — 57 Accepted findings under stable `ISS-NN` IDs with Status, Status-history, recommendation. Everything here is in scope. | Reference per PR. |
 | [`review-framework.md`](review-framework.md) | Taxonomy (Category / Domain / Severity / Section) used by each finding. | Reference when categorising. |
-| [`review-iteration-protocol.md`](review-iteration-protocol.md) | How to run iteration 4 once PRs land and the page changes. | After all PRs merged. |
+| [`review-iteration-protocol.md`](review-iteration-protocol.md) | How to run iteration 4 once PRs land. **§2a defines the terminal-archive rule for Declined findings.** | After all PRs merged. |
 | [`colors_and_type.css`](colors_and_type.css) | Canonical token brief. Cited by ISS-04. Add legacy aliases here so it's self-sufficient. | When implementing token migrations (Gate 2). |
 | [`design-system/`](design-system/) | Design system source — `assets/tokens.css` (canonical token names), `components/*.html`, `foundations/*.html`, `patterns/*.html`. | Reference per PR. |
+| [`archive/declined-findings.md`](archive/declined-findings.md) | 40 declined findings — **out of scope, never re-proposed.** Read only to verify a Declined ID is not being silently re-introduced. | Only if you're tempted to "fix something extra" — confirm it's not declined first. |
 
 ---
 
@@ -42,7 +43,8 @@ If any of those went missing, ask before proceeding.
 
 ## Hard rules
 
-- **Implement only `Status: Accepted`.** Never silently address Pending Review or Declined.
+- **The working log is the scope.** Everything in `homepage-review-log.md` is Accepted; implement all of it.
+- **Declined is terminal.** `archive/declined-findings.md` is read-only reference. Never re-propose, never silently fix, never bring back. IDs are permanently reserved.
 - **IDs are immutable.** Never renumber `ISS-NN`.
 - **Findings are append-only.** Don't edit `Problem` / `Recommendation` fields. If a finding needs amendment, raise it back to the user — a new ISS-NN supersedes it.
 
@@ -51,5 +53,5 @@ If any of those went missing, ask before proceeding.
 ## Provenance
 
 - Iteration 3 conducted 2026-05-20 against `Homepage-audit-render.html` (byte-equal to May 18 baseline modulo one CSS rule).
-- 97 findings total: 57 Accepted, 1 formally Declined (ISS-68 duplicate-merge), 39 still Pending Review.
-- Source HTML, screenshots, and prior-baseline archive remain in the main project tree.
+- 97 findings filed in total: **57 Accepted (this log)** + **40 Declined (archived, terminal)** + 0 Pending Review.
+- Source HTML, screenshots, and prior-baseline files remain in the main project tree (outside this handoff bundle).
