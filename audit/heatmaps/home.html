@@ -1,0 +1,74 @@
+<title>Heatmap — Home · Insightis</title>
+<style>
+  :root{
+    --bg:#eef2f1; --surface:#fff; --surface-2:#f6f8f8; --ink:#0f1c1b; --ink-soft:#3c4c4b; --ink-mute:#657876;
+    --line:#d9e0df; --line-strong:#c3cdcc; --accent:#0a6f6c; --accent-ink:#075451;
+    --high:#b26212; --crit:#b8352f; --pos:#1f7a5c;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --shadow:0 1px 2px rgba(16,32,31,.05),0 8px 24px -12px rgba(16,32,31,.18);
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0a1211;--surface:#101b1a;--surface-2:#0d1716;--ink:#e9efee;--ink-soft:#b9c7c5;--ink-mute:#839795;
+    --line:#20302e;--line-strong:#2c3f3d;--accent:#43d6d0;--accent-ink:#6fe3de;--high:#e6a24d;--crit:#f0766e;--pos:#5fc99e;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);}}
+  :root[data-theme="dark"]{--bg:#0a1211;--surface:#101b1a;--surface-2:#0d1716;--ink:#e9efee;--ink-soft:#b9c7c5;--ink-mute:#839795;--line:#20302e;--line-strong:#2c3f3d;--accent:#43d6d0;--accent-ink:#6fe3de;--high:#e6a24d;--crit:#f0766e;--pos:#5fc99e;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);}
+  :root[data-theme="light"]{--bg:#eef2f1;--surface:#fff;--surface-2:#f6f8f8;--ink:#0f1c1b;--ink-soft:#3c4c4b;--ink-mute:#657876;--line:#d9e0df;--line-strong:#c3cdcc;--accent:#0a6f6c;--accent-ink:#075451;--high:#b26212;--crit:#b8352f;--pos:#1f7a5c;--shadow:0 1px 2px rgba(16,32,31,.05),0 8px 24px -12px rgba(16,32,31,.18);}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:940px;margin:0 auto;padding:40px 24px 64px}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;margin:0 0 10px}
+  h1{font-size:clamp(24px,4vw,34px);letter-spacing:-.02em;margin:0 0 8px;font-weight:800}
+  .sub{color:var(--ink-mute);font-size:15px;margin:0 0 26px;max-width:66ch}
+  .grid{display:grid;grid-template-columns:1.5fr .9fr;gap:22px;align-items:start}
+  @media (max-width:760px){.grid{grid-template-columns:1fr}}
+  .frame{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow)}
+  .band{border-radius:9px;padding:13px 15px;margin-bottom:9px;border:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .band .l{display:flex;align-items:center;gap:11px;min-width:0}
+  .band .num{font-family:var(--mono);font-size:11px;color:var(--ink-mute);flex:none}
+  .band .t{font-weight:650;font-size:14.5px;overflow:hidden;text-overflow:ellipsis}
+  .band .m{font-family:var(--mono);font-size:11px;white-space:nowrap;flex:none}
+  .att-3{border-left:4px solid var(--accent)} .att-2{border-left:4px solid var(--line-strong)}
+  .friction{background:color-mix(in srgb,var(--high) 14%,var(--surface));border-color:color-mix(in srgb,var(--high) 32%,var(--line))}
+  .friction .m{color:var(--high)}
+  .ok .m{color:var(--ink-mute)}
+  .side h2{font-size:13px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 12px}
+  .leg{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;font-size:13.5px;color:var(--ink-soft)}
+  .leg .sw{width:15px;height:15px;border-radius:4px;flex:none;margin-top:3px}
+  .leg b{color:var(--ink)}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);font-size:14px;color:var(--ink-soft)}
+  .card b{color:var(--ink)}
+  .ref{font-family:var(--mono);font-size:11px;color:var(--accent-ink)}
+  .foot{margin-top:26px;font-family:var(--mono);font-size:11.5px;color:var(--ink-mute)}
+</style>
+<div class="wrap">
+  <p class="eyebrow">Attention heatmap · сторінка Home</p>
+  <h1>Home — карта уваги й тертя</h1>
+  <p class="sub">Прогноз послідовності уваги зверху вниз. Ліва смуга: <b style="color:var(--accent-ink)">бірюза</b> — висока увага, сіра — середня. Підсвічені жовтим — зони із задокументованою слабкістю (посилання на знахідки у спільному <span class="ref">audit-findings.md</span>).</p>
+
+  <div class="grid">
+    <div class="frame" aria-label="Карта секцій головної сторінки">
+      <div class="band att-3 ok"><span class="l"><span class="num">01</span><span class="t">Hero + чат-демо</span></span><span class="m">увага: дуже висока</span></div>
+      <div class="band att-3 ok"><span class="l"><span class="num">02</span><span class="t">«Every number means the same thing»</span></span><span class="m">увага: висока</span></div>
+      <div class="band att-3 ok"><span class="l"><span class="num">03</span><span class="t">Смуга цифр-доказів (200+ / 500+ / 28 / 40k)</span></span><span class="m">увага: висока</span></div>
+      <div class="band att-2 ok"><span class="l"><span class="num">04</span><span class="t">«What you get» — сітка переваг</span></span><span class="m">увага: середня</span></div>
+      <div class="band att-3 ok"><span class="l"><span class="num">05</span><span class="t">«How it works» 01·02·03</span></span><span class="m">увага: висока</span></div>
+      <div class="band att-2 friction"><span class="l"><span class="num">06</span><span class="t">«Made for every team» — таби</span></span><span class="m">⚠ тач-цілі · U3</span></div>
+      <div class="band att-3 friction"><span class="l"><span class="num">07</span><span class="t">«Why teams switch» — Traditional vs Insightis</span></span><span class="m">⚠ підписи «before» · A2</span></div>
+      <div class="band att-2 friction"><span class="l"><span class="num">08</span><span class="t">Фінальний CTA «Ask your data anything»</span></span><span class="m">⚠ повтор CTA · U4</span></div>
+    </div>
+
+    <div class="side">
+      <h2>Легенда</h2>
+      <div class="leg"><span class="sw" style="background:var(--accent)"></span><div><b>Висока увага.</b> Перший/сильний фокус погляду.</div></div>
+      <div class="leg"><span class="sw" style="background:var(--line-strong)"></span><div><b>Середня увага.</b> Проглядається, не затримує.</div></div>
+      <div class="leg"><span class="sw" style="background:color-mix(in srgb,var(--high) 45%,var(--surface));border:1px solid color-mix(in srgb,var(--high) 40%,var(--line))"></span><div><b>Тертя.</b> Зона з задокументованою слабкістю.</div></div>
+      <div class="card" style="margin-top:16px">
+        <b>Висновок по Home.</b> Верхня половина (hero, «how it works») працює без тертя. Тертя дрібне й нижче лінії згину: таби команд (<span class="ref">U3</span>), приглушені підписи в порівнянні (<span class="ref">A2</span>), повтор фінального CTA (<span class="ref">U4</span>). Критичних проблем на Home немає — головні лежать на Pricing.
+      </div>
+    </div>
+  </div>
+
+  <p class="foot">Insightis · attention heatmap · Home · 2026-08-04 · знахідки → audit-findings.md</p>
+</div>
