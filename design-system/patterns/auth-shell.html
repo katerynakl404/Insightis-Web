@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Auth shell — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Auth shell</h1><p class="sb-header__description">The page chrome behind the placeholder <code>/auth/sign-in</code> and <code>/auth/sign-up</code> routes, from <code>src/components/AuthShell.jsx</code> + <code>src/components/AuthCard.jsx</code>. A slim sticky top bar carrying the Insightis mark (linked to <code>/</code>) over a single centered "coming soon" card — <strong>not</strong> a split-screen: auth is not live yet, so there is deliberately no password field or credential input, only the waitlist email capture (<code>src/components/WaitlistForm.jsx</code>). The shell and card are built entirely from inline styles; the source uses no <code>.ins-btn</code> / <code>.ins-input</code> here, so this reproduces the real markup verbatim.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Full shell — sign-in ("coming soon" + waitlist)</h2>
+<div class="sb-preview sb-preview--fullbleed">
+
+<div style="min-height:70vh;display:flex;flex-direction:column;font-family:var(--ins-font-family-sans);">
+  <!-- AuthShell top bar -->
+  <header style="position:sticky;top:0;z-index:10;height:64px;display:flex;align-items:center;padding:0 24px;background:rgba(13,17,23,0.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);">
+    <a href="/" aria-label="Insightis home" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;">
+      <svg width="28" height="25" viewBox="0 0 25.5 22.84" fill="none" aria-hidden="true"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="#1498B9"/></svg>
+      <span style="color:#E8F2F5;font-weight:600;font-size:var(--ins-font-size-16);font-family:var(--ins-font-family-sans);letter-spacing:-.01em;">Insightis</span>
+    </a>
+  </header>
+
+  <!-- AuthShell main → AuthCard -->
+  <main style="flex:1;display:flex;flex-direction:column;">
+    <section style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px;">
+      <div class="fu0" style="width:100%;max-width:440px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:var(--ins-radius-16);padding:40px 32px;box-shadow:0 4px 24px rgba(0,0,0,0.35);text-align:center;">
+
+        <!-- Coming-soon pill -->
+        <div style="display:inline-flex;align-items:center;gap:7px;padding:5px 12px;margin-bottom:var(--ins-size-5);border-radius:999px;background:rgba(9,160,157,0.12);border:1px solid rgba(9,160,157,0.35);color:#0EC4C1;font-size:var(--ins-font-size-11);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+          <span style="width:6px;height:6px;border-radius:50%;background:#0EC4C1;display:inline-block;" aria-hidden="true"></span>
+          Coming soon
+        </div>
+
+        <!-- Heading -->
+        <h1 style="font-size:var(--ins-font-size-24);font-weight:600;color:var(--ins-text-heading);margin-bottom:var(--ins-size-3);font-family:var(--ins-font-family-sans);letter-spacing:-.01em;">Sign-in is coming soon</h1>
+
+        <!-- Blurb -->
+        <p style="font-size:var(--ins-font-size-15);line-height:1.6;color:var(--ins-text-inactive);margin:0 auto 28px;max-width:34ch;">Insightis isn't live just yet — we're putting the finishing touches on it. Leave your email and we'll tell you the moment you can log in.</p>
+
+        <!-- WaitlistForm (idle) -->
+        <form style="margin:0 0 24px;text-align:left;" novalidate>
+          <label for="waitlist-email" style="display:block;margin-bottom:6px;font-size:var(--ins-font-size-12);font-weight:600;letter-spacing:.04em;color:#9BBAC5;">EMAIL</label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <input id="waitlist-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" required placeholder="you@company.com" style="flex:1 1 200px;min-width:0;box-sizing:border-box;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:11px 14px;font-size:16px;color:var(--ins-color-gray-100);font-family:inherit;outline:none;transition:border-color .2s;">
+            <button type="submit" disabled aria-busy="false" style="flex:0 0 auto;padding:11px 20px;border-radius:10px;border:none;background:rgba(9,160,157,.18);color:var(--ins-color-teal-a-40);font-size:var(--ins-font-size-14);font-weight:600;font-family:inherit;cursor:default;transition:background .18s, color .18s;">Join the waitlist</button>
+          </div>
+          <!-- Honeypot (off-screen, not display:none) -->
+          <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+          <p role="alert" aria-live="assertive" style="min-height:1.2em;margin-top:8px;font-size:var(--ins-font-size-12);line-height:1.5;color:#F87171;"></p>
+        </form>
+
+        <!-- Back to home -->
+        <a href="/" style="display:inline-flex;align-items:center;justify-content:center;gap:var(--ins-size-2);padding:12px 22px;border-radius:10px;background:linear-gradient(180deg, #0EC4C1 0%, #07807E 100%);color:var(--ins-text-body);text-decoration:none;font-size:var(--ins-font-size-14);font-weight:600;">
+          <span aria-hidden="true">←</span>
+          Back to home
+        </a>
+      </div>
+    </section>
+  </main>
+</div>
+
+</div>
+<div class="sb-code"><pre>&lt;!-- AuthShell.jsx — slim sticky bar + centered slot --&gt;
+&lt;div style="min-height:100vh;display:flex;flex-direction:column;"&gt;  &lt;!-- className="font-body" --&gt;
+  &lt;header style="position:sticky;top:0;z-index:10;height:64px;display:flex;align-items:center;padding:0 24px;background:rgba(13,17,23,0.6);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.06);"&gt;
+    &lt;a href="/" aria-label="Insightis home" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;"&gt;
+      &lt;svg width="28" height="25" viewBox="0 0 25.5 22.84"&gt;&lt;path d="M25.49…" fill="#1498B9"/&gt;&lt;/svg&gt;
+      &lt;span style="color:#E8F2F5;font-weight:600;font-size:var(--ins-font-size-16);…"&gt;Insightis&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/header&gt;
+  &lt;main style="flex:1;display:flex;flex-direction:column;"&gt;{children}&lt;/main&gt;
+&lt;/div&gt;
+
+&lt;!-- AuthCard.jsx — the {children} --&gt;
+&lt;section style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px;"&gt;
+  &lt;div class="fu0" style="max-width:440px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:var(--ins-radius-16);padding:40px 32px;box-shadow:0 4px 24px rgba(0,0,0,0.35);text-align:center;"&gt;
+    &lt;div style="…background:rgba(9,160,157,0.12);border:1px solid rgba(9,160,157,0.35);color:#0EC4C1;…"&gt;
+      &lt;span style="width:6px;height:6px;border-radius:50%;background:#0EC4C1;"&gt;&lt;/span&gt; Coming soon
+    &lt;/div&gt;
+    &lt;h1 style="font-size:var(--ins-font-size-24);color:var(--ins-text-heading);…"&gt;Sign-in is coming soon&lt;/h1&gt;
+    &lt;p style="font-size:var(--ins-font-size-15);color:var(--ins-text-inactive);max-width:34ch;"&gt;Insightis isn't live just yet …&lt;/p&gt;
+    &lt;!-- WaitlistForm.jsx: one type="email" field + "Join the waitlist" — no password field --&gt;
+    &lt;form&gt;&lt;label for="waitlist-email"&gt;EMAIL&lt;/label&gt;&lt;input type="email" placeholder="you@company.com"&gt;&lt;button type="submit"&gt;Join the waitlist&lt;/button&gt;&lt;/form&gt;
+    &lt;a href="/" style="…background:linear-gradient(180deg,#0EC4C1 0%,#07807E 100%);…"&gt;← Back to home&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre></div>
+<p class="sb-section__description">The <code>/auth/sign-in</code> page passes <code>title</code>, <code>blurb</code> and <code>waitlist</code> into <code>AuthCard</code>; <code>/auth/sign-up</code> is identical but with sign-up copy. The card is intentionally not a login: <code>WaitlistForm</code> renders exactly one <code>type="email"</code> field labelled EMAIL, a "Join the waitlist" button, and an off-screen honeypot — no password field, which is what keeps the page clear of Safe-Browsing "deceptive page" heuristics. The submit button starts disabled (empty address is invalid) and the mark is a hand-drawn <code>InsightisMark</code> SVG, not the shared header logo.</p>
+</section>
+
+<section class="sb-section"><h2 class="sb-section__title">Sign-up variant (copy only)</h2>
+<div class="sb-preview">
+  <div class="fu0" style="width:100%;max-width:440px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:var(--ins-radius-16);padding:40px 32px;box-shadow:0 4px 24px rgba(0,0,0,0.35);text-align:center;">
+    <div style="display:inline-flex;align-items:center;gap:7px;padding:5px 12px;margin-bottom:var(--ins-size-5);border-radius:999px;background:rgba(9,160,157,0.12);border:1px solid rgba(9,160,157,0.35);color:#0EC4C1;font-size:var(--ins-font-size-11);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+      <span style="width:6px;height:6px;border-radius:50%;background:#0EC4C1;display:inline-block;" aria-hidden="true"></span>
+      Coming soon
+    </div>
+    <h1 style="font-size:var(--ins-font-size-24);font-weight:600;color:var(--ins-text-heading);margin-bottom:var(--ins-size-3);font-family:var(--ins-font-family-sans);letter-spacing:-.01em;">Sign-up is coming soon</h1>
+    <p style="font-size:var(--ins-font-size-15);line-height:1.6;color:var(--ins-text-inactive);margin:0 auto 28px;max-width:34ch;">Insightis isn't open to the public yet. We're almost there — check back soon to create your account.</p>
+    <form style="margin:0 0 24px;text-align:left;" novalidate>
+      <label for="waitlist-email-2" style="display:block;margin-bottom:6px;font-size:var(--ins-font-size-12);font-weight:600;letter-spacing:.04em;color:#9BBAC5;">EMAIL</label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <input id="waitlist-email-2" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" required placeholder="you@company.com" style="flex:1 1 200px;min-width:0;box-sizing:border-box;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:11px 14px;font-size:16px;color:var(--ins-color-gray-100);font-family:inherit;outline:none;transition:border-color .2s;">
+        <button type="submit" disabled aria-busy="false" style="flex:0 0 auto;padding:11px 20px;border-radius:10px;border:none;background:rgba(9,160,157,.18);color:var(--ins-color-teal-a-40);font-size:var(--ins-font-size-14);font-weight:600;font-family:inherit;cursor:default;transition:background .18s, color .18s;">Join the waitlist</button>
+      </div>
+      <p role="alert" aria-live="assertive" style="min-height:1.2em;margin-top:8px;font-size:var(--ins-font-size-12);line-height:1.5;color:#F87171;"></p>
+    </form>
+    <a href="/" style="display:inline-flex;align-items:center;justify-content:center;gap:var(--ins-size-2);padding:12px 22px;border-radius:10px;background:linear-gradient(180deg, #0EC4C1 0%, #07807E 100%);color:var(--ins-text-body);text-decoration:none;font-size:var(--ins-font-size-14);font-weight:600;">
+      <span aria-hidden="true">←</span>
+      Back to home
+    </a>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;AuthCard
+  waitlist
+  title="Sign-up is coming soon"
+  blurb="Insightis isn't open to the public yet. We're almost there — check back soon to create your account."
+/&gt;</pre></div>
+<p class="sb-section__description">Same card composition — only the <code>title</code> and <code>blurb</code> props change between <code>src/pages/sign-in.jsx</code> and <code>src/pages/sign-up.jsx</code>. Both set <code>waitlist</code>, so both render the email capture.</p>
+</section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes &amp; hooks</h2>
+<table class="sb-table">
+<thead><tr><th>Class / token</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>.fu0</code></td><td>Fade-up animation hook on the card (app-level, first-in-view). Not a style class.</td></tr>
+<tr><td><code>--ins-radius-16</code></td><td>Card corner radius.</td></tr>
+<tr><td><code>--ins-font-size-24 / -16 / -15 / -12 / -11</code></td><td>Heading / wordmark / blurb / label / pill type scale.</td></tr>
+<tr><td><code>--ins-text-heading / -inactive / -body</code></td><td>Heading, blurb and button-text colours.</td></tr>
+<tr><td><code>--ins-color-gray-100</code> / <code>--ins-color-teal-a-40</code></td><td>Input text colour / disabled submit-button text.</td></tr>
+<tr><td><code>--ins-size-5 / -3 / -2</code></td><td>Pill / heading / icon-gap spacing.</td></tr>
+</tbody>
+</table>
+<p class="sb-section__description"><strong>Usage.</strong> Source <code>src/components/AuthShell.jsx</code> (bar + centered slot), <code>src/components/AuthCard.jsx</code> (coming-soon card), <code>src/components/WaitlistForm.jsx</code> (email capture), composed by <code>src/pages/sign-in.jsx</code> and <code>src/pages/sign-up.jsx</code>. Everything is inline-styled in the real source — the shell uses no <code>.ins-btn</code>, <code>.ins-input</code> or shared logo — so those raw hex/rgba values (brand teal <code>#0EC4C1/#07807E</code>, mark <code>#1498B9</code>, label <code>#9BBAC5</code>, error <code>#F87171</code>) are reproduced exactly as rendered.</p>
+</section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

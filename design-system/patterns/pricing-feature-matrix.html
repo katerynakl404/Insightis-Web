@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pricing feature matrix — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Pricing feature matrix</h1><p class="sb-header__description">The sectioned plan-comparison table below the pricing cards on <code>/pricing</code>, rendered by the <code>FeatureComparison</code> section of <code>src/pages/pricing.jsx</code>. Feature rows are grouped by category; columns are the three plans (<strong>Free / Starter / Pro</strong>) from <code>src/data/pricing.js</code>; cells resolve to a <code>CheckIcon</code>, an em-dash, or a literal value. The whole grid is an inline <code>[data-compare-wrap]</code> — no DS table class. Distinct from <a href="./pricing-section.html"><code>Pricing section</code></a>, which documents the cards above it.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Sectioned comparison matrix</h2>
+<div class="sb-preview sb-preview--fullbleed">
+<div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+
+  <!-- SectionHeader: title + lede, no eyebrow -->
+  <div style="margin-bottom:var(--ins-size-12);">
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;max-width:760px;margin-inline:auto;">
+      <h2 class="ins-text-display" style="text-wrap:balance;margin:0;">Compare features</h2>
+      <p class="ins-text-body-lg" style="margin:0;max-width:640px;">Everything you get on every plan.</p>
+    </div>
+  </div>
+
+  <!-- The comparison matrix -->
+  <div data-compare-wrap style="border:1px solid var(--ins-color-white-a-08);border-radius:var(--ins-radius-2xl);overflow:hidden;background:rgba(13,17,23,0.5);">
+
+    <!-- Column headers -->
+    <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:18px 20px;background:var(--ins-color-white-a-03);border-bottom:1px solid var(--ins-border-default);">
+      <span style="font-size:var(--ins-font-size-12);font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ins-text-body);font-family:var(--ins-font-family-mono);">Feature</span>
+      <span style="text-align:center;font-size:var(--ins-font-size-14);font-weight:600;color:var(--ins-text-heading);">Free</span>
+      <span style="text-align:center;font-size:var(--ins-font-size-14);font-weight:600;color:var(--ins-text-heading);">Starter</span>
+      <span style="text-align:center;font-size:var(--ins-font-size-14);font-weight:600;color:var(--ins-text-heading);">Pro</span>
+    </div>
+
+    <!-- ── AI & Analytics ── -->
+    <div>
+      <div style="padding:14px 20px 10px;background:var(--ins-color-white-a-02);border-top:none;">
+        <span style="font-size:var(--ins-font-size-11);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ins-text-highlight);font-family:var(--ins-font-family-mono);">AI &amp; Analytics</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:12px 20px;border-top:1px solid var(--ins-color-white-a-04);align-items:center;">
+        <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading);">AI Chat</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:12px 20px;border-top:1px solid var(--ins-color-white-a-04);align-items:center;">
+        <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading);">Insightis AI model</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:12px 20px;border-top:1px solid var(--ins-color-white-a-04);align-items:center;">
+        <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading);">AI tokens</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);">500 / mo</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);">5,000 / mo</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);">15,000 / mo</span>
+      </div>
+    </div>
+
+    <!-- ── Data connections ── -->
+    <div>
+      <div style="padding:14px 20px 10px;background:var(--ins-color-white-a-02);border-top:1px solid var(--ins-border-default);">
+        <span style="font-size:var(--ins-font-size-11);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ins-text-highlight);font-family:var(--ins-font-family-mono);">Data connections</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:12px 20px;border-top:1px solid var(--ins-color-white-a-04);align-items:center;">
+        <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading);">Data connectors</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);">1</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);">Up to 10</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);">Unlimited</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:12px 20px;border-top:1px solid var(--ins-color-white-a-04);align-items:center;">
+        <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading);">Several sources at the same time</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><span style="color:var(--ins-text-disabled);">—</span></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:12px 20px;border-top:1px solid var(--ins-color-white-a-04);align-items:center;">
+        <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading);">Data upload (CSV, Excel)</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+      </div>
+    </div>
+
+    <!-- ── Semantic Layer ── -->
+    <div>
+      <div style="padding:14px 20px 10px;background:var(--ins-color-white-a-02);border-top:1px solid var(--ins-border-default);">
+        <span style="font-size:var(--ins-font-size-11);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ins-text-highlight);font-family:var(--ins-font-family-mono);">Semantic Layer</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:12px 20px;border-top:1px solid var(--ins-color-white-a-04);align-items:center;">
+        <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading);">Metric definitions</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);">Read-only</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);">Full access</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);">Full access</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:12px 20px;border-top:1px solid var(--ins-color-white-a-04);align-items:center;">
+        <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading);">Custom metrics</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><span style="color:var(--ins-text-disabled);">—</span></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:12px 20px;border-top:1px solid var(--ins-color-white-a-04);align-items:center;">
+        <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading);">Predefined Metrics</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+      </div>
+    </div>
+
+    <!-- ── Support & security ── -->
+    <div>
+      <div style="padding:14px 20px 10px;background:var(--ins-color-white-a-02);border-top:1px solid var(--ins-border-default);">
+        <span style="font-size:var(--ins-font-size-11);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ins-text-highlight);font-family:var(--ins-font-family-mono);">Support &amp; security</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:12px 20px;border-top:1px solid var(--ins-color-white-a-04);align-items:center;">
+        <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading);">Support</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);">Community</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);">Standard</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);">Priority</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:12px 20px;border-top:1px solid var(--ins-color-white-a-04);align-items:center;">
+        <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading);">SLA</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><span style="color:var(--ins-text-disabled);">—</span></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><span style="color:var(--ins-text-disabled);">—</span></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);">99.5%</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:12px 20px;border-top:1px solid var(--ins-color-white-a-04);align-items:center;">
+        <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading);">Data encryption</span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span style="display:flex;justify-content:center;align-items:center;font-size:var(--ins-font-size-14);color:var(--ins-text-body);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
+      </div>
+    </div>
+
+    <!-- Choose-your-plan footer -->
+    <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:18px 20px;background:var(--ins-color-white-a-03);border-top:1px solid var(--ins-border-default);align-items:center;">
+      <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-body);">Choose your plan</span>
+      <div style="display:flex;justify-content:center;"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-up/">Start for free</a></div>
+      <div style="display:flex;justify-content:center;"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-up/">Start for free</a></div>
+      <div style="display:flex;justify-content:center;"><a class="ins-btn ins-btn--primary ins-btn--sm" href="/auth/sign-up/">Start for free</a></div>
+    </div>
+
+  </div>
+  <style>
+    /* Real /pricing responsive override for the matrix. */
+    @media (max-width: 768px) {
+      [data-compare-wrap] { font-size: 12px; }
+      [data-compare-wrap] > div > div { padding: 11px 12px !important; }
+    }
+  </style>
+</div>
+</div>
+<div class="sb-code"><pre>&lt;div data-compare-wrap style="border:1px solid var(--ins-color-white-a-08);border-radius:var(--ins-radius-2xl);overflow:hidden;background:rgba(13,17,23,0.5);"&gt;
+
+  &lt;!-- Column headers: cols = "1.6fr 1fr 1fr 1fr" --&gt;
+  &lt;div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:18px 20px;background:var(--ins-color-white-a-03);border-bottom:1px solid var(--ins-border-default);"&gt;
+    &lt;span style="…font-family:var(--ins-font-family-mono);…"&gt;Feature&lt;/span&gt;
+    &lt;span style="text-align:center;…color:var(--ins-text-heading);"&gt;Free&lt;/span&gt; &lt;span&gt;Starter&lt;/span&gt; &lt;span&gt;Pro&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Per section: heading row + feature rows --&gt;
+  &lt;div&gt;
+    &lt;div style="padding:14px 20px 10px;background:var(--ins-color-white-a-02);border-top:1px solid var(--ins-border-default);"&gt;
+      &lt;span style="…color:var(--ins-text-highlight);font-family:var(--ins-font-family-mono);"&gt;Data connections&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:12px 20px;border-top:1px solid var(--ins-color-white-a-04);align-items:center;"&gt;
+      &lt;span style="…color:var(--ins-text-heading);"&gt;Data connectors&lt;/span&gt;
+      &lt;span&gt;1&lt;/span&gt; &lt;span&gt;Up to 10&lt;/span&gt; &lt;span&gt;Unlimited&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div …&gt;
+      &lt;span&gt;Several sources at the same time&lt;/span&gt;
+      &lt;span&gt;&lt;span style="color:var(--ins-text-disabled);"&gt;—&lt;/span&gt;&lt;/span&gt;  &lt;!-- false --&gt;
+      &lt;span&gt;&lt;svg …&gt;&lt;polyline points="20 6 9 17 4 12"/&gt;&lt;/svg&gt;&lt;/span&gt;   &lt;!-- true → CheckIcon size=16 --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Choose-your-plan footer: label + 3 Buttons (sm; last is primary) --&gt;
+  &lt;div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;padding:18px 20px;background:var(--ins-color-white-a-03);border-top:1px solid var(--ins-border-default);align-items:center;"&gt;
+    &lt;span&gt;Choose your plan&lt;/span&gt;
+    &lt;div&gt;&lt;a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-up/"&gt;Start for free&lt;/a&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;a class="ins-btn ins-btn--secondary ins-btn--sm" …&gt;Start for free&lt;/a&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;a class="ins-btn ins-btn--primary ins-btn--sm" …&gt;Start for free&lt;/a&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+<p class="sb-section__description">Cell values come straight from <code>src/data/pricing.js</code> (via <code>PLANS.map</code>) or are literal in the section config, so the matrix cannot contradict the cards above it. A cell of <code>true</code> renders a <code>CheckIcon</code> (size 16), <code>false</code> renders the em-dash <code>Dash</code> (<code>--ins-text-disabled</code>), and a string renders as text. The four category groups — <em>AI &amp; Analytics</em>, <em>Data connections</em>, <em>Semantic Layer</em>, <em>Support &amp; security</em> — each open with a mono uppercase heading row; every group after the first adds a top border.</p>
+</section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table">
+<thead><tr><th>Class / hook</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>[data-compare-wrap]</code></td><td>Inline wrapper hook (not a DS class) — rounded, clipped container; also the target of the ≤768px font-size/padding override.</td></tr>
+<tr><td><code>.ins-text-display</code></td><td>Section heading ("Compare features") from <code>SectionHeader</code>.</td></tr>
+<tr><td><code>.ins-text-body-lg</code></td><td>Section lede paragraph.</td></tr>
+<tr><td><code>.ins-btn / --primary / --secondary / --sm</code></td><td>The three footer CTAs (primary on the last column).</td></tr>
+<tr><td><code>--ins-color-white-a-02/03/04/08</code></td><td>Header/section/row backgrounds and hairline borders.</td></tr>
+<tr><td><code>--ins-font-family-mono</code></td><td>The "Feature" label and each category heading.</td></tr>
+<tr><td><code>--ins-text-highlight</code> / <code>--ins-text-disabled</code></td><td>Category heading + check stroke colour / em-dash colour.</td></tr>
+</tbody>
+</table>
+<p class="sb-section__description"><strong>Usage.</strong> Source <code>src/pages/pricing.jsx</code> (the <code>FeatureComparison</code> section, ~line 132) with plan names, token/connector/support values from <code>src/data/pricing.js</code>. Grid, borders and cell layout are inline styles in the real page — reproduced verbatim; only the section header (<code>SectionHeader.jsx</code>), the checks (<code>CheckIcon.jsx</code>) and the footer CTAs (<code>Button.jsx</code> → <code>.ins-btn</code>) are shared components. Sits below the <a href="./pricing-section.html">pricing cards</a> on <code>/pricing</code>.</p>
+</section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>
