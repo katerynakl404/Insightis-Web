@@ -1,57 +1,58 @@
-# Homepage review — implementation handoff (2026-05-20)
+# Insightis — Website Design & Audit
 
-> Everything an engineer needs to apply iteration-3 review decisions to the Insightis homepage. **Start with [`IMPLEMENTATION-BRIEF.md`](IMPLEMENTATION-BRIEF.md).**
-
----
-
-## What's in this folder
-
-| File / folder | Purpose | When to read it |
-|---|---|---|
-| **[`IMPLEMENTATION-BRIEF.md`](IMPLEMENTATION-BRIEF.md)** | One-page entry point: scope rule, 8 PR gates, 5 systemic principles, token reference, verification checklist. | **Read first.** |
-| [`homepage-review-log.md`](homepage-review-log.md) | Source of truth — 57 Accepted findings under stable `ISS-NN` IDs with Status, Status-history, recommendation. Everything here is in scope. | Reference per PR. |
-| [`review-framework.md`](review-framework.md) | Taxonomy (Category / Domain / Severity / Section) used by each finding. | Reference when categorising. |
-| [`review-iteration-protocol.md`](review-iteration-protocol.md) | How to run iteration 4 once PRs land. **§2a defines the terminal-archive rule for Declined findings.** | After all PRs merged. |
-| [`colors_and_type.css`](colors_and_type.css) | Canonical token brief. Cited by ISS-04. Add legacy aliases here so it's self-sufficient. | When implementing token migrations (Gate 2). |
-| [`design-system/`](design-system/) | Design system source — `assets/tokens.css` (canonical token names), `components/*.html`, `foundations/*.html`, `patterns/*.html`. | Reference per PR. |
-| [`archive/declined-findings.md`](archive/declined-findings.md) | 40 declined findings — **out of scope, never re-proposed.** Read only to verify a Declined ID is not being silently re-introduced. | Only if you're tempted to "fix something extra" — confirm it's not declined first. |
+Working repository for the **design system** and **UX/UI reviews & audits** of the Insightis website
+(`insightis-landing.vercel.app`). It holds **design sources and review/audit documents — not the
+deployed site code**. The site that ships to production lives in a separate repository and is built
+& deployed via Vercel; changes proposed here are handed off to whoever has commit/deploy access there.
 
 ---
 
-## What's NOT in this folder (you already have it in the project)
+## Contents
 
-- The homepage source (`Homepage.html` + React/JSX build).
-- The bundled CSS (`Homepage_files/`).
-- Audit screenshots (`audit-screenshots/`) — referenced by ~12 findings that need visual judgment.
-
-If any of those went missing, ask before proceeding.
-
----
-
-## Workflow
-
-1. Read `IMPLEMENTATION-BRIEF.md` end to end.
-2. Pick the next gate from §3 "Order of operations".
-3. Filter `homepage-review-log.md` for the IDs in that gate. For each one:
-   - Read the **Problem** and **Recommendation**.
-   - Read the latest `Accepted` row in **Status history** for the exact user-specified guidance.
-   - Implement using DS tokens / components per the §4 systemic principles.
-4. Verify per §6 of the brief (grep for raw hex, contrast checks, component-API match).
-5. Open the PR. Reference the ISS-NN IDs in the PR description.
+| Path | What it is |
+|---|---|
+| [`design-system/`](design-system/) | Design system source — `assets/` (tokens & base CSS), `components/`, `foundations/`, `patterns/`. |
+| [`audit/`](audit/) | **Current UX/UI audit.** See below. |
+| [`IMPLEMENTATION-BRIEF.md`](IMPLEMENTATION-BRIEF.md) | Iteration-3 homepage review — engineer entry point (scope rule, PR gates, systemic principles, verification). |
+| [`homepage-review-log.md`](homepage-review-log.md) | Iteration-3 review log — 57 accepted findings under stable `ISS-NN` IDs. |
+| [`review-framework.md`](review-framework.md) | Taxonomy (Category / Domain / Severity / Section) used by findings. |
+| [`review-iteration-protocol.md`](review-iteration-protocol.md) | How to run the next review iteration. |
+| [`colors_and_type.css`](colors_and_type.css) | Canonical token brief (cited by ISS-04). |
+| [`archive/`](archive/) | Declined findings — out of scope, kept for reference only. |
 
 ---
 
-## Hard rules
+## `audit/` — current UX/UI audit
 
-- **The working log is the scope.** Everything in `homepage-review-log.md` is Accepted; implement all of it.
-- **Declined is terminal.** `archive/declined-findings.md` is read-only reference. Never re-propose, never silently fix, never bring back. IDs are permanently reserved.
-- **IDs are immutable.** Never renumber `ISS-NN`.
-- **Findings are append-only.** Don't edit `Problem` / `Recommendation` fields. If a finding needs amendment, raise it back to the user — a new ISS-NN supersedes it.
+A weaknesses-focused audit of the live site (home, pricing, and the Platform pages), measured against
+WCAG 2.1 with DOM/CSS inspection.
+
+| File | Purpose |
+|---|---|
+| `audit/audit-findings.md` | **Text audit** — findings across accessibility, usability, clarity, modernity + a prioritized action plan. Cross-page findings and per-page notes live in one file. |
+| `audit/heatmaps/` | Per-page **attention/friction heatmaps** (HTML, one per page). |
+| `audit/handoff-embed-404.md` | **Handoff prompt** to embed the branded 404 page into the site repo and fix broken routes (for whoever has commit access to the site code). |
+
+---
+
+## What this repo is NOT
+
+- **Not the deployed website.** Site code (the HTML/JSX/CSS that ships) lives in the separate site
+  repository and deploys via Vercel. Functional changes — e.g. the custom **404 page** — cannot be
+  committed here to take effect; they are delivered as a handoff (`audit/handoff-embed-404.md`) to the
+  person/repo that deploys the site.
+
+---
+
+## Hard rules (review process)
+
+- `homepage-review-log.md` is the scope for the iteration-3 review. `ISS-NN` IDs are **immutable** and
+  findings are **append-only** — never renumber or edit; a new ID supersedes.
+- `archive/declined-findings.md` is **terminal** — read-only reference, never re-proposed or silently fixed.
 
 ---
 
 ## Provenance
 
-- Iteration 3 conducted 2026-05-20 against `Homepage-audit-render.html` (byte-equal to May 18 baseline modulo one CSS rule).
-- 97 findings filed in total: **57 Accepted (this log)** + **40 Declined (archived, terminal)** + 0 Pending Review.
-- Source HTML, screenshots, and prior-baseline files remain in the main project tree (outside this handoff bundle).
+- Iteration-3 homepage review conducted 2026-05-20 (57 accepted, 40 declined).
+- Current UX/UI audit added 2026-08-04 — see [`audit/`](audit/).
