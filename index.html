@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insightis — Design & Audit</title>
+<style>
+  /* Tokens mirrored from design-system/tokens/colors.css (keep in sync; no new hex). */
+  :root{
+    --page:#0A0E13; --surface:#0D1117; --heading:#E8F2F5; --text:#C0D4DC; --muted:#7FA0AC;
+    --border:rgba(255,255,255,0.08); --teal-400:#0EC4C1; --teal-600:#07807E;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:var(--page);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;line-height:1.6;
+    background-image:radial-gradient(60% 45% at 50% 0%, rgba(14,196,193,0.08), transparent 70%);background-repeat:no-repeat}
+  .wrap{max-width:760px;margin:0 auto;padding:72px 24px 96px}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-400);margin:0 0 10px}
+  h1{color:var(--heading);font-size:clamp(26px,4vw,36px);letter-spacing:-.02em;margin:0 0 10px}
+  p.lead{color:var(--muted);margin:0 0 36px;max-width:60ch}
+  .grid{display:grid;gap:14px}
+  a.card{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--border);
+    border-radius:14px;padding:18px 20px;transition:border-color .18s ease,transform .18s ease}
+  a.card:hover{border-color:var(--teal-600);transform:translateY(-1px)}
+  a.card .t{color:var(--heading);font-weight:650;font-size:16px}
+  a.card .d{color:var(--muted);font-size:14px;margin-top:3px}
+  footer{margin-top:40px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--border);padding-top:18px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="eyebrow">Insightis · Design &amp; Audit</p>
+    <h1>Design &amp; Audit — Insightis website</h1>
+    <p class="lead">Робочий репозиторій дизайн-системи й UX/UI-аудитів сайту Insightis. Не код продакшену — джерела дизайну та звіти.</p>
+    <div class="grid">
+      <a class="card" href="audit/v1/deliverables/report-visual.html">
+        <div class="t">Аудит v1 — візуальний звіт →</div>
+        <div class="d">12 findings, before/after, на токенах дизайн-системи</div>
+      </a>
+      <a class="card" href="audit/v1/findings.md">
+        <div class="t">Аудит v1 — findings (текст) →</div>
+        <div class="d">Source of truth: AUD-01…12 + план дій</div>
+      </a>
+      <a class="card" href="audit/v1/deliverables/dev-handoff.md">
+        <div class="t">Аудит v1 — dev-handoff →</div>
+        <div class="d">Готові до застосування фікси для розробника (P0…P3)</div>
+      </a>
+      <a class="card" href="audit/v1/evidence/heatmaps/home.html">
+        <div class="t">Теплова карта — Home →</div>
+        <div class="d">Прогноз уваги й зон тертя</div>
+      </a>
+      <a class="card" href="design-system/">
+        <div class="t">Дизайн-система (кіт) →</div>
+        <div class="d">Актуальна, синхронізована із сайтом: tokens · components · blocks</div>
+      </a>
+      <a class="card" href="README.md">
+        <div class="t">README / процес аудиту →</div>
+        <div class="d">Версіювання, decision gate, формати деліверейблів</div>
+      </a>
+    </div>
+    <footer>© Devart · Insightis — Design &amp; Audit repo · GitHub Pages</footer>
+  </div>
+</body>
+</html>

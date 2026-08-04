@@ -1,99 +1,112 @@
-# Insightis Design System
+# Insightis Design System — v1.0.0
 
-The **single source of truth** for the site's styling. Every color, font, size,
-radius, shadow, z-index, and component lives here exactly once. Change a value in
-one place and it propagates everywhere — across hand-written CSS **and** Tailwind
-(Tailwind references the same `var(--ins-*)` tokens; it is *not* a second source).
+Dark-mode design system for the Insightis marketing site. Two-tier tokens, WCAG AA, mobile-first, Geist typography. Framework-agnostic CSS — drop in anywhere.
+
+## What you get
 
 ```
 design-system/
-├── index.css            Aggregator → @imports tokens/ → global.css → components/
-├── tokens/              The values (CSS custom properties on :root), one file per concern
-│   ├── index.css        @imports the 9 concern files below
-│   ├── colors.css       primitives (gray / teal / status / named alphas) + semantic (text / surface / border / icon / button / status / chart)
-│   ├── typography.css   font-family (sans / mono), font-size 11–76, font-weight, line-height, letter-spacing
-│   ├── spacing.css      --ins-size-* (4px grid + 2px half) + semantic --ins-space-* + grid/container/navbar
-│   ├── radii.css        --ins-radius-2…20 + full, semantic xs…3xl/pill, component (card/input/badge)
-│   ├── shadows.css      elevation 0–4, glow (brand/success/error/dot), focus rings, semantic shadows
-│   ├── motion.css       durations (fast/base/slow/xslow) + easings (standard/accelerate/decelerate)
-│   ├── breakpoints.css  480 / 768 / 1024 / 1280 + min-viewport
-│   ├── z-index.css      base / dropdown / sticky / fixed / modal / popover / toast / tooltip (0–700)
-│   └── misc.css         opacity, border-width, blur, icon-size primitives
-├── global.css           Reset + body/font defaults + @font-face (Geist / Geist Mono) + .ins-text-* type scale
-├── components/          One file per component (39), wired by components/index.css in cascade order
-│   ├── index.css        @imports every component file (ORDER = cascade order — do not reorder)
-│   ├── button.css  input.css  card.css  modal.css  navbar.css  footer.css  badge.css  …
-│   └── … (see the folder; bottom-cta, faq-accordion, steps-process, testimonial-card, etc.)
-├── blocks/              Reserved for reusable composite blocks (see blocks/README.md)
-├── AUDIT.md             The Phase-1 audit that scoped this refactor
-└── MIGRATION.md         What moved where + every value→token mapping + decisions
+├── index.html                # Storybook home
+├── assets/
+│   ├── tokens.css            # All design tokens (single source of truth)
+│   ├── base.css              # Reset, @font-face, typography, utilities
+│   ├── components.css        # 32 components, BEM-like naming
+│   ├── storybook.css         # Docs-site chrome (NOT for production)
+│   ├── storybook.js          # Interactivity + scroll-spy + contrast widget (NOT for production)
+│   ├── fonts/                # Geist + Geist Mono (variable TTF)
+│   └── img/noise.svg         # Atmosphere utility asset
+├── foundations/              # 16 token-documentation pages
+└── components/               # 32 component-documentation pages
 ```
 
-## How it's wired
+## Integrating in production
 
-```
-src/app.css
-  └─ @import '../design-system/index.css'   ← tokens, global, components (in that order)
-  └─ @tailwind base / components / utilities ← Tailwind reads var(--ins-*) from the tokens above
-  └─ app/home-page globals                   ← app-layer styles (NOT part of the DS; see note)
+```html
+<!-- Required -->
+<link rel="stylesheet" href="/design-system/assets/tokens.css">
+<link rel="stylesheet" href="/design-system/assets/base.css">
+<link rel="stylesheet" href="/design-system/assets/components.css">
 
-design-system/index.css
-  └─ @import tokens/index.css  → 9 concern files (defines all --ins-* on :root)
-  └─ @import global.css        → reset, @font-face, .ins-text-* scale (consumes tokens)
-  └─ @import components/index.css → 39 component files (consume tokens)
-```
+<!-- Do NOT include storybook.css or storybook.js in production -->
 
-`tailwind.config.js` maps its theme to `var(--ins-*)` — so Tailwind utilities and DS
-classes always agree, from one source. Fonts (Geist) are served from
-`public/fonts/` (referenced by absolute URL in `global.css`'s `@font-face`); the
-body noise texture from `public/img/noise.svg`.
-
-## Using tokens
-
-**In any CSS context** — a `.css` file, a `<style>` block, or a React inline
-`style={{}}` object — reference a token with `var()`:
-
-```css
-.thing { color: var(--ins-text-highlight); padding: var(--ins-size-4); border-radius: var(--ins-radius-12); }
-```
-```jsx
-<div style={{ color: 'var(--ins-text-body)', gap: 'var(--ins-size-2)' }} />
+<!-- Preload font weights you actually use -->
+<link rel="preload" href="/design-system/assets/fonts/Geist-Variable.ttf"
+      as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="/design-system/assets/fonts/GeistMono-Variable.ttf"
+      as="font" type="font/ttf" crossorigin>
 ```
 
-**⚠️ Never use `var()` in an SVG or HTML presentation _attribute_** (`fill=`,
-`stroke=`, `stop-color=`, `font-size=`, `rx=`, …). `var()` is only valid in CSS,
-not in attributes — it silently breaks the value there. Use the literal in
-attributes, or move the styling into a `style={{}}`/CSS context. **Rule of thumb:
-colon (`fill: var(…)`) = OK; equals (`fill="var(…)"`) = broken.**
+Then use component classes directly:
+```html
+<button class="ins-btn ins-btn--primary ins-btn--md">Get started</button>
+<div class="ins-card">
+  <h3 class="ins-card__title">Title</h3>
+  <p class="ins-card__body">Body copy.</p>
+</div>
+```
 
-## Adding or changing a token
+## Hard rules
 
-1. Edit the matching file in `tokens/` (e.g. a new brand shade → `colors.css`).
-2. That's it — every consumer (CSS `var()` + Tailwind) picks it up. No other edits.
-3. Prefer **semantic** names at call sites (`--ins-text-body`, `--ins-radius-card`)
-   over primitives (`--ins-color-gray-300`, `--ins-radius-12`) where a semantic
-   alias exists; semantics let you re-theme without touching markup.
+1. **Use semantic tokens at call sites.** `var(--ins-text-body)`, not `var(--ins-color-gray-300)`.
+2. **No raw hex/rgba in components.** All alpha-blended colors are named primitives (`--ins-color-white-a-06`, `--ins-color-teal-a-20`).
+3. **Mobile-first CSS.** Base styles target <480px; escalate via `@media (min-width: N)`.
+4. **Animations**: `.ins-motion-decorative` is off below 768px; `.ins-motion-state` (spinners, typing dots, toasts, skeletons) always runs.
+5. **WCAG AA**: normal text ≥ 4.5:1 contrast. Exception: `--ins-text-inactive` is for disabled/placeholder only (per WCAG 1.4.3).
+6. **One h1 per page.** Sequential heading levels. `alt` on every `<img>`.
+7. **Dark-only.** No light theme is planned or supported in v1.
 
-Do **not** add a literal value to a component or page if a token already carries
-it. Do **not** tokenize third-party brand colors (connector logos: Google
-`#4285F4`, HubSpot `#ff7a59`, Snowflake `#29b5e8`, Stripe `#635BFF`, …) — those are
-external brand constants, not design decisions.
+## Breakpoints
 
-## Adding a component
+| Stop | Min width | Grid columns | Gutter |
+|---|---|---|---|
+| mobile | 320 (floor) | 4 | 16 |
+| mobile-lg | 480 | 4 | 16 |
+| tablet | 768 | 8 | 20 |
+| laptop | 1024 | 12 | 24 |
+| desktop | 1280 | 24 | 24 |
 
-Add `components/<name>.css`, then add one `@import url('./<name>.css');` line to
-`components/index.css` **at the correct cascade position** (import order is the
-cascade order — a later component can override an earlier one). Keep it consuming
-tokens only (no raw hex / px).
+## Naming conventions
 
-## Conventions
+| Context | Pattern | Example |
+|---|---|---|
+| Primitive token | `--ins-<family>-<scale>` | `--ins-color-teal-600`, `--ins-size-4` |
+| Semantic token | `--ins-<role>-<modifier>` | `--ins-text-heading`, `--ins-surface-card` |
+| Component class | `.ins-<component>` | `.ins-btn`, `.ins-card` |
+| Variant | `.ins-<component>--<variant>` | `.ins-btn--primary` |
+| Size | `.ins-<component>--<size>` | `.ins-btn--lg` |
+| State | `.is-<state>` / `[data-state]` | `.is-loading`, `[data-state="open"]` |
+| Utility | `.ins-u-<prop>-<value>` | `.ins-u-sr-only` |
 
-- **Two teal bases.** Bright `--ins-color-teal-400` (`#0EC4C1`) has alpha tokens at
-  .04–.60; the darker `rgba(9,160,157,…)` only has tokens at .08 and .50. Other dark-teal
-  opacities have no exact token — leave them literal rather than snapping (that would shift color).
-- **4px spacing grid.** `--ins-size-N` where value = `N×4px` (so `--ins-size-4` = 16px),
-  plus a 2px `--ins-size-half`. Off-grid spacing (10/13/etc.) has no token by design.
-- **Type scale is curated** (11,12,14,15,16,17,18,20,22,24,28,32,36,44,48,56,60,76).
-  Sizes off this list (8/9/10/13/40/…) are intentionally not tokens.
+## Performance budget
 
-See `MIGRATION.md` for the full history and the exact value→token mappings.
+- LCP ≤ 2.5s on 4G
+- CLS ≤ 0.1
+- INP ≤ 200ms
+- Initial CSS (gzipped) ≤ 60 KB
+- Font payload ≤ 100 KB
+
+See [foundations/performance.html](foundations/performance.html) for the full checklist.
+
+## Adding a new component
+
+1. Add CSS to `assets/components.css` using existing semantic tokens
+2. Create `components/<new-component>.html` — copy any existing component page as a template
+3. Add a sidebar entry to the `data-sb-render-sidebar` block in `assets/storybook.js`
+4. Update [CHANGELOG.md](CHANGELOG.md)
+
+## Adding a new primitive token
+
+Only when a new raw value is genuinely needed by a semantic role. Primitives are never repurposed — add, don't repoint. Document why in CHANGELOG.
+
+## Bug reports / requests
+
+Track in your team's issue system. Reference the component file and describe expected vs. actual behavior. For design changes, include a before/after screenshot.
+
+## Not in this release (v1.0)
+
+- Light theme
+- Data-visualization charts (tokens exist, components don't)
+- Mobile-specific page-level templates
+- CSS-in-JS or React bindings (component classes work with any framework)
+
+See [UX_IMPROVEMENTS.md](UX_IMPROVEMENTS.md) for known gaps and how existing marketing pages map to this kit.
