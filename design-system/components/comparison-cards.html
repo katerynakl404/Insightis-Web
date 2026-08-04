@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Comparison Cards — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Comparison Cards</h1><p class="sb-header__description">Side-by-side before/after panels used in the "Why Insightis" section of the homepage and Solutions pages. The <code>--before</code> panel is a red error-glow card with ✕ marks; the <code>--after</code> panel is a teal brand-glow card with ✓ marks and a top brand line. Each panel has a dot-label header over a checklist.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Before / After</h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-compare">
+    <div class="ins-compare__panel ins-compare__panel--before">
+      <div class="ins-compare__header"><span class="ins-compare__dot"></span>Traditional Approach</div>
+      <ul class="ins-compare__list">
+        <li class="ins-compare__item"><span class="ins-compare__mark">✕</span>Manual data aggregation required</li>
+        <li class="ins-compare__item"><span class="ins-compare__mark">✕</span>Complex SQL &amp; Python scripts</li>
+        <li class="ins-compare__item"><span class="ins-compare__mark">✕</span>Days to set up new reports</li>
+        <li class="ins-compare__item"><span class="ins-compare__mark">✕</span>Siloed tools &amp; fragmented views</li>
+        <li class="ins-compare__item"><span class="ins-compare__mark">✕</span>High ongoing engineering overhead</li>
+      </ul>
+    </div>
+    <div class="ins-compare__panel ins-compare__panel--after">
+      <div class="ins-compare__header"><span class="ins-compare__dot"></span>With Insightis</div>
+      <ul class="ins-compare__list">
+        <li class="ins-compare__item"><span class="ins-compare__mark">✓</span>Automated data unification</li>
+        <li class="ins-compare__item"><span class="ins-compare__mark">✓</span>Natural language — no SQL needed</li>
+        <li class="ins-compare__item"><span class="ins-compare__mark">✓</span>Instant reports, zero code</li>
+        <li class="ins-compare__item"><span class="ins-compare__mark">✓</span>Unified intelligence layer</li>
+        <li class="ins-compare__item"><span class="ins-compare__mark">✓</span>10× more cost-effective</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-compare"&gt;
+  &lt;div class="ins-compare__panel ins-compare__panel--before"&gt;
+    &lt;div class="ins-compare__header"&gt;&lt;span class="ins-compare__dot"&gt;&lt;/span&gt;Traditional Approach&lt;/div&gt;
+    &lt;ul class="ins-compare__list"&gt;
+      &lt;li class="ins-compare__item"&gt;&lt;span class="ins-compare__mark"&gt;✕&lt;/span&gt;Manual data aggregation required&lt;/li&gt;
+      &lt;li class="ins-compare__item"&gt;&lt;span class="ins-compare__mark"&gt;✕&lt;/span&gt;Complex SQL &amp;amp; Python scripts&lt;/li&gt;
+      &lt;li class="ins-compare__item"&gt;&lt;span class="ins-compare__mark"&gt;✕&lt;/span&gt;Days to set up new reports&lt;/li&gt;
+      &lt;li class="ins-compare__item"&gt;&lt;span class="ins-compare__mark"&gt;✕&lt;/span&gt;Siloed tools &amp;amp; fragmented views&lt;/li&gt;
+      &lt;li class="ins-compare__item"&gt;&lt;span class="ins-compare__mark"&gt;✕&lt;/span&gt;High ongoing engineering overhead&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-compare__panel ins-compare__panel--after"&gt;
+    &lt;div class="ins-compare__header"&gt;&lt;span class="ins-compare__dot"&gt;&lt;/span&gt;With Insightis&lt;/div&gt;
+    &lt;ul class="ins-compare__list"&gt;
+      &lt;li class="ins-compare__item"&gt;&lt;span class="ins-compare__mark"&gt;✓&lt;/span&gt;Automated data unification&lt;/li&gt;
+      &lt;li class="ins-compare__item"&gt;&lt;span class="ins-compare__mark"&gt;✓&lt;/span&gt;Natural language — no SQL needed&lt;/li&gt;
+      &lt;li class="ins-compare__item"&gt;&lt;span class="ins-compare__mark"&gt;✓&lt;/span&gt;Instant reports, zero code&lt;/li&gt;
+      &lt;li class="ins-compare__item"&gt;&lt;span class="ins-compare__mark"&gt;✓&lt;/span&gt;Unified intelligence layer&lt;/li&gt;
+      &lt;li class="ins-compare__item"&gt;&lt;span class="ins-compare__mark"&gt;✓&lt;/span&gt;10× more cost-effective&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-compare</code></td><td>Responsive grid — single column on mobile, two equal columns at ≥768px.</td></tr>
+<tr><td><code>.ins-compare__panel</code></td><td>Base panel — padding + large radius. Always combined with a tone modifier.</td></tr>
+<tr><td><code>.ins-compare__panel--before</code></td><td>Red "before" tone — error background, red border, error glow.</td></tr>
+<tr><td><code>.ins-compare__panel--after</code></td><td>Teal "after" tone — brand tint, brand border, brand glow + top brand line.</td></tr>
+<tr><td><code>.ins-compare__header</code></td><td>Dot-label header; colored red (before) or teal (after).</td></tr>
+<tr><td><code>.ins-compare__dot</code></td><td>8px status dot in the header (glows on the after panel).</td></tr>
+<tr><td><code>.ins-compare__list</code></td><td>Reset <code>&lt;ul&gt;</code> — vertical checklist stack.</td></tr>
+<tr><td><code>.ins-compare__item</code></td><td>One checklist row: mark + text.</td></tr>
+<tr><td><code>.ins-compare__mark</code></td><td>Leading ✕ (before) / ✓ (after) mark, tinted to the panel tone.</td></tr>
+</tbody></table></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

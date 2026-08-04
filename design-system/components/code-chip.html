@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Code Chip — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Code Chip</h1><p class="sb-header__description">Dark mono query/response box. The <code>--panel</code> variant holds a query line plus a response paragraph (used in the "Generic AI vs Insightis" comparison cards); the <code>--inline</code> variant is a single italic muted line used for StepsProcess example chips. Replaces the legacy <code>.aw</code> block.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Panel</h2>
+<div class="sb-preview">
+  <div class="ins-code-chip ins-code-chip--panel">
+    <div class="ins-code-chip__query">→ "What is our churn rate?"</div>
+    <div class="ins-code-chip__response">Your churn rate in March was <span class="ins-code-chip__highlight">2.1%</span> — down from 2.8% in February. Certified against the <span class="ins-code-chip__highlight">@Revenue</span> semantic model.</div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-code-chip ins-code-chip--panel"&gt;
+  &lt;div class="ins-code-chip__query"&gt;→ "What is our churn rate?"&lt;/div&gt;
+  &lt;div class="ins-code-chip__response"&gt;
+    Your churn rate in March was &lt;span class="ins-code-chip__highlight"&gt;2.1%&lt;/span&gt; — down from 2.8% in February.
+    Certified against the &lt;span class="ins-code-chip__highlight"&gt;@Revenue&lt;/span&gt; semantic model.
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Panel — query only</h2>
+<div class="sb-preview">
+  <div class="ins-code-chip ins-code-chip--panel">
+    <div class="ins-code-chip__query">→ "Show CAC by connector for the last 30 days"</div>
+    <div class="ins-code-chip__response">Blended CAC is <span class="ins-code-chip__highlight">$412</span>. HubSpot leads at $318; paid search trails at $907.</div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-code-chip ins-code-chip--panel"&gt;
+  &lt;div class="ins-code-chip__query"&gt;→ "Show CAC by connector for the last 30 days"&lt;/div&gt;
+  &lt;div class="ins-code-chip__response"&gt;Blended CAC is &lt;span class="ins-code-chip__highlight"&gt;$412&lt;/span&gt;. HubSpot leads at $318; paid search trails at $907.&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Inline</h2>
+<div class="sb-preview">
+  <span class="ins-code-chip ins-code-chip--inline">@CAC = @Spend ÷ @New_Customers</span>
+</div>
+<div class="sb-code"><pre>&lt;span class="ins-code-chip ins-code-chip--inline"&gt;@CAC = @Spend ÷ @New_Customers&lt;/span&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-code-chip</code></td><td>Base mono box (tabular-nums, rounded, subtle border).</td></tr>
+<tr><td><code>.ins-code-chip--panel</code></td><td>Full-width padded panel holding a query line + response paragraph.</td></tr>
+<tr><td><code>.ins-code-chip__query</code></td><td>Muted 11px query line (rendered with a <code>→</code> arrow prefix).</td></tr>
+<tr><td><code>.ins-code-chip__response</code></td><td>Body-color response paragraph.</td></tr>
+<tr><td><code>.ins-code-chip__highlight</code></td><td>Teal-tinted 500-weight span for emphasized values inside the response.</td></tr>
+<tr><td><code>.ins-code-chip--inline</code></td><td>Single-line italic muted chip for inline examples.</td></tr>
+</tbody></table></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

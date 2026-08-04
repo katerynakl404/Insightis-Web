@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>FAQ Accordion — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">FAQ Accordion</h1><p class="sb-header__description">Chevron-toggle accordion, one row per Q&amp;A. The open row (<code>.is-open</code>) gets a teal-tinted border and a rotated highlighted chevron; closed rows use the default surface border. Used on Solutions pages and Pricing.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Accordion (one row open)</h2>
+<div class="sb-preview">
+  <div class="ins-faq">
+    <div class="ins-faq__row is-open">
+      <button type="button" class="ins-faq__question" aria-expanded="true">
+        <span>Does Insightis replace our existing data models or sit on top of them?</span>
+        <svg class="ins-faq__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="ins-text-body ins-faq__answer">It sits on top. Insightis reads your warehouse models directly — no shadow modeling, no parallel definitions. Your Semantic Layer stays where it belongs, in your warehouse, owned by your data team.</div>
+    </div>
+    <div class="ins-faq__row">
+      <button type="button" class="ins-faq__question" aria-expanded="false">
+        <span>What happens when teams have conflicting metric definitions?</span>
+        <svg class="ins-faq__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
+    <div class="ins-faq__row">
+      <button type="button" class="ins-faq__question" aria-expanded="false">
+        <span>Will this coexist with our existing BI tool (Looker, Tableau)?</span>
+        <svg class="ins-faq__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-faq"&gt;
+  &lt;div class="ins-faq__row is-open"&gt;
+    &lt;button type="button" class="ins-faq__question" aria-expanded="true"&gt;
+      &lt;span&gt;Does Insightis replace our existing data models or sit on top of them?&lt;/span&gt;
+      &lt;svg class="ins-faq__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;polyline points="6 9 12 15 18 9"/&gt;&lt;/svg&gt;
+    &lt;/button&gt;
+    &lt;div class="ins-text-body ins-faq__answer"&gt;It sits on top. Insightis reads your warehouse models directly — no shadow
+      modeling, no parallel definitions. Your Semantic Layer stays where it belongs, in your warehouse, owned by your data team.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-faq__row"&gt;
+    &lt;button type="button" class="ins-faq__question" aria-expanded="false"&gt;
+      &lt;span&gt;What happens when teams have conflicting metric definitions?&lt;/span&gt;
+      &lt;svg class="ins-faq__chevron" ... &gt;&lt;polyline points="6 9 12 15 18 9"/&gt;&lt;/svg&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-faq__row"&gt;
+    &lt;button type="button" class="ins-faq__question" aria-expanded="false"&gt;
+      &lt;span&gt;Will this coexist with our existing BI tool (Looker, Tableau)?&lt;/span&gt;
+      &lt;svg class="ins-faq__chevron" ... &gt;&lt;polyline points="6 9 12 15 18 9"/&gt;&lt;/svg&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-faq</code></td><td>Vertical stack of rows with a small gap.</td></tr>
+<tr><td><code>.ins-faq__row</code></td><td>One Q&amp;A card: dark surface, subtle border, clipped corners.</td></tr>
+<tr><td><code>.ins-faq__row.is-open</code></td><td>Open state — teal-tinted border; reveals the answer and rotates the chevron.</td></tr>
+<tr><td><code>.ins-faq__question</code></td><td>Full-width toggle button (question text + chevron). Carries <code>aria-expanded</code>.</td></tr>
+<tr><td><code>.ins-faq__chevron</code></td><td>Down chevron SVG; rotates 180° and turns teal when the row is open.</td></tr>
+<tr><td><code>.ins-faq__answer</code></td><td>Answer body — pair with <code>.ins-text-body</code> for type; this class supplies layout only.</td></tr>
+</tbody></table></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

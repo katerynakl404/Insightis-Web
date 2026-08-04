@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cookie notice — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Cookie notice</h1><p class="sb-header__description">The implied-consent bar built by <code>public/cookie-notice.js</code> and shown at the foot of every page until dismissed. It <strong>composes <code>.ins-capsule</code></strong> — the floating pill shell it shares with the site header — and adds only a solid grey fill, a text/link/button row, and its fixed-bottom positioning. The script sets both classes on one node; dismissal writes a <code>localStorage</code> flag so a returning visitor never sees a flash.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Consent bar</h2>
+<p class="ins-text-body" style="margin-bottom:var(--ins-space-md)">In production the bar is <code>position:fixed</code> to the bottom of the viewport. For this specimen only, it is overridden to <code>position:relative</code> so it renders inside the stage. Everything else — the capsule shell, grey fill, and flex row — is the real component.</p>
+<div class="sb-preview sb-preview--fullbleed">
+  <!-- Demo-only override: the live bar is position:fixed; bottom. Here it is forced to
+       position:relative so it renders inside this preview instead of pinning to the viewport. -->
+  <div class="ins-capsule ins-cookie-notice" role="region" aria-label="Cookie notice" style="position:relative;bottom:auto">
+    <p class="ins-cookie-notice__text">We use cookies on this website. By using this site you agree that we may store and access cookies on your device as explained in our <a class="ins-cookie-notice__link" href="/security/cookie-settings">Cookies Policy</a>.</p>
+    <button type="button" class="ins-cookie-notice__btn" aria-label="Dismiss cookie notice">Got It</button>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;!-- Built by public/cookie-notice.js. Both classes on one node:
+     .ins-capsule supplies the shell, .ins-cookie-notice the grey fill + fixed-bottom position. --&gt;
+&lt;div class="ins-capsule ins-cookie-notice" role="region" aria-label="Cookie notice"&gt;
+  &lt;p class="ins-cookie-notice__text"&gt;
+    We use cookies on this website. By using this site you agree that we may store and
+    access cookies on your device as explained in our
+    &lt;a class="ins-cookie-notice__link" href="/security/cookie-settings"&gt;Cookies Policy&lt;/a&gt;.
+  &lt;/p&gt;
+  &lt;button type="button" class="ins-cookie-notice__btn" aria-label="Dismiss cookie notice"&gt;Got It&lt;/button&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Behaviour &amp; layout notes</h2>
+<div class="sb-preview">
+  <ul class="ins-text-body" style="margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--ins-space-xs)">
+    <li>Fixed at <code>bottom: var(--ins-space-md)</code> with <code>z-index: var(--ins-z-sticky)</code>; grey <code>--ins-surface-elevated</code> fill (solid, not glass, so it reads as a distinct panel over the near-black page).</li>
+    <li>While the bar is up, the script adds <code>.has-ins-cookie-notice</code> to <code>&lt;html&gt;</code>, which pads the body bottom so the bar can't cover the footer's links.</li>
+    <li>Below 768px the capsule wraps, drops to a rounded-card radius, and the button goes full-width.</li>
+    <li><code>role="region"</code> (not <code>alertdialog</code>): it is non-modal and must not steal focus. <kbd>Esc</kbd> dismisses only while focus is inside the bar.</li>
+  </ul>
+</div>
+<div class="sb-code"><pre>&lt;!-- html gets this class while the bar is present (reserves footer space) --&gt;
+&lt;html class="has-ins-cookie-notice"&gt; … &lt;/html&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-capsule</code></td><td>Composed shell (documented separately): bordered, 50px-radius, shadowed pill inset from the edges, flex row. Supplies no fill/position of its own.</td></tr>
+<tr><td><code>.ins-cookie-notice</code></td><td>Adds to the capsule: fixed-bottom position, sticky z-index, asymmetric padding, and the solid grey <code>--ins-surface-elevated</code> fill.</td></tr>
+<tr><td><code>.ins-cookie-notice__text</code></td><td>The consent copy paragraph (13px body, <code>min-width:0</code> so it can shrink in the flex row).</td></tr>
+<tr><td><code>.ins-cookie-notice__link</code></td><td>Underlined highlight link to the Cookies Policy; teal on hover, focus ring on focus.</td></tr>
+<tr><td><code>.ins-cookie-notice__btn</code></td><td>The teal-tinted pill "Got It" dismiss button (full-width under 768px).</td></tr>
+<tr><td><code>.has-ins-cookie-notice</code></td><td>Set on <code>&lt;html&gt;</code> while the bar is up; pads <code>body</code> bottom to reserve space (92px, 168px under 768px).</td></tr>
+</tbody></table></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

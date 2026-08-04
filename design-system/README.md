@@ -1,22 +1,35 @@
-# Insightis Design System — v1.0.0
+# Insightis Design System — Storybook (v1.1.0)
 
-Dark-mode design system for the Insightis marketing site. Two-tier tokens, WCAG AA, mobile-first, Geist typography. Framework-agnostic CSS — drop in anywhere.
+Dark-mode design system for the Insightis marketing site. Two-tier tokens, WCAG AA, mobile-first, Geist typography.
+
+## Source of truth = the live site
+
+This is the **storybook** (docs site). It does not own any styles — the real design
+system lives in the site repo at `insightis-site/design-system/`. Here, `ds/` is an
+**exact mirror** of it, and the storybook renders through that mirror, so the
+storybook always shows the real site styles. Keep them in step with the sync tool —
+**see [SYNC.md](SYNC.md)** (`assets/sync-ds.ps1 -Check` before every publish).
 
 ## What you get
 
 ```
 design-system/
 ├── index.html                # Storybook home
+├── SYNC.md                    # How to check divergence + pull site changes
+├── ds/                        # EXACT MIRROR of insightis-site/design-system (the real DS)
+│   ├── tokens/  global.css  components/  index.css   # canonical CSS — do not hand-edit
 ├── assets/
-│   ├── tokens.css            # All design tokens (single source of truth)
-│   ├── base.css              # Reset, @font-face, typography, utilities
-│   ├── components.css        # 32 components, BEM-like naming
-│   ├── storybook.css         # Docs-site chrome (NOT for production)
+│   ├── tokens.css            # SHIM -> ds/tokens/index.css   (no styles of its own)
+│   ├── base.css              # SHIM -> ds/global.css
+│   ├── components.css        # SHIM -> ds/components/index.css
+│   ├── storybook.css         # Docs-site chrome + local asset-path overrides (NOT for production)
 │   ├── storybook.js          # Interactivity + scroll-spy + contrast widget (NOT for production)
+│   ├── sync-ds.ps1           # Divergence check + pull from the live site
 │   ├── fonts/                # Geist + Geist Mono (variable TTF)
-│   └── img/noise.svg         # Atmosphere utility asset
+│   ├── img/noise.svg         # Atmosphere utility asset
+│   └── connectors/sprite.svg # Connector logo sprite (local copy)
 ├── foundations/              # 16 token-documentation pages
-└── components/               # 32 component-documentation pages
+└── components/               # 47 component-documentation pages
 ```
 
 ## Integrating in production
@@ -89,9 +102,12 @@ See [foundations/performance.html](foundations/performance.html) for the full ch
 
 ## Adding a new component
 
-1. Add CSS to `assets/components.css` using existing semantic tokens
-2. Create `components/<new-component>.html` — copy any existing component page as a template
-3. Add a sidebar entry to the `data-sb-render-sidebar` block in `assets/storybook.js`
+Component CSS is authored **on the site** (`insightis-site/design-system/components/`),
+never here. Once it ships there:
+
+1. Sync the mirror: `assets/sync-ds.ps1` (pulls the new component CSS into `ds/`)
+2. Create `components/<new-component>.html` — copy any existing component page as a template; it renders automatically through the shim → mirror
+3. Add a sidebar entry in **both** `assets/storybook.js` (the `data-sb-render-sidebar` block) and `index.html` (inline nav)
 4. Update [CHANGELOG.md](CHANGELOG.md)
 
 ## Adding a new primitive token

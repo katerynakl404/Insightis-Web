@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Capsule — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Capsule</h1><p class="sb-header__description">The floating pill shell shared by the site header and the cookie consent notice: a bordered, rounded, shadowed bar inset from the viewport edges. It is a composed primitive — it deliberately carries no fill, blur, or position of its own, so each consumer (<code>.ins-cookie-notice</code> adds a solid grey fill; the header adds translucent glass) supplies those itself.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Composed as a nav row</h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-capsule" style="padding:12px 20px">
+    <a href="#" aria-label="Insightis home" class="ins-eyebrow">Insightis</a>
+    <nav class="sb-preview-row" aria-label="Primary" style="gap:var(--ins-space-lg)">
+      <a href="#" class="ins-text-body">Platform</a>
+      <a href="#" class="ins-text-body">Connectors</a>
+      <a href="#" class="ins-text-body">Pricing</a>
+    </nav>
+    <button class="ins-btn ins-btn--primary ins-btn--sm">Start free</button>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;!-- .ins-capsule has no fill/position of its own; the consumer adds padding + any fill.
+     Here the demo adds inline padding only. --&gt;
+&lt;div class="ins-capsule" style="padding:12px 20px"&gt;
+  &lt;a href="#" aria-label="Insightis home" class="ins-eyebrow"&gt;Insightis&lt;/a&gt;
+  &lt;nav aria-label="Primary"&gt;
+    &lt;a href="#" class="ins-text-body"&gt;Platform&lt;/a&gt;
+    &lt;a href="#" class="ins-text-body"&gt;Connectors&lt;/a&gt;
+    &lt;a href="#" class="ins-text-body"&gt;Pricing&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;button class="ins-btn ins-btn--primary ins-btn--sm"&gt;Start free&lt;/button&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Real consumers</h2>
+<div class="sb-preview">
+  <p class="ins-text-body">In production the capsule is never used alone. Two blocks compose it:</p>
+  <ul class="ins-text-body">
+    <li><code>.ins-capsule.ins-cookie-notice</code> — the fixed-bottom consent bar (solid grey fill).</li>
+    <li>the site header — sticky, translucent glass fill with a prefixed-first backdrop blur.</li>
+  </ul>
+</div>
+<div class="sb-code"><pre>&lt;!-- cookie notice (public/cookie-notice.js) --&gt;
+&lt;div class="ins-capsule ins-cookie-notice"&gt;…&lt;/div&gt;
+
+&lt;!-- header composes the same shell with a sticky position + glass fill --&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-capsule</code></td><td>Bordered, rounded (50px), shadowed shell inset from the viewport edges with auto side margins and a max measure. Flex row, space-between. No fill, blur, or position — the consumer supplies those.</td></tr>
+</tbody></table></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Eyebrow — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Eyebrow</h1><p class="sb-header__description">Small uppercase label that sits above section headings across the marketing pages (hero eyebrows, "How it works", "Why Insightis"). The four-pointed ✦ star is baked into the base class via <code>::before</code> — a label cannot be built without it.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Base</h2>
+<div class="sb-preview">
+  <span class="ins-eyebrow">One source of truth</span>
+</div>
+<div class="sb-code"><pre>&lt;span class="ins-eyebrow"&gt;One source of truth&lt;/span&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Pill</h2>
+<div class="sb-preview">
+  <span class="ins-eyebrow ins-eyebrow--pill">How it works</span>
+</div>
+<div class="sb-code"><pre>&lt;span class="ins-eyebrow ins-eyebrow--pill"&gt;How it works&lt;/span&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Centered</h2>
+<div class="sb-preview">
+  <div style="width:100%;text-align:center">
+    <span class="ins-eyebrow ins-eyebrow--center">Why Insightis</span>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div style="text-align:center"&gt;
+  &lt;span class="ins-eyebrow ins-eyebrow--center"&gt;Why Insightis&lt;/span&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Error tone</h2>
+<div class="sb-preview">
+  <span class="ins-eyebrow ins-eyebrow--error">Connector offline</span>
+</div>
+<div class="sb-code"><pre>&lt;span class="ins-eyebrow ins-eyebrow--error"&gt;Connector offline&lt;/span&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Grey tone</h2>
+<div class="sb-preview">
+  <span class="ins-eyebrow ins-eyebrow--grey">Coming soon</span>
+</div>
+<div class="sb-code"><pre>&lt;span class="ins-eyebrow ins-eyebrow--grey"&gt;Coming soon&lt;/span&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Error pill (filled)</h2>
+<div class="sb-preview">
+  <span class="ins-eyebrow ins-eyebrow--error ins-eyebrow--pill">Sync failed</span>
+</div>
+<div class="sb-code"><pre>&lt;span class="ins-eyebrow ins-eyebrow--error ins-eyebrow--pill"&gt;Sync failed&lt;/span&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Grey pill (filled)</h2>
+<div class="sb-preview">
+  <span class="ins-eyebrow ins-eyebrow--grey ins-eyebrow--pill">Beta</span>
+</div>
+<div class="sb-code"><pre>&lt;span class="ins-eyebrow ins-eyebrow--grey ins-eyebrow--pill"&gt;Beta&lt;/span&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-eyebrow</code></td><td>Base uppercase label; auto-prepends the ✦ star via <code>::before</code>.</td></tr>
+<tr><td><code>.ins-eyebrow--pill</code></td><td>Teal-tinted filled pill treatment (hero + section eyebrows needing presence).</td></tr>
+<tr><td><code>.ins-eyebrow--center</code></td><td>Adds <code>margin-inline:auto</code> for centered section headers.</td></tr>
+<tr><td><code>.ins-eyebrow--error</code></td><td>Tints text and star with the error color.</td></tr>
+<tr><td><code>.ins-eyebrow--grey</code></td><td>Tints text and star with the inactive/muted color.</td></tr>
+<tr><td><code>.ins-eyebrow--error.ins-eyebrow--pill</code></td><td>Filled error pill (red background + border).</td></tr>
+<tr><td><code>.ins-eyebrow--grey.ins-eyebrow--pill</code></td><td>Filled grey pill (white-alpha background + border).</td></tr>
+</tbody></table></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

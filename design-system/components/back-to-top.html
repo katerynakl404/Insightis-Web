@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Back to Top — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Back to Top</h1><p class="sb-header__description">Floating circular button pinned to the bottom-right of every page. It is <code>position:fixed</code> and hidden (opacity 0, inert) until <code>public/back-to-top.js</code> adds <code>.is-visible</code> past 400px of scroll; it lifts clear of the cookie notice while that bar is up.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Visible state</h2>
+<div class="sb-preview">
+  <div style="position:relative;height:180px;width:100%">
+    <!-- Demo-only override: the real button is position:fixed. Here it is forced to
+         position:absolute so it renders inside this relative demo stage. -->
+    <button type="button" class="ins-to-top is-visible" aria-label="Back to top" style="position:absolute;bottom:20px;right:20px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+    </button>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;!-- Built by public/back-to-top.js and appended to &lt;body&gt;.
+     .is-visible is toggled on once scrollY &gt; 400px. --&gt;
+&lt;button type="button" class="ins-to-top is-visible" aria-label="Back to top"&gt;
+  &lt;svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;
+    &lt;line x1="12" y1="19" x2="12" y2="5"/&gt;&lt;polyline points="5 12 12 5 19 12"/&gt;
+  &lt;/svg&gt;
+&lt;/button&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Hidden state</h2>
+<div class="sb-preview">
+  <div style="position:relative;height:180px;width:100%">
+    <!-- No .is-visible: opacity 0 + pointer-events none + slight translate. Nothing should paint. -->
+    <button type="button" class="ins-to-top" aria-label="Back to top" style="position:absolute;bottom:20px;right:20px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+    </button>
+    <p class="ins-text-body" style="position:absolute;top:0;left:0">Without <code>.is-visible</code> the button is invisible and inert (nothing paints in this stage).</p>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;!-- Default: hidden until the scroll script promotes it. --&gt;
+&lt;button type="button" class="ins-to-top" aria-label="Back to top"&gt;…&lt;/button&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-to-top</code></td><td>Fixed 44px circular button, bottom-right. Hidden and inert by default (opacity 0, pointer-events none).</td></tr>
+<tr><td><code>.ins-to-top.is-visible</code></td><td>Revealed state toggled by the scroll script past 400px (opacity 1, interactive).</td></tr>
+<tr><td><code>.has-ins-cookie-notice .ins-to-top</code></td><td>Global modifier (on <code>&lt;html&gt;</code>) that lifts the button clear of the consent bar while it is up.</td></tr>
+</tbody></table></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Testimonial card — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Testimonial card</h1><p class="sb-header__description">A customer-quote card with a top brand-glow accent line and a hover-lit border. Two visual configurations (from <code>src/components/TestimonialCard.jsx</code>): the <strong>Solutions style</strong> — opening-quote SVG, quote, then a name/role footer with an optional mono company pill — used on the by-role solution pages; and the <strong>homepage style</strong> — a 5-star row, a decorative corner mark, and an avatar beside the name/role.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Solutions style — quote icon + company pill</h2>
+<div class="sb-preview">
+  <div class="ins-testimonial" style="max-width:380px">
+    <svg class="ins-testimonial__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5C8 19 6 19 3 19v2zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5c0 3.5-2 3.5-5 3.5v2z"/>
+    </svg>
+    <p class="ins-testimonial__quote">In the first month we deflected ~70% of ad hoc SQL tickets — analysts now answer their own questions in AI Chat instead of queuing for the data team.</p>
+    <div class="ins-testimonial__footer">
+      <div class="ins-testimonial__name">Maya Chen</div>
+      <div class="ins-testimonial__role">Head of Data</div>
+      <div class="ins-testimonial__company">Series-B SaaS</div>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-testimonial"&gt;
+  &lt;svg class="ins-testimonial__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"&gt;
+    &lt;path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5C8 19 6 19 3 19v2zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5c0 3.5-2 3.5-5 3.5v2z"/&gt;
+  &lt;/svg&gt;
+  &lt;p class="ins-testimonial__quote"&gt;In the first month we deflected ~70% of ad hoc SQL tickets…&lt;/p&gt;
+  &lt;div class="ins-testimonial__footer"&gt;
+    &lt;div class="ins-testimonial__name"&gt;Maya Chen&lt;/div&gt;
+    &lt;div class="ins-testimonial__role"&gt;Head of Data&lt;/div&gt;
+    &lt;div class="ins-testimonial__company"&gt;Series-B SaaS&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Homepage style — stars, corner mark + avatar</h2>
+<div class="sb-preview">
+  <div class="ins-testimonial ins-testimonial--has-avatar" style="max-width:380px">
+    <span class="ins-testimonial__corner" aria-hidden="true">&ldquo;</span>
+    <div class="ins-testimonial__stars" aria-label="5 out of 5 stars">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </div>
+    <p class="ins-testimonial__quote">Insightis transformed how we make decisions — the whole leadership team now asks the data directly instead of waiting on a weekly report.</p>
+    <div class="ins-testimonial__footer">
+      <span class="ins-testimonial__avatar-fallback" aria-hidden="true">SC</span>
+      <div>
+        <div class="ins-testimonial__name">Sarah Chen</div>
+        <div class="ins-testimonial__role">VP of Analytics · Meridian Health</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-testimonial ins-testimonial--has-avatar"&gt;
+  &lt;span class="ins-testimonial__corner" aria-hidden="true"&gt;&amp;ldquo;&lt;/span&gt;
+  &lt;div class="ins-testimonial__stars" aria-label="5 out of 5 stars"&gt;
+    &lt;svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"&gt;&lt;polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/&gt;&lt;/svg&gt;
+    &lt;!-- five stars total --&gt;
+  &lt;/div&gt;
+  &lt;p class="ins-testimonial__quote"&gt;Insightis transformed how we make decisions…&lt;/p&gt;
+  &lt;div class="ins-testimonial__footer"&gt;
+    &lt;span class="ins-testimonial__avatar-fallback" aria-hidden="true"&gt;SC&lt;/span&gt;
+    &lt;div&gt;
+      &lt;div class="ins-testimonial__name"&gt;Sarah Chen&lt;/div&gt;
+      &lt;div class="ins-testimonial__role"&gt;VP of Analytics · Meridian Health&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- with a real photo, swap the fallback for the image element: --&gt;
+&lt;img class="ins-testimonial__avatar" src="…" alt="Sarah Chen" width="36" height="36" loading="lazy"&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Plain quote — no icon, no footer badge</h2>
+<div class="sb-preview">
+  <div class="ins-testimonial" style="max-width:380px">
+    <p class="ins-testimonial__quote">It has saved my time, which is money. And now my stakeholders get a better response time from me.</p>
+    <div class="ins-testimonial__footer">
+      <div class="ins-testimonial__name">Vantage Data Co</div>
+      <div class="ins-testimonial__role">Insights Engine customer</div>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-testimonial"&gt;
+  &lt;p class="ins-testimonial__quote"&gt;It has saved my time, which is money…&lt;/p&gt;
+  &lt;div class="ins-testimonial__footer"&gt;
+    &lt;div class="ins-testimonial__name"&gt;Vantage Data Co&lt;/div&gt;
+    &lt;div class="ins-testimonial__role"&gt;Insights Engine customer&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-testimonial</code></td><td>Card shell. Relative + overflow-hidden, dark translucent fill, hover-lit teal border, and an always-on top brand-glow line (<code>::before</code>).</td></tr>
+<tr><td><code>.ins-testimonial--has-avatar</code></td><td>Modifier: turns the footer into a flex row (avatar beside name/role) and drops the footer's top divider.</td></tr>
+<tr><td><code>.ins-testimonial__corner</code></td><td>Decorative <code>&amp;ldquo;</code> mark pinned top-right (homepage idiom, defaults on when stars are shown).</td></tr>
+<tr><td><code>.ins-testimonial__icon</code></td><td>Opening-quote SVG (Solutions idiom). 22px, half-opacity, highlight colour.</td></tr>
+<tr><td><code>.ins-testimonial__stars</code></td><td>Amber 5-star row above the quote; each <code>&gt; svg</code> is 13px.</td></tr>
+<tr><td><code>.ins-testimonial__quote</code></td><td>Quote body. <code>flex:1</code> so the footer sits at the card's foot regardless of length.</td></tr>
+<tr><td><code>.ins-testimonial__footer</code></td><td>Footer block with a top divider; the divider/padding are removed under <code>--has-avatar</code>.</td></tr>
+<tr><td><code>.ins-testimonial__name</code></td><td>Attribution name (heading colour, medium weight).</td></tr>
+<tr><td><code>.ins-testimonial__role</code></td><td>Role / title line under the name (inactive colour).</td></tr>
+<tr><td><code>.ins-testimonial__company</code></td><td>Optional mono uppercase pill below the role (Solutions idiom).</td></tr>
+<tr><td><code>.ins-testimonial__avatar</code></td><td><code>&lt;img&gt;</code> avatar circle, 36px, object-fit cover.</td></tr>
+<tr><td><code>.ins-testimonial__avatar-fallback</code></td><td>Initials circle shown when no photo — teal gradient fill.</td></tr>
+</tbody></table></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

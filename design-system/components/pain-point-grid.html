@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pain-Point Grid — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Pain-Point Grid</h1><p class="sb-header__description">Responsive grid of pain cards used in the "problem" section of Solutions pages. Each card pairs a red ✕ <code>.ins-icon-badge--red</code> with a title and body. The top edge carries a faint red-to-transparent accent line. Grid flows 3 → 2 → 1 columns.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Grid (3 cards)</h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-pain-grid">
+    <div class="ins-pain-card">
+      <div class="ins-pain-card__header">
+        <span class="ins-icon-badge ins-icon-badge--red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+        <h3 class="ins-pain-card__title">Every metric has three definitions</h3>
+      </div>
+      <p class="ins-text-body ins-pain-card__body">Sales, finance and product each compute CAC their own way, so every review opens by arguing about whose number is right instead of what to do next.</p>
+    </div>
+    <div class="ins-pain-card">
+      <div class="ins-pain-card__header">
+        <span class="ins-icon-badge ins-icon-badge--red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+        <h3 class="ins-pain-card__title">Every answer is a SQL ticket</h3>
+      </div>
+      <p class="ins-text-body ins-pain-card__body">Business teams wait days for the data team to hand-write a query, and the analysts spend their week on the same long tail of one-off pulls.</p>
+    </div>
+    <div class="ins-pain-card">
+      <div class="ins-pain-card__header">
+        <span class="ins-icon-badge ins-icon-badge--red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+        <h3 class="ins-pain-card__title">Dashboards break silently</h3>
+      </div>
+      <p class="ins-text-body ins-pain-card__body">A renamed column upstream quietly poisons a report, and nobody notices until a decision has already been made on the wrong number.</p>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-pain-grid"&gt;
+  &lt;div class="ins-pain-card"&gt;
+    &lt;div class="ins-pain-card__header"&gt;
+      &lt;span class="ins-icon-badge ins-icon-badge--red"&gt;
+        &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"&gt;
+          &lt;line x1="18" y1="6" x2="6" y2="18"/&gt;&lt;line x1="6" y1="6" x2="18" y2="18"/&gt;
+        &lt;/svg&gt;
+      &lt;/span&gt;
+      &lt;h3 class="ins-pain-card__title"&gt;Every metric has three definitions&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;p class="ins-text-body ins-pain-card__body"&gt;Sales, finance and product each compute CAC their own way, so every review
+      opens by arguing about whose number is right instead of what to do next.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;!-- + two more .ins-pain-card (Every answer is a SQL ticket · Dashboards break silently) --&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-pain-grid</code></td><td>Responsive grid — 3 columns (≥1024px) → 2 (≥640px) → 1 (mobile).</td></tr>
+<tr><td><code>.ins-pain-card</code></td><td>Dark surface card with a red-to-transparent accent line along the top edge.</td></tr>
+<tr><td><code>.ins-pain-card__header</code></td><td>Flex row holding the icon badge and the title.</td></tr>
+<tr><td><code>.ins-icon-badge.ins-icon-badge--red</code></td><td>Red-tinted circular badge holding the ✕ icon (shared IconBadge component).</td></tr>
+<tr><td><code>.ins-pain-card__title</code></td><td>Bold card heading.</td></tr>
+<tr><td><code>.ins-pain-card__body</code></td><td>Body paragraph — pair with <code>.ins-text-body</code> for type; layout only here.</td></tr>
+</tbody></table></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

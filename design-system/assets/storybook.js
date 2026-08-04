@@ -60,6 +60,12 @@
         <a class="sb-sidebar__link" href="${p}components/tabs.html">Tabs</a>
         <a class="sb-sidebar__link" href="${p}components/accordion.html">Accordion</a>
         <a class="sb-sidebar__link" href="${p}components/comparison-grid.html">Comparison grid</a>
+        <a class="sb-sidebar__link" href="${p}components/comparison-cards.html">Comparison cards</a>
+        <a class="sb-sidebar__link" href="${p}components/icon-badge.html">Icon badge</a>
+        <a class="sb-sidebar__link" href="${p}components/code-chip.html">Code chip</a>
+        <a class="sb-sidebar__link" href="${p}components/metrics-catalog.html">Metrics catalog</a>
+        <a class="sb-sidebar__link" href="${p}components/solutions-accordion.html">Solutions accordion</a>
+        <a class="sb-sidebar__link" href="${p}components/testimonial-card.html">Testimonial card</a>
       </nav>
       <nav class="sb-sidebar__section" aria-label="Feedback">
         <span class="sb-sidebar__section-title">Feedback</span>
@@ -71,6 +77,7 @@
         <a class="sb-sidebar__link" href="${p}components/tooltips.html">Tooltip</a>
         <a class="sb-sidebar__link" href="${p}components/loaders.html">Loader</a>
         <a class="sb-sidebar__link" href="${p}components/empty-states.html">Empty state</a>
+        <a class="sb-sidebar__link" href="${p}components/cookie-notice.html">Cookie notice</a>
       </nav>
       <nav class="sb-sidebar__section" aria-label="Navigation">
         <span class="sb-sidebar__section-title">Navigation</span>
@@ -80,16 +87,27 @@
         <a class="sb-sidebar__link" href="${p}components/pagination.html">Pagination</a>
         <a class="sb-sidebar__link" href="${p}components/breadcrumbs.html">Breadcrumbs</a>
         <a class="sb-sidebar__link" href="${p}components/scroll-spy-toc.html">Scroll-spy TOC</a>
+        <a class="sb-sidebar__link" href="${p}components/back-to-top.html">Back to top</a>
       </nav>
       <nav class="sb-sidebar__section" aria-label="Marketing">
         <span class="sb-sidebar__section-title">Marketing</span>
         <a class="sb-sidebar__link" href="${p}components/chat-bubble.html">Chat bubble</a>
         <a class="sb-sidebar__link" href="${p}components/marquee.html">Marquee</a>
+        <a class="sb-sidebar__link" href="${p}components/bottom-cta.html">Bottom CTA</a>
+        <a class="sb-sidebar__link" href="${p}components/faq-accordion.html">FAQ accordion</a>
+        <a class="sb-sidebar__link" href="${p}components/pain-point-grid.html">Pain-point grid</a>
+        <a class="sb-sidebar__link" href="${p}components/steps-process.html">Steps / process</a>
+        <a class="sb-sidebar__link" href="${p}components/connector-gallery.html">Connector gallery</a>
       </nav>
       <nav class="sb-sidebar__section" aria-label="Content">
         <span class="sb-sidebar__section-title">Content</span>
         <a class="sb-sidebar__link" href="${p}components/code.html">Code</a>
         <a class="sb-sidebar__link" href="${p}components/kbd.html">Kbd</a>
+        <a class="sb-sidebar__link" href="${p}components/eyebrow.html">Eyebrow</a>
+      </nav>
+      <nav class="sb-sidebar__section" aria-label="Layout">
+        <span class="sb-sidebar__section-title">Layout</span>
+        <a class="sb-sidebar__link" href="${p}components/capsule.html">Capsule</a>
       </nav>
       <nav class="sb-sidebar__section" aria-label="Patterns">
         <span class="sb-sidebar__section-title">Patterns</span>

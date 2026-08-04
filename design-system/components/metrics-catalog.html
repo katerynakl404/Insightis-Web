@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Metrics catalog — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Metrics catalog</h1><p class="sb-header__description">The Platform / Semantic-layer "Metrics catalog" organism (<code>src/components/MetricsCatalog.jsx</code>): a two-up layout with a metric grid on the left and a detail panel on the right. Every string is the shipped metric library's own text. The grid is a single-select <code>listbox</code> and sets the height; the detail panel stretches to match it and scrolls inside, so the section never changes shape when you pick a different metric. Source-family tabs (rendered with the DS Chip component) sit above the grid.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Grid + detail panel</h2>
+<p class="ins-text-body" style="margin-bottom:var(--ins-space-md)">The grid below shows the CRM source family with its first card selected. Card logos are painted from the connector sprite via <code>.ins-connector-logo</code>. At <code>&ge;1024px</code> the detail panel is absolutely positioned to match the grid height; the three inner blocks (description, formula, ask box) keep fixed heights so they line up at the same baseline for every metric.</p>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-mcat">
+    <div class="ins-mcat__grid" role="listbox" aria-label="CRM metrics">
+      <button type="button" role="option" aria-selected="true" class="ins-mcat__card">
+        <span class="ins-mcat__tile"><span class="ins-connector-logo salesforce" style="--ins-connector-size:28px" role="img" aria-label="Salesforce"></span></span>
+        <span class="ins-mcat__txt">
+          <span class="ins-mcat__alias">mrr_won</span>
+          <span class="ins-mcat__cardsub">Monthly Recurring Revenue</span>
+        </span>
+      </button>
+      <button type="button" role="option" aria-selected="false" class="ins-mcat__card">
+        <span class="ins-mcat__tile"><span class="ins-connector-logo salesforce" style="--ins-connector-size:28px" role="img" aria-label="Salesforce"></span></span>
+        <span class="ins-mcat__txt">
+          <span class="ins-mcat__alias">total_arr_won</span>
+          <span class="ins-mcat__cardsub">Annual Recurring Revenue</span>
+        </span>
+      </button>
+      <button type="button" role="option" aria-selected="false" class="ins-mcat__card">
+        <span class="ins-mcat__tile"><span class="ins-connector-logo salesforce" style="--ins-connector-size:28px" role="img" aria-label="Salesforce"></span></span>
+        <span class="ins-mcat__txt">
+          <span class="ins-mcat__alias">win_rate_by_value</span>
+          <span class="ins-mcat__cardsub">Share of CLOSED-opportunity VALUE that was won</span>
+        </span>
+      </button>
+      <button type="button" role="option" aria-selected="false" class="ins-mcat__card">
+        <span class="ins-mcat__tile"><span class="ins-connector-logo hubspot" style="--ins-connector-size:28px" role="img" aria-label="HubSpot"></span></span>
+        <span class="ins-mcat__txt">
+          <span class="ins-mcat__alias">saas_mrr</span>
+          <span class="ins-mcat__cardsub">Monthly Recurring Revenue</span>
+        </span>
+      </button>
+      <button type="button" role="option" aria-selected="false" class="ins-mcat__card">
+        <span class="ins-mcat__tile"><span class="ins-connector-logo hubspot" style="--ins-connector-size:28px" role="img" aria-label="HubSpot"></span></span>
+        <span class="ins-mcat__txt">
+          <span class="ins-mcat__alias">lead_to_customer_conversion_rate</span>
+          <span class="ins-mcat__cardsub">End-to-end funnel yield over Contacts</span>
+        </span>
+      </button>
+      <button type="button" role="option" aria-selected="false" class="ins-mcat__card">
+        <span class="ins-mcat__tile"><span class="ins-connector-logo zoho" style="--ins-connector-size:28px" role="img" aria-label="Zoho CRM"></span></span>
+        <span class="ins-mcat__txt">
+          <span class="ins-mcat__alias">average_sales_cycle_days</span>
+          <span class="ins-mcat__cardsub">Average days to win a deal</span>
+        </span>
+      </button>
+    </div>
+
+    <div class="ins-mcat__detail">
+      <div class="ins-mcat__dinner" aria-live="polite">
+        <div class="ins-mcat__dtop">
+          <span class="ins-mcat__dalias">mrr_won</span>
+          <span class="ins-mcat__badge">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 1.5l5.5 2v4c0 3.6-2.4 6.4-5.5 7.5C4.9 13.9 2.5 11.1 2.5 7.5v-4L8 1.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M5.6 7.8l1.7 1.7 3.1-3.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Built-in
+          </span>
+        </div>
+        <div class="ins-mcat__dname">Monthly Recurring Revenue (won)</div>
+        <div class="ins-mcat__dsrc">
+          <span class="ins-connector-logo salesforce" style="--ins-connector-size:16px" role="img" aria-label="Salesforce"></span>
+          Salesforce
+        </div>
+        <p class="ins-mcat__ddesc">Monthly Recurring Revenue (MRR). Salesforce has NO native recurring field, so by CONVENTION each won "Amount" is annual; MRR = that total/12.</p>
+        <div class="ins-mcat__label">How it is computed</div>
+        <div class="ins-mcat__sql">SELECT SUM("Amount")/12.0
+FROM "Opportunity"
+WHERE "IsWon" = true</div>
+        <div class="ins-mcat__label">Ask for it in AI Chat</div>
+        <div class="ins-mcat__ask">Ask <code>@mrr_won</code> — answered from your live data, not an average.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ins-mcat__foot">
+    <span><b>498</b> built-in metrics</span>
+    <span class="ins-mcat__dot"></span>
+    <span>across <b>20</b> sources</span>
+    <span class="ins-mcat__dot"></span>
+    <span>plus your own, defined in plain English</span>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-mcat"&gt;
+  &lt;div class="ins-mcat__grid" role="listbox" aria-label="CRM metrics"&gt;
+    &lt;button type="button" role="option" aria-selected="true" class="ins-mcat__card"&gt;
+      &lt;span class="ins-mcat__tile"&gt;
+        &lt;span class="ins-connector-logo salesforce" style="--ins-connector-size:28px" role="img" aria-label="Salesforce"&gt;&lt;/span&gt;
+      &lt;/span&gt;
+      &lt;span class="ins-mcat__txt"&gt;
+        &lt;span class="ins-mcat__alias"&gt;mrr_won&lt;/span&gt;
+        &lt;span class="ins-mcat__cardsub"&gt;Monthly Recurring Revenue&lt;/span&gt;
+      &lt;/span&gt;
+    &lt;/button&gt;
+    &lt;!-- …one &lt;button&gt; per metric… --&gt;
+  &lt;/div&gt;
+
+  &lt;div class="ins-mcat__detail"&gt;
+    &lt;div class="ins-mcat__dinner" aria-live="polite"&gt;
+      &lt;div class="ins-mcat__dtop"&gt;
+        &lt;span class="ins-mcat__dalias"&gt;mrr_won&lt;/span&gt;
+        &lt;span class="ins-mcat__badge"&gt;
+          &lt;svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"&gt;
+            &lt;path d="M8 1.5l5.5 2v4c0 3.6-2.4 6.4-5.5 7.5C4.9 13.9 2.5 11.1 2.5 7.5v-4L8 1.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/&gt;
+            &lt;path d="M5.6 7.8l1.7 1.7 3.1-3.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/&gt;
+          &lt;/svg&gt;
+          Built-in
+        &lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="ins-mcat__dname"&gt;Monthly Recurring Revenue (won)&lt;/div&gt;
+      &lt;div class="ins-mcat__dsrc"&gt;
+        &lt;span class="ins-connector-logo salesforce" style="--ins-connector-size:16px" role="img" aria-label="Salesforce"&gt;&lt;/span&gt;
+        Salesforce
+      &lt;/div&gt;
+      &lt;p class="ins-mcat__ddesc"&gt;Monthly Recurring Revenue (MRR). Salesforce has NO native recurring field…&lt;/p&gt;
+      &lt;div class="ins-mcat__label"&gt;How it is computed&lt;/div&gt;
+      &lt;div class="ins-mcat__sql"&gt;SELECT SUM("Amount")/12.0
+FROM "Opportunity"
+WHERE "IsWon" = true&lt;/div&gt;
+      &lt;div class="ins-mcat__label"&gt;Ask for it in AI Chat&lt;/div&gt;
+      &lt;div class="ins-mcat__ask"&gt;Ask &lt;code&gt;@mrr_won&lt;/code&gt; — answered from your live data, not an average.&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="ins-mcat__foot"&gt;
+  &lt;span&gt;&lt;b&gt;498&lt;/b&gt; built-in metrics&lt;/span&gt;
+  &lt;span class="ins-mcat__dot"&gt;&lt;/span&gt;
+  &lt;span&gt;across &lt;b&gt;20&lt;/b&gt; sources&lt;/span&gt;
+  &lt;span class="ins-mcat__dot"&gt;&lt;/span&gt;
+  &lt;span&gt;plus your own, defined in plain English&lt;/span&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-mcat</code></td><td>Two-up grid: <code>minmax(0,1fr)</code> metric grid + a 400px detail panel. Collapses to one column below 1024px (detail first).</td></tr>
+<tr><td><code>.ins-mcat__grid</code></td><td>Two-column card grid (<code>listbox</code>). The side that sets the section height.</td></tr>
+<tr><td><code>.ins-mcat__card</code></td><td>Metric option button. Hover and <code>[aria-selected="true"]</code> light the teal border/fill.</td></tr>
+<tr><td><code>.ins-mcat__tile</code></td><td>28px logo slot inside a card (holds the connector sprite mark).</td></tr>
+<tr><td><code>.ins-mcat__txt</code> / <code>__alias</code> / <code>__cardsub</code></td><td>Card text column: mono alias (one line, ellipsis) over a one-line description.</td></tr>
+<tr><td><code>.ins-mcat__detail</code> / <code>__dinner</code></td><td>Teal-tinted detail panel; <code>__dinner</code> is the scroll container (<code>aria-live</code>).</td></tr>
+<tr><td><code>.ins-mcat__dtop</code> / <code>__dalias</code> / <code>__badge</code></td><td>Header row: mono alias + the "Built-in" success badge (two lines reserved, 53px).</td></tr>
+<tr><td><code>.ins-mcat__dname</code> / <code>__dsrc</code></td><td>Human metric name and the source line (sprite logo + label).</td></tr>
+<tr><td><code>.ins-mcat__ddesc</code></td><td>Definition text — fixed three lines (60px) so blocks below never move.</td></tr>
+<tr><td><code>.ins-mcat__label</code></td><td>Mono uppercase section label ("How it is computed", "Ask for it in AI Chat").</td></tr>
+<tr><td><code>.ins-mcat__sql</code></td><td>Formula block, mono, dark fill. Fixed 88px with an inner scroll for long queries.</td></tr>
+<tr><td><code>.ins-mcat__ask</code></td><td>"Ask <code>@alias</code>" box; the <code>&lt;code&gt;</code> alias is highlight-coloured and can break.</td></tr>
+<tr><td><code>.ins-mcat__foot</code> / <code>__dot</code></td><td>Centred mono summary line with <code>&lt;b&gt;</code> emphasis and dot separators.</td></tr>
+</tbody></table></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

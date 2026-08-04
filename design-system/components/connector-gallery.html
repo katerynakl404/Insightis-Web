@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Connector gallery — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Connector gallery</h1><p class="sb-header__description">The connector surfaces used across Resources / Connectors and Platform / Integrations. Two layouts share one frosted "Sign in to connect" hover overlay: the square-tile <code>.connector-grid</code> gallery, and the horizontal <code>.connector-card</code> (opt into the overlay with <code>.has-overlay</code>). Logos are painted from a single normalized sprite sheet via <code>.ins-connector-logo</code> — a fixed box whose mark is positioned by <code>--logo-x</code> and scaled up to a common footprint by <code>--logo-scale</code>; dark marks are re-tinted with <code>.is-dark</code>.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Gallery grid — connector tiles</h2>
+<p class="ins-text-body" style="margin-bottom:var(--ins-space-md)">Responsive square-tile grid (6 → 5 → 4 → 3 → 2 columns as it narrows). Each tile hovers up a frosted overlay with a secondary "Sign in to connect" button. Logo marks come from the sprite; if the sprite sheet is not served, the boxes render empty but the markup and layout are unchanged.</p>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="connector-grid">
+    <div class="connector-tile"><div class="connector-face"><div class="connector-logo"><span class="ins-connector-logo salesforce" style="--ins-connector-size:40px" role="img" aria-label="Salesforce"></span></div><div class="connector-name" title="Salesforce">Salesforce</div></div><div class="connector-overlay"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a></div></div>
+    <div class="connector-tile"><div class="connector-face"><div class="connector-logo"><span class="ins-connector-logo hubspot" style="--ins-connector-size:40px" role="img" aria-label="HubSpot"></span></div><div class="connector-name" title="HubSpot">HubSpot</div></div><div class="connector-overlay"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a></div></div>
+    <div class="connector-tile"><div class="connector-face"><div class="connector-logo"><span class="ins-connector-logo stripe" style="--ins-connector-size:40px" role="img" aria-label="Stripe"></span></div><div class="connector-name" title="Stripe">Stripe</div></div><div class="connector-overlay"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a></div></div>
+    <div class="connector-tile"><div class="connector-face"><div class="connector-logo"><span class="ins-connector-logo snowflake" style="--ins-connector-size:40px" role="img" aria-label="Snowflake"></span></div><div class="connector-name" title="Snowflake">Snowflake</div></div><div class="connector-overlay"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a></div></div>
+    <div class="connector-tile"><div class="connector-face"><div class="connector-logo"><span class="ins-connector-logo googleanalytics" style="--ins-connector-size:40px" role="img" aria-label="Google Analytics"></span></div><div class="connector-name" title="Google Analytics">Google Analytics</div></div><div class="connector-overlay"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a></div></div>
+    <div class="connector-tile"><div class="connector-face"><div class="connector-logo"><span class="ins-connector-logo notion" style="--ins-connector-size:40px" role="img" aria-label="Notion"></span></div><div class="connector-name" title="Notion">Notion</div></div><div class="connector-overlay"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a></div></div>
+    <div class="connector-tile"><div class="connector-face"><div class="connector-logo"><span class="ins-connector-logo slack" style="--ins-connector-size:40px" role="img" aria-label="Slack"></span></div><div class="connector-name" title="Slack">Slack</div></div><div class="connector-overlay"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a></div></div>
+    <div class="connector-tile"><div class="connector-face"><div class="connector-logo"><span class="ins-connector-logo github" style="--ins-connector-size:40px" role="img" aria-label="GitHub"></span></div><div class="connector-name" title="GitHub">GitHub</div></div><div class="connector-overlay"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a></div></div>
+    <div class="connector-tile"><div class="connector-face"><div class="connector-logo"><span class="ins-connector-logo shopify" style="--ins-connector-size:40px" role="img" aria-label="Shopify"></span></div><div class="connector-name" title="Shopify">Shopify</div></div><div class="connector-overlay"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a></div></div>
+    <div class="connector-tile"><div class="connector-face"><div class="connector-logo"><span class="ins-connector-logo mailchimp is-dark" style="--ins-connector-size:40px" role="img" aria-label="Mailchimp"></span></div><div class="connector-name" title="Mailchimp">Mailchimp</div></div><div class="connector-overlay"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a></div></div>
+    <div class="connector-tile"><div class="connector-face"><div class="connector-logo"><span class="ins-connector-logo zendesk is-dark" style="--ins-connector-size:40px" role="img" aria-label="Zendesk"></span></div><div class="connector-name" title="Zendesk">Zendesk</div></div><div class="connector-overlay"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a></div></div>
+    <div class="connector-tile"><div class="connector-face"><div class="connector-logo"><span class="ins-connector-logo d365businesscentral is-dark" style="--ins-connector-size:40px" role="img" aria-label="Dynamics 365 Business Central"></span></div><div class="connector-name" title="Dynamics 365 Business Central">Dynamics 365 Business Central</div></div><div class="connector-overlay"><a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a></div></div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="connector-grid"&gt;
+  &lt;div class="connector-tile"&gt;
+    &lt;div class="connector-face"&gt;
+      &lt;div class="connector-logo"&gt;
+        &lt;span class="ins-connector-logo salesforce" style="--ins-connector-size:40px" role="img" aria-label="Salesforce"&gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="connector-name" title="Salesforce"&gt;Salesforce&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="connector-overlay"&gt;
+      &lt;a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"&gt;
+        &lt;svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;
+          &lt;path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/&gt;&lt;polyline points="10 17 15 12 10 7"/&gt;&lt;line x1="15" y1="12" x2="3" y2="12"/&gt;
+        &lt;/svg&gt;
+        Sign in to connect
+      &lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- dark-marked logos add .is-dark: class="ins-connector-logo mailchimp is-dark" --&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Hover overlay — revealed state</h2>
+<p class="ins-text-body" style="margin-bottom:var(--ins-space-md)">The frosted "Sign in to connect" overlay is hidden (<code>opacity:0</code>, inert) until the tile or card is hovered. Below it is forced visible with a demo-only inline override so the resting state is documentable.</p>
+<div class="sb-preview">
+  <div class="connector-tile" style="max-width:180px">
+    <div class="connector-face" style="opacity:.85;transform:scale(.97)"><div class="connector-logo"><span class="ins-connector-logo stripe" style="--ins-connector-size:40px" role="img" aria-label="Stripe"></span></div><div class="connector-name" title="Stripe">Stripe</div></div>
+    <!-- Demo-only override: overlay is opacity:0 until :hover. Forced visible here. -->
+    <div class="connector-overlay" style="opacity:1;pointer-events:auto">
+      <a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;!-- .connector-overlay resting: opacity:0; pointer-events:none.
+     :hover on the tile/card sets opacity:1; pointer-events:auto and dims the face. --&gt;
+&lt;div class="connector-overlay"&gt;
+  &lt;a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"&gt;…Sign in to connect&lt;/a&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Connector card (with overlay)</h2>
+<p class="ins-text-body" style="margin-bottom:var(--ins-space-md)">The horizontal card used by Platform / Integrations and the Solutions "relevant integrations" grids (<code>src/components/ConnectorCard.jsx</code>): icon + name + optional description. Add <code>.has-overlay</code> to share the same frosted sign-in overlay. A sprite-mapped connector uses a bare <code>.ins-connector-logo</code>; connectors without a sprite fall back to the <code>.connector-icon</code> abbreviation box.</p>
+<div class="sb-preview">
+  <div style="display:flex;flex-direction:column;gap:var(--ins-space-md);max-width:360px">
+    <div class="connector-card has-overlay">
+      <span class="ins-connector-logo hubspot" style="--ins-connector-size:32px" role="img" aria-label="HubSpot"></span>
+      <div style="min-width:0">
+        <div class="ins-text-h4" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">HubSpot</div>
+        <div style="font-size:var(--ins-font-size-11);color:var(--ins-text-inactive);margin-top:var(--ins-size-half)">CRM &amp; marketing</div>
+      </div>
+      <div class="connector-overlay">
+        <a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign in to connect</a>
+      </div>
+    </div>
+    <div class="connector-card">
+      <div class="connector-icon" style="width:36px;height:36px;background:var(--ins-color-white-a-04);color:var(--ins-text-highlight)">AT</div>
+      <div style="min-width:0">
+        <div class="ins-text-h4" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Airtable</div>
+        <div style="font-size:var(--ins-font-size-11);color:var(--ins-text-inactive);margin-top:var(--ins-size-half)">Databases</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;!-- sprite-mapped connector, with the shared overlay --&gt;
+&lt;div class="connector-card has-overlay"&gt;
+  &lt;span class="ins-connector-logo hubspot" style="--ins-connector-size:32px" role="img" aria-label="HubSpot"&gt;&lt;/span&gt;
+  &lt;div style="min-width:0"&gt;
+    &lt;div class="ins-text-h4"&gt;HubSpot&lt;/div&gt;
+    &lt;div&gt;CRM &amp;amp; marketing&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="connector-overlay"&gt;
+    &lt;a class="ins-btn ins-btn--secondary ins-btn--sm" href="/auth/sign-in/"&gt;…Sign in to connect&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- no-sprite fallback: the .connector-icon abbreviation box --&gt;
+&lt;div class="connector-card"&gt;
+  &lt;div class="connector-icon"&gt;AT&lt;/div&gt;
+  &lt;div&gt;&lt;div class="ins-text-h4"&gt;Airtable&lt;/div&gt;&lt;div&gt;Databases&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Sprite marks — <code>.ins-connector-logo</code></h2>
+<p class="ins-text-body" style="margin-bottom:var(--ins-space-md)">Every logo is one cell of <code>/connectors/sprite.svg</code>. The variant class (e.g. <code>.salesforce</code>) sets the horizontal cell offset (<code>--logo-x</code>) and a scale-up factor (<code>--logo-scale</code>) that normalizes each mark to a common footprint. Size is driven by <code>--ins-connector-size</code>. Dark / low-contrast marks add <code>.is-dark</code>, which inverts lightness while keeping hue so a black wordmark reads as white on the dark theme.</p>
+<div class="sb-preview">
+  <div class="sb-preview-row" style="gap:var(--ins-space-lg);align-items:center;flex-wrap:wrap">
+    <span class="ins-connector-logo salesforce" style="--ins-connector-size:36px" role="img" aria-label="Salesforce"></span>
+    <span class="ins-connector-logo stripe" style="--ins-connector-size:36px" role="img" aria-label="Stripe"></span>
+    <span class="ins-connector-logo snowflake" style="--ins-connector-size:36px" role="img" aria-label="Snowflake"></span>
+    <span class="ins-connector-logo slack" style="--ins-connector-size:36px" role="img" aria-label="Slack"></span>
+    <span class="ins-connector-logo github" style="--ins-connector-size:36px" role="img" aria-label="GitHub"></span>
+    <span class="ins-connector-logo jira" style="--ins-connector-size:36px" role="img" aria-label="Jira"></span>
+  </div>
+  <p class="ins-text-body" style="margin:var(--ins-space-lg) 0 var(--ins-space-sm)"><code>.is-dark</code> — inverted marks:</p>
+  <div class="sb-preview-row" style="gap:var(--ins-space-lg);align-items:center;flex-wrap:wrap">
+    <span class="ins-connector-logo mailchimp is-dark" style="--ins-connector-size:36px" role="img" aria-label="Mailchimp"></span>
+    <span class="ins-connector-logo dropbox is-dark" style="--ins-connector-size:36px" role="img" aria-label="Dropbox"></span>
+    <span class="ins-connector-logo zendesk is-dark" style="--ins-connector-size:36px" role="img" aria-label="Zendesk"></span>
+    <span class="ins-connector-logo openai is-dark" style="--ins-connector-size:36px" role="img" aria-label="OpenAI"></span>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;!-- one sprite cell; size via --ins-connector-size --&gt;
+&lt;span class="ins-connector-logo salesforce" style="--ins-connector-size:36px" role="img" aria-label="Salesforce"&gt;&lt;/span&gt;
+
+&lt;!-- dark / low-contrast mark re-tinted with .is-dark --&gt;
+&lt;span class="ins-connector-logo mailchimp is-dark" style="--ins-connector-size:36px" role="img" aria-label="Mailchimp"&gt;&lt;/span&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.connector-grid</code></td><td>Responsive logo grid: 6 columns, stepping down to 2 as the viewport narrows.</td></tr>
+<tr><td><code>.connector-tile</code></td><td>Square 1:1 tile (logo above name). Hover lights the border and reveals the overlay; entrance <code>tileIn</code> animation.</td></tr>
+<tr><td><code>.connector-face</code></td><td>The logo + name stack; dims and scales back slightly while the overlay is shown.</td></tr>
+<tr><td><code>.connector-logo</code></td><td>40px bare logo slot (no chip) inside a tile; <code>img</code> children fit to it.</td></tr>
+<tr><td><code>.connector-name</code></td><td>Tile caption; clamps to two lines and reserves the full two-line height so rows align.</td></tr>
+<tr><td><code>.connector-card</code></td><td>Horizontal card: icon + name (+ optional description). Used by Integrations and Solutions.</td></tr>
+<tr><td><code>.connector-card.has-overlay</code></td><td>Opts the card into the shared frosted hover overlay (dims its content on hover).</td></tr>
+<tr><td><code>.connector-icon</code></td><td>36px rounded icon box; holds the mono abbreviation fallback when a connector has no sprite/logo.</td></tr>
+<tr><td><code>.connector-overlay</code></td><td>Frosted, blurred overlay (<code>backdrop-filter</code>) with the sign-in CTA; <code>opacity:0</code> + inert until hover.</td></tr>
+<tr><td><code>.connector-overlay .banner-label</code></td><td>Optional small uppercase label above the overlay button.</td></tr>
+<tr><td><code>.ins-connector-logo</code></td><td>Sprite box. One cell of <code>/connectors/sprite.svg</code>, painted on <code>::before</code>; size via <code>--ins-connector-size</code>.</td></tr>
+<tr><td><code>.ins-connector-logo.<var>slug</var></code></td><td>Per-connector variant (e.g. <code>.salesforce</code>, <code>.hubspot</code>, <code>.stripe</code>) setting <code>--logo-x</code> + <code>--logo-scale</code>.</td></tr>
+<tr><td><code>.ins-connector-logo.is-dark</code></td><td>Inverts lightness (keeps hue) so dark / low-contrast marks read on the dark theme. <code>.amazonrds.is-dark</code> further boosts saturation.</td></tr>
+</tbody></table></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

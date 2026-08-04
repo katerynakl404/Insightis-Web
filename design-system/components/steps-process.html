@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Steps Process — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Steps Process</h1><p class="sb-header__description">Horizontal numbered process used in the "How it works" sections (AI Chat, Integrations, Semantic Layer). Each cell is a numbered teal circle over a title, body and an optional inline CodeChip example; a faint connector line joins consecutive circles. Set <code>--ins-steps-count</code> to the number of steps. Responsive: N-up desktop → 2-up tablet (connectors hidden) → 1-up mobile.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Process (3 steps)</h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-steps" style="--ins-steps-count:3;">
+    <div class="ins-steps__cell">
+      <div class="ins-steps__connector" aria-hidden="true"></div>
+      <div class="ins-steps__circle" aria-hidden="true"><span class="ins-steps__num">01</span></div>
+      <h3 class="ins-steps__title">You ask</h3>
+      <p class="ins-text-body ins-steps__body">Type any business question in plain English — the same way you would ask a colleague. No SQL, no dashboards, no analyst required.</p>
+      <span class="ins-code-chip ins-code-chip--inline">"Which acquisition channel has the best CAC this quarter?"</span>
+    </div>
+    <div class="ins-steps__cell">
+      <div class="ins-steps__connector" aria-hidden="true"></div>
+      <div class="ins-steps__circle" aria-hidden="true"><span class="ins-steps__num">02</span></div>
+      <h3 class="ins-steps__title">AI Engine goes to work</h3>
+      <p class="ins-text-body ins-steps__body">Insightis validates and analyzes data across every connected source, applying your business logic for accurate, grounded results.</p>
+      <span class="ins-code-chip ins-code-chip--inline">CRM + payments + product data → validated insight</span>
+    </div>
+    <div class="ins-steps__cell">
+      <div class="ins-steps__circle" aria-hidden="true"><span class="ins-steps__num">03</span></div>
+      <h3 class="ins-steps__title">You get a precise answer</h3>
+      <p class="ins-text-body ins-steps__body">Get an instant answer with visualization and suggested follow-ups. Save any answer as a live report in one click — no BI tool required.</p>
+      <span class="ins-code-chip ins-code-chip--inline">Answer + chart + "Why did this change?" suggestion</span>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-steps" style="--ins-steps-count:3;"&gt;
+  &lt;div class="ins-steps__cell"&gt;
+    &lt;div class="ins-steps__connector" aria-hidden="true"&gt;&lt;/div&gt;
+    &lt;div class="ins-steps__circle" aria-hidden="true"&gt;&lt;span class="ins-steps__num"&gt;01&lt;/span&gt;&lt;/div&gt;
+    &lt;h3 class="ins-steps__title"&gt;You ask&lt;/h3&gt;
+    &lt;p class="ins-text-body ins-steps__body"&gt;Type any business question in plain English — the same way you would
+      ask a colleague. No SQL, no dashboards, no analyst required.&lt;/p&gt;
+    &lt;span class="ins-code-chip ins-code-chip--inline"&gt;"Which acquisition channel has the best CAC this quarter?"&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-steps__cell"&gt;
+    &lt;div class="ins-steps__connector" aria-hidden="true"&gt;&lt;/div&gt;
+    &lt;div class="ins-steps__circle" aria-hidden="true"&gt;&lt;span class="ins-steps__num"&gt;02&lt;/span&gt;&lt;/div&gt;
+    &lt;h3 class="ins-steps__title"&gt;AI Engine goes to work&lt;/h3&gt;
+    &lt;p class="ins-text-body ins-steps__body"&gt;Insightis validates and analyzes data across every connected source,
+      applying your business logic for accurate, grounded results.&lt;/p&gt;
+    &lt;span class="ins-code-chip ins-code-chip--inline"&gt;CRM + payments + product data → validated insight&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-steps__cell"&gt;
+    &lt;!-- last cell: no connector --&gt;
+    &lt;div class="ins-steps__circle" aria-hidden="true"&gt;&lt;span class="ins-steps__num"&gt;03&lt;/span&gt;&lt;/div&gt;
+    &lt;h3 class="ins-steps__title"&gt;You get a precise answer&lt;/h3&gt;
+    &lt;p class="ins-text-body ins-steps__body"&gt;Get an instant answer with visualization and suggested follow-ups. Save any
+      answer as a live report in one click — no BI tool required.&lt;/p&gt;
+    &lt;span class="ins-code-chip ins-code-chip--inline"&gt;Answer + chart + "Why did this change?" suggestion&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-steps</code></td><td>Grid of step cells. Columns follow <code>--ins-steps-count</code> (default 4); collapses to 2-up then 1-up.</td></tr>
+<tr><td><code>.ins-steps__cell</code></td><td>One centered step: circle → title → body → optional example.</td></tr>
+<tr><td><code>.ins-steps__connector</code></td><td>Faint teal line joining a circle to the next one. Add to every cell except the last; hidden below 1024px.</td></tr>
+<tr><td><code>.ins-steps__circle</code></td><td>56px teal-glow circle holding the step number.</td></tr>
+<tr><td><code>.ins-steps__num</code></td><td>Tabular teal step number inside the circle.</td></tr>
+<tr><td><code>.ins-steps__title</code></td><td>Bold step heading.</td></tr>
+<tr><td><code>.ins-steps__body</code></td><td>Step body — pair with <code>.ins-text-body</code>; layout only here.</td></tr>
+<tr><td><code>.ins-code-chip--inline</code></td><td>Optional inline example chip (shared CodeChip component), capped at 360px.</td></tr>
+</tbody></table></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

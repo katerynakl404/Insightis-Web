@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Bottom CTA — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Bottom CTA</h1><p class="sb-header__description">Flagship full-width organism that sits above the footer on every marketing page. An eyebrow-less headline paired with either an inline sign-up form, a button pair, a single button, or a one-line row banner. The subtle teal glow and top brand line are baked in via <code>::before</code>/<code>::after</code>.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Form (default)</h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-bottom-cta">
+    <h2 class="ins-bottom-cta__title">Stop arguing about <span class="ins-bottom-cta__highlight">which number</span> is right.</h2>
+    <form action="/auth/sign-up/" method="get" class="ins-input-group ins-bottom-cta__form">
+      <input class="ins-input ins-bottom-cta__input" name="q" type="text" required placeholder="What metric do you want to unify?" aria-label="What metric do you want to unify?">
+      <button type="submit" class="ins-btn ins-btn--primary ins-btn--sm">Start for free <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    </form>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-bottom-cta"&gt;
+  &lt;h2 class="ins-bottom-cta__title"&gt;Stop arguing about &lt;span class="ins-bottom-cta__highlight"&gt;which number&lt;/span&gt; is right.&lt;/h2&gt;
+  &lt;form action="/auth/sign-up/" method="get" class="ins-input-group ins-bottom-cta__form"&gt;
+    &lt;input class="ins-input ins-bottom-cta__input" name="q" type="text" required
+           placeholder="What metric do you want to unify?" aria-label="What metric do you want to unify?"&gt;
+    &lt;button type="submit" class="ins-btn ins-btn--primary ins-btn--sm"&gt;Start for free &lt;svg .../&gt;&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Buttons — <code>--buttons</code></h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-bottom-cta ins-bottom-cta--buttons">
+    <h2 class="ins-bottom-cta__title">Stop chasing <span class="ins-bottom-cta__highlight">numbers.</span> Start trusting <span class="ins-bottom-cta__highlight">them</span></h2>
+    <p class="ins-bottom-cta__desc">One trusted view of pipeline, forecast and revenue — answered in seconds. Free to start, no credit card required.</p>
+    <div class="ins-bottom-cta__actions">
+      <a href="/auth/sign-up/" class="ins-btn ins-btn--primary ins-btn--lg">Start for free <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="/pricing" class="ins-btn ins-btn--secondary ins-btn--lg">Explore Pricing</a>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-bottom-cta ins-bottom-cta--buttons"&gt;
+  &lt;h2 class="ins-bottom-cta__title"&gt;Stop chasing &lt;span class="ins-bottom-cta__highlight"&gt;numbers.&lt;/span&gt; Start trusting &lt;span class="ins-bottom-cta__highlight"&gt;them&lt;/span&gt;&lt;/h2&gt;
+  &lt;p class="ins-bottom-cta__desc"&gt;One trusted view of pipeline, forecast and revenue — answered in seconds. Free to start, no credit card required.&lt;/p&gt;
+  &lt;div class="ins-bottom-cta__actions"&gt;
+    &lt;a href="/auth/sign-up/" class="ins-btn ins-btn--primary ins-btn--lg"&gt;Start for free &lt;svg .../&gt;&lt;/a&gt;
+    &lt;a href="/pricing" class="ins-btn ins-btn--secondary ins-btn--lg"&gt;Explore Pricing&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Text — <code>--text</code></h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-bottom-cta ins-bottom-cta--text">
+    <h2 class="ins-bottom-cta__title">See Insightis on your own data</h2>
+    <div class="ins-bottom-cta__actions">
+      <a href="/auth/sign-up/" class="ins-btn ins-btn--primary ins-btn--lg">Start for free <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <p class="ins-bottom-cta__note">Free plan · No credit card required</p>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-bottom-cta ins-bottom-cta--text"&gt;
+  &lt;h2 class="ins-bottom-cta__title"&gt;See Insightis on your own data&lt;/h2&gt;
+  &lt;div class="ins-bottom-cta__actions"&gt;
+    &lt;a href="/auth/sign-up/" class="ins-btn ins-btn--primary ins-btn--lg"&gt;Start for free &lt;svg .../&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;p class="ins-bottom-cta__note"&gt;Free plan · No credit card required&lt;/p&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Row — <code>--row</code></h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-bottom-cta ins-bottom-cta--row">
+    <div class="ins-bottom-cta__lead">
+      <h2 class="ins-bottom-cta__title">Connect your warehouse and ask your first question today.</h2>
+      <p class="ins-bottom-cta__note">Snowflake, BigQuery &amp; Redshift · SOC 2 Type II</p>
+    </div>
+    <div class="ins-bottom-cta__actions">
+      <a href="/auth/sign-up/" class="ins-btn ins-btn--primary ins-btn--lg">Start for free <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-bottom-cta ins-bottom-cta--row"&gt;
+  &lt;div class="ins-bottom-cta__lead"&gt;
+    &lt;h2 class="ins-bottom-cta__title"&gt;Connect your warehouse and ask your first question today.&lt;/h2&gt;
+    &lt;p class="ins-bottom-cta__note"&gt;Snowflake, BigQuery &amp;amp; Redshift · SOC 2 Type II&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-bottom-cta__actions"&gt;
+    &lt;a href="/auth/sign-up/" class="ins-btn ins-btn--primary ins-btn--lg"&gt;Start for free &lt;svg .../&gt;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-bottom-cta</code></td><td>Base organism — glow card, top brand line, responsive flex layout. Default = form variant.</td></tr>
+<tr><td><code>.ins-bottom-cta--buttons</code></td><td>Centered column: title + optional desc + primary/secondary button pair.</td></tr>
+<tr><td><code>.ins-bottom-cta--text</code></td><td>Centered column: title + a single CTA button (no form, no secondary).</td></tr>
+<tr><td><code>.ins-bottom-cta--row</code></td><td>One-line banner: lead (title + note) on the left, CTA on the right (desktop).</td></tr>
+<tr><td><code>.ins-bottom-cta__title</code></td><td>Headline. Scales up in the centered variants; shrinks to wrap in the row layout.</td></tr>
+<tr><td><code>.ins-bottom-cta__highlight</code></td><td>Teal-tinted inline span for the emphasized phrase in the title.</td></tr>
+<tr><td><code>.ins-bottom-cta__desc</code></td><td>Supporting sentence between title and actions (buttons/text variants).</td></tr>
+<tr><td><code>.ins-bottom-cta__form</code></td><td>Composes <code>.ins-input-group</code>; holds the input + submit button rail.</td></tr>
+<tr><td><code>.ins-bottom-cta__input</code></td><td>Transparent input inside the group (fixed ~280px on desktop).</td></tr>
+<tr><td><code>.ins-bottom-cta__actions</code></td><td>Flex wrapper for one or two CTA buttons.</td></tr>
+<tr><td><code>.ins-bottom-cta__lead</code></td><td>Row variant only — stacks the title above its note.</td></tr>
+<tr><td><code>.ins-bottom-cta__note</code></td><td>One-line reassurance strip (plan, no-card, compliance).</td></tr>
+</tbody></table></section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

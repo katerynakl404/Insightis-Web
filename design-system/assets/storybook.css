@@ -4,6 +4,36 @@
    grids, state-toggle pills). Only loaded on storybook pages.
    ══════════════════════════════════════════════════════════════════ */
 
+/* ── Asset-path override for the storybook environment ────────────────
+   The canonical mirror (ds/global.css) loads fonts + noise from absolute
+   paths (/fonts, /img) that only resolve on the live site's public root.
+   These rules re-point them at the storybook's own local assets. They are
+   loaded LAST (storybook.css is the final stylesheet on every page), so a
+   later @font-face with identical descriptors replaces the broken one and
+   the working src wins. This is the ONLY storybook-specific style override
+   of canonical CSS — everything else is an exact mirror. */
+@font-face {
+  font-family: 'Geist';
+  src: url('fonts/Geist-Variable.ttf') format('truetype-variations'),
+       url('fonts/Geist-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: optional;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('fonts/GeistMono-Variable.ttf') format('truetype-variations'),
+       url('fonts/GeistMono-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: optional;
+}
+.ins-bg-noise::before { background-image: url('img/noise.svg'); }
+/* Connector logo sprite — canonical CSS points at the site's /connectors/sprite.svg
+   (served from the site's public root). Re-point at the storybook's local copy.
+   background-image only, so the --logo-x background-position from the sprite CSS stays. */
+.ins-connector-logo::before { background-image: url('connectors/sprite.svg'); }
+
 .sb-app {
   display: grid;
   grid-template-columns: 1fr;
@@ -27,6 +57,20 @@
   overflow-y: auto;
 }
 @media (min-width: 1024px) { .sb-sidebar { display: flex; } }
+/* Below 1024px the sidebar is hidden; the mobile toggle (data-sb-toggle) flips
+   data-open to slide it in as an overlay drawer. Without this rule the hamburger
+   set the attribute but nothing showed. */
+@media (max-width: 1023px) {
+  .sb-sidebar[data-open="true"] {
+    display: flex;
+    position: fixed;
+    top: 0; bottom: 0; left: 0;
+    width: min(86vw, 300px);
+    max-height: 100vh;
+    z-index: var(--ins-z-modal, 1000);
+    box-shadow: var(--ins-shadow-lg);
+  }
+}
 .sb-sidebar__brand {
   display: flex;
   align-items: center;
