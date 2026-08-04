@@ -136,7 +136,7 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 - Current: raw Vercel 404, no branding.
 - Recommended: dark, branded 404 with logo + nav (already prepared in `insightis-site/public/404.html`).
 
-**Notes** — Branded 404 already drafted; see `deliverables/dev-handoff.md`.
+**Notes** — The 404 must **reuse the site design system**, not hand-rolled styles: `<link>` the DS CSS (as the Storybook `*.html` pages do), use the reusable `.ins-section--tint` background gradient and `.ins-btn--primary`/`.ins-btn--secondary` — no copied hex. Design reference: [`deliverables/404-design.html`](deliverables/404-design.html); deploy steps in `deliverables/dev-handoff.md`.
 
 **Status history**
 | Date | Status | Rationale |
@@ -868,7 +868,7 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 | Page(s) | Success Stories, Security | Verify | https://insightis-landing.vercel.app/ |
 
 **Current** — `success-stories.jsx:279` reimplements the final CTA inline (grayscale gradient, **no teal**, radius-16, hardcoded padding, rebuilt input group); `security.jsx:232` hand-rolls a text-variant CTA (radius 24px, padding 64/32). Both bypass the DS `.ins-bottom-cta`.
-**Expected** — Use `<BottomCTA>` (+ `variant="text"`).
+**Expected** — Use `<BottomCTA>` (+ `variant="text"`). The CTA background should **reuse the site's gradient utility `.ins-section--tint`** (the same reusable teal radial-gradient used elsewhere) instead of a hand-rolled grayscale gradient.
 **Status history** | 2026-08-04 | Accepted | Source-audit. |
 
 ---
