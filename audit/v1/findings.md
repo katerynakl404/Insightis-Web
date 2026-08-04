@@ -7,9 +7,10 @@
 > Decision machinery: [`../../review-iteration-protocol.md`](../../review-iteration-protocol.md).
 
 - **Object:** insightis-landing.vercel.app · **Theme:** dark (bg `#0A0E13`)
-- **Method:** live DOM/CSS inspection + source review (`insightis-site/`) + heuristics
+- **Method:** live DOM/CSS inspection + source review (`insightis-site/`) + attention heatmaps + heuristic (Nielsen) pass
 - **Pages in scope:** Home, Pricing, AI Chat, Integrations, Semantic Layer
 - **Date:** 2026-08-04
+- **Verify:** every finding carries a live-site link so the reader can check it in place.
 
 Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 
@@ -25,10 +26,10 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 |                | 🔴 Critical | 🟠 High | 🟡 Medium | ⚪ Low | Total |
 |---|---|---|---|---|---|
 | Pending Review | 0 | 0 | 0 | 0 | 0 |
-| Accepted       | 2 | 3 | 4 | 3 | 12 |
+| Accepted       | 2 | 4 | 9 | 8 | 23 |
 | Declined       | 0 | 0 | 0 | 0 | 0 |
 | Deferred       | 0 | 0 | 0 | 0 | 0 |
-| **Total**      | 2 | 3 | 4 | 3 | 12 |
+| **Total**      | 2 | 4 | 9 | 8 | 23 |
 
 ---
 
@@ -352,6 +353,149 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 
 ---
 
+### AUD-13 — Home labels the same 200+ stat as both "Integrations" and "Connectors" (Accepted)
+
+| | |
+|---|---|
+| Domain | Design | Severity | 🟡 Medium | Section | Home — trust/stats | Category | Content |
+| Page(s) | Home | Verify | https://insightis-landing.vercel.app/ |
+
+**Current** — On Home the same 200+ figure is captioned both "200+ Integrations" and "200+ Connectors".
+**Expected** — One noun for the concept, used consistently.
+**Status history** | 2026-08-04 | Accepted | Filed in v1 (live-site pass). |
+
+---
+
+### AUD-14 — Four different terms for the "pre-built metrics" concept (Accepted)
+
+| | |
+|---|---|
+| Domain | Design | Severity | 🟡 Medium | Section | Global — content | Category | Content |
+| Page(s) | Home, Semantic Layer, Pricing | Verify | https://insightis-landing.vercel.app/pricing |
+
+**Current** — "Pre-built metrics" (Home) · "built-in metrics" (Semantic Layer) · "Predefined Metrics" (Pricing) · "Metric definitions" (Pricing).
+**Expected** — One canonical term + a short glossary.
+**Status history** | 2026-08-04 | Accepted | Filed in v1. |
+
+---
+
+### AUD-15 — Accuracy stat uses two notations: "X3" vs "3×" (Accepted)
+
+| | |
+|---|---|
+| Domain | Design | Severity | ⚪ Low | Section | Global — content | Category | Content |
+| Page(s) | Home, Semantic Layer | Verify | https://insightis-landing.vercel.app/ |
+
+**Current** — Home "X3 accuracy" vs Semantic Layer "3× more accurate on real data".
+**Expected** — One notation everywhere (recommend "3×").
+**Status history** | 2026-08-04 | Accepted | Filed in v1. |
+
+---
+
+### AUD-16 — Numbers glued to the following word (missing space) (Accepted)
+
+| | |
+|---|---|
+| Domain | Code | Severity | ⚪ Low | Section | Global — typography | Category | Typography |
+| Page(s) | Integrations, Semantic Layer | Verify | https://insightis-landing.vercel.app/platform/integrations |
+
+**Current** — "12×faster time to insight", "90%fewer data requests" (Integrations); "3×more accurate" (Semantic Layer).
+**Expected** — Space (or thin space) between value and word.
+**Status history** | 2026-08-04 | Accepted | Filed in v1. |
+
+---
+
+### AUD-17 — Home H1 jams two sentences with no separator (Accepted)
+
+| | |
+|---|---|
+| Domain | Code + Design | Severity | 🟡 Medium | Section | Home — Hero | Category | Content |
+| Page(s) | Home | Verify | https://insightis-landing.vercel.app/ |
+
+**Current** — H1 reads "Talk to your data It already knows the answer" (two sentences, no punctuation/break).
+**Expected** — "Talk to your data. It already knows the answer." (or a line break).
+**Status history** | 2026-08-04 | Accepted | Filed in v1. |
+
+---
+
+### AUD-18 — Inconsistent terminal punctuation across page H1s (Accepted)
+
+| | |
+|---|---|
+| Domain | Design | Severity | ⚪ Low | Section | Global — headings | Category | Typography |
+| Page(s) | AI Chat, Integrations, Semantic Layer | Verify | https://insightis-landing.vercel.app/platform/ai-chat |
+
+**Current** — AI Chat "Ask anything. Get answers in seconds." (periods) vs Integrations "Connect it all. Get the why behind numbers" (none) vs Semantic Layer "The same numbers. Every team. Any report" (none).
+**Expected** — One heading-punctuation rule across pages.
+**Status history** | 2026-08-04 | Accepted | Filed in v1. |
+
+---
+
+### AUD-19 — Secondary CTA label drifts for the same destination (Accepted)
+
+| | |
+|---|---|
+| Domain | Design | Severity | ⚪ Low | Section | Global — CTA | Category | Navigation |
+| Page(s) | Home, Integrations, Semantic Layer, AI Chat | Verify | https://insightis-landing.vercel.app/platform/ai-chat |
+
+**Current** — "Explore Pricing" (Home, Integrations, Semantic Layer) vs "Pricing" (AI Chat) — both link to `/pricing`.
+**Expected** — One label for the pricing CTA.
+**Status history** | 2026-08-04 | Accepted | Filed in v1. |
+
+---
+
+### AUD-20 — Discounted price relies on visual strikethrough only (Accepted)
+
+| | |
+|---|---|
+| Domain | Code | Severity | 🟡 Medium | Section | Pricing — plan cards | Category | Accessibility |
+| Page(s) | Pricing | Verify | https://insightis-landing.vercel.app/pricing |
+
+**Current** — Rendered price text reads "$7.99$15.99" — the new and struck-through old price with no accessible relationship; a screen reader reads two bare numbers.
+**Expected** — Old price in `<s>` + sr-only "was", new price + sr-only "now" (WCAG 1.3.1).
+**Status history** | 2026-08-04 | Accepted | Filed in v1. |
+
+---
+
+### AUD-21 — Integrations: "200+ connectors" alongside "+180 more connectors available" (Accepted)
+
+| | |
+|---|---|
+| Domain | Code + Design | Severity | 🟠 High | Section | Integrations — hero/stats | Category | Content |
+| Page(s) | Integrations | Verify | https://insightis-landing.vercel.app/platform/integrations |
+
+**Current** — "200+ read-only connectors go live instantly" together with "+ 180 more connectors available" — contradictory math against the 200+ headline.
+**Expected** — Reconcile the numbers (e.g. "20 live, 180 coming") or drop the second figure.
+**Status history** | 2026-08-04 | Accepted | Filed in v1. |
+
+---
+
+### AUD-22 — Data-connection terminology sprawl (Accepted)
+
+| | |
+|---|---|
+| Domain | Design | Severity | 🟡 Medium | Section | Global — content | Category | Content |
+| Page(s) | All | Verify | https://insightis-landing.vercel.app/platform/integrations |
+
+**Current** — "Integrations", "Connectors", "sources", and "data source" used interchangeably; the Pricing FAQ even asks 'What does "data source" mean?' (Nielsen #4 consistency).
+**Expected** — Canonical nouns applied site-wide.
+**Status history** | 2026-08-04 | Accepted | Filed in v1. |
+
+---
+
+### AUD-23 — Capitalization drift within the Home stats (Accepted)
+
+| | |
+|---|---|
+| Domain | Design | Severity | ⚪ Low | Section | Home — trust/stats | Category | Typography |
+| Page(s) | Home | Verify | https://insightis-landing.vercel.app/ |
+
+**Current** — "28 years of data tooling" vs "28 Years of data tooling"; "40,000+ companies" vs "40,000+ Companies".
+**Expected** — One casing rule for stat labels.
+**Status history** | 2026-08-04 | Accepted | Filed in v1. |
+
+---
+
 ## Prioritized action plan
 
 | Priority | Action | Findings |
@@ -360,22 +504,24 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 | **P0** | Align pricing tiers — FAQ names non-existent Team/Enterprise | AUD-02 |
 | **P0** | Fix broken link `/integrations` → `/platform/integrations` | AUD-03 |
 | **P1** | Custom 404 + remove dead Memory & Storage mappings | AUD-04 |
-| **P1** | Sync numbers across pages | AUD-05 |
-| **P1** | ARIA states for menus (haspopup / expanded) | AUD-06 |
-| **P2** | Tap targets ≥44px; small-caption contrast; 15–16px body | AUD-07, AUD-08, AUD-09 |
-| **P3** | Remove CTA repetition; clean copy; extract inline CSS | AUD-10, AUD-11, AUD-12 |
+| **P1** | Reconcile metric + connector numbers across pages | AUD-05, AUD-21 |
+| **P1** | Menu ARIA + accessible price semantics | AUD-06, AUD-20 |
+| **P2** | Unify terminology (integrations/connectors/metrics) | AUD-13, AUD-14, AUD-22 |
+| **P2** | Tap targets ≥44px; caption contrast; 15–16px body | AUD-07, AUD-08, AUD-09 |
+| **P3** | CTA repetition; copy/typography; casing; notation | AUD-10, AUD-11, AUD-15, AUD-16, AUD-17, AUD-18, AUD-19, AUD-23 |
+| **P3** | Extract inline CSS | AUD-12 |
 
 ---
 
 ## End-of-pass report (protocol §5)
 
 1. **Critical blockers** — AUD-01 (discount contradiction), AUD-02 (phantom tiers). Both misinform on the paid page.
-2. **Quick wins** — AUD-03 (one-line link fix), AUD-11 (copy spacing), AUD-05 (number sync once source agreed).
-3. **Newly introduced** — All 12 (this is v1, the baseline).
+2. **Quick wins** — AUD-03 (one-line link fix), AUD-11 / AUD-16 / AUD-17 (copy spacing), AUD-15 / AUD-19 (one-token consistency edits).
+3. **Newly introduced** — All 23 (this is v1, the baseline); AUD-13…23 came from the live-site + heuristic pass.
 4. **Resolved (proposed)** — None (baseline).
 5. **Regressions** — None (baseline).
 6. **Impacted accepted decisions** — None (baseline).
-7. **Systemic UX risks** — Content drift is the dominant theme: three findings (AUD-01, AUD-02, AUD-05) are the same class of defect — figures/tiers that disagree with themselves across the site. A single source-of-truth for pricing + metrics would close all three.
-8. **DS maturity gaps** — Per-page inline `<style>` (AUD-12) and 14px default body (AUD-09) suggest the type scale and spacing aren't fully driven from tokens; the DS should publish a body-text size rule pages inherit.
-9. **Scalability concerns** — The repeated CTA pattern (AUD-10) will worsen as pages are added; a single CTA component with varied copy scales better than copy-pasted blocks.
-10. **Recommended next priorities** — AUD-01, AUD-02, AUD-03 (P0), then AUD-04, AUD-05, AUD-06 (P1).
+7. **Systemic UX risks** — Consistency is the dominant theme (Nielsen #4): numbers (AUD-05, 21), terminology (AUD-13, 14, 22), notation/casing/punctuation (AUD-15, 16, 18, 23) and CTA labels (AUD-19) all drift across pages. A single source-of-truth for stats + a copy glossary would close most of them.
+8. **DS maturity gaps** — Per-page inline `<style>` (AUD-12) and 14px default body (AUD-09) show the type scale isn't fully token-driven; the DS should publish a body-text size rule and a canonical-terms glossary.
+9. **Scalability concerns** — Repeated CTA blocks (AUD-10) and copy drift worsen with each new page; a single CTA component + centralized stats/copy scale better than per-page literals.
+10. **Recommended next priorities** — AUD-01, AUD-02, AUD-03 (P0), then AUD-04, AUD-05+21, AUD-06+20 (P1).

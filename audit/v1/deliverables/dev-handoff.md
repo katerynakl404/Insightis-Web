@@ -164,6 +164,30 @@ If a step and the findings disagree, the findings file wins — regenerate this 
 > Each page has inline CSS with media queries inside `<main>`. Move these to stylesheets /
 > design-system tokens. No visual change intended — hygiene only.
 >
+> ### Additional consistency & a11y fixes (v1 live-site pass)
+>
+> **Task 13 — Accessible discounted price (AUD-20).** On Pricing, the old price is only visually
+> struck through, so it reads as "$7.99 $15.99" with no relationship. Wrap the old price in
+> `<s>` with an sr-only "was", and label the new price sr-only "now" (WCAG 1.3.1).
+>
+> **Task 14 — Reconcile connector numbers (AUD-21).** Integrations shows "200+ connectors" and
+> "+180 more connectors available" together. Reconcile to one consistent statement.
+>
+> **Task 15 — Unify terminology (AUD-13, AUD-14, AUD-22).** Pick canonical nouns and apply site-wide:
+> one term for connectors/integrations/sources; one term for pre-built metrics (currently
+> "Pre-built metrics" / "built-in metrics" / "Predefined Metrics" / "Metric definitions"). On Home,
+> the same 200+ stat is labeled both "Integrations" and "Connectors" — pick one.
+>
+> **Task 16 — Copy & notation cleanup (AUD-15, AUD-16, AUD-17, AUD-18, AUD-19, AUD-23).**
+> - AUD-17: Home H1 "Talk to your data It already knows the answer" → add punctuation/break.
+> - AUD-16: add a space in "12×faster", "90%fewer" (Integrations), "3×more" (Semantic Layer).
+> - AUD-15: use one accuracy notation ("3×", not "X3").
+> - AUD-18: one terminal-punctuation rule for page H1s.
+> - AUD-19: one label for the pricing CTA ("Explore Pricing" vs "Pricing").
+> - AUD-23: one casing rule for Home stat labels ("28 years" vs "28 Years", "companies" vs "Companies").
+>
+> Most of Task 15–16 are content decisions — confirm the canonical values/terms with product first.
+>
 > ### Verification
 > 1. `npm run dev` — open `/pricing`: discount figure matches between cards and FAQ (Task 1); FAQ
 >    names only Free/Starter/Pro (Task 2).

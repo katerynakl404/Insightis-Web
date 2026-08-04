@@ -9,7 +9,7 @@
 | **Object** | insightis-landing.vercel.app (dark theme) |
 | **Pages in scope** | Home, Pricing, AI Chat, Integrations, Semantic Layer |
 | **Diffed against** | — (baseline version) |
-| **Accepted findings** | 12 (2 Critical · 3 High · 4 Medium · 3 Low) |
+| **Accepted findings** | 23 (2 Critical · 4 High · 9 Medium · 8 Low) |
 
 ## Contents
 
@@ -22,8 +22,9 @@
 
 - **2026-08-04** — v1 established as the baseline. Migrated and translated from the initial
   weaknesses audit (`audit-findings.md`, Ukrainian) and the standalone 404 handoff
-  (`handoff-embed-404.md`) into the versioned process defined in [`../README.md`](../README.md).
-  12 findings filed under `AUD-NN`; both deliverables generated.
+  (`handoff-embed-404.md`), then **expanded with a live-site + heuristic pass** (AUD-13…23:
+  cross-page number/terminology inconsistency, copy/typography, accessibility). 23 findings filed
+  under `AUD-NN`; both deliverables generated. Process defined in [`../README.md`](../README.md).
 
 ## Provenance note
 
