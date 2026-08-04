@@ -1,0 +1,35 @@
+<meta charset="utf-8">
+<title>Heatmap — Pricing · Insightis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="heatmap.css">
+<div class="wrap">
+  <p class="eyebrow"><a href="index.html">← усі сторінки</a> &nbsp;·&nbsp; attention heatmap</p>
+  <h1>Pricing — карта уваги й слабких зон</h1>
+  <p class="sub">Предиктивна теплокарта уваги поверх повного скрину сторінки. <b>Червоне/жовте</b> — куди око падає першим; <b>синє</b> — периферія. Слабкі зони (<b>3 середніх</b>) обведені й пронумеровані; найпомітніші: Ціль 18×18px, Ціль 18×18px.</p>
+  <div class="legend">
+    <span><i style="background:#ff2d2d"></i>критична зона</span>
+    <span><i style="background:#ff7a00"></i>середня</span>
+    <span><i style="background:#20c9c0"></i>дрібна</span>
+    <span><i style="background:linear-gradient(90deg,#2b3dd6,#2fd07a,#ff2d2d)"></i>увага (низька→висока)</span>
+  </div>
+  <div class="layout">
+    <div class="stage"><canvas id="hm"></canvas></div>
+    <div class="side">
+      <h2>Інтенсивність уваги</h2>
+      <div class="scalebar"></div>
+      <div class="scale-lbl"><span>низька</span><span>висока</span></div>
+      <div class="toggles">
+        <label class="toggle"><input type="checkbox" id="t-heat" checked> теплокарта</label>
+        <label class="toggle"><input type="checkbox" id="t-weak" checked> слабкі зони</label>
+      </div>
+      <h2>Зведення</h2>
+      <div class="stats" id="stats"></div>
+      <div id="notes"></div>
+      <h2>Слабкі зони (6)</h2>
+      <ul class="findings" id="findings"></ul>
+    </div>
+  </div>
+  <p class="foot">Insightis · attention heatmap · Pricing · 1440px · 2026-08-04 · клік по зоні → прокрутка до неї</p>
+</div>
+<script>window.HM = {"img":"pricing-page.png","W":1440,"H":4466,"fold":900,"points":[{"x":0.5,"y":0.0672,"r":0.25,"w":1},{"x":0.5,"y":0.3081,"r":0.1549,"w":0.78},{"x":0.5,"y":0.603,"r":0.2363,"w":0.78},{"x":0.5,"y":0.7913,"r":0.2332,"w":0.78},{"x":0.4676,"y":0.1156,"r":0.0486,"w":0.72},{"x":0.5276,"y":0.1156,"r":0.0486,"w":0.72},{"x":0.2102,"y":0.2056,"r":0.1351,"w":0.72},{"x":0.5,"y":0.2056,"r":0.1351,"w":0.72},{"x":0.7898,"y":0.2056,"r":0.1351,"w":0.72},{"x":0.4641,"y":0.5557,"r":0.0486,"w":0.72},{"x":0.6437,"y":0.5557,"r":0.0486,"w":0.72},{"x":0.8234,"y":0.5557,"r":0.0486,"w":0.72},{"x":0.5,"y":0.6277,"r":0.25,"w":0.72},{"x":0.5,"y":0.6604,"r":0.25,"w":0.72},{"x":0.5,"y":0.6773,"r":0.25,"w":0.72},{"x":0.5,"y":0.6941,"r":0.25,"w":0.72},{"x":0.5,"y":0.7109,"r":0.25,"w":0.72},{"x":0.5,"y":0.7278,"r":0.25,"w":0.72},{"x":0.4395,"y":0.829,"r":0.0745,"w":0.72},{"x":0.5698,"y":0.829,"r":0.0646,"w":0.72},{"x":0.1037,"y":0.1423,"r":0.0486,"w":0.5},{"x":0.4029,"y":0.1423,"r":0.0486,"w":0.5},{"x":0.6798,"y":0.1423,"r":0.0486,"w":0.5}],"weak":[{"x":0.8681,"y":0.9628,"w":0.0125,"h":0.0047,"sev":"med","label":"Ціль 18×18px","detail":"Менше за мінімум 24px (WCAG 2.5.8). Insightis on X (formerly Twi"},{"x":0.8917,"y":0.9628,"w":0.0125,"h":0.0047,"sev":"med","label":"Ціль 18×18px","detail":"Менше за мінімум 24px (WCAG 2.5.8). Insightis on YouTube"},{"x":0.9153,"y":0.9628,"w":0.0125,"h":0.0047,"sev":"med","label":"Ціль 18×18px","detail":"Менше за мінімум 24px (WCAG 2.5.8). Insightis on LinkedIn"},{"x":0.0868,"y":0.407,"w":0.088,"h":0.0037,"sev":"low","label":"Шрифт 11.0px","detail":"Дрібний текст (<12px): “DATA CONNECTIONS”"},{"x":0.0868,"y":0.5033,"w":0.099,"h":0.0037,"sev":"low","label":"Шрифт 11.0px","detail":"Дрібний текст (<12px): “SUPPORT & SECURITY”"},{"x":0.0882,"y":0.2004,"w":0.8236,"h":0.6349,"sev":"low","label":"Повтор «Start for free» ×7","detail":"Один заклик повторюється 7 разів — увага розсіюється, знижується вага кожного CTA."}],"stats":{"screens":4.2,"cta":16},"notes":["🍪 На знімку видно cookie-банер (fixed, знизу) — він перекриває контент середини/низу сторінки до закриття."]};</script>
+<script src="heatmap.js"></script>

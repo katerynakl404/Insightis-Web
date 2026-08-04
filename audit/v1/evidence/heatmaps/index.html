@@ -1,0 +1,253 @@
+<meta charset="utf-8">
+<title>Attention Heatmaps — Insightis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="heatmap.css">
+<style>
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+  .pcard{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:13px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:var(--shadow);transition:transform .08s,border-color .15s}
+  .pcard:hover{transform:translateY(-2px);border-color:var(--line-strong)}
+  .thumb{display:block;height:150px;background-size:100% auto;background-position:top center;background-repeat:no-repeat;background-color:var(--surface-2);border-bottom:1px solid var(--line)}
+  .pc-body{padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+  .pc-title{font-weight:750;font-size:15px}
+  .pc-path{font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+  .pc-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+  .pc-b{font-family:var(--mono);font-size:10.5px;padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--ink-soft);background:var(--surface-2)}
+  .pc-b.hi{color:var(--sev-high);border-color:color-mix(in srgb,var(--sev-high) 45%,var(--line))}
+  .pc-b.me{color:var(--sev-med);border-color:color-mix(in srgb,var(--sev-med) 45%,var(--line))}
+  .totrow{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
+</style>
+<div class="wrap">
+  <p class="eyebrow">Insightis · UX audit</p>
+  <h1>Attention heatmaps — усі основні сторінки</h1>
+  <p class="sub">Предиктивні теплокарти уваги поверх повних скринів (1440px) з підсвіченими слабкими зонами: контраст нижче WCAG, дрібні тач-цілі, повтори CTA, кнопки нижче згину, дрібний текст. Клікни картку, щоб відкрити карту сторінки.</p>
+  <div class="totrow">
+    <span class="chip hi">2 критичних</span>
+    <span class="chip me">65 середніх</span>
+    <span class="chip">151 слабких зон разом</span>
+    <span class="chip">17 сторінок</span>
+  </div>
+  <div class="grid">
+    <a class="pcard" href="home.html">
+      <span class="thumb" style="background-image:url('home-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">Home</span>
+        <span class="pc-path">/</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">13 сер.</span>
+          <span class="pc-b">15 зон</span>
+          <span class="pc-b">6.5 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="ai-chat.html">
+      <span class="thumb" style="background-image:url('ai-chat-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">AI Chat</span>
+        <span class="pc-path">/platform/ai-chat.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">3 сер.</span>
+          <span class="pc-b">8 зон</span>
+          <span class="pc-b">5 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="integrations.html">
+      <span class="thumb" style="background-image:url('integrations-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">Integrations</span>
+        <span class="pc-path">/platform/integrations.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">4 сер.</span>
+          <span class="pc-b">8 зон</span>
+          <span class="pc-b">4.8 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="semantic-layer.html">
+      <span class="thumb" style="background-image:url('semantic-layer-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">Semantic Layer</span>
+        <span class="pc-path">/platform/semantic-layer.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">3 сер.</span>
+          <span class="pc-b">10 зон</span>
+          <span class="pc-b">4.9 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="pricing.html">
+      <span class="thumb" style="background-image:url('pricing-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">Pricing</span>
+        <span class="pc-path">/pricing.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">3 сер.</span>
+          <span class="pc-b">6 зон</span>
+          <span class="pc-b">4.2 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="revenue-teams.html">
+      <span class="thumb" style="background-image:url('revenue-teams-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">For Revenue Teams</span>
+        <span class="pc-path">/solutions/revenue-teams.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">3 сер.</span>
+          <span class="pc-b">11 зон</span>
+          <span class="pc-b">7.6 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="executive-teams.html">
+      <span class="thumb" style="background-image:url('executive-teams-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">For Executive Teams</span>
+        <span class="pc-path">/solutions/executive-teams.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">3 сер.</span>
+          <span class="pc-b">11 зон</span>
+          <span class="pc-b">7.5 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="marketing-teams.html">
+      <span class="thumb" style="background-image:url('marketing-teams-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">For Marketing Teams</span>
+        <span class="pc-path">/solutions/marketing-teams.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">3 сер.</span>
+          <span class="pc-b">11 зон</span>
+          <span class="pc-b">7.5 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="product-teams.html">
+      <span class="thumb" style="background-image:url('product-teams-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">For Product Teams</span>
+        <span class="pc-path">/solutions/product-teams.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">3 сер.</span>
+          <span class="pc-b">11 зон</span>
+          <span class="pc-b">7.5 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="analytics-teams.html">
+      <span class="thumb" style="background-image:url('analytics-teams-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">For Analytics Teams</span>
+        <span class="pc-path">/solutions/analytics-teams.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">3 сер.</span>
+          <span class="pc-b">11 зон</span>
+          <span class="pc-b">7.6 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="finance-teams.html">
+      <span class="thumb" style="background-image:url('finance-teams-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">For Finance Teams</span>
+        <span class="pc-path">/solutions/finance-teams.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">3 сер.</span>
+          <span class="pc-b">11 зон</span>
+          <span class="pc-b">7.5 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="connectors.html">
+      <span class="thumb" style="background-image:url('connectors-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">Data Connectors</span>
+        <span class="pc-path">/resources/connectors.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">3 сер.</span>
+          <span class="pc-b">4 зон</span>
+          <span class="pc-b">7.7 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="prompt-library.html">
+      <span class="thumb" style="background-image:url('prompt-library-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">Prompt Library</span>
+        <span class="pc-path">/resources/prompt-library.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">3 сер.</span>
+          <span class="pc-b">11 зон</span>
+          <span class="pc-b">13.1 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="roadmap.html">
+      <span class="thumb" style="background-image:url('roadmap-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">Roadmap</span>
+        <span class="pc-path">/resources/roadmap.html</span>
+        <span class="pc-badges">
+          <span class="pc-b hi">1 крит.</span>
+          <span class="pc-b me">3 сер.</span>
+          <span class="pc-b">6 зон</span>
+          <span class="pc-b">2.9 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="blog.html">
+      <span class="thumb" style="background-image:url('blog-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">Blog</span>
+        <span class="pc-path">/blog/index.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">3 сер.</span>
+          <span class="pc-b">7 зон</span>
+          <span class="pc-b">2.4 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="docs.html">
+      <span class="thumb" style="background-image:url('docs-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">Documentation</span>
+        <span class="pc-path">/docs/index.html</span>
+        <span class="pc-badges">
+          
+          <span class="pc-b me">5 сер.</span>
+          <span class="pc-b">5 зон</span>
+          <span class="pc-b">2.3 екр.</span>
+        </span>
+      </span>
+    </a>
+    <a class="pcard" href="contact-support.html">
+      <span class="thumb" style="background-image:url('contact-support-page.png')"></span>
+      <span class="pc-body">
+        <span class="pc-title">Support Center</span>
+        <span class="pc-path">/resources/contact-support.html</span>
+        <span class="pc-badges">
+          <span class="pc-b hi">1 крит.</span>
+          <span class="pc-b me">4 сер.</span>
+          <span class="pc-b">5 зон</span>
+          <span class="pc-b">1.9 екр.</span>
+        </span>
+      </span>
+    </a>
+  </div>
+  <p class="foot">Insightis · attention heatmaps · 2026-08-04 · сигнали зібрано з живого DOM (dev :5173), не вручну</p>
+</div>

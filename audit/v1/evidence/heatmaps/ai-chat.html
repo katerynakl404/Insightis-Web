@@ -1,0 +1,35 @@
+<meta charset="utf-8">
+<title>Heatmap — AI Chat · Insightis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="heatmap.css">
+<div class="wrap">
+  <p class="eyebrow"><a href="index.html">← усі сторінки</a> &nbsp;·&nbsp; attention heatmap</p>
+  <h1>AI Chat — карта уваги й слабких зон</h1>
+  <p class="sub">Предиктивна теплокарта уваги поверх повного скрину сторінки. <b>Червоне/жовте</b> — куди око падає першим; <b>синє</b> — периферія. Слабкі зони (<b>3 середніх</b>) обведені й пронумеровані; найпомітніші: Ціль 18×18px, Ціль 18×18px.</p>
+  <div class="legend">
+    <span><i style="background:#ff2d2d"></i>критична зона</span>
+    <span><i style="background:#ff7a00"></i>середня</span>
+    <span><i style="background:#20c9c0"></i>дрібна</span>
+    <span><i style="background:linear-gradient(90deg,#2b3dd6,#2fd07a,#ff2d2d)"></i>увага (низька→висока)</span>
+  </div>
+  <div class="layout">
+    <div class="stage"><canvas id="hm"></canvas></div>
+    <div class="side">
+      <h2>Інтенсивність уваги</h2>
+      <div class="scalebar"></div>
+      <div class="scale-lbl"><span>низька</span><span>висока</span></div>
+      <div class="toggles">
+        <label class="toggle"><input type="checkbox" id="t-heat" checked> теплокарта</label>
+        <label class="toggle"><input type="checkbox" id="t-weak" checked> слабкі зони</label>
+      </div>
+      <h2>Зведення</h2>
+      <div class="stats" id="stats"></div>
+      <div id="notes"></div>
+      <h2>Слабкі зони (8)</h2>
+      <ul class="findings" id="findings"></ul>
+    </div>
+  </div>
+  <p class="foot">Insightis · attention heatmap · AI Chat · 1440px · 2026-08-04 · клік по зоні → прокрутка до неї</p>
+</div>
+<script>window.HM = {"img":"ai-chat-page.png","W":1440,"H":5598,"fold":900,"points":[{"x":0.2743,"y":0.0813,"r":0.2397,"w":1},{"x":0.5,"y":0.236,"r":0.25,"w":0.78},{"x":0.5,"y":0.373,"r":0.1617,"w":0.78},{"x":0.5,"y":0.4613,"r":0.25,"w":0.78},{"x":0.5,"y":0.6959,"r":0.2289,"w":0.78},{"x":0.5,"y":0.8364,"r":0.25,"w":0.78},{"x":0.1351,"y":0.1365,"r":0.0745,"w":0.72},{"x":0.5,"y":0.3867,"r":0.0745,"w":0.72},{"x":0.2441,"y":0.4981,"r":0.0571,"w":0.72},{"x":0.351,"y":0.4981,"r":0.0569,"w":0.72},{"x":0.4607,"y":0.4981,"r":0.0601,"w":0.72},{"x":0.565,"y":0.4981,"r":0.0512,"w":0.72},{"x":0.6644,"y":0.4981,"r":0.0548,"w":0.72},{"x":0.7626,"y":0.4981,"r":0.0499,"w":0.72},{"x":0.433,"y":0.8629,"r":0.0745,"w":0.72},{"x":0.5698,"y":0.8629,"r":0.0715,"w":0.72},{"x":0.2074,"y":0.2819,"r":0.0486,"w":0.5},{"x":0.5,"y":0.2819,"r":0.0743,"w":0.5},{"x":0.7926,"y":0.2819,"r":0.0805,"w":0.5}],"weak":[{"x":0.8681,"y":0.9684,"w":0.0125,"h":0.004,"sev":"med","label":"Ціль 18×18px","detail":"Менше за мінімум 24px (WCAG 2.5.8). Insightis on X (formerly Twi"},{"x":0.8917,"y":0.9684,"w":0.0125,"h":0.004,"sev":"med","label":"Ціль 18×18px","detail":"Менше за мінімум 24px (WCAG 2.5.8). Insightis on YouTube"},{"x":0.9153,"y":0.9684,"w":0.0125,"h":0.004,"sev":"med","label":"Ціль 18×18px","detail":"Менше за мінімум 24px (WCAG 2.5.8). Insightis on LinkedIn"},{"x":0.5424,"y":0.0869,"w":0.0754,"h":0.003,"sev":"low","label":"Шрифт 9.0px","detail":"Дрібний текст (<12px): “MRR · LAST 8 WEEKS”"},{"x":0.5431,"y":0.1099,"w":0.1032,"h":0.0037,"sev":"low","label":"Шрифт 11.0px","detail":"Дрібний текст (<12px): “⚡ SUGGESTED ACTIONS”"},{"x":0.4415,"y":0.4402,"w":0.1171,"h":0.006,"sev":"low","label":"Шрифт 11.0px","detail":"Дрібний текст (<12px): “WHAT YOU CAN ASK”"},{"x":0.0694,"y":0.1311,"w":0.4962,"h":0.7371,"sev":"low","label":"Повтор «Start for free» ×3","detail":"Один заклик повторюється 3 разів — увага розсіюється, знижується вага кожного CTA."},{"x":0.3764,"y":0.5931,"w":0.5111,"h":0.0038,"sev":"low","label":"Шрифт 11.0px","detail":"Дрібний текст (<12px): “Source: Stripe · HubSpot”"}],"stats":{"screens":5,"cta":10},"notes":["🍪 На знімку видно cookie-банер (fixed, знизу) — він перекриває контент середини/низу сторінки до закриття."]};</script>
+<script src="heatmap.js"></script>

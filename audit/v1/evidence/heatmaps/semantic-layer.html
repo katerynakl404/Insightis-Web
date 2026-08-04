@@ -1,0 +1,35 @@
+<meta charset="utf-8">
+<title>Heatmap — Semantic Layer · Insightis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="heatmap.css">
+<div class="wrap">
+  <p class="eyebrow"><a href="index.html">← усі сторінки</a> &nbsp;·&nbsp; attention heatmap</p>
+  <h1>Semantic Layer — карта уваги й слабких зон</h1>
+  <p class="sub">Предиктивна теплокарта уваги поверх повного скрину сторінки. <b>Червоне/жовте</b> — куди око падає першим; <b>синє</b> — периферія. Слабкі зони (<b>3 середніх</b>) обведені й пронумеровані; найпомітніші: Ціль 18×18px, Ціль 18×18px.</p>
+  <div class="legend">
+    <span><i style="background:#ff2d2d"></i>критична зона</span>
+    <span><i style="background:#ff7a00"></i>середня</span>
+    <span><i style="background:#20c9c0"></i>дрібна</span>
+    <span><i style="background:linear-gradient(90deg,#2b3dd6,#2fd07a,#ff2d2d)"></i>увага (низька→висока)</span>
+  </div>
+  <div class="layout">
+    <div class="stage"><canvas id="hm"></canvas></div>
+    <div class="side">
+      <h2>Інтенсивність уваги</h2>
+      <div class="scalebar"></div>
+      <div class="scale-lbl"><span>низька</span><span>висока</span></div>
+      <div class="toggles">
+        <label class="toggle"><input type="checkbox" id="t-heat" checked> теплокарта</label>
+        <label class="toggle"><input type="checkbox" id="t-weak" checked> слабкі зони</label>
+      </div>
+      <h2>Зведення</h2>
+      <div class="stats" id="stats"></div>
+      <div id="notes"></div>
+      <h2>Слабкі зони (10)</h2>
+      <ul class="findings" id="findings"></ul>
+    </div>
+  </div>
+  <p class="foot">Insightis · attention heatmap · Semantic Layer · 1440px · 2026-08-04 · клік по зоні → прокрутка до неї</p>
+</div>
+<script>window.HM = {"img":"semantic-layer-page.png","W":1440,"H":5505,"fold":900,"points":[{"x":0.2743,"y":0.083,"r":0.2397,"w":1},{"x":0.5,"y":0.241,"r":0.25,"w":0.78},{"x":0.5,"y":0.3809,"r":0.2285,"w":0.78},{"x":0.5,"y":0.4656,"r":0.25,"w":0.78},{"x":0.5,"y":0.6895,"r":0.25,"w":0.78},{"x":0.5,"y":0.833,"r":0.25,"w":0.78},{"x":0.1351,"y":0.1394,"r":0.0745,"w":0.72},{"x":0.5,"y":0.3949,"r":0.0745,"w":0.72},{"x":0.2541,"y":0.5033,"r":0.0486,"w":0.72},{"x":0.3322,"y":0.5033,"r":0.0551,"w":0.72},{"x":0.4218,"y":0.5033,"r":0.0486,"w":0.72},{"x":0.5074,"y":0.5033,"r":0.051,"w":0.72},{"x":0.6123,"y":0.5033,"r":0.0609,"w":0.72},{"x":0.7208,"y":0.5033,"r":0.0549,"w":0.72},{"x":0.2125,"y":0.5218,"r":0.157,"w":0.72},{"x":0.4986,"y":0.5218,"r":0.157,"w":0.72},{"x":0.2125,"y":0.5431,"r":0.157,"w":0.72},{"x":0.4986,"y":0.5431,"r":0.157,"w":0.72},{"x":0.2125,"y":0.5643,"r":0.157,"w":0.72},{"x":0.4986,"y":0.5643,"r":0.157,"w":0.72},{"x":0.2125,"y":0.5855,"r":0.157,"w":0.72},{"x":0.4986,"y":0.5855,"r":0.157,"w":0.72},{"x":0.2125,"y":0.6068,"r":0.157,"w":0.72},{"x":0.4986,"y":0.6068,"r":0.157,"w":0.72},{"x":0.433,"y":0.8601,"r":0.0745,"w":0.72},{"x":0.5698,"y":0.8601,"r":0.0715,"w":0.72},{"x":0.2074,"y":0.2879,"r":0.0821,"w":0.5},{"x":0.5,"y":0.2879,"r":0.0626,"w":0.5},{"x":0.7926,"y":0.2879,"r":0.065,"w":0.5}],"weak":[{"x":0.8681,"y":0.9679,"w":0.0125,"h":0.0041,"sev":"med","label":"Ціль 18×18px","detail":"Менше за мінімум 24px (WCAG 2.5.8). Insightis on X (formerly Twi"},{"x":0.8917,"y":0.9679,"w":0.0125,"h":0.0041,"sev":"med","label":"Ціль 18×18px","detail":"Менше за мінімум 24px (WCAG 2.5.8). Insightis on YouTube"},{"x":0.9153,"y":0.9679,"w":0.0125,"h":0.0041,"sev":"med","label":"Ціль 18×18px","detail":"Менше за мінімум 24px (WCAG 2.5.8). Insightis on LinkedIn"},{"x":0.534,"y":0.0596,"w":0.097,"h":0.0032,"sev":"low","label":"Шрифт 9.5px","detail":"Дрібний текст (<12px): “INCOMING FROM SOURCES”"},{"x":0.6352,"y":0.0807,"w":0.1809,"h":0.0037,"sev":"low","label":"Шрифт 11.0px","detail":"Дрібний текст (<12px): “9 raw inputs · 4 conflicts to re”"},{"x":0.534,"y":0.0993,"w":0.1108,"h":0.0032,"sev":"low","label":"Шрифт 9.5px","detail":"Дрібний текст (<12px): “CERTIFIED SEMANTIC LAYER”"},{"x":0.0694,"y":0.1339,"w":0.4962,"h":0.7316,"sev":"low","label":"Повтор «Start for free» ×3","detail":"Один заклик повторюється 3 разів — увага розсіюється, знижується вага кожного CTA."},{"x":0.6674,"y":0.5612,"w":0.2431,"h":0.0034,"sev":"low","label":"Шрифт 10.0px","detail":"Дрібний текст (<12px): “HOW IT IS COMPUTED”"},{"x":0.6674,"y":0.5662,"w":0.2431,"h":0.02,"sev":"low","label":"Шрифт 11.0px","detail":"Дрібний текст (<12px): “SELECT SUM(\"Amount\")/12.0\nFROM \"”"},{"x":0.6674,"y":0.5898,"w":0.2431,"h":0.0034,"sev":"low","label":"Шрифт 10.0px","detail":"Дрібний текст (<12px): “ASK FOR IT IN AI CHAT”"}],"stats":{"screens":4.9,"cta":20},"notes":["🍪 На знімку видно cookie-банер (fixed, знизу) — він перекриває контент середини/низу сторінки до закриття."]};</script>
+<script src="heatmap.js"></script>
