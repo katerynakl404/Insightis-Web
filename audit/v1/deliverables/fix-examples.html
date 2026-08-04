@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Insightis — Fix Examples (best practice)</title>
+<style>
+  :root{
+    --page:#0A0E13; --card:#131820; --elevated:#1A2230; --heading:#E8F2F5; --text:#C0D4DC;
+    --muted:#7FA0AC; --teal:#0EC4C1; --teal600:#07807E; --teal500:#148F8D;
+    --white06:rgba(255,255,255,0.06); --white24:rgba(255,255,255,0.24);
+    --gray700:#1A2230; --gray500:#4A6070; --line:rgba(255,255,255,0.08);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--text);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:32px 20px 80px}
+  h1{color:var(--heading);font-size:21px;margin:0 0 4px}
+  .sub{color:var(--muted);font-size:13px;margin:0 0 8px}
+  h2{color:var(--heading);font-size:16px;margin:36px 0 4px}
+  h3{color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:18px 0 8px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+  @media (max-width:760px){.grid2{grid-template-columns:1fr}}
+  .demo{border:1px solid var(--line);border-radius:10px;padding:18px;background:#0D1117}
+  .demo.bad{border-color:rgba(248,113,113,0.35)}
+  .demo.good{border-color:rgba(52,211,153,0.35)}
+  .tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+  .tag.bad{color:#F87171} .tag.good{color:#34D399}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:#0A0E13;color:var(--heading);padding:1px 5px;border-radius:3px}
+  pre{background:#0A0E13;border:1px solid var(--line);border-radius:8px;padding:12px;overflow:auto;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--text);margin:10px 0 0}
+  .note{color:var(--muted);font-size:12.5px;margin:8px 0 0}
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:600;border:1px solid transparent;cursor:pointer;background:none;color:inherit}
+  .btn-primary{background:var(--teal600);color:#fff;border-color:var(--teal500)}
+  .btn-sec-bad{background:var(--card);color:var(--heading);border-color:var(--white06)}
+  .btn-sec-good{background:var(--card);color:var(--heading);border-color:rgba(255,255,255,0.16)}
+  .btnrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .swatch-bg{background:var(--page);padding:16px;border-radius:8px}
+  /* footer demos */
+  .ftr{background:var(--card);border-radius:10px;padding:20px}
+  .ftr .brand{color:var(--heading);font-weight:700;margin-bottom:14px}
+  .ftr h4{color:var(--heading);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px}
+  .ftr a{display:block;color:var(--muted);text-decoration:none;font-size:13px;margin:5px 0}
+  /* BAD footer: fixed 3 cols -> 5 link groups orphan into a 2nd row with an empty cell */
+  .ftr-bad .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  /* GOOD footer: columns flow evenly, no orphaned empty cell, left-aligned */
+  .ftr-good .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:20px}
+  /* comparison — neutral vs red */
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+  @media(max-width:640px){.cmp{grid-template-columns:1fr}}
+  .cmp-card{position:relative;border-radius:14px;padding:20px;border:1px solid var(--line);background:#0D1117;overflow:hidden}
+  .cmp-card::before{content:"";position:absolute;inset:0;pointer-events:none}
+  .cmp-card>*{position:relative;z-index:1}
+  .cmp-card.neg-red{border-color:rgba(248,113,113,0.35);box-shadow:0 0 44px -12px rgba(248,113,113,0.40)}
+  .cmp-card.neg-red::before{background:radial-gradient(120% 80% at 50% 0%,rgba(248,113,113,0.10),transparent 70%)}
+  .cmp-card.neg{border-color:rgba(255,255,255,0.16);box-shadow:0 0 44px -14px rgba(255,255,255,0.12)}
+  .cmp-card.neg::before{background:radial-gradient(120% 80% at 50% 0%,rgba(255,255,255,0.06),transparent 70%)}
+  .cmp-card.pos{border-color:rgba(14,196,193,0.38);box-shadow:0 0 46px -12px rgba(14,196,193,0.40)}
+  .cmp-card.pos::before{background:radial-gradient(120% 80% at 50% 0%,rgba(14,196,193,0.12),transparent 70%)}
+  .cmp-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .cmp-ico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
+  .cmp-card.neg-red .cmp-ico{background:rgba(248,113,113,0.12);color:#F87171}
+  .cmp-card.neg .cmp-ico{background:rgba(255,255,255,0.06);color:var(--muted)}
+  .cmp-card.pos .cmp-ico{background:rgba(14,196,193,0.12);color:var(--teal)}
+  .cmp-card h4{margin:0;color:var(--heading);font-size:15px}
+  .cmp-card .s{color:var(--muted);font-size:12px}
+  .cmp ul{padding:0;margin:8px 0 0;list-style:none}
+  .cmp li{display:flex;gap:10px;align-items:flex-start;margin:8px 0;color:var(--text);font-size:13.5px}
+  .cmp .mk{flex:none;font-weight:700}
+  .cmp-card.neg-red .mk{color:#F87171}
+  .cmp-card.neg .mk{color:var(--muted)}
+  .cmp-card.pos .mk{color:var(--teal)}
+  /* metrics catalog concept */
+  .cat{display:grid;grid-template-columns:1fr 300px;gap:16px;margin-top:10px}
+  @media(max-width:760px){.cat{grid-template-columns:1fr}}
+  .cat-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+  .cat-search{flex:1;min-width:170px;height:36px;border-radius:8px;border:1px solid var(--line);background:#0A0E13;color:var(--text);padding:0 12px;font-size:13px}
+  .cat-chip{height:30px;padding:0 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.20);background:none;color:var(--text);font-size:12.5px;cursor:pointer}
+  .cat-chip.on{border-color:var(--teal);color:var(--teal);background:rgba(14,196,193,0.08)}
+  .cat-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:980px){.cat-list{grid-template-columns:1fr}}
+  .mcard{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#0D1117}
+  .mcard.sel{border-color:var(--teal);background:rgba(14,196,193,0.05)}
+  .mcard .mtitle{color:var(--heading);font-weight:600;font-size:13.5px}
+  .mcard .mid{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--muted)}
+  .mcard .mdesc{color:var(--muted);font-size:12px;margin-top:3px}
+  .mcard .msrc{display:inline-block;margin-top:8px;font-size:10.5px;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:1px 7px}
+  .detail{border:1px solid var(--line);border-radius:12px;padding:16px;background:#0D1117;align-self:start}
+  .detail .idbig{font-family:ui-monospace,Menlo,monospace;color:var(--teal);font-size:15px}
+  .detail pre{background:#0A0E13;border:1px solid var(--line);border-radius:8px;padding:10px;font-size:12px;overflow:auto;margin:8px 0 0}
+  .detail .drow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .detail .db{height:32px;padding:0 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.24);background:none;color:var(--heading);font-size:12.5px;cursor:pointer;display:inline-flex;align-items:center}
+  .detail .dmeta{display:flex;gap:16px;color:var(--muted);font-size:11.5px;margin-top:10px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Fix examples — best practice</h1>
+  <p class="sub">Concrete "how it should be" for two flagged style defects, using the Insightis design-system tokens. Current (left) vs recommended (right).</p>
+
+  <h2>1 · Secondary button — default border too faint (AUD-39)</h2>
+  <p class="note">Current border token is <code>--ins-border-default = rgba(255,255,255,0.06)</code> (6% white) on the card surface <code>#131820</code> — it fails the 3:1 UI-boundary contrast (WCAG 1.4.11) and visually blends. Best practice: a secondary/outline button needs a visible resting border ≥3:1; only the fill/border should *intensify* on hover, not appear from nothing.</p>
+  <div class="grid2">
+    <div class="demo bad">
+      <div class="tag bad">Current — border blends in</div>
+      <div class="swatch-bg btnrow">
+        <button class="btn btn-primary">Start for free</button>
+        <button class="btn btn-sec-bad">Explore Pricing</button>
+      </div>
+      <div class="note">6% white border ≈ invisible on dark.</div>
+    </div>
+    <div class="demo good">
+      <div class="tag good">Recommended — visible resting border</div>
+      <div class="swatch-bg btnrow">
+        <button class="btn btn-primary">Start for free</button>
+        <button class="btn btn-sec-good">Explore Pricing</button>
+      </div>
+      <div class="note">Give the secondary button its OWN token, not the generic faint border.</div>
+    </div>
+  </div>
+  <pre>/* tokens/colors.css — add a dedicated, higher-contrast token */
+--ins-button-secondary-border:       rgba(255,255,255,0.24);  /* was: var(--ins-border-default) = 6% */
+--ins-button-secondary-border-hover: rgba(255,255,255,0.40);  /* intensify on hover */
+/* Verify ≥3:1 against --ins-surface-card (#131820). A mid-gray (e.g. --ins-color-gray-500 #4A6070) also works. */</pre>
+
+  <h2>2 · Footer — broken reflow at tablet widths (AUD-40)</h2>
+  <p class="note">There are 5 link groups (Platform, Solutions, Resources, Company, Legal) but at 768–1023px the grid is a fixed <code>repeat(3, 1fr)</code> → the last two groups orphan onto a second row, leaving an empty cell and a large blank area. Best practice: let columns flow so each row fills evenly, keep them left-aligned, and stack cleanly on mobile.</p>
+  <h3>Current (fixed 3 columns → orphaned Company/Legal)</h3>
+  <div class="ftr ftr-bad">
+    <div class="brand">◆ Insightis</div>
+    <div style="color:var(--teal);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:2px 0 8px">AI Analytics Workspace for instant insights</div>
+    <div style="color:var(--muted);font-size:13px;max-width:60ch;margin-bottom:20px">Built by the Devart team — the trusted data partner of 40,000+ companies worldwide for over 28 years.</div>
+    <div class="cols">
+      <div><h4>Platform</h4><a>AI Chat</a><a>Integrations</a><a>Semantic Layer</a></div>
+      <div><h4>Solutions</h4><a>For Revenue Teams</a><a>For Executive Teams</a><a>For Marketing Teams</a><a>For Product Teams</a><a>For Analytics Teams</a><a>For Finance Teams</a></div>
+      <div><h4>Resources</h4><a>Documentation</a><a>Prompt Library</a><a>Blog</a><a>Support Center</a><a>Data Connectors</a><a>Roadmap</a></div>
+      <div><h4>Company</h4><a>About Insightis</a><a>About Devart ↗</a><a>Careers ↗</a><a>Contacts</a></div>
+      <div><h4>Legal</h4><a>Privacy</a><a>Terms</a><a>Security</a><a>Cookie Settings</a></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px"><span>X · YouTube · LinkedIn</span><span>© Devart 2026</span></div>
+  </div>
+  <h3>Recommended (auto-fit flow → even rows, no orphan)</h3>
+  <div class="ftr ftr-good">
+    <div class="brand">◆ Insightis</div>
+    <div style="color:var(--teal);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:2px 0 8px">AI Analytics Workspace for instant insights</div>
+    <div style="color:var(--muted);font-size:13px;max-width:60ch;margin-bottom:20px">Built by the Devart team — the trusted data partner of 40,000+ companies worldwide for over 28 years.</div>
+    <div class="cols">
+      <div><h4>Platform</h4><a>AI Chat</a><a>Integrations</a><a>Semantic Layer</a></div>
+      <div><h4>Solutions</h4><a>For Revenue Teams</a><a>For Executive Teams</a><a>For Marketing Teams</a><a>For Product Teams</a><a>For Analytics Teams</a><a>For Finance Teams</a></div>
+      <div><h4>Resources</h4><a>Documentation</a><a>Prompt Library</a><a>Blog</a><a>Support Center</a><a>Data Connectors</a><a>Roadmap</a></div>
+      <div><h4>Company</h4><a>About Insightis</a><a>About Devart ↗</a><a>Careers ↗</a><a>Contacts</a></div>
+      <div><h4>Legal</h4><a>Privacy</a><a>Terms</a><a>Security</a><a>Cookie Settings</a></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px"><span>X · YouTube · LinkedIn</span><span>© Devart 2026</span></div>
+  </div>
+  <pre>/* components/footer.css — let columns flow instead of a fixed 3-col that orphans 2 groups */
+.ins-footer__cols{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));  /* was: repeat(2/3/5,…) */
+  gap:var(--ins-space-2xl);
+}
+/* drop `justify-content:flex-end` at ≥1024 — align columns to the start for a balanced row */</pre>
+  <p class="note">Best-practice alternative: keep the brand+tagline block full-width on top (as now) and place all link groups in one auto-fitting row — on tablet it becomes an even 3×2 or 4-wide grid with no empty cell; on mobile it stacks to 2 columns.</p>
+
+  <h2 style="margin-top:48px;border-top:1px solid var(--line);padding-top:22px">Proposed block redesigns — <span style="color:#FBBF24">pending sign-off</span></h2>
+  <p class="sub">These are concept variants that change layout/behaviour, not just tokens — they need design approval before build. Kept here (separate from the audit findings) for review.</p>
+
+  <h2>3 · Comparison block — keep the glow, make "before" neutral (AUD-56)</h2>
+  <p class="note">Keep the glow (it works). Only change the "before" card from red to neutral gray — red reads as error/danger, but the "before" is just the prior state; meaning stays on the ✗/✓ icons (SC 1.4.1) and red is reserved for real errors. "Current" below is the exact live content (5 items each).</p>
+  <h3>Current — red "before" (exact live content)</h3>
+  <div class="cmp">
+    <div class="cmp-card neg-red">
+      <div class="cmp-h"><span class="cmp-ico">✕</span><div><h4>Traditional Approach</h4><div class="s">Manual, slow, expensive</div></div></div>
+      <ul><li><span class="mk">✕</span>Manual data aggregation required</li><li><span class="mk">✕</span>Complex SQL &amp; Python scripts</li><li><span class="mk">✕</span>Days to set up new reports</li><li><span class="mk">✕</span>Siloed tools &amp; fragmented views</li><li><span class="mk">✕</span>High ongoing engineering overhead</li></ul>
+    </div>
+    <div class="cmp-card pos">
+      <div class="cmp-h"><span class="cmp-ico">✓</span><div><h4>With Insightis</h4><div class="s">Automated, instant, scalable</div></div></div>
+      <ul><li><span class="mk">✓</span>Automated data unification</li><li><span class="mk">✓</span>Natural language — no SQL needed</li><li><span class="mk">✓</span>Instant reports, zero code</li><li><span class="mk">✓</span>Unified intelligence layer</li><li><span class="mk">✓</span>10× more cost-effective</li></ul>
+    </div>
+  </div>
+  <h3>Recommended — neutral "before", glow kept (same content)</h3>
+  <div class="cmp">
+    <div class="cmp-card neg">
+      <div class="cmp-h"><span class="cmp-ico">✕</span><div><h4>Traditional Approach</h4><div class="s">Manual, slow, expensive</div></div></div>
+      <ul><li><span class="mk">✕</span>Manual data aggregation required</li><li><span class="mk">✕</span>Complex SQL &amp; Python scripts</li><li><span class="mk">✕</span>Days to set up new reports</li><li><span class="mk">✕</span>Siloed tools &amp; fragmented views</li><li><span class="mk">✕</span>High ongoing engineering overhead</li></ul>
+    </div>
+    <div class="cmp-card pos">
+      <div class="cmp-h"><span class="cmp-ico">✓</span><div><h4>With Insightis</h4><div class="s">Automated, instant, scalable</div></div></div>
+      <ul><li><span class="mk">✓</span>Automated data unification</li><li><span class="mk">✓</span>Natural language — no SQL needed</li><li><span class="mk">✓</span>Instant reports, zero code</li><li><span class="mk">✓</span>Unified intelligence layer</li><li><span class="mk">✓</span>10× more cost-effective</li></ul>
+    </div>
+  </div>
+  <h3>Same neutral treatment on other real comparisons (exact live content)</h3>
+  <p class="note">Integrations — "Disconnected data" vs "Insightis":</p>
+  <div class="cmp">
+    <div class="cmp-card neg">
+      <div class="cmp-h"><span class="cmp-ico">✕</span><div><h4>Disconnected data</h4><div class="s">→ "Which channel drove the most signups last month?"</div></div></div>
+      <ul><li><span class="mk">✕</span>3–5 days to produce one number — export CSVs, VLOOKUP, reconcile by hand</li><li><span class="mk">✕</span>4 tools to query for a request — HubSpot, Stripe and the warehouse</li><li><span class="mk">✕</span>Exports, manual joins, copy-pasted dashboards. Stale by the time they land.</li></ul>
+    </div>
+    <div class="cmp-card pos">
+      <div class="cmp-h"><span class="cmp-ico">✓</span><div><h4>Insightis</h4><div class="s">Answered in seconds. What direct integration unlocks:</div></div></div>
+      <ul><li><span class="mk">✓</span>12× faster time to insight — vs. manual exports &amp; BI tools</li><li><span class="mk">✓</span>90% fewer data requests — teams self-serve in plain English</li><li><span class="mk">✓</span>Direct connectors + Semantic Layer. Real numbers, refreshed continuously.</li></ul>
+    </div>
+  </div>
+  <p class="note">AI Chat — "Generic AI" vs "Insightis":</p>
+  <div class="cmp">
+    <div class="cmp-card neg">
+      <div class="cmp-h"><span class="cmp-ico">✕</span><div><h4>Generic AI</h4><div class="s">"What's our churn rate?"</div></div></div>
+      <ul><li><span class="mk">✕</span>Searches the internet. Returns industry averages. Not your numbers.</li></ul>
+    </div>
+    <div class="cmp-card pos">
+      <div class="cmp-h"><span class="cmp-ico">✓</span><div><h4>Insightis</h4><div class="s">"What's our churn rate?"</div></div></div>
+      <ul><li><span class="mk">✓</span>Queries your Stripe + PostgreSQL through Semantic Layer. Always your numbers.</li></ul>
+    </div>
+  </div>
+
+  <h2>4 · Metrics catalog — UX rethink</h2>
+  <p class="note">UX improvements over the current 3-pane block: (1) add a <b>search</b> + result count — 498 metrics can't be browsed by tabs alone; (2) add a <b>source filter</b> and show the source on each card; (3) give each metric a <b>human title</b> above the mono id for scannability; (4) make the detail panel <b>sticky</b> with <b>Copy name / Copy SQL</b> and the Semantic-Layer trust signals (<b>owner, freshness, certified</b>); (5) on mobile the detail becomes a drawer; (6) reuse the DS tab/chip + input primitives (AUD-54); (7) keep the footer count consistent with the rest of the site (AUD-05).</p>
+  <div class="cat-toolbar">
+    <input class="cat-search" placeholder="Search 498 metrics by name or description…" />
+    <button class="cat-chip on">All</button><button class="cat-chip">CRM</button><button class="cat-chip">Billing</button><button class="cat-chip">Marketing</button>
+    <button class="cat-chip">◧ Source</button>
+  </div>
+  <div class="cat">
+    <div class="cat-list">
+      <div class="mcard sel"><div class="mtitle">Total ARR (won)</div><div class="mid">total_arr_won</div><div class="mdesc">Annual Recurring Revenue from won opportunities.</div><span class="msrc">Salesforce · certified</span></div>
+      <div class="mcard"><div class="mtitle">Monthly Recurring Revenue</div><div class="mid">mrr_won</div><div class="mdesc">MRR from won opportunities.</div><span class="msrc">Salesforce</span></div>
+      <div class="mcard"><div class="mtitle">Win rate by value</div><div class="mid">win_rate_by_value</div><div class="mdesc">Share of closed-opportunity value that was won.</div><span class="msrc">Salesforce</span></div>
+      <div class="mcard"><div class="mtitle">Sales velocity</div><div class="mid">sales_velocity</div><div class="mdesc">Revenue generated per day.</div><span class="msrc">HubSpot</span></div>
+    </div>
+    <aside class="detail">
+      <div class="idbig">total_arr_won</div>
+      <div class="dmeta"><span>◆ Salesforce</span><span>✓ Certified</span><span>Owner: @revenue</span><span>Fresh: 2 min</span></div>
+      <p style="color:var(--text);font-size:13px;margin:12px 0 0">Total Annual Recurring Revenue (won). ARR = SUM of won "Amount".</p>
+      <div class="mid" style="color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-top:12px">How it is computed</div>
+      <pre>SELECT SUM("Amount")
+FROM "Opportunity"
+WHERE "IsWon" = true</pre>
+      <div class="drow"><button class="db">Copy name</button><button class="db">Copy SQL</button><button class="db">Ask in AI Chat →</button></div>
+    </aside>
+  </div>
+  <p class="note"><b>Note (not a proposal):</b> the footer stat's inconsistent number styling is a <b>direct finding fix (AUD-57)</b> — match the plain treatment the site already uses ("+ 180 more connectors available": one color, one typeface). It's tracked in findings.md, not here.</p>
+
+</div>
+</body>
+</html>

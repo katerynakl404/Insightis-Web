@@ -7,16 +7,18 @@
 | **Opened** | 2026-08-04 |
 | **Finalized** | 2026-08-04 |
 | **Object** | insightis-landing.vercel.app (dark theme) |
-| **Pages in scope** | Home, Pricing, AI Chat, Integrations, Semantic Layer |
+| **Pages in scope** | Full site (17 pages): Home, Pricing, AI Chat, Integrations, Semantic Layer, 6× Solutions, Docs, Blog, Connectors, Roadmap, Prompt Library, Contact Support |
 | **Diffed against** | — (baseline version) |
-| **Accepted findings** | 23 (2 Critical · 4 High · 9 Medium · 8 Low) |
+| **Accepted findings** | 74 (3 Critical · 11 High · 27 Medium · 33 Low) |
 
 ## Contents
 
 - [`findings.md`](findings.md) — source of truth (AUD-01 … AUD-12).
-- [`deliverables/report-visual.html`](deliverables/report-visual.html) — visual report (English).
+- [`deliverables/report-visual.html`](deliverables/report-visual.html) — visual report, 74 findings, each with a verify link (English).
 - [`deliverables/dev-handoff.md`](deliverables/dev-handoff.md) — developer handoff (English).
-- [`evidence/heatmaps/`](evidence/heatmaps/) — Home attention/friction heatmap.
+- [`deliverables/fix-examples.html`](deliverables/fix-examples.html) — proposed redesigns (button/footer fixes, neutral comparison, metrics-catalog rethink) — **pending sign-off**, kept separate from findings.
+- [`deliverables/404-design.html`](deliverables/404-design.html) — branded 404 design reference (AUD-04).
+- [`evidence/heatmaps/`](evidence/heatmaps/) — attention/friction heatmaps for all 17 pages.
 
 ## Changelog
 

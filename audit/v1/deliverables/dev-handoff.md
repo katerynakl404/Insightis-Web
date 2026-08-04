@@ -11,6 +11,10 @@ If a step and the findings disagree, the findings file wins — regenerate this 
 
 ---
 
+## Scope note
+
+This handoff details the prioritized, mechanically-actionable fixes (content, links, 404, a11y quick wins). The **full 74-finding set** — including the design-system consistency findings (AUD-39…63) and IA/structure findings (AUD-64…74) from the source audit — lives in [`../findings.md`](../findings.md) and [`report-visual.html`](report-visual.html). Some need design sign-off first (see [`fix-examples.html`](fix-examples.html)). The branded 404 (Task 4 below) has a design reference at [`404-design.html`](404-design.html).
+
 ## PROMPT (copy the whole block)
 
 > You are working in the Insightis site repository (`insightis-site`). Apply the tasks below **in

@@ -123,7 +123,7 @@ hand-patch a finding into them.
 
 | Version | Date | Scope | Status | Findings (accepted) | Deliverables |
 |---|---|---|---|---|---|
-| [v1](v1/) | 2026-08-04 | Home, Pricing, AI Chat, Integrations, Semantic Layer | Finalized | 23 | [visual](v1/deliverables/report-visual.html) · [handoff](v1/deliverables/dev-handoff.md) |
+| [v1](v1/) | 2026-08-04 | Full site (17 pages) | Finalized | 74 | [visual](v1/deliverables/report-visual.html) · [handoff](v1/deliverables/dev-handoff.md) · [concepts](v1/deliverables/fix-examples.html) · [404](v1/deliverables/404-design.html) |
 
 ---
 

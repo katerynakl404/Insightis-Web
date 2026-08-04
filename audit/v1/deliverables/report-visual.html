@@ -11,234 +11,132 @@
     --crit:#F87171; --high:#FB923C; --med:#FBBF24; --low:#7FA0AC; --code:#131820;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--page);color:var(--text);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:920px;margin:0 auto;padding:32px 20px 80px}
+  body{margin:0;background:var(--page);color:var(--text);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:940px;margin:0 auto;padding:32px 20px 80px}
   h1{color:var(--heading);font-size:22px;margin:0 0 4px}
   .sub{color:var(--muted);font-size:13px;margin:0 0 4px}
-  h2{color:var(--heading);font-size:15px;margin:34px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line);letter-spacing:.02em;text-transform:uppercase}
+  h2{color:var(--heading);font-size:14px;margin:30px 0 6px;padding-bottom:6px;border-bottom:1px solid var(--line);letter-spacing:.02em;text-transform:uppercase}
   a{color:var(--teal);text-decoration:none} a:hover{text-decoration:underline}
-  code,.q{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
-  code{background:var(--code);color:var(--heading);padding:1px 5px;border-radius:3px}
-  table{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0}
-  th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
-  /* findings */
-  .f{border-left:3px solid var(--line);padding:10px 0 10px 14px;margin:0 0 2px;border-bottom:1px solid var(--line)}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:var(--code);color:var(--heading);padding:1px 4px;border-radius:3px}
+  .callout{border:1px solid rgba(248,113,113,0.3);background:rgba(248,113,113,0.05);border-radius:8px;padding:12px 14px;margin:14px 0;font-size:13px}
+  .callout b{color:var(--heading)}
+  .f{display:flex;gap:10px;align-items:baseline;padding:9px 0 9px 12px;border-left:3px solid var(--line);border-bottom:1px solid var(--line);flex-wrap:wrap}
   .f.crit{border-left-color:var(--crit)} .f.high{border-left-color:var(--high)}
   .f.med{border-left-color:var(--med)} .f.low{border-left-color:var(--low)}
-  .fh{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
-  .id{font-family:ui-monospace,monospace;font-size:12px;color:var(--muted);min-width:52px}
-  .sv{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:1px 6px;border-radius:3px}
+  .sv{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 6px;border-radius:3px;white-space:nowrap;align-self:center}
   .sv.crit{color:var(--crit);border:1px solid var(--crit)} .sv.high{color:var(--high);border:1px solid var(--high)}
   .sv.med{color:var(--med);border:1px solid var(--med)} .sv.low{color:var(--low);border:1px solid var(--low)}
-  .ti{color:var(--heading);font-weight:600;flex:1;min-width:200px}
-  .vf{font-size:12px;white-space:nowrap}
-  .f p{margin:6px 0 0} .f .fix{color:var(--muted)} .f .fix b{color:var(--text);font-weight:600}
-  .ev{margin:6px 0 0;padding:6px 10px;background:var(--code);border-radius:4px;font-size:12.5px;color:var(--text)}
-  figure{margin:8px 0 0} figure img{max-width:100%;border:1px solid var(--line);border-radius:4px;display:block}
-  figcaption{color:var(--muted);font-size:11.5px;margin-top:3px}
-  ul{margin:6px 0;padding-left:18px} li{margin:2px 0}
-  .note{color:var(--muted);font-size:12.5px}
+  .id{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--muted);align-self:center;min-width:52px}
+  .bd{flex:1;min-width:240px}
+  .bd b{color:var(--heading)}
+  .lnk{font-size:12px;white-space:nowrap;align-self:center}
+  .lnk .cx{color:var(--med)}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <h1>Insightis — UX/UI Audit v1</h1>
-  <p class="sub">insightis-landing.vercel.app · dark · verified 2026-08-04 · pages: Home, Pricing, AI Chat, Integrations, Semantic Layer</p>
-  <p class="sub">Method: live DOM/CSS inspection + source (<code>insightis-site/</code>) + attention heatmaps + heuristic (Nielsen) pass. Every finding links to where to verify it.</p>
-  <p class="sub">23 findings — 2 Critical · 4 High · 9 Medium · 8 Low. Body text passes WCAG AA everywhere; the site's visual style is intentionally not redesigned in v1.</p>
+  <p class="sub">insightis-landing.vercel.app · dark · verified 2026-08-04 · <b>full site (17 pages)</b></p>
+  <p class="sub">Method: live DOM/CSS + source (<code>insightis-site/</code>) + attention heatmaps + heuristic (Nielsen) + parallel source audits (component/token consistency, IA/block logic). Every finding links to where to verify it.</p>
+  <p class="sub"><b>74 findings — 3 Critical · 11 High · 27 Medium · 33 Low.</b> Body text passes WCAG AA; the site's visual style is not being redesigned in v1 (proposed redesigns live separately in <a href="fix-examples.html">fix-examples.html</a>, pending sign-off).</p>
 
-  <h2>A · Content contradictions (misinform the user)</h2>
+  <div class="callout"><b>Release blockers (fix before launch):</b> AUD-01, AUD-02, AUD-24 (Critical); AUD-03, AUD-04, AUD-05, AUD-21, AUD-25, AUD-26, AUD-27, AUD-43, AUD-50, AUD-51, AUD-66 (High).</div>
 
-  <div class="f crit">
-    <div class="fh"><span class="id">AUD-01</span><span class="sv crit">Critical</span><span class="ti">Discount contradicts itself: cards say 50% OFF, FAQ implies 20%</span><span class="vf"><a href="https://insightis-landing.vercel.app/pricing">verify ↗</a></span></div>
-    <p>Plan cards show <code>50% OFF</code> (Starter $7.99 vs $15.99 = 50%), while the FAQ/marketing elsewhere frames the saving as "per seat" without matching the 50%. The two figures must be one number.</p>
-    <figure><img src="../evidence/screenshots/pricing-cards-1440.png" alt="Pricing cards, 50% OFF, $7.99 struck $15.99"><figcaption>Pricing cards — 50% OFF, $7.99 / $15.99.</figcaption></figure>
-    <p class="fix"><b>Fix:</b> single discount figure across cards + FAQ; confirm the intended % with product.</p>
-  </div>
+  <h2>A · Content correctness &amp; fabricated content</h2>
+  <div class="f crit"><span class="sv crit">Critical</span><span class="id">AUD-01</span><span class="bd"><b>Discount contradicts itself</b> — cards say 50% OFF, FAQ implies 20%.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/pricing">verify ↗</a></span></div>
+  <div class="f crit"><span class="sv crit">Critical</span><span class="id">AUD-02</span><span class="bd"><b>FAQ references tiers that don't exist</b> (Team / Enterprise) — cards only have Free/Starter/Pro.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/pricing">verify ↗</a></span></div>
+  <div class="f high"><span class="sv high">High</span><span class="id">AUD-25</span><span class="bd"><b>"AI Assistant" is a hardcoded mock</b> — fabricates "Found results / Read 1 file" for any query.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/resources/contact-support">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-29</span><span class="bd"><b>Hardcoded status</b> — "All systems operational · Last checked 2 minutes ago" always shown.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/resources/contact-support">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-28</span><span class="bd"><b>Support email wrong domain</b> — support@insightis.io.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/resources/contact-support">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-67</span><span class="bd"><b>Contact domain inconsistent</b> — .ai vs .io across security/press/boilerplate.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/security">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-32</span><span class="bd"><b>Blog year mismatch</b> — "for 2026" title vs "2024" description/body.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/blog/">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-42</span><span class="bd"><b>Duplicate label</b> — small eyebrow repeats the heading verbatim ("Data Sources"×2).</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/integrations">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-70</span><span class="bd"><b>"Industry-standard certifications" heading contradicts content</b> (no certs; "on roadmap").</span><span class="lnk"><a href="https://insightis-landing.vercel.app/security">verify ↗</a></span></div>
 
-  <div class="f crit">
-    <div class="fh"><span class="id">AUD-02</span><span class="sv crit">Critical</span><span class="ti">FAQ references tiers that don't exist (Team / Enterprise)</span><span class="vf"><a href="https://insightis-landing.vercel.app/pricing">verify ↗</a></span></div>
-    <p>Cards offer only <b>Free / Starter / Pro</b>. Initial audit found FAQ answers naming <b>Team</b> and <b>Enterprise</b> ("14-day free trial", "available on Team and Enterprise"). <span class="note">Re-check the FAQ answer text (not captured in the latest fetch) — the link above opens the exact place.</span></p>
-    <p class="fix"><b>Fix:</b> FAQ names only tiers present on the page, or add the tiers.</p>
-  </div>
+  <h2>B · Broken / non-functional</h2>
+  <div class="f crit"><span class="sv crit">Critical</span><span class="id">AUD-24</span><span class="bd"><b>30 dead help-topic links</b> — all <code>href="#"</code>; the page's primary content goes nowhere.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/resources/contact-support">verify ↗</a></span></div>
+  <div class="f high"><span class="sv high">High</span><span class="id">AUD-03</span><span class="bd"><b>Broken /integrations link</b> in the no-JS fallback (should be /platform/integrations).</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/ai-chat">verify ↗</a></span></div>
+  <div class="f high"><span class="sv high">High</span><span class="id">AUD-04</span><span class="bd"><b>No custom 404</b> + dead route mappings — unknown URLs show raw Vercel 404.</span><span class="lnk"><a href="404-design.html">404 design →</a> · <a href="dev-handoff.md">handoff</a></span></div>
+  <div class="f high"><span class="sv high">High</span><span class="id">AUD-66</span><span class="bd"><b>Security broken "View privacy policy" link</b> — <code>href="Privacy"</code> → /security/Privacy (404).</span><span class="lnk"><a href="https://insightis-landing.vercel.app/security">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-65</span><span class="bd"><b>FAQ JSON-LD without a visible FAQ</b> — AI Chat &amp; Integrations emit FAQPage schema, render none.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/ai-chat">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-30</span><span class="bd"><b>AI-assistant controls non-functional</b> — Copy copies "", Helpful/Regenerate no-op, <code>#</code> links.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/resources/contact-support">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-69</span><span class="bd"><b>Success Stories bottom-CTA form does nothing</b> — no submit/action.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-34</span><span class="bd"><b>Prompt Library placeholder promises a "data source" filter</b> that doesn't exist.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/resources/prompt-library">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-35</span><span class="bd"><b>Docs inline /auth/sign-up</b> missing canonical trailing slash.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/docs/">verify ↗</a></span></div>
 
-  <h2>B · Cross-page number & terminology inconsistency</h2>
+  <h2>C · Cross-page numbers &amp; terminology</h2>
+  <div class="f high"><span class="sv high">High</span><span class="id">AUD-05</span><span class="bd"><b>Numbers differ across pages</b> — 500+ vs 498 metrics; connectors don't line up.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/semantic-layer">verify ↗</a></span></div>
+  <div class="f high"><span class="sv high">High</span><span class="id">AUD-21</span><span class="bd"><b>"200+ connectors" alongside "+180 more"</b> — contradictory math.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/integrations">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-13</span><span class="bd"><b>Home labels the same 200+ stat "Integrations" and "Connectors".</b></span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-14</span><span class="bd"><b>Four terms for "pre-built metrics"</b> across pages.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/pricing">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-22</span><span class="bd"><b>Terminology sprawl</b> — integrations/connectors/sources/"data source" used interchangeably.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/integrations">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-15</span><span class="bd"><b>Accuracy notation "X3" vs "3×".</b></span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-57</span><span class="bd"><b>Inline stat numbers differ in color/typeface</b> from their line — match the plain "+180 more" pattern already on site.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/semantic-layer">verify ↗</a></span></div>
 
-  <div class="f high">
-    <div class="fh"><span class="id">AUD-05</span><span class="sv high">High</span><span class="ti">Same metrics stated with different numbers across pages</span><span class="vf"><a href="https://insightis-landing.vercel.app/platform/semantic-layer">verify ↗</a></span></div>
-    <div class="ev">Home: "500+ Pre-built metrics" · Semantic Layer: "498 built-in metrics across 20 sources" · Home: "200+ Connectors" · Integrations: "200+ connectors"</div>
-    <p>Metrics count 500+ vs 498; connector/source counts don't line up (see AUD-21). One source of truth per metric.</p>
-    <p class="fix"><b>Fix:</b> centralize each stat; render from one value everywhere.</p>
-  </div>
-
-  <div class="f med">
-    <div class="fh"><span class="id">AUD-13</span><span class="sv med">Medium</span><span class="ti">Home labels the same 200+ stat as both "Integrations" and "Connectors"</span><span class="vf"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
-    <div class="ev">Home: "200+ Integrations" … "200+ Connectors" (same page, same number, two nouns)</div>
-    <p class="fix"><b>Fix:</b> pick one noun for the concept and use it consistently.</p>
-  </div>
-
-  <div class="f med">
-    <div class="fh"><span class="id">AUD-14</span><span class="sv med">Medium</span><span class="ti">Four different terms for the same "pre-built metrics" concept</span><span class="vf"><a href="https://insightis-landing.vercel.app/pricing">verify ↗</a></span></div>
-    <div class="ev">"Pre-built metrics" (Home) · "built-in metrics" (Semantic Layer) · "Predefined Metrics" (Pricing) · "Metric definitions" (Pricing)</div>
-    <p class="fix"><b>Fix:</b> one canonical term in copy + a short glossary.</p>
-  </div>
-
-  <div class="f med">
-    <div class="fh"><span class="id">AUD-22</span><span class="sv med">Medium</span><span class="ti">Data-connection terminology sprawl: Integrations / Connectors / sources / data source</span><span class="vf"><a href="https://insightis-landing.vercel.app/platform/integrations">verify ↗</a></span></div>
-    <div class="ev">"200+ read-only connectors", "20 sources", "200+ Integrations", and the Pricing FAQ itself asks: 'What does "data source" mean?'</div>
-    <p>When the FAQ has to define your own term, the vocabulary is drifting (Nielsen #4 consistency).</p>
-    <p class="fix"><b>Fix:</b> pick canonical nouns (e.g. "connector" = the technical link, "integration" = the product); apply site-wide.</p>
-  </div>
-
-  <div class="f high">
-    <div class="fh"><span class="id">AUD-21</span><span class="sv high">High</span><span class="ti">Integrations: "200+ connectors" alongside "+ 180 more connectors available"</span><span class="vf"><a href="https://insightis-landing.vercel.app/platform/integrations">verify ↗</a></span></div>
-    <div class="ev">"200+ read-only connectors go live instantly" … "+ 180 more connectors available"</div>
-    <p>If 200+ are already live, "+180 more" reads as contradictory math and undercuts the headline number.</p>
-    <p class="fix"><b>Fix:</b> reconcile — e.g. "20 live now, 180 more coming" or drop the second figure.</p>
-  </div>
-
-  <div class="f low">
-    <div class="fh"><span class="id">AUD-15</span><span class="sv low">Low</span><span class="ti">Accuracy stat uses two notations: "X3" vs "3×"</span><span class="vf"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
-    <div class="ev">Home: "X3 accuracy" · Semantic Layer: "3× more accurate on real data"</div>
-    <p class="fix"><b>Fix:</b> one notation everywhere (recommend "3×").</p>
-  </div>
-
-  <h2>C · Copy / typography defects</h2>
-
-  <div class="f med">
-    <div class="fh"><span class="id">AUD-17</span><span class="sv med">Medium</span><span class="ti">Home H1 jams two sentences with no separator</span><span class="vf"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
-    <div class="ev">"Talk to your data It already knows the answer"</div>
-    <p class="fix"><b>Fix:</b> add punctuation / line break: "Talk to your data. It already knows the answer."</p>
-  </div>
-
-  <div class="f low">
-    <div class="fh"><span class="id">AUD-16</span><span class="sv low">Low</span><span class="ti">Numbers glued to the following word (missing space)</span><span class="vf"><a href="https://insightis-landing.vercel.app/platform/integrations">verify ↗</a></span></div>
-    <div class="ev">"12×faster time to insight", "90%fewer data requests" (Integrations) · "3×more accurate" (Semantic Layer)</div>
-    <p class="fix"><b>Fix:</b> thin space / normal space between value and word.</p>
-  </div>
-
-  <div class="f low">
-    <div class="fh"><span class="id">AUD-11</span><span class="sv low">Low</span><span class="ti">Glued word in H1 via &lt;br&gt; and a double space in a heading</span><span class="vf"><a href="https://insightis-landing.vercel.app/platform/semantic-layer">verify ↗</a></span></div>
-    <div class="ev">"Get answers in / seconds" → renders "inseconds" · "Stop arguing about&nbsp;&nbsp;which number"</div>
-    <p class="fix"><b>Fix:</b> no words glued by line break; collapse double spaces.</p>
-  </div>
-
-  <div class="f low">
-    <div class="fh"><span class="id">AUD-18</span><span class="sv low">Low</span><span class="ti">Inconsistent terminal punctuation across page H1s</span><span class="vf"><a href="https://insightis-landing.vercel.app/platform/ai-chat">verify ↗</a></span></div>
-    <div class="ev">AI Chat: "Ask anything. Get answers in seconds." (periods) · Integrations: "Connect it all. Get the why behind numbers" (none) · Semantic Layer: "The same numbers. Every team. Any report" (none)</div>
-    <p class="fix"><b>Fix:</b> one heading-punctuation rule across pages.</p>
-  </div>
-
-  <div class="f low">
-    <div class="fh"><span class="id">AUD-23</span><span class="sv low">Low</span><span class="ti">Capitalization drift within the Home stats</span><span class="vf"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
-    <div class="ev">"28 years of data tooling" vs "28 Years of data tooling" · "40,000+ companies" vs "40,000+ Companies"</div>
-    <p class="fix"><b>Fix:</b> one casing rule for stat labels.</p>
-  </div>
-
-  <h2>D · Navigation & CTA</h2>
-
-  <div class="f high">
-    <div class="fh"><span class="id">AUD-03</span><span class="sv high">High</span><span class="ti">Broken internal link in the no-JS static fallback</span><span class="vf"><a href="https://insightis-landing.vercel.app/platform/ai-chat">verify ↗</a></span></div>
-    <div class="ev">Source <code>platform/ai-chat.html:193</code>: <code>&lt;a href="/integrations"&gt;</code> → 404 (should be <code>/platform/integrations</code>); "Start for free" → <code>/pricing</code> (should be <code>/auth/sign-up/</code>). Live SPA render is correct; the fallback is not.</div>
-    <p class="fix"><b>Fix:</b> correct both hrefs in the static fallback file.</p>
-  </div>
-
-  <div class="f high">
-    <div class="fh"><span class="id">AUD-04</span><span class="sv high">High</span><span class="ti">No custom 404 + dead route mappings</span><span class="vf"><a href="https://insightis-landing.vercel.app/nope">verify ↗</a></span></div>
-    <div class="ev">Unknown URL → raw Vercel "404: NOT_FOUND". <code>Memory &amp; Storage → /platform/memory-storage</code> mapped in <code>Header.jsx:66</code> / <code>Footer.jsx:21</code> but the page doesn't exist.</div>
-    <p class="fix"><b>Fix:</b> branded <code>public/404.html</code> (already drafted); remove dead mappings.</p>
-  </div>
-
-  <div class="f low">
-    <div class="fh"><span class="id">AUD-19</span><span class="sv low">Low</span><span class="ti">Secondary CTA label drifts for the same destination</span><span class="vf"><a href="https://insightis-landing.vercel.app/platform/ai-chat">verify ↗</a></span></div>
-    <div class="ev">"Explore Pricing" (Home, Integrations, Semantic Layer) vs "Pricing" (AI Chat) — both → <code>/pricing</code></div>
-    <p class="fix"><b>Fix:</b> one label for the pricing CTA.</p>
-  </div>
-
-  <div class="f low">
-    <div class="fh"><span class="id">AUD-10</span><span class="sv low">Low</span><span class="ti">Repeated CTA blocks</span><span class="vf"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
-    <p>"Get answers… not days" duplicated; the same primary/secondary CTA pair repeats in nearly every section.</p>
-    <p class="fix"><b>Fix:</b> one primary CTA per intent, varied supporting copy.</p>
-  </div>
+  <h2>D · Design-system consistency (styles / components / tokens)</h2>
+  <div class="f high"><span class="sv high">High</span><span class="id">AUD-50</span><span class="bd"><b>Primary CTA built 4 ways</b> — DS solid vs 3 different gradients/radii/weights.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f high"><span class="sv high">High</span><span class="id">AUD-51</span><span class="bd"><b>Comparison block built 4 ways</b> + two competing DS classes; dead imports.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/semantic-layer">verify ↗</a> · <a class="cx" href="fix-examples.html">concept →</a></span></div>
+  <div class="f high"><span class="sv high">High</span><span class="id">AUD-43</span><span class="bd"><b>Sales/Support modals bypass the DS</b> — hardcoded overlay/z/radius, no focus trap + Esc.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/resources/contact-support">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-44</span><span class="bd"><b>Chat widgets diverge</b> — DS bubble radius/padding overridden; rich cards hand-styled.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/ai-chat">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-47</span><span class="bd"><b>Eyebrows hand-rolled / overridden to 10px Geist Mono</b>, nullifying <code>.ins-eyebrow</code> (~14 files).</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/semantic-layer">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-48</span><span class="bd"><b>Parallel stat system</b> (mono/500/teal) instead of <code>.ins-stat-kpi</code>; raw 40px price.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/pricing">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-52</span><span class="bd"><b>Bottom CTA hand-rolled</b> (success-stories grayscale, security) instead of <code>&lt;BottomCTA&gt;</code>.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-53</span><span class="bd"><b>Raw brand-teal literals + hardcoded radii</b> (rgba(9,160,157), 999px) instead of tokens.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/integrations">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-54</span><span class="bd"><b>DS control primitives bypassed</b> — filter pills, segmented toggle, input group hand-rolled.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/pricing">verify ↗</a> · <a class="cx" href="fix-examples.html">concept →</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-39</span><span class="bd"><b>Secondary button default border too faint</b> (6% white) — blends; fails 3:1.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a> · <a class="cx" href="fix-examples.html">concept →</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-56</span><span class="bd"><b>Comparison "before" card is red</b> — use neutral (keep glow); reserve red for errors.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a> · <a class="cx" href="fix-examples.html">concept →</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-46</span><span class="bd"><b>Success Stories cards reimplement the DS card inline</b> (radius/surface/JS hover).</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-55</span><span class="bd"><b>Duplicated JSX + unused/undefined classes</b> — docs SearchInput copy; dead <code>.ins-segmented</code> etc.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/docs/">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-41</span><span class="bd"><b>Buttons carry glow / drop-shadow</b> — should be flat.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-59</span><span class="bd"><b>Button label casing inconsistent</b> — "Explore Pricing" vs sentence case.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-60</span><span class="bd"><b>Highlighted-word teal inconsistent</b> across CTA banners.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/solutions/revenue-teams">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-61</span><span class="bd"><b>"See all 200+ integrations" custom teal-outline</b> — should be the secondary button.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/solutions/revenue-teams">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-63</span><span class="bd"><b>Connector hover abrupt + custom reveal button.</b></span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/integrations">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-45</span><span class="bd"><b>Heading letter-spacing off</b> — normalize from DS type tokens.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/integrations">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-68</span><span class="bd"><b>Dead imports + section stubs</b> (product/analytics-teams template drift).</span><span class="lnk"><a href="https://insightis-landing.vercel.app/solutions/product-teams">verify ↗</a></span></div>
 
   <h2>E · Accessibility</h2>
+  <div class="f high"><span class="sv high">High</span><span class="id">AUD-26</span><span class="bd"><b>Support form labels not associated</b> with inputs (no id/htmlFor/aria-label).</span><span class="lnk"><a href="https://insightis-landing.vercel.app/resources/contact-support">verify ↗</a></span></div>
+  <div class="f high"><span class="sv high">High</span><span class="id">AUD-27</span><span class="bd"><b>Connector "Sign in to connect" hover-only</b> — unreachable on touch/keyboard.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/resources/connectors">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-20</span><span class="bd"><b>Discounted price via strikethrough only</b> — no accessible was/now (1.3.1).</span><span class="lnk"><a href="https://insightis-landing.vercel.app/pricing">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-06</span><span class="bd"><b>Menu buttons lack ARIA</b> — no haspopup/expanded (4.1.2).</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-07</span><span class="bd"><b>Sub-44px tap targets</b> — tabs &amp; submenu ≈18–19px.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-08</span><span class="bd"><b>Low-contrast demo captions</b> + meaning by color alone (1.4.1).</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/ai-chat">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-58</span><span class="bd"><b>Low-contrast body text</b> — dim italic teal line below AA.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/semantic-layer">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-09</span><span class="bd"><b>Body descriptions default to 14px</b> — raise to 15–16px.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-64</span><span class="bd"><b>Heading hierarchy skips h1→h3</b> (Blog, Connectors, Prompt Library, Support, Solutions).</span><span class="lnk"><a href="https://insightis-landing.vercel.app/blog/">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-33</span><span class="bd"><b>"See all 200+ integrations" pill sub-44px.</b></span><span class="lnk"><a href="https://insightis-landing.vercel.app/solutions/analytics-teams">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-36</span><span class="bd"><b>Blog thumbnails empty alt</b> (confirm decorative vs informative).</span><span class="lnk"><a href="https://insightis-landing.vercel.app/blog/">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-37</span><span class="bd"><b>Tiny mockup / timeline text</b> (9–11px) — legibility risk.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/resources/roadmap">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-49</span><span class="bd"><b>Link loses underline on hover</b> — needs a body-colored link class that keeps it.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/integrations">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-62</span><span class="bd"><b>FAQ question hover feedback too weak.</b></span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/semantic-layer">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-73</span><span class="bd"><b>Roadmap content only in SVG</b> — absent from the DOM outline.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/resources/roadmap">verify ↗</a></span></div>
 
-  <div class="f med">
-    <div class="fh"><span class="id">AUD-20</span><span class="sv med">Medium</span><span class="ti">Discounted price relies on visual strikethrough only</span><span class="vf"><a href="https://insightis-landing.vercel.app/pricing">verify ↗</a></span></div>
-    <div class="ev">Rendered text: "$7.99$15.99" — new + old price with no accessible relationship; a screen reader reads two bare numbers.</div>
-    <p class="fix"><b>Fix:</b> mark old price with <code>&lt;s&gt;</code> + sr-only "was", new with sr-only "now" (WCAG 1.3.1).</p>
-  </div>
+  <h2>F · Copy / typography</h2>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-17</span><span class="bd"><b>Home H1 jams two sentences</b> — "Talk to your data It already knows the answer".</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-16</span><span class="bd"><b>Numbers glued to words</b> — "12×faster", "90%fewer", "3×more".</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/integrations">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-11</span><span class="bd"><b>Glued word via &lt;br&gt; + double space</b> in headings.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/semantic-layer">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-18</span><span class="bd"><b>Inconsistent H1 terminal punctuation</b> across pages.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/ai-chat">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-23</span><span class="bd"><b>Home stat capitalization drift</b> — "28 years"/"28 Years".</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-38</span><span class="bd"><b>Finance mockup micro-typography</b> — middot spacing, Finance/finance casing.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/solutions/finance-teams">verify ↗</a></span></div>
 
-  <div class="f med">
-    <div class="fh"><span class="id">AUD-06</span><span class="sv med">Medium</span><span class="ti">Menu buttons lack ARIA state</span><span class="vf"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
-    <div class="ev"><code>Platform</code> / <code>Solutions</code> / <code>Resources</code>: no <code>aria-haspopup</code> / <code>aria-expanded</code> (<code>Header.jsx</code>). WCAG 4.1.2.</div>
-    <p class="fix"><b>Fix:</b> add <code>aria-haspopup="menu"</code>, toggle <code>aria-expanded</code>; keyboard + Esc.</p>
-  </div>
+  <h2>G · Structure / IA</h2>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-31</span><span class="bd"><b>Roadmap contradicts itself</b> — Now vs Recently-shipped; timeline vs kanban; past date as present.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/resources/roadmap">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-10</span><span class="bd"><b>Repeated CTA blocks.</b></span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-19</span><span class="bd"><b>Secondary CTA label drift</b> — "Explore Pricing" vs "Pricing".</span><span class="lnk"><a href="https://insightis-landing.vercel.app/platform/ai-chat">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-71</span><span class="bd"><b>Home built differently</b> — hand-rolled headers/how-it-works; feature deep-dive before overview.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-72</span><span class="bd"><b>Solutions Use Cases restate the Feature Spotlights.</b></span><span class="lnk"><a href="https://insightis-landing.vercel.app/solutions/finance-teams">verify ↗</a></span></div>
 
-  <div class="f med">
-    <div class="fh"><span class="id">AUD-07</span><span class="sv med">Medium</span><span class="ti">Sub-44px tap targets (tabs, submenu)</span><span class="vf"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
-    <div class="ev">"Made for every team" tabs and Platform submenu ≈18–19px tall (&lt; 24px, WCAG 2.5.8).</div>
-    <p class="fix"><b>Fix:</b> padding to ≥44px hit area on mobile.</p>
-  </div>
+  <h2>H · Responsive</h2>
+  <div class="f med"><span class="sv med">Medium</span><span class="id">AUD-40</span><span class="bd"><b>Footer reflow orphans columns</b> at tablet (fixed 3-col under 5 groups).</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a> · <a class="cx" href="fix-examples.html">concept →</a></span></div>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-74</span><span class="bd"><b>Pricing feature table keeps 4 columns on mobile</b> — no reflow.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/pricing">verify ↗</a></span></div>
 
-  <div class="f med">
-    <div class="fh"><span class="id">AUD-08</span><span class="sv med">Medium</span><span class="ti">Low-contrast functional captions in demo widgets</span><span class="vf"><a href="https://insightis-landing.vercel.app/platform/ai-chat">verify ↗</a></span></div>
-    <div class="ev">"Thinking" state ≈2.8:1; comparison "before" side ≈2.5:1 — below AA; meaning carried by color alone.</div>
-    <p class="fix"><b>Fix:</b> functional labels ≥4.5:1 / ≥12px; add a non-color cue to the "before" side (WCAG 1.4.1).</p>
-  </div>
+  <h2>I · Code hygiene</h2>
+  <div class="f low"><span class="sv low">Low</span><span class="id">AUD-12</span><span class="bd"><b>Inline &lt;style&gt; blocks with media queries inside &lt;main&gt;</b> — per-page hand-patched CSS.</span><span class="lnk"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
 
-  <div class="f med">
-    <div class="fh"><span class="id">AUD-09</span><span class="sv med">Medium</span><span class="ti">Body description paragraphs default to 14px</span><span class="vf"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
-    <p>14px dominates real description paragraphs (16px rare). Labels/badges 11–13px are fine.</p>
-    <p class="fix"><b>Fix:</b> raise only description paragraphs to 15–16px.</p>
-  </div>
-
-  <h2>F · Code hygiene</h2>
-
-  <div class="f low">
-    <div class="fh"><span class="id">AUD-12</span><span class="sv low">Low</span><span class="ti">Inline &lt;style&gt; blocks with media queries inside &lt;main&gt;</span><span class="vf"><a href="https://insightis-landing.vercel.app/">verify ↗</a></span></div>
-    <p>Each page carries per-page inline CSS — a sign of hand-patched styling.</p>
-    <p class="fix"><b>Fix:</b> move to stylesheets / DS tokens. No visual change.</p>
-  </div>
-
-  <h2>Attention heatmap read (per page)</h2>
-  <ul>
-    <li><b>Home</b> — top third holds nearly all attention (H1 + chat demo). Below the fold attention fragments across team tabs, the dimmed "before" comparison, and repeated CTA. <a href="../evidence/heatmaps/home.html">open heatmap ↗</a></li>
-    <li><b>Pricing</b> — eyes go to the price + "50% OFF" first; the very place the discount contradiction (AUD-01) lives.</li>
-    <li><b>AI Chat</b> — demo widget dominates; low-contrast state labels (AUD-08) sit in the highest-attention zone.</li>
-    <li><b>Integrations</b> — the "200+ / +180 more" numbers (AUD-21) are in the primary scan path.</li>
-    <li><b>Semantic Layer</b> — "before/after" comparison is a focal point; the dim "before" side (AUD-08) reduces its legibility.</li>
-  </ul>
-  <p class="note">Full-page screenshots for all pages: <code>audit/v1/evidence/heatmaps/*.png</code>.</p>
-
-  <h2>Heuristic evaluation (Nielsen) — summary</h2>
-  <ul>
-    <li><b>#2 Match system ↔ real world / #4 Consistency &amp; standards</b> — the dominant theme: numbers, terminology, casing, punctuation, and CTA labels all drift across pages (AUD-05, 13, 14, 15, 18, 19, 22, 23).</li>
-    <li><b>#5 Error prevention</b> — dead route mapping and broken fallback link (AUD-03, 04) set traps for users and future edits.</li>
-    <li><b>#1 Visibility of system status</b> — menu open/closed state not exposed to assistive tech (AUD-06).</li>
-    <li><b>Accessibility (WCAG)</b> — price semantics, tap targets, caption contrast (AUD-20, 07, 08).</li>
-  </ul>
-
-  <h2>Prioritized action plan</h2>
-  <table>
-    <thead><tr><th>Pri</th><th>ID</th><th>Action</th></tr></thead>
-    <tbody>
-      <tr><td>P0</td><td>AUD-01</td><td>Remove 50% vs 20% discount contradiction</td></tr>
-      <tr><td>P0</td><td>AUD-02</td><td>Align pricing tiers (FAQ vs cards)</td></tr>
-      <tr><td>P0</td><td>AUD-03</td><td>Fix broken <code>/integrations</code> link in fallback</td></tr>
-      <tr><td>P1</td><td>AUD-04</td><td>Branded 404 + remove dead mappings</td></tr>
-      <tr><td>P1</td><td>AUD-05, 21</td><td>Reconcile metric + connector numbers</td></tr>
-      <tr><td>P1</td><td>AUD-06, 20</td><td>Menu ARIA + accessible price semantics</td></tr>
-      <tr><td>P2</td><td>AUD-13, 14, 22</td><td>Unify terminology (integrations/connectors/metrics)</td></tr>
-      <tr><td>P2</td><td>AUD-07, 08, 09</td><td>Tap targets, caption contrast, body size</td></tr>
-      <tr><td>P3</td><td>AUD-10, 11, 15, 16, 17, 18, 19, 23</td><td>CTA repetition, copy/typography, casing, notation</td></tr>
-      <tr><td>P3</td><td>AUD-12</td><td>Extract inline CSS</td></tr>
-    </tbody>
-  </table>
-
-  <p class="sub" style="margin-top:24px">Source of truth: <a href="../findings.md">findings.md</a> · Ready-to-apply fixes: <a href="dev-handoff.md">dev-handoff.md</a></p>
+  <h2>More</h2>
+  <p class="sub">Source of truth (full detail + decision history): <a href="../findings.md">findings.md</a> · Ready-to-apply fixes: <a href="dev-handoff.md">dev-handoff.md</a> · Proposed redesigns (pending sign-off): <a href="fix-examples.html">fix-examples.html</a> · 404 design: <a href="404-design.html">404-design.html</a> · Heatmaps: <a href="../evidence/heatmaps/index.html">index</a></p>
 
 </div>
 </body>
