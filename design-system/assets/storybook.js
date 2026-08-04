@@ -353,6 +353,30 @@
     }
   });
 
+  // ── Keep the sidebar from jumping across page navigations ─────
+  // The storybook is multi-page: each nav click is a full page load, which would
+  // otherwise reset the sidebar's scroll to the top and make it "jump". Persist the
+  // scroll position in sessionStorage and restore it synchronously (this script is
+  // a blocking <script> at end of <body>, so the restore happens before first paint).
+  const sidebarEl = document.querySelector('.sb-sidebar');
+  if (sidebarEl) {
+    const SCROLL_KEY = 'ins-sb-sidebar-scroll';
+    const saved = sessionStorage.getItem(SCROLL_KEY);
+    if (saved !== null) {
+      sidebarEl.scrollTop = parseInt(saved, 10) || 0;
+    } else {
+      // First visit: bring the active item into view without animating (no visible jump).
+      const active = sidebarEl.querySelector('.sb-sidebar__link.is-active');
+      if (active) active.scrollIntoView({ block: 'center' });
+    }
+    const persist = () => sessionStorage.setItem(SCROLL_KEY, String(sidebarEl.scrollTop));
+    sidebarEl.addEventListener('scroll', persist, { passive: true });
+    // Also capture the position the instant a link is clicked, before the page unloads.
+    sidebarEl.addEventListener('click', e => {
+      if (e.target.closest('.sb-sidebar__link')) persist();
+    });
+  }
+
   // ── Scroll main content to top on load (fresh page navigation) ─
   // Storybook pages are multi-page; when user clicks a sidebar link and the new page loads,
   // focus/scroll the <main> top so long scroll state doesn't bleed across pages.

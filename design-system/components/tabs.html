@@ -5,63 +5,104 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Tabs</h1><p class="sb-header__description">Horizontal underline (default) / horizontal pill / vertical. Full keyboard support via arrows + Home/End.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Tabs</h1><p class="sb-header__description">Keyboard-navigable tab set. The underline default marks the active tab with a teal <code>border-bottom</code>; <code>--pill</code> swaps to a rounded pill group; <code>--vertical</code> stacks the list on the left with a teal left border. <code>storybook.js</code> wires any <code>.ins-tabs</code> — click or arrow-key a <code>.ins-tabs__tab</code> and it selects the matching <code>.ins-tabs__panel</code> by index.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Horizontal · underline</h2>
+<section class="sb-section"><h2 class="sb-section__title">Underline (default)</h2>
+<p class="sb-section__description">The active tab carries <code>aria-selected="true"</code>; inactive panels are <code>hidden</code>. Arrow keys, Home and End move focus.</p>
 <div class="sb-preview">
   <div class="ins-tabs">
-    <div role="tablist" class="ins-tabs__list">
-      <button role="tab" class="ins-tabs__tab" aria-selected="true">Overview</button>
-      <button role="tab" class="ins-tabs__tab" aria-selected="false">Usage</button>
-      <button role="tab" class="ins-tabs__tab" aria-selected="false">API</button>
-      <button role="tab" class="ins-tabs__tab" aria-selected="false">Accessibility</button>
+    <div class="ins-tabs__list" role="tablist" aria-label="Insightis capabilities">
+      <button type="button" class="ins-tabs__tab" role="tab" aria-selected="true">Semantic Layer</button>
+      <button type="button" class="ins-tabs__tab" role="tab" aria-selected="false">AI Chat</button>
+      <button type="button" class="ins-tabs__tab" role="tab" aria-selected="false">Connectors</button>
     </div>
-    <div role="tabpanel" class="ins-tabs__panel"><p class="ins-text-body">Overview panel content.</p></div>
-    <div role="tabpanel" class="ins-tabs__panel" hidden><p class="ins-text-body">Usage panel.</p></div>
-    <div role="tabpanel" class="ins-tabs__panel" hidden><p class="ins-text-body">API panel.</p></div>
-    <div role="tabpanel" class="ins-tabs__panel" hidden><p class="ins-text-body">Accessibility panel.</p></div>
+    <div class="ins-tabs__panel" role="tabpanel">
+      <p class="ins-text-body">Reads your warehouse models directly — one source of truth, owned by your data team.</p>
+    </div>
+    <div class="ins-tabs__panel" role="tabpanel" hidden>
+      <p class="ins-text-body">Ask in plain English. "What's our churn rate?" resolves to your live numbers, no SQL.</p>
+    </div>
+    <div class="ins-tabs__panel" role="tabpanel" hidden>
+      <p class="ins-text-body">200+ read-only connectors — PostgreSQL, Stripe, Snowflake, Salesforce and more.</p>
+    </div>
   </div>
-</div></section>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-tabs"&gt;
+  &lt;div class="ins-tabs__list" role="tablist" aria-label="Insightis capabilities"&gt;
+    &lt;button type="button" class="ins-tabs__tab" role="tab" aria-selected="true"&gt;Semantic Layer&lt;/button&gt;
+    &lt;button type="button" class="ins-tabs__tab" role="tab" aria-selected="false"&gt;AI Chat&lt;/button&gt;
+    &lt;button type="button" class="ins-tabs__tab" role="tab" aria-selected="false"&gt;Connectors&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-tabs__panel" role="tabpanel"&gt;…&lt;/div&gt;
+  &lt;div class="ins-tabs__panel" role="tabpanel" hidden&gt;…&lt;/div&gt;
+  &lt;div class="ins-tabs__panel" role="tabpanel" hidden&gt;…&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">Horizontal · pill</h2>
+<section class="sb-section"><h2 class="sb-section__title">Pill</h2>
+<p class="sb-section__description"><code>--pill</code> wraps the list in a bordered rounded container; the active tab gets an elevated surface instead of the underline.</p>
 <div class="sb-preview">
   <div class="ins-tabs ins-tabs--pill">
-    <div role="tablist" class="ins-tabs__list">
-      <button role="tab" class="ins-tabs__tab" aria-selected="true">Marketing</button>
-      <button role="tab" class="ins-tabs__tab" aria-selected="false">Sales</button>
-      <button role="tab" class="ins-tabs__tab" aria-selected="false">Finance</button>
+    <div class="ins-tabs__list" role="tablist" aria-label="Billing cycle">
+      <button type="button" class="ins-tabs__tab" role="tab" aria-selected="true">Yearly</button>
+      <button type="button" class="ins-tabs__tab" role="tab" aria-selected="false">Monthly</button>
+    </div>
+    <div class="ins-tabs__panel" role="tabpanel">
+      <p class="ins-text-body">Pro is $15.99 / mo billed yearly — save 20% per seat.</p>
+    </div>
+    <div class="ins-tabs__panel" role="tabpanel" hidden>
+      <p class="ins-text-body">Pro is $19.99 / mo billed monthly. 14-day free trial, no card required.</p>
     </div>
   </div>
-</div></section>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-tabs ins-tabs--pill"&gt;
+  &lt;div class="ins-tabs__list" role="tablist" aria-label="Billing cycle"&gt;
+    &lt;button type="button" class="ins-tabs__tab" role="tab" aria-selected="true"&gt;Yearly&lt;/button&gt;
+    &lt;button type="button" class="ins-tabs__tab" role="tab" aria-selected="false"&gt;Monthly&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-tabs__panel" role="tabpanel"&gt;…&lt;/div&gt;
+  &lt;div class="ins-tabs__panel" role="tabpanel" hidden&gt;…&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
 
 <section class="sb-section"><h2 class="sb-section__title">Vertical</h2>
+<p class="sb-section__description"><code>--vertical</code> lays the list down the left edge with a teal left border on the active tab. The panels sit to the right.</p>
 <div class="sb-preview">
   <div class="ins-tabs ins-tabs--vertical">
-    <div role="tablist" class="ins-tabs__list">
-      <button role="tab" class="ins-tabs__tab" aria-selected="true">Getting started</button>
-      <button role="tab" class="ins-tabs__tab" aria-selected="false">Connect data</button>
-      <button role="tab" class="ins-tabs__tab" aria-selected="false">Define metrics</button>
-      <button role="tab" class="ins-tabs__tab" aria-selected="false">Share answers</button>
+    <div class="ins-tabs__list" role="tablist" aria-label="Data sources" aria-orientation="vertical">
+      <button type="button" class="ins-tabs__tab" role="tab" aria-selected="true">Databases</button>
+      <button type="button" class="ins-tabs__tab" role="tab" aria-selected="false">Warehouses</button>
+      <button type="button" class="ins-tabs__tab" role="tab" aria-selected="false">SaaS apps</button>
     </div>
-    <div role="tabpanel" class="ins-tabs__panel" style="flex:1;">
-      <p class="ins-text-body">Get started panel content.</p>
+    <div class="ins-tabs__panel" role="tabpanel">
+      <p class="ins-text-body">PostgreSQL, MySQL, SQL Server — read-only, TLS-encrypted connections.</p>
+    </div>
+    <div class="ins-tabs__panel" role="tabpanel" hidden>
+      <p class="ins-text-body">Snowflake, BigQuery, Redshift — Insightis reads your existing models in place.</p>
+    </div>
+    <div class="ins-tabs__panel" role="tabpanel" hidden>
+      <p class="ins-text-body">Stripe, Salesforce, HubSpot, Google Analytics — auto-mapped to pre-built metrics.</p>
     </div>
   </div>
-</div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;div class="ins-tabs"&gt;
-  &lt;div role="tablist" class="ins-tabs__list"&gt;
-    &lt;button role="tab" class="ins-tabs__tab" aria-selected="true"&gt;Tab 1&lt;/button&gt;
-    &lt;button role="tab" class="ins-tabs__tab" aria-selected="false"&gt;Tab 2&lt;/button&gt;
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-tabs ins-tabs--vertical"&gt;
+  &lt;div class="ins-tabs__list" role="tablist" aria-orientation="vertical" aria-label="Data sources"&gt;
+    &lt;button type="button" class="ins-tabs__tab" role="tab" aria-selected="true"&gt;Databases&lt;/button&gt;
+    &lt;button type="button" class="ins-tabs__tab" role="tab" aria-selected="false"&gt;Warehouses&lt;/button&gt;
+    &lt;button type="button" class="ins-tabs__tab" role="tab" aria-selected="false"&gt;SaaS apps&lt;/button&gt;
   &lt;/div&gt;
-  &lt;div role="tabpanel" class="ins-tabs__panel"&gt;Panel 1&lt;/div&gt;
-  &lt;div role="tabpanel" class="ins-tabs__panel" hidden&gt;Panel 2&lt;/div&gt;
-&lt;/div&gt;
+  &lt;div class="ins-tabs__panel" role="tabpanel"&gt;…&lt;/div&gt;
+  &lt;div class="ins-tabs__panel" role="tabpanel" hidden&gt;…&lt;/div&gt;
+  &lt;div class="ins-tabs__panel" role="tabpanel" hidden&gt;…&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
 
-&lt;!-- Variants --&gt;
-&lt;div class="ins-tabs ins-tabs--pill"&gt;...&lt;/div&gt;
-&lt;div class="ins-tabs ins-tabs--vertical"&gt;...&lt;/div&gt;</pre></div></section>
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-tabs</code></td><td>Root. <code>storybook.js</code> binds click + arrow/Home/End keys here.</td></tr>
+<tr><td><code>.ins-tabs__list</code></td><td>Flex row of tabs with a bottom border; horizontally scrollable, scrollbar hidden.</td></tr>
+<tr><td><code>.ins-tabs__tab</code></td><td>One tab button. Active via <code>[aria-selected="true"]</code> or <code>.is-active</code> — teal text + underline.</td></tr>
+<tr><td><code>.ins-tabs__panel</code></td><td>Panel body; hide inactive panels with the <code>hidden</code> attribute.</td></tr>
+<tr><td><code>.ins-tabs--pill</code></td><td>Rounded bordered pill group; active tab gets an elevated surface, no underline.</td></tr>
+<tr><td><code>.ins-tabs--vertical</code></td><td>Left-stacked list with a left border; active tab gets a teal left border.</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

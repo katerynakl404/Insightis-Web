@@ -5,41 +5,53 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Sidebar</h1><p class="sb-header__description">Docs-style left navigation. <strong>Not collapsable</strong>. Hides below 1024px — use the Navbar drawer on small screens.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Sidebar</h1><p class="sb-header__description">Docs-style, non-collapsable table-of-contents rail. Grouped links each sit on a 1px left rail for scanability; the active item gets a teal 2px rail and brand-tint background. Fixed 240px column, hidden below 1024px. The Docs experience (<code>src/pages/docs.jsx</code>) uses its own <code>.ins-doc-nav</code> tree — this page is the DS reference for the flat <code>.ins-sidebar</code> pattern built from the CSS API.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Example</h2>
-<div class="sb-preview" style="padding:0;">
-  <div style="display:grid; grid-template-columns:minmax(0,240px) 1fr; gap:0; min-height:320px;">
-    <aside class="ins-sidebar" style="display:flex; position:static;">
-      <div class="ins-sidebar__section">
-        <span class="ins-sidebar__section-title">Getting started</span>
-        <a class="ins-sidebar__link" href="#">Overview</a>
-        <a class="ins-sidebar__link is-active" href="#" aria-current="page">Installation</a>
-        <a class="ins-sidebar__link" href="#">First query</a>
-      </div>
-      <div class="ins-sidebar__section">
-        <span class="ins-sidebar__section-title">Guides</span>
-        <a class="ins-sidebar__link" href="#">Connect Snowflake</a>
-        <a class="ins-sidebar__link" href="#">Define metrics</a>
-        <a class="ins-sidebar__link" href="#">Share answers</a>
-      </div>
-    </aside>
-    <div style="padding:var(--ins-space-xl);">
-      <h2 class="ins-text-h2">Content area</h2>
-      <p class="ins-text-body" style="margin-top:var(--ins-space-md);">Page body goes here. Sidebar stays fixed at 240px on desktop.</p>
+<section class="sb-section"><h2 class="sb-section__title">Sidebar (one active item)</h2>
+<p class="sb-section__description">Two groups. The active link (<code>.is-active</code>, equivalent to <code>aria-current="page"</code>) is <em>Semantic Layer</em>. Because the rail is <code>display:none</code> below 1024px, the specimen is wrapped in a fixed-width host so it renders at any storybook width.</p>
+<div class="sb-preview sb-preview--fullbleed">
+  <nav class="ins-sidebar" aria-label="Documentation" style="display:flex">
+    <div class="ins-sidebar__section">
+      <span class="ins-sidebar__section-title">Getting started</span>
+      <a class="ins-sidebar__link" href="#">Introduction</a>
+      <a class="ins-sidebar__link" href="#">Quickstart</a>
+      <a class="ins-sidebar__link" href="#">Connect a data source</a>
+      <a class="ins-sidebar__link" href="#">Invite your team</a>
     </div>
-  </div>
-</div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;aside class="ins-sidebar" aria-label="Docs"&gt;
-  &lt;nav class="ins-sidebar__section"&gt;
+    <div class="ins-sidebar__section">
+      <span class="ins-sidebar__section-title">Core concepts</span>
+      <a class="ins-sidebar__link" href="#">AI Chat</a>
+      <a class="ins-sidebar__link is-active" href="#" aria-current="page">Semantic Layer</a>
+      <a class="ins-sidebar__link" href="#">Metrics catalog</a>
+      <a class="ins-sidebar__link" href="#">Saved reports</a>
+    </div>
+  </nav>
+</div>
+<div class="sb-code"><pre>&lt;nav class="ins-sidebar" aria-label="Documentation"&gt;
+  &lt;div class="ins-sidebar__section"&gt;
     &lt;span class="ins-sidebar__section-title"&gt;Getting started&lt;/span&gt;
-    &lt;a class="ins-sidebar__link" href="/docs"&gt;Overview&lt;/a&gt;
-    &lt;a class="ins-sidebar__link is-active" href="/docs/install"
-       aria-current="page"&gt;Installation&lt;/a&gt;
-  &lt;/nav&gt;
-&lt;/aside&gt;</pre></div></section>
+    &lt;a class="ins-sidebar__link" href="#"&gt;Introduction&lt;/a&gt;
+    &lt;a class="ins-sidebar__link" href="#"&gt;Quickstart&lt;/a&gt;
+    &lt;a class="ins-sidebar__link" href="#"&gt;Connect a data source&lt;/a&gt;
+    &lt;a class="ins-sidebar__link" href="#"&gt;Invite your team&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-sidebar__section"&gt;
+    &lt;span class="ins-sidebar__section-title"&gt;Core concepts&lt;/span&gt;
+    &lt;a class="ins-sidebar__link" href="#"&gt;AI Chat&lt;/a&gt;
+    &lt;a class="ins-sidebar__link is-active" href="#" aria-current="page"&gt;Semantic Layer&lt;/a&gt;
+    &lt;a class="ins-sidebar__link" href="#"&gt;Metrics catalog&lt;/a&gt;
+    &lt;a class="ins-sidebar__link" href="#"&gt;Saved reports&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-sidebar</code></td><td>240px docs rail, right border, vertical group stack. Hidden below 1024px (set <code>display:flex</code> to force it on).</td></tr>
+<tr><td><code>.ins-sidebar__section</code></td><td>One labelled group of links.</td></tr>
+<tr><td><code>.ins-sidebar__section-title</code></td><td>Uppercase group heading (stronger contrast than the links).</td></tr>
+<tr><td><code>.ins-sidebar__link</code></td><td>Nav link with a subtle 1px left rail; brighter on hover.</td></tr>
+<tr><td><code>.ins-sidebar__link[aria-current="page"]</code>, <code>.ins-sidebar__link.is-active</code></td><td>Active item — teal text, brand-tint background and a 2px teal rail.</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

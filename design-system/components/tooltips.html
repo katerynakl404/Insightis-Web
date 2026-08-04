@@ -5,52 +5,64 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Tooltip</h1><p class="sb-header__description">Four positions + rich variant. CSS-only (hover/focus-within). Ships visible on hover or keyboard focus.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Tooltip</h1><p class="sb-header__description">CSS-only hover/focus label. Wrap a trigger in <code>.ins-tooltip-wrap</code> and add a positioned <code>.ins-tooltip</code> sibling — it fades in on <code>:hover</code> or <code>:focus-within</code>. Four placements plus a <code>--rich</code> title+description variant. Hover a trigger below to reveal it.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Positions</h2>
-<div class="sb-preview" style="padding:60px;">
-  <div class="sb-preview-row" style="gap:60px;">
-    <div class="ins-tooltip-wrap">
-      <button class="ins-btn ins-btn--secondary">Top</button>
-      <div class="ins-tooltip ins-tooltip--top" role="tooltip">Tooltip text</div>
-    </div>
-    <div class="ins-tooltip-wrap">
-      <button class="ins-btn ins-btn--secondary">Right</button>
-      <div class="ins-tooltip ins-tooltip--right" role="tooltip">Tooltip text</div>
-    </div>
-    <div class="ins-tooltip-wrap">
-      <button class="ins-btn ins-btn--secondary">Bottom</button>
-      <div class="ins-tooltip ins-tooltip--bottom" role="tooltip">Tooltip text</div>
-    </div>
-    <div class="ins-tooltip-wrap">
-      <button class="ins-btn ins-btn--secondary">Left</button>
-      <div class="ins-tooltip ins-tooltip--left" role="tooltip">Tooltip text</div>
-    </div>
-  </div>
-</div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">Rich (title + description)</h2>
-<div class="sb-preview" style="padding:60px;">
+<section class="sb-section"><h2 class="sb-section__title">Placements</h2>
+<p class="sb-section__description">top · right · bottom · left. Hover or tab to each button.</p>
+<div class="sb-preview" style="padding:60px;"><div class="sb-preview-row" style="gap:60px;">
   <div class="ins-tooltip-wrap">
-    <button class="ins-btn ins-btn--icon" aria-label="Info"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg></button>
-    <div class="ins-tooltip ins-tooltip--top ins-tooltip--rich" role="tooltip">
-      <div class="ins-tooltip__title">Metric definition</div>
-      <div class="ins-tooltip__description">Monthly recurring revenue, normalized to calendar month and excluding one-time charges.</div>
-    </div>
+    <button class="ins-btn ins-btn--secondary">Top</button>
+    <div class="ins-tooltip ins-tooltip--top" role="tooltip">Refreshed 2 min ago</div>
   </div>
-</div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+  <div class="ins-tooltip-wrap">
+    <button class="ins-btn ins-btn--secondary">Right</button>
+    <div class="ins-tooltip ins-tooltip--right" role="tooltip">Refreshed 2 min ago</div>
+  </div>
+  <div class="ins-tooltip-wrap">
+    <button class="ins-btn ins-btn--secondary">Bottom</button>
+    <div class="ins-tooltip ins-tooltip--bottom" role="tooltip">Refreshed 2 min ago</div>
+  </div>
+  <div class="ins-tooltip-wrap">
+    <button class="ins-btn ins-btn--secondary">Left</button>
+    <div class="ins-tooltip ins-tooltip--left" role="tooltip">Refreshed 2 min ago</div>
+  </div>
+</div></div>
 <div class="sb-code"><pre>&lt;div class="ins-tooltip-wrap"&gt;
-  &lt;button class="ins-btn ins-btn--icon" aria-label="Info"&gt;...&lt;/button&gt;
-  &lt;div class="ins-tooltip ins-tooltip--top" role="tooltip"&gt;Tooltip text&lt;/div&gt;
+  &lt;button class="ins-btn ins-btn--secondary"&gt;Top&lt;/button&gt;
+  &lt;div class="ins-tooltip ins-tooltip--top" role="tooltip"&gt;Refreshed 2 min ago&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Rich --&gt;
-&lt;div class="ins-tooltip ins-tooltip--rich" role="tooltip"&gt;
-  &lt;div class="ins-tooltip__title"&gt;Title&lt;/div&gt;
-  &lt;div class="ins-tooltip__description"&gt;Description&lt;/div&gt;
+&lt;!-- Placements: --top · --right · --bottom · --left --&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Rich (title + description)</h2>
+<p class="sb-section__description"><code>--rich</code> allows wrapping text up to 240px; pair with <code>__title</code> and <code>__description</code>. Ideal for explaining a metric definition on hover.</p>
+<div class="sb-preview" style="padding:60px;"><div class="ins-tooltip-wrap">
+  <button class="ins-btn ins-btn--icon" aria-label="What is MRR?"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg></button>
+  <div class="ins-tooltip ins-tooltip--top ins-tooltip--rich" role="tooltip">
+    <div class="ins-tooltip__title">Monthly Recurring Revenue</div>
+    <div class="ins-tooltip__description">Normalized to the calendar month, excluding one-time charges and taxes.</div>
+  </div>
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-tooltip-wrap"&gt;
+  &lt;button class="ins-btn ins-btn--icon" aria-label="What is MRR?"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/button&gt;
+  &lt;div class="ins-tooltip ins-tooltip--top ins-tooltip--rich" role="tooltip"&gt;
+    &lt;div class="ins-tooltip__title"&gt;Monthly Recurring Revenue&lt;/div&gt;
+    &lt;div class="ins-tooltip__description"&gt;Normalized to the calendar month, excluding one-time charges and taxes.&lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-tooltip-wrap</code></td><td>Relative wrapper around the trigger; provides the hover/focus anchor.</td></tr>
+<tr><td><code>.ins-tooltip</code></td><td>The bubble: elevated surface, 12px text, hidden until hover/focus (fades opacity).</td></tr>
+<tr><td><code>.ins-tooltip--top</code></td><td>Positions above the trigger, centered.</td></tr>
+<tr><td><code>.ins-tooltip--bottom</code></td><td>Positions below the trigger, centered.</td></tr>
+<tr><td><code>.ins-tooltip--left</code></td><td>Positions to the left, vertically centered.</td></tr>
+<tr><td><code>.ins-tooltip--right</code></td><td>Positions to the right, vertically centered.</td></tr>
+<tr><td><code>.ins-tooltip--rich</code></td><td>Allows wrapping (max 240px) for a title + description.</td></tr>
+<tr><td><code>.ins-tooltip__title</code></td><td>Bold heading inside a rich tooltip.</td></tr>
+<tr><td><code>.ins-tooltip__description</code></td><td>Muted body line inside a rich tooltip.</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

@@ -5,23 +5,61 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Textarea</h1><p class="sb-header__description">Multi-line text input. Vertical resize, minimum 96px. Resize grabber sits inside padding so it never overlaps the focus/error border.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Textarea</h1><p class="sb-header__description">Multi-line field for longer input — demo requests, support messages, metric descriptions. Defined alongside Input and Select in <code>ds/components/input.css</code>: a 96px minimum height, vertical-only resize, and a resizer overlay pushed inward so it never clips the focus ring. Same <code>disabled &gt; error &gt; focus &gt; hover</code> state priority.</p></header>
 
 <section class="sb-section"><h2 class="sb-section__title">Default</h2>
-<div class="sb-preview"><textarea class="ins-textarea" placeholder="Tell us what you're working on..." style="max-width:480px;"></textarea></div></section>
+<div class="sb-preview">
+  <textarea class="ins-textarea" placeholder="Tell us what you're trying to measure…"></textarea>
+</div>
+<div class="sb-code"><pre>&lt;textarea class="ins-textarea" placeholder="Tell us what you're trying to measure…"&gt;&lt;/textarea&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Sizes</h2>
+<div class="sb-preview"><div style="display:grid;gap:var(--ins-space-lg);max-width:420px">
+  <textarea class="ins-textarea ins-textarea--sm" placeholder="Small (14px text)"></textarea>
+  <textarea class="ins-textarea" placeholder="Medium (default)"></textarea>
+  <textarea class="ins-textarea ins-textarea--lg" placeholder="Large"></textarea>
+</div></div>
+<div class="sb-code"><pre>&lt;textarea class="ins-textarea ins-textarea--sm" placeholder="Small (14px text)"&gt;&lt;/textarea&gt;
+&lt;textarea class="ins-textarea" placeholder="Medium (default)"&gt;&lt;/textarea&gt;
+&lt;textarea class="ins-textarea ins-textarea--lg" placeholder="Large"&gt;&lt;/textarea&gt;</pre></div></section>
 
 <section class="sb-section"><h2 class="sb-section__title">States</h2>
-<div class="sb-preview"><div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:var(--ins-space-md);">
-  <div class="sb-specimen"><textarea class="ins-textarea" placeholder="Placeholder"></textarea><span class="sb-specimen__name">default</span></div>
-  <div class="sb-specimen"><textarea class="ins-textarea" style="border-color:var(--ins-border-focus); box-shadow:var(--ins-focus-ring);">Focused</textarea><span class="sb-specimen__name">focus</span></div>
-  <div class="sb-specimen"><textarea class="ins-textarea is-error">Invalid input</textarea><span class="sb-specimen__name">error</span></div>
-  <div class="sb-specimen"><textarea class="ins-textarea" disabled>Disabled content</textarea><span class="sb-specimen__name">disabled</span></div>
-</div></div></section>
+<div class="sb-preview"><div style="display:grid;gap:var(--ins-space-lg);max-width:420px">
+  <textarea class="ins-textarea" placeholder="Default — resize from the bottom-right">We centralize revenue in Stripe and CRM data in HubSpot, but the numbers never reconcile.</textarea>
+  <textarea class="ins-textarea" placeholder="Focus" style="border-color:var(--ins-border-focus);box-shadow:var(--ins-focus-ring)"></textarea>
+  <textarea class="ins-textarea is-error" aria-invalid="true" placeholder="Please describe your use case">x</textarea>
+  <textarea class="ins-textarea" placeholder="Disabled" disabled></textarea>
+</div></div>
+<div class="sb-code"><pre>&lt;textarea class="ins-textarea"&gt;Default value…&lt;/textarea&gt;
+&lt;textarea class="ins-textarea" style="border-color:var(--ins-border-focus);box-shadow:var(--ins-focus-ring)"&gt;&lt;/textarea&gt;
+&lt;textarea class="ins-textarea is-error" aria-invalid="true"&gt;&lt;/textarea&gt;
+&lt;textarea class="ins-textarea" placeholder="Disabled" disabled&gt;&lt;/textarea&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;textarea class="ins-textarea" rows="4" placeholder="Your message..."&gt;&lt;/textarea&gt;
+<section class="sb-section"><h2 class="sb-section__title">In a form group</h2>
+<p class="sb-section__description">Pair with <code>.ins-form-group</code> for a label, hint and validation message — the pattern used on the contact / demo-request forms.</p>
+<div class="sb-preview"><div class="ins-form-group" style="max-width:420px">
+  <label class="ins-form-group__label ins-form-group__label--required" for="tx-msg">What would you like to ask Insightis?</label>
+  <textarea class="ins-textarea" id="tx-msg" placeholder="e.g. Why did MRR drop last week?"></textarea>
+  <span class="ins-form-group__hint">We'll route your question to the right specialist.</span>
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-form-group"&gt;
+  &lt;label class="ins-form-group__label ins-form-group__label--required" for="tx-msg"&gt;What would you like to ask Insightis?&lt;/label&gt;
+  &lt;textarea class="ins-textarea" id="tx-msg" placeholder="e.g. Why did MRR drop last week?"&gt;&lt;/textarea&gt;
+  &lt;span class="ins-form-group__hint"&gt;We'll route your question to the right specialist.&lt;/span&gt;
+&lt;/div&gt;</pre></div></section>
 
-&lt;textarea class="ins-textarea is-error" aria-invalid="true"&gt;...&lt;/textarea&gt;</pre></div></section>
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-textarea</code></td><td>Base multi-line field — 96px min height, relaxed line-height, vertical resize.</td></tr>
+<tr><td><code>.ins-textarea--sm / --lg</code></td><td>Smaller (14px text) / larger padding variants.</td></tr>
+<tr><td><code>.is-error</code></td><td>Error — red border + red ring; pair with <code>aria-invalid</code>.</td></tr>
+<tr><td><code>.is-filled</code></td><td>Keeps a value legible when the field is also disabled.</td></tr>
+<tr><td><code>:disabled</code></td><td>Transparent fill, muted border and text; works on any surface.</td></tr>
+<tr><td><code>::-webkit-resizer</code></td><td>Resizer overlay is inset so it never clips the animated focus ring.</td></tr>
+</tbody></table></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Usage</h2>
+<p class="sb-section__description">Built from the shared <code>ds/components/input.css</code> Textarea rules (no bespoke JSX component — composed inline inside contact / demo-request forms with <code>.ins-form-group</code>).</p></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

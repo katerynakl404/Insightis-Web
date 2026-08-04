@@ -5,151 +5,212 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Card</h1><p class="sb-header__description">14 variants built from a single base. Hover lift on desktop (decorative — disabled &lt;768px). Pain-point + answer variants show top-gradient accents clipped to the card's border radius.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Card</h1><p class="sb-header__description">The dark bordered surface every panel on the site is built from. A bare <code>.ins-card</code> plus composable modifiers: structural (<code>--feature</code>, <code>--pricing</code>, <code>--metric</code>, <code>--connector</code>), decorative (<code>--accent</code>, <code>--glow</code>), and interaction (<code>--interactive</code>, <code>--selected</code>). Standalone shells <code>.ins-feature-card</code>, <code>.ins-article-card</code> and <code>.ins-prompt-card</code> carry their own hover. Rendered through <code>src/components/Card.jsx</code>.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Default</h2>
-<div class="sb-preview"><div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:var(--ins-space-lg);">
-
-  <div class="ins-card">
-    <div class="ins-card__title">Default card</div>
-    <p class="ins-card__body">Base card with border and 24px padding.</p>
+<section class="sb-section"><h2 class="sb-section__title">Base card</h2>
+<p class="sb-section__description">Surface + border + <code>--ins-radius-card</code> + <code>--ins-space-xl</code> padding. Compose the header slots (<code>__eyebrow</code>, <code>__title</code>, <code>__body</code>) inside.</p>
+<div class="sb-preview">
+  <div class="ins-card" style="max-width:340px">
+    <div class="ins-card__eyebrow">Semantic Layer</div>
+    <h3 class="ins-card__title">One source of truth</h3>
+    <p class="ins-card__body">Insightis reads your warehouse models directly — no shadow modeling, no parallel definitions. Every metric resolves to the same number for every team.</p>
   </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-card"&gt;
+  &lt;div class="ins-card__eyebrow"&gt;Semantic Layer&lt;/div&gt;
+  &lt;h3 class="ins-card__title"&gt;One source of truth&lt;/h3&gt;
+  &lt;p class="ins-card__body"&gt;Insightis reads your warehouse models directly — no shadow
+    modeling, no parallel definitions. Every metric resolves to the same number for every team.&lt;/p&gt;
+&lt;/div&gt;</pre></div></section>
 
-  <div class="ins-card ins-card--interactive" tabindex="0">
-    <div class="ins-card__title">Interactive</div>
-    <p class="ins-card__body">Hover on desktop to lift. Keyboard-focusable.</p>
+<section class="sb-section"><h2 class="sb-section__title">Interactive &amp; selected</h2>
+<p class="sb-section__description"><code>--interactive</code> adds pointer, hover-lift and a focus ring (desktop hover only). <code>--selected</code> paints the brand border and tint — used for the chosen plan / connector.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:stretch">
+  <div class="ins-card ins-card--interactive" tabindex="0" style="max-width:280px">
+    <h3 class="ins-card__title">PostgreSQL</h3>
+    <p class="ins-card__body">Read-only connection to your production database. TLS-encrypted, never leaves your warehouse.</p>
   </div>
-
-  <div class="ins-card ins-card--selected">
-    <div class="ins-card__title">Selected</div>
-    <p class="ins-card__body">Brand-tint bg + teal border.</p>
+  <div class="ins-card ins-card--selected" style="max-width:280px">
+    <h3 class="ins-card__title">Stripe</h3>
+    <p class="ins-card__body">Connected. Revenue, churn and MRR are live in your Semantic Layer.</p>
   </div>
-
-  <div class="ins-card ins-card--feature">
-    <div class="ins-card__eyebrow">Feature</div>
-    <div class="ins-card__title">Cited answers</div>
-    <p class="ins-card__body">Every claim links to a source query.</p>
-  </div>
-
-</div></div></section>
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-card ins-card--interactive" tabindex="0"&gt;…&lt;/div&gt;
+&lt;div class="ins-card ins-card--selected"&gt;…&lt;/div&gt;</pre></div></section>
 
 <section class="sb-section"><h2 class="sb-section__title">Pricing card</h2>
-<div class="sb-preview"><div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:var(--ins-space-lg);">
-
-  <div class="ins-card ins-card--pricing">
-    <div class="ins-card__eyebrow">Starter</div>
-    <div class="ins-card__price">$29<span style="font-size:14px; color:var(--ins-text-inactive); font-weight:400;">/mo</span></div>
-    <p class="ins-card__body">Core features for small teams.</p>
-    <button class="ins-btn ins-btn--secondary">Get started</button>
+<p class="sb-section__description">Flex column: <code>__price</code> headline, <code>__body</code> flexes to push the CTA to the baseline so buttons align across a row. Copy from <code>src/data/pricing.js</code>.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:stretch">
+  <div class="ins-card ins-card--pricing" style="max-width:260px">
+    <div class="ins-card__eyebrow">For growing teams</div>
+    <h3 class="ins-card__title">Pro</h3>
+    <div class="ins-card__price">$19.99<span class="ins-text-body-sm" style="color:var(--ins-text-inactive)"> / mo</span></div>
+    <p class="ins-card__body">15,000 AI tokens / month · Unlimited data connectors · Built-in + Custom Metrics · Priority Support.</p>
+    <button type="button" class="ins-btn ins-btn--primary">Start for free</button>
   </div>
-
-  <div class="ins-card ins-card--pricing ins-card--selected">
-    <div class="ins-card__eyebrow">Team</div>
-    <div class="ins-card__price">$99<span style="font-size:14px; color:var(--ins-text-inactive); font-weight:400;">/mo</span></div>
-    <p class="ins-card__body">Everything in Starter, plus analytics.</p>
-    <button class="ins-btn ins-btn--primary">Choose Team</button>
+  <div class="ins-card ins-card--pricing" style="max-width:260px">
+    <div class="ins-card__eyebrow">For getting started</div>
+    <h3 class="ins-card__title">Free</h3>
+    <div class="ins-card__price">$0</div>
+    <p class="ins-card__body">500 AI tokens / month · 1 data connector · Built-in Metrics · Community support.</p>
+    <button type="button" class="ins-btn ins-btn--secondary">Start for free</button>
   </div>
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-card ins-card--pricing"&gt;
+  &lt;div class="ins-card__eyebrow"&gt;For growing teams&lt;/div&gt;
+  &lt;h3 class="ins-card__title"&gt;Pro&lt;/h3&gt;
+  &lt;div class="ins-card__price"&gt;$19.99&lt;span class="ins-text-body-sm"&gt; / mo&lt;/span&gt;&lt;/div&gt;
+  &lt;p class="ins-card__body"&gt;15,000 AI tokens / month · Unlimited data connectors …&lt;/p&gt;
+  &lt;button type="button" class="ins-btn ins-btn--primary"&gt;Start for free&lt;/button&gt;
+&lt;/div&gt;</pre></div></section>
 
-  <div class="ins-card ins-card--pricing">
-    <div class="ins-card__eyebrow">Enterprise</div>
-    <div class="ins-card__price">Custom</div>
-    <p class="ins-card__body">SSO, SLA, dedicated CSM.</p>
-    <button class="ins-btn ins-btn--secondary">Contact sales</button>
-  </div>
-
-</div></div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">Accent (top gradient rail)</h2>
-<p class="sb-section__description">Generic accent — renamed from <code>--pain-point</code>. Uses inset box-shadow so the rail hugs the card radius smoothly.</p>
-<div class="sb-preview"><div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:var(--ins-space-lg);">
-
-  <div class="ins-card ins-card--accent-top">
-    <div class="ins-card__eyebrow">Problem</div>
-    <div class="ins-card__title">Same question, every Monday</div>
-    <p class="ins-card__body">Analysts rebuild the same CAC report every week.</p>
-  </div>
-
-  <div class="ins-card ins-card--accent-top">
-    <div class="ins-card__eyebrow">Value</div>
-    <div class="ins-card__title">Cited answers</div>
-    <p class="ins-card__body">Every claim links to a source query you can inspect.</p>
-  </div>
-
-</div></div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">Glow card (themed — brand / error)</h2>
-<p class="sb-section__description">Renamed from <code>--answer</code> to <code>--glow</code> with theme modifiers. Scales to any semantic theme (brand, error today — success/warning deferred). Shared slots: <code>.ins-card__header</code> (colored dot + label) + <code>.ins-card__console</code> (mono inner panel).</p>
-<div class="sb-preview"><div style="display:grid; grid-template-columns:1fr; gap:var(--ins-space-lg);">
-
-  <div class="ins-card ins-card--glow ins-card--glow--brand" style="max-width:560px;">
-    <div class="ins-card__header">Insightis</div>
-    <div class="ins-card__console">
-      <div style="color:var(--ins-text-inactive); margin-bottom:var(--ins-space-sm);">→ "What's our churn rate?"</div>
-      <div style="color:var(--ins-color-gray-100);">
-        Your churn rate in March was <strong style="color:var(--ins-text-highlight);">2.1%</strong> — down from 2.8% in February. Main driver: reduced churn in Starter plan (↓ 0.9pp).
-      </div>
-    </div>
-    <p class="ins-text-body-sm" style="margin-top:var(--ins-space-md); font-style:italic; color:var(--ins-color-teal-500);">brand theme — used for AI responses + branded callouts</p>
-  </div>
-
-  <div class="ins-card ins-card--glow ins-card--glow--error" style="max-width:560px;">
-    <div class="ins-card__header">MRR alert</div>
-    <div class="ins-card__console">
-      <div style="color:var(--ins-text-inactive); margin-bottom:var(--ins-space-sm);">→ "Why did MRR drop last week?"</div>
-      <div style="color:var(--ins-color-gray-100);">
-        Trial expiry without activation drove <strong style="color:var(--ins-status-error-fg);">60%</strong> of last week's $1,240 MRR drop. Six distinct causes identified.
-      </div>
-    </div>
-    <p class="ins-text-body-sm" style="margin-top:var(--ins-space-md); font-style:italic; color:var(--ins-status-error-fg);">error theme — negative outcomes / warnings / drops</p>
-  </div>
-
-</div></div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">Metric tile grid (inside answer card)</h2>
+<section class="sb-section"><h2 class="sb-section__title">Accent</h2>
+<p class="sb-section__description">Top teal rail via inset box-shadow (no clip), with extra top padding. <code>--accent</code> and the explicit <code>--accent-top</code> render identically.</p>
 <div class="sb-preview">
-  <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:var(--ins-space-sm); max-width:640px;">
-    <div class="ins-card ins-card--metric">
-      <span class="ins-card__metric-label">Trial expiry</span>
-      <span class="ins-card__metric-value" style="color:var(--ins-status-error-fg);">-$740</span>
-    </div>
-    <div class="ins-card ins-card--metric">
-      <span class="ins-card__metric-label">Pro → Starter</span>
-      <span class="ins-card__metric-value" style="color:var(--ins-status-error-fg);">-$260</span>
-    </div>
-    <div class="ins-card ins-card--metric">
-      <span class="ins-card__metric-label">Low engagement</span>
-      <span class="ins-card__metric-value" style="color:var(--ins-status-error-fg);">-$240</span>
-    </div>
-    <div class="ins-card ins-card--metric">
-      <span class="ins-card__metric-label">Annual → Monthly</span>
-      <span class="ins-card__metric-value" style="color:var(--ins-status-error-fg);">-$180</span>
-    </div>
+  <div class="ins-card ins-card--accent" style="max-width:340px">
+    <h3 class="ins-card__title">Ask in plain English</h3>
+    <p class="ins-card__body">"What's our churn rate?" resolves to your live numbers — no SQL, no analyst queue.</p>
   </div>
-</div></section>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-card ins-card--accent"&gt;…&lt;/div&gt;
+&lt;!-- explicit position modifier, same result --&gt;
+&lt;div class="ins-card ins-card--accent-top"&gt;…&lt;/div&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">Compositions — see Patterns section</h2>
-<p class="sb-section__description">Testimonial, team-member, roadmap, connector, and logo cards are <strong>compositions</strong> (base <code>.ins-card</code> + badge/avatar atoms), not separate card variants. They live in the <a href="../patterns/testimonial-row.html" class="ins-btn--link">Patterns</a> section. This keeps the card component scalable — any new composition is HTML-only.</p>
-</section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;div class="ins-card"&gt;
-  &lt;div class="ins-card__eyebrow"&gt;Feature&lt;/div&gt;
-  &lt;div class="ins-card__title"&gt;Title&lt;/div&gt;
-  &lt;p class="ins-card__body"&gt;Body text.&lt;/p&gt;
+<section class="sb-section"><h2 class="sb-section__title">Glow — brand, error &amp; console</h2>
+<p class="sb-section__description">Opaque brand-tinted surface with a top gradient hairline (<code>::before</code>). <code>--glow--brand</code> adds the teal glow shadow; <code>--glow--error</code> restyles to red. The optional <code>__header</code> shows a glowing dot; <code>__console</code> is the mono answer panel. This exact pairing is the "Generic AI vs Insightis" block in <code>src/pages/ai-chat.jsx</code>.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:stretch">
+  <div class="ins-card ins-card--glow ins-card--glow--error" style="max-width:320px;display:flex;flex-direction:column">
+    <div class="ins-card__header">Generic AI</div>
+    <div class="ins-card__console">&gt; What's our churn rate?
+The average SaaS churn rate is typically 3–8% monthly, depending on segment. This may or may not reflect your situation.</div>
+  </div>
+  <div class="ins-card ins-card--glow ins-card--glow--brand" style="max-width:320px;display:flex;flex-direction:column">
+    <div class="ins-card__header">Insightis</div>
+    <div class="ins-card__console">&gt; What's our churn rate?
+Your churn rate in March was 2.1% — down from 2.8% in February. Main driver: Starter plan (↓ 0.9pp).</div>
+  </div>
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-card ins-card--glow ins-card--glow--error"&gt;
+  &lt;div class="ins-card__header"&gt;Generic AI&lt;/div&gt;
+  &lt;div class="ins-card__console"&gt;&gt; What's our churn rate? …&lt;/div&gt;
 &lt;/div&gt;
+&lt;div class="ins-card ins-card--glow ins-card--glow--brand"&gt;
+  &lt;div class="ins-card__header"&gt;Insightis&lt;/div&gt;
+  &lt;div class="ins-card__console"&gt;&gt; What's our churn rate? …&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
 
-&lt;!-- Hover-liftable, keyboard-focusable --&gt;
-&lt;div class="ins-card ins-card--interactive" tabindex="0"&gt;...&lt;/div&gt;
+<section class="sb-section"><h2 class="sb-section__title">Metric tile</h2>
+<p class="sb-section__description"><code>--metric</code> is a compact stat cell (mono label + tabular value) that tiles inside answer cards and dashboards.</p>
+<div class="sb-preview"><div class="sb-preview-row">
+  <div class="ins-card ins-card--metric" style="min-width:150px">
+    <span class="ins-card__metric-label">Churn</span>
+    <span class="ins-card__metric-value">2.1%</span>
+  </div>
+  <div class="ins-card ins-card--metric" style="min-width:150px">
+    <span class="ins-card__metric-label">MRR</span>
+    <span class="ins-card__metric-value">$284k</span>
+  </div>
+  <div class="ins-card ins-card--metric" style="min-width:150px">
+    <span class="ins-card__metric-label">CAC</span>
+    <span class="ins-card__metric-value">$412</span>
+  </div>
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-card ins-card--metric"&gt;
+  &lt;span class="ins-card__metric-label"&gt;Churn&lt;/span&gt;
+  &lt;span class="ins-card__metric-value"&gt;2.1%&lt;/span&gt;
+&lt;/div&gt;</pre></div></section>
 
-&lt;!-- Selected state (brand-tinted) --&gt;
-&lt;div class="ins-card ins-card--selected"&gt;...&lt;/div&gt;
+<section class="sb-section"><h2 class="sb-section__title">Connector tile</h2>
+<p class="sb-section__description"><code>--connector</code> is the small left-aligned icon tile used in the integrations gallery.</p>
+<div class="sb-preview"><div class="sb-preview-row">
+  <div class="ins-card ins-card--connector" style="min-width:170px">
+    <span class="ins-icon-badge ins-icon-badge--sm ins-icon-badge--teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg></span>
+    <div class="ins-card__title" style="margin-bottom:0">PostgreSQL</div>
+    <p class="ins-card__body">Read-only</p>
+  </div>
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-card ins-card--connector"&gt;
+  &lt;span class="ins-icon-badge ins-icon-badge--sm ins-icon-badge--teal"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/span&gt;
+  &lt;div class="ins-card__title"&gt;PostgreSQL&lt;/div&gt;
+  &lt;p class="ins-card__body"&gt;Read-only&lt;/p&gt;
+&lt;/div&gt;</pre></div></section>
 
-&lt;!-- Variants --&gt;
-&lt;div class="ins-card ins-card--pricing"&gt;...&lt;/div&gt;
-&lt;div class="ins-card ins-card--accent-top"&gt;...&lt;/div&gt;
-&lt;div class="ins-card ins-card--glow ins-card--glow--brand"&gt;...&lt;/div&gt;
-&lt;div class="ins-card ins-card--glow ins-card--glow--error"&gt;...&lt;/div&gt;
-&lt;div class="ins-card ins-card--metric"&gt;...&lt;/div&gt;</pre></div></section>
+<section class="sb-section"><h2 class="sb-section__title">Feature card</h2>
+<p class="sb-section__description">Standalone shell (not an <code>.ins-card</code>): thin top teal rail, rounded 16px, its own hover. <code>--interactive</code> makes the whole card a link. Used on About, Contacts and Security. Copy from <code>src/pages/about-insightis.jsx</code>.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:stretch">
+  <div class="ins-feature-card" style="max-width:300px">
+    <div class="ins-eyebrow" style="margin-bottom:var(--ins-space-md)">Our mission</div>
+    <h3 class="ins-text-h3" style="margin-bottom:var(--ins-space-sm)">Answers before your coffee's cold</h3>
+    <p class="ins-text-body">The people closest to the work can finally see what's really going on — no analyst queue, no SQL, no guesswork.</p>
+  </div>
+  <a href="#" class="ins-feature-card ins-feature-card--interactive" style="max-width:300px">
+    <div class="ins-eyebrow" style="margin-bottom:var(--ins-space-md)">Resource</div>
+    <h3 class="ins-text-h3" style="margin-bottom:var(--ins-space-sm)">Find answers faster</h3>
+    <p class="ins-text-body">Browse the docs, guides and the prompt library. The whole card is a link.</p>
+  </a>
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-feature-card"&gt;…&lt;/div&gt;
+
+&lt;a href="/resources" class="ins-feature-card ins-feature-card--interactive"&gt;
+  &lt;div class="ins-eyebrow"&gt;Resource&lt;/div&gt;
+  &lt;h3 class="ins-text-h3"&gt;Find answers faster&lt;/h3&gt;
+  &lt;p class="ins-text-body"&gt;Browse the docs, guides and the prompt library.&lt;/p&gt;
+&lt;/a&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Article &amp; prompt cards</h2>
+<p class="sb-section__description"><code>.ins-article-card</code> is the whole-card link shell for the blog index (cover on top, content below). <code>.ins-prompt-card</code> is the translucent shell shared by product-teams feature cards and the prompt library.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:stretch">
+  <a href="#" class="ins-article-card" style="max-width:280px">
+    <div style="aspect-ratio:16/9;background:var(--ins-surface-elevated)"></div>
+    <div style="padding:var(--ins-space-lg)">
+      <h3 class="ins-card__title">From question to answer in seconds</h3>
+      <p class="ins-card__body">How the Semantic Layer turns plain-English questions into your real numbers.</p>
+    </div>
+  </a>
+  <div class="ins-prompt-card" style="max-width:280px;padding:var(--ins-space-lg)">
+    <div class="ins-card__eyebrow">Prompt</div>
+    <p class="ins-card__body">"Show me revenue by plan for the last 6 months, and flag any month that dropped."</p>
+  </div>
+</div></div>
+<div class="sb-code"><pre>&lt;a href="/blog/…" class="ins-article-card"&gt;
+  &lt;div class="cover"&gt;…&lt;/div&gt;
+  &lt;div class="body"&gt;
+    &lt;h3 class="ins-card__title"&gt;From question to answer in seconds&lt;/h3&gt;
+    &lt;p class="ins-card__body"&gt;How the Semantic Layer turns …&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/a&gt;
+
+&lt;div class="ins-prompt-card"&gt;
+  &lt;div class="ins-card__eyebrow"&gt;Prompt&lt;/div&gt;
+  &lt;p class="ins-card__body"&gt;"Show me revenue by plan …"&lt;/p&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-card</code></td><td>Base surface: card background, default border, card radius, <code>xl</code> padding.</td></tr>
+<tr><td><code>.ins-card__eyebrow</code></td><td>Uppercase 11px highlight label above the title.</td></tr>
+<tr><td><code>.ins-card__title</code></td><td>16px/600 heading.</td></tr>
+<tr><td><code>.ins-card__body</code></td><td>14px body text.</td></tr>
+<tr><td><code>.ins-card__desc</code></td><td>Relaxed body copy — forces body color inside glow/branded cards so it doesn't inherit the header tint.</td></tr>
+<tr><td><code>.ins-card--interactive</code></td><td>Pointer + desktop hover-lift + focus ring. For clickable cards.</td></tr>
+<tr><td><code>.ins-card--selected</code></td><td>Brand border + brand tint (chosen plan / connector).</td></tr>
+<tr><td><code>.ins-card--feature</code></td><td>Structural feature-card hook (currently a pass-through atom).</td></tr>
+<tr><td><code>.ins-card--pricing</code></td><td>Flex column; <code>__body</code> flexes and the <code>.ins-btn</code> pins to the baseline.</td></tr>
+<tr><td><code>.ins-card__price</code></td><td>36px/700 price headline (pricing cards).</td></tr>
+<tr><td><code>.ins-card--accent</code> / <code>--accent-top</code></td><td>Top teal rail via inset box-shadow + extra top padding.</td></tr>
+<tr><td><code>.ins-card--glow</code></td><td>Opaque brand-tint surface, brand border, top gradient hairline (<code>::before</code>).</td></tr>
+<tr><td><code>.ins-card--glow--brand</code></td><td>Adds the teal glow shadow.</td></tr>
+<tr><td><code>.ins-card--glow--error</code></td><td>Red variant — restates the surface as opaque red tint with error border + glow.</td></tr>
+<tr><td><code>.ins-card__header</code></td><td>Brand-colored inline header with a glowing dot (glow cards).</td></tr>
+<tr><td><code>.ins-card__console</code></td><td>Mono dark answer panel inside a card.</td></tr>
+<tr><td><code>.ins-card--metric</code></td><td>Compact stat cell: <code>__metric-label</code> (mono) + <code>__metric-value</code> (tabular).</td></tr>
+<tr><td><code>.ins-card--connector</code></td><td>Small left-aligned icon tile (integrations gallery).</td></tr>
+<tr><td><code>.ins-feature-card</code></td><td>Standalone shell: top teal rail, 16px radius, translucent surface.</td></tr>
+<tr><td><code>.ins-feature-card--interactive</code></td><td>Whole card becomes a link — teal hover border + faint tint + focus ring.</td></tr>
+<tr><td><code>.ins-article-card</code></td><td>Blog-index / related-article link shell (cover-on-top, hover-lift).</td></tr>
+<tr><td><code>.ins-prompt-card</code></td><td>Translucent prompt / product-teams feature shell with teal hover.</td></tr>
+</tbody></table>
+<p class="sb-section__description" style="margin-top:var(--ins-space-lg)">The <code>.ins-stat-strip</code> metric band also lives in <code>card.css</code> — see the <a href="stat-kpi.html" style="color:var(--ins-text-highlight)">Stat / KPI</a> page.</p></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

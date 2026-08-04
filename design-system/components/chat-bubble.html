@@ -1,46 +1,79 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Chat bubble — Insightis DS</title>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Chat Bubble — Insightis DS</title>
 <link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Chat bubble</h1><p class="sb-header__description">User / AI variants. Asymmetric bottom radius to read as speech. <strong>Typing bubble</strong> (<code>--typing</code>) is compact with 4px dots + tight padding — deliberately smaller than a message so it reads as a loading indicator, not content.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Chat Bubble</h1><p class="sb-header__description">Conversation bubbles for the AI Chat surface. User bubbles are teal-tinted and align right; AI bubbles use the card surface and align left; a compact typing bubble holds the loading dots. Live in the AI Chat page (<code>src/pages/ai-chat.jsx</code>) — both the questions gallery and the animated hero demo. The dots come from the <code>.ins-typing</code> loader (<code>loaders.css</code>).</p></header>
 
 <section class="sb-section"><h2 class="sb-section__title">Conversation</h2>
+<p class="sb-section__description">A real exchange from the questions gallery — the user asks in plain English, Insightis answers grounded in live data.</p>
 <div class="sb-preview">
-  <div class="ins-chat" style="max-width:640px;">
-    <div class="ins-chat__bubble ins-chat__bubble--user">What was our CAC last 30 days vs. prior 30?</div>
-    <div class="ins-chat__bubble ins-chat__bubble--ai">Last 30 days: <strong>$142</strong> (↓ 8.3% vs. prior 30). Driven mostly by lower paid-social spend. Want the full breakdown?</div>
-    <div class="ins-chat__bubble ins-chat__bubble--user">Yes, by channel please.</div>
+  <div class="ins-chat" style="width:100%;max-width:520px">
+    <div class="ins-chat__bubble ins-chat__bubble--user">Why did MRR drop last week?</div>
+    <div class="ins-chat__bubble ins-chat__bubble--ai">Trial expiry without activation drove 60% of last week’s $1,240 MRR drop. Six distinct causes identified — the largest being trial expiry ($740) and Pro → Starter downgrades ($260).</div>
+    <div class="ins-chat__bubble ins-chat__bubble--user">Which deals risk slipping?</div>
+    <div class="ins-chat__bubble ins-chat__bubble--ai">7 deals totalling $184K are at risk of slipping past Q2. NovaCorp ($52K) has been untouched for 21 days — I’d prioritise an executive business review there first.</div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-chat"&gt;
+  &lt;div class="ins-chat__bubble ins-chat__bubble--user"&gt;Why did MRR drop last week?&lt;/div&gt;
+  &lt;div class="ins-chat__bubble ins-chat__bubble--ai"&gt;Trial expiry without activation drove 60% of last week’s $1,240 MRR drop…&lt;/div&gt;
+  &lt;div class="ins-chat__bubble ins-chat__bubble--user"&gt;Which deals risk slipping?&lt;/div&gt;
+  &lt;div class="ins-chat__bubble ins-chat__bubble--ai"&gt;7 deals totalling $184K are at risk of slipping past Q2…&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Typing bubble</h2>
+<p class="sb-section__description">The compact loading bubble (<code>.ins-chat__bubble--typing</code>) — smaller than a message, sitting inline where the next AI bubble will appear. It shrinks the shared <code>.ins-typing</code> dots.</p>
+<div class="sb-preview">
+  <div class="ins-chat" style="width:100%;max-width:520px">
+    <div class="ins-chat__bubble ins-chat__bubble--user">What’s our NRR this quarter?</div>
     <div class="ins-chat__bubble ins-chat__bubble--ai ins-chat__bubble--typing">
-      <div class="ins-typing ins-motion-state">
-        <span class="ins-typing__dot"></span>
-        <span class="ins-typing__dot"></span>
-        <span class="ins-typing__dot"></span>
-      </div>
+      <span class="ins-typing ins-motion-state">
+        <span class="ins-typing__dot ins-motion-state"></span>
+        <span class="ins-typing__dot ins-motion-state"></span>
+        <span class="ins-typing__dot ins-motion-state"></span>
+      </span>
     </div>
   </div>
-</div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;div class="ins-chat"&gt;
-  &lt;div class="ins-chat__bubble ins-chat__bubble--user"&gt;
-    User message
-  &lt;/div&gt;
-  &lt;div class="ins-chat__bubble ins-chat__bubble--ai"&gt;
-    AI response with &lt;strong&gt;highlighted values&lt;/strong&gt;.
-  &lt;/div&gt;
-
-  &lt;!-- AI thinking state --&gt;
-  &lt;div class="ins-chat__bubble ins-chat__bubble--ai"&gt;
-    &lt;div class="ins-typing ins-motion-state"&gt;
-      &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
-      &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
-      &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-chat__bubble ins-chat__bubble--ai ins-chat__bubble--typing"&gt;
+  &lt;span class="ins-typing"&gt;
+    &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
+    &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
+    &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
+  &lt;/span&gt;
 &lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Inline “Thinking” indicator</h2>
+<p class="sb-section__description">The hero demo shows a compact, brand-tinted variant of the dots next to a label — <code>.ins-typing--sm.ins-typing--brand</code> — rather than inside a bubble.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:center">
+  <span class="ins-text-highlight" style="font-size:var(--ins-font-size-12);font-weight:var(--ins-font-weight-500)">Thinking</span>
+  <span class="ins-typing ins-typing--sm ins-typing--brand ins-motion-state" style="margin-left:1px">
+    <span class="ins-typing__dot ins-motion-state"></span>
+    <span class="ins-typing__dot ins-motion-state"></span>
+    <span class="ins-typing__dot ins-motion-state"></span>
+  </span>
+</div></div>
+<div class="sb-code"><pre>&lt;span class="ins-text-highlight"&gt;Thinking&lt;/span&gt;
+&lt;span class="ins-typing ins-typing--sm ins-typing--brand"&gt;
+  &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
+  &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
+  &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
+&lt;/span&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-chat</code></td><td>Vertical stack of bubbles with a consistent gap.</td></tr>
+<tr><td><code>.ins-chat__bubble</code></td><td>Base bubble — max 80% width, rounded, bordered, preserves line breaks.</td></tr>
+<tr><td><code>.ins-chat__bubble--user</code></td><td>User message — teal tint, right-aligned, notched bottom-right corner.</td></tr>
+<tr><td><code>.ins-chat__bubble--ai</code></td><td>AI message — card surface, left-aligned, notched bottom-left corner.</td></tr>
+<tr><td><code>.ins-chat__bubble--typing</code></td><td>Compact loading bubble; tightens padding and the enclosed <code>.ins-typing</code> dots.</td></tr>
+<tr><td><code>.ins-typing</code> / <code>.ins-typing__dot</code></td><td>Three animated dots (from <code>loaders.css</code>) placed inside a typing bubble or next to a label.</td></tr>
+<tr><td><code>.ins-typing--sm</code></td><td>Smaller dots with no padding — inline "Thinking…" use.</td></tr>
+<tr><td><code>.ins-typing--brand</code></td><td>Brand-tinted (teal) dots.</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

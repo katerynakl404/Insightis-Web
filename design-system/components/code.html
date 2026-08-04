@@ -5,47 +5,64 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Code</h1><p class="sb-header__description">Inline <code>&lt;code&gt;</code> and fenced block. Both use Geist Mono.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Code</h1><p class="sb-header__description">Monospace code display for docs and the blog. Inline <code>.ins-code-inline</code> (bare <code>&lt;code&gt;</code> gets the same treatment) for snippets in a sentence; <code>.ins-code-block</code> for fenced blocks, with an optional <code>__lang</code> tag and an opt-in copy button (<code>data-copy="true"</code>, wired by <code>storybook.js</code>). Distinct from the <a href="code-chip.html" style="color:var(--ins-text-highlight)">code chip</a>, which is the marketing query/answer widget.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Inline</h2>
+<section class="sb-section"><h2 class="sb-section__title">Inline code</h2>
+<p class="sb-section__description">A bare <code>&lt;code&gt;</code> element already carries the inline style; <code>.ins-code-inline</code> is the explicit hook.</p>
 <div class="sb-preview">
-  <p class="ins-text-body">Use <code>var(--ins-text-body)</code> for paragraph color. Never reference <code>--ins-color-gray-300</code> directly.</p>
-</div></section>
+  <p class="ins-text-body">Insightis reads your models directly — reference a metric like <code class="ins-code-inline">monthly_churn</code> or a table like <code>stripe.subscriptions</code> and it resolves through the Semantic Layer.</p>
+</div>
+<div class="sb-code"><pre>&lt;p class="ins-text-body"&gt;Reference a metric like &lt;code class="ins-code-inline"&gt;monthly_churn&lt;/code&gt;
+or a table like &lt;code&gt;stripe.subscriptions&lt;/code&gt; and it resolves through the Semantic Layer.&lt;/p&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">Fenced block (default — no copy button)</h2>
+<section class="sb-section"><h2 class="sb-section__title">Code block</h2>
+<p class="sb-section__description">Container surface with horizontal scroll. Nest a <code>&lt;pre&gt;&lt;code&gt;</code>; the inner <code>&lt;code&gt;</code> resets to transparent so it reads as one panel.</p>
 <div class="sb-preview">
   <div class="ins-code-block">
-    <span class="ins-code-block__lang">sql</span>
-    <pre><code>SELECT
-  date_trunc('month', created_at) AS month,
-  SUM(amount) AS mrr
-FROM subscriptions
-WHERE status = 'active'
+    <pre><code>-- What the Semantic Layer runs for "What's our churn rate?"
+SELECT date_trunc('month', canceled_at) AS month,
+       count(*) AS churned
+FROM stripe.subscriptions
+WHERE canceled_at IS NOT NULL
 GROUP BY 1
 ORDER BY 1 DESC;</code></pre>
   </div>
-</div></section>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-code-block"&gt;
+  &lt;pre&gt;&lt;code&gt;SELECT date_trunc('month', canceled_at) AS month,
+       count(*) AS churned
+FROM stripe.subscriptions
+WHERE canceled_at IS NOT NULL
+GROUP BY 1;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">Fenced block with copy button (opt-in)</h2>
-<p class="sb-section__description">Add <code>data-copy="true"</code> to show the Copy button. Storybook's <code>.sb-code</code> snippets have their own universal copy — this is for production docs.</p>
+<section class="sb-section"><h2 class="sb-section__title">With language tag &amp; copy button</h2>
+<p class="sb-section__description">Add <code>.ins-code-block__lang</code> for the top-right language label, and <code>data-copy="true"</code> on the block to have <code>storybook.js</code> inject a working copy button (padding shifts to make room for both).</p>
 <div class="sb-preview">
   <div class="ins-code-block" data-copy="true">
-    <span class="ins-code-block__lang">shell</span>
-    <pre><code>npm install @insightis/design-system
-# or
-pnpm add @insightis/design-system</code></pre>
+    <span class="ins-code-block__lang">bash</span>
+    <pre><code>npm install @insightis/sdk
+
+# Ask your first question
+insightis ask "What's our churn rate this month?"</code></pre>
   </div>
-</div></section>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-code-block" data-copy="true"&gt;
+  &lt;span class="ins-code-block__lang"&gt;bash&lt;/span&gt;
+  &lt;pre&gt;&lt;code&gt;npm install @insightis/sdk
 
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;!-- Inline --&gt;
-&lt;p&gt;Use &lt;code&gt;var(--ins-text-body)&lt;/code&gt; for paragraphs.&lt;/p&gt;
-
-&lt;!-- Fenced --&gt;
-&lt;div class="ins-code-block"&gt;
-  &lt;span class="ins-code-block__lang"&gt;sql&lt;/span&gt;
-  &lt;pre&gt;&lt;code&gt;SELECT * FROM users;&lt;/code&gt;&lt;/pre&gt;
+# Ask your first question
+insightis ask "What's our churn rate this month?"&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class / attribute</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-code-inline</code> / <code>code</code></td><td>Inline mono snippet: card surface, subtle border, small radius. Bare <code>&lt;code&gt;</code> inherits it.</td></tr>
+<tr><td><code>.ins-code-block</code></td><td>Fenced block: container surface, border, horizontal scroll. Nest <code>&lt;pre&gt;&lt;code&gt;</code>.</td></tr>
+<tr><td><code>.ins-code-block__lang</code></td><td>Absolutely-positioned uppercase language tag, top-right.</td></tr>
+<tr><td><code>[data-copy="true"]</code></td><td>On the block — <code>storybook.js</code> injects a copy button and reserves padding for it.</td></tr>
+<tr><td><code>.ins-code-block__copy</code></td><td>The injected copy button; turns success-color on copy.</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

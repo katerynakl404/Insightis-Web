@@ -5,32 +5,51 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Segmented control</h1><p class="sb-header__description">2–4 exclusive options in a pill. For binary toggles (monthly/yearly) or filter tabs. Arrow-key navigation.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Segmented control</h1><p class="sb-header__description">A pill-shaped group of mutually-exclusive options — one card-surface rail with a 3px inset, the selected item lifting to the elevated surface. Defined in <code>ds/components/segmented-control.css</code>. Used for compact binary/ternary switches such as monthly / annual billing on Pricing.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Variants</h2>
-<div class="sb-preview"><div class="sb-preview-column">
-  <div role="tablist" class="ins-segmented">
-    <button role="tab" class="ins-segmented__item" aria-selected="true">Monthly</button>
-    <button role="tab" class="ins-segmented__item" aria-selected="false">Yearly</button>
-  </div>
-  <div role="tablist" class="ins-segmented">
-    <button role="tab" class="ins-segmented__item" aria-selected="false">All</button>
-    <button role="tab" class="ins-segmented__item" aria-selected="true">Active</button>
-    <button role="tab" class="ins-segmented__item" aria-selected="false">Archived</button>
-  </div>
-  <div role="tablist" class="ins-segmented">
-    <button role="tab" class="ins-segmented__item" aria-selected="true">Day</button>
-    <button role="tab" class="ins-segmented__item" aria-selected="false">Week</button>
-    <button role="tab" class="ins-segmented__item" aria-selected="false">Month</button>
-    <button role="tab" class="ins-segmented__item" aria-selected="false">Year</button>
-  </div>
-</div></div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;div role="tablist" class="ins-segmented"&gt;
-  &lt;button role="tab" class="ins-segmented__item" aria-selected="true"&gt;Monthly&lt;/button&gt;
-  &lt;button role="tab" class="ins-segmented__item" aria-selected="false"&gt;Yearly&lt;/button&gt;
+<section class="sb-section"><h2 class="sb-section__title">Billing period (two options)</h2>
+<div class="sb-preview"><div class="ins-segmented" role="tablist" aria-label="Billing period">
+  <button class="ins-segmented__item is-active" role="tab" aria-selected="true">Monthly</button>
+  <button class="ins-segmented__item" role="tab" aria-selected="false">Annual</button>
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-segmented" role="tablist" aria-label="Billing period"&gt;
+  &lt;button class="ins-segmented__item is-active" role="tab" aria-selected="true"&gt;Monthly&lt;/button&gt;
+  &lt;button class="ins-segmented__item" role="tab" aria-selected="false"&gt;Annual&lt;/button&gt;
 &lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Three options</h2>
+<div class="sb-preview"><div class="ins-segmented" role="tablist" aria-label="Date range">
+  <button class="ins-segmented__item" role="tab" aria-selected="false">7 days</button>
+  <button class="ins-segmented__item is-active" role="tab" aria-selected="true">30 days</button>
+  <button class="ins-segmented__item" role="tab" aria-selected="false">Quarter</button>
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-segmented" role="tablist" aria-label="Date range"&gt;
+  &lt;button class="ins-segmented__item" role="tab" aria-selected="false"&gt;7 days&lt;/button&gt;
+  &lt;button class="ins-segmented__item is-active" role="tab" aria-selected="true"&gt;30 days&lt;/button&gt;
+  &lt;button class="ins-segmented__item" role="tab" aria-selected="false"&gt;Quarter&lt;/button&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Selection via aria-selected</h2>
+<p class="sb-section__description">The active item can be marked with either <code>.is-active</code> or <code>aria-selected="true"</code> — both resolve to the elevated-surface treatment, so ARIA tabs need no extra class.</p>
+<div class="sb-preview"><div class="ins-segmented" role="tablist" aria-label="View">
+  <button class="ins-segmented__item" role="tab" aria-selected="true">Chart</button>
+  <button class="ins-segmented__item" role="tab" aria-selected="false">Table</button>
+  <button class="ins-segmented__item" role="tab" aria-selected="false">SQL</button>
+</div></div>
+<div class="sb-code"><pre>&lt;button class="ins-segmented__item" role="tab" aria-selected="true"&gt;Chart&lt;/button&gt;
+&lt;button class="ins-segmented__item" role="tab" aria-selected="false"&gt;Table&lt;/button&gt;
+&lt;button class="ins-segmented__item" role="tab" aria-selected="false"&gt;SQL&lt;/button&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-segmented</code></td><td>Inline-flex rail — card surface, bordered, pill radius, 3px inner padding.</td></tr>
+<tr><td><code>.ins-segmented__item</code></td><td>One option button — transparent, body text; brightens to heading text on hover.</td></tr>
+<tr><td><code>.ins-segmented__item.is-active</code></td><td>Selected — elevated surface + heading text.</td></tr>
+<tr><td><code>.ins-segmented__item[aria-selected="true"]</code></td><td>Same selected treatment for ARIA tab semantics.</td></tr>
+</tbody></table></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Usage</h2>
+<p class="sb-section__description">Built from the <code>ds/components/segmented-control.css</code> API. Note: category filters on Integrations / AI-chat / Metrics catalog use the interactive <code>.ins-badge--tab</code> chip instead — reach for a segmented control for compact binary/ternary switches like billing period or a chart/table/SQL view toggle.</p></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

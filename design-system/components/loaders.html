@@ -5,57 +5,93 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Loaders</h1><p class="sb-header__description">Spinner, progress (determinate + indeterminate), typing dots, skeleton. All marked <code>.ins-motion-state</code> — animate on every size.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Loaders</h1><p class="sb-header__description">Four progress affordances: a ring <code>spinner</code>, a determinate/indeterminate <code>progress</code> bar, three-dot <code>typing</code> (used by the AI Chat "Thinking" header in <code>src/pages/ai-chat.jsx</code>), and shimmering <code>skeleton</code> placeholders. Animated elements carry <code>.ins-motion-state</code>.</p></header>
 
 <section class="sb-section"><h2 class="sb-section__title">Spinner</h2>
-<div class="sb-preview"><div class="sb-preview-row">
-  <div class="sb-specimen"><div class="ins-spinner ins-spinner--sm ins-motion-state"></div><span class="sb-specimen__name">sm (16)</span></div>
-  <div class="sb-specimen"><div class="ins-spinner ins-motion-state"></div><span class="sb-specimen__name">md (24, default)</span></div>
-  <div class="sb-specimen"><div class="ins-spinner ins-spinner--lg ins-motion-state"></div><span class="sb-specimen__name">lg (32)</span></div>
-</div></div></section>
+<p class="sb-section__description">sm 16 · default 24 · lg 32. Teal top border rotates over a faint track.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:center; gap:var(--ins-space-xl)">
+  <span class="ins-spinner ins-spinner--sm ins-motion-state"></span>
+  <span class="ins-spinner ins-motion-state"></span>
+  <span class="ins-spinner ins-spinner--lg ins-motion-state"></span>
+</div></div>
+<div class="sb-code"><pre>&lt;span class="ins-spinner ins-spinner--sm ins-motion-state"&gt;&lt;/span&gt;
+&lt;span class="ins-spinner ins-motion-state"&gt;&lt;/span&gt;
+&lt;span class="ins-spinner ins-spinner--lg ins-motion-state"&gt;&lt;/span&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">Progress</h2>
-<div class="sb-preview"><div style="display:flex; flex-direction:column; gap:var(--ins-space-lg); max-width:420px;">
-  <div><div class="ins-progress ins-motion-state"><div class="ins-progress__bar" style="width:30%;"></div></div><span class="sb-specimen__name" style="margin-top:6px; display:block;">determinate 30%</span></div>
-  <div><div class="ins-progress ins-motion-state"><div class="ins-progress__bar" style="width:75%;"></div></div><span class="sb-specimen__name" style="margin-top:6px; display:block;">determinate 75%</span></div>
-  <div><div class="ins-progress ins-progress--indeterminate ins-motion-state"><div class="ins-progress__bar"></div></div><span class="sb-specimen__name" style="margin-top:6px; display:block;">indeterminate</span></div>
-</div></div></section>
+<section class="sb-section"><h2 class="sb-section__title">Progress bar</h2>
+<p class="sb-section__description">Determinate — set the inner bar width. Indeterminate — add <code>--indeterminate</code> and let it sweep.</p>
+<div class="sb-preview"><div style="display:flex; flex-direction:column; gap:var(--ins-space-lg); width:100%; max-width:420px;">
+  <div class="ins-progress"><div class="ins-progress__bar" style="width:35%"></div></div>
+  <div class="ins-progress"><div class="ins-progress__bar" style="width:70%"></div></div>
+  <div class="ins-progress ins-progress--indeterminate"><div class="ins-progress__bar ins-motion-state"></div></div>
+</div></div>
+<div class="sb-code"><pre>&lt;!-- Determinate --&gt;
+&lt;div class="ins-progress"&gt;&lt;div class="ins-progress__bar" style="width:70%"&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;!-- Indeterminate --&gt;
+&lt;div class="ins-progress ins-progress--indeterminate"&gt;
+  &lt;div class="ins-progress__bar ins-motion-state"&gt;&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
 
 <section class="sb-section"><h2 class="sb-section__title">Typing dots</h2>
-<div class="sb-preview"><div class="ins-typing ins-motion-state" style="background:var(--ins-surface-card); border:1px solid var(--ins-border-default); border-radius:var(--ins-radius-2xl); border-bottom-left-radius:var(--ins-radius-sm);">
-  <span class="ins-typing__dot"></span>
-  <span class="ins-typing__dot"></span>
-  <span class="ins-typing__dot"></span>
-</div></div></section>
+<p class="sb-section__description">Default chat-bubble size, and the compact brand-tinted inline pairing used next to the "Thinking" label in AI Chat.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:center; gap:var(--ins-space-xl)">
+  <span class="ins-typing ins-motion-state">
+    <span class="ins-typing__dot ins-motion-state"></span>
+    <span class="ins-typing__dot ins-motion-state"></span>
+    <span class="ins-typing__dot ins-motion-state"></span>
+  </span>
+  <span style="display:inline-flex; align-items:center; gap:var(--ins-space-xs); color:var(--ins-text-highlight); font-size:var(--ins-font-size-12); font-weight:500;">
+    Thinking
+    <span class="ins-typing ins-typing--sm ins-typing--brand ins-motion-state">
+      <span class="ins-typing__dot ins-motion-state"></span>
+      <span class="ins-typing__dot ins-motion-state"></span>
+      <span class="ins-typing__dot ins-motion-state"></span>
+    </span>
+  </span>
+</div></div>
+<div class="sb-code"><pre>&lt;!-- Chat bubble --&gt;
+&lt;span class="ins-typing ins-motion-state"&gt;
+  &lt;span class="ins-typing__dot ins-motion-state"&gt;&lt;/span&gt;
+  &lt;span class="ins-typing__dot ins-motion-state"&gt;&lt;/span&gt;
+  &lt;span class="ins-typing__dot ins-motion-state"&gt;&lt;/span&gt;
+&lt;/span&gt;
+
+&lt;!-- Inline "Thinking" (ai-chat.jsx) --&gt;
+&lt;span class="ins-typing ins-typing--sm ins-typing--brand ins-motion-state"&gt;
+  &lt;span class="ins-typing__dot ins-motion-state"&gt;&lt;/span&gt;
+  &lt;span class="ins-typing__dot ins-motion-state"&gt;&lt;/span&gt;
+  &lt;span class="ins-typing__dot ins-motion-state"&gt;&lt;/span&gt;
+&lt;/span&gt;</pre></div></section>
 
 <section class="sb-section"><h2 class="sb-section__title">Skeleton</h2>
-<div class="sb-preview"><div style="display:flex; flex-direction:column; gap:var(--ins-space-md); max-width:420px;">
-  <div class="ins-skeleton ins-skeleton--line ins-motion-state" style="width:70%;"></div>
-  <div class="ins-skeleton ins-skeleton--line ins-motion-state" style="width:50%;"></div>
+<p class="sb-section__description">Shimmering placeholders — <code>--line</code> for text rows, <code>--block</code> for media/cards.</p>
+<div class="sb-preview"><div style="display:flex; flex-direction:column; gap:var(--ins-space-md); width:100%; max-width:420px;">
+  <div class="ins-skeleton ins-skeleton--line ins-motion-state" style="width:60%"></div>
+  <div class="ins-skeleton ins-skeleton--line ins-motion-state"></div>
+  <div class="ins-skeleton ins-skeleton--line ins-motion-state" style="width:85%"></div>
   <div class="ins-skeleton ins-skeleton--block ins-motion-state"></div>
-</div></div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;div class="ins-spinner ins-motion-state" role="status" aria-label="Loading"&gt;&lt;/div&gt;
-
-&lt;div class="ins-progress ins-motion-state"&gt;
-  &lt;div class="ins-progress__bar" style="width: 60%;"&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="ins-progress ins-progress--indeterminate ins-motion-state"&gt;
-  &lt;div class="ins-progress__bar"&gt;&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- Typing dots (chat AI "thinking") --&gt;
-&lt;div class="ins-typing ins-motion-state"&gt;
-  &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
-  &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
-  &lt;span class="ins-typing__dot"&gt;&lt;/span&gt;
-&lt;/div&gt;
-
-&lt;!-- Skeleton (dimensions match final content to avoid CLS) --&gt;
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-skeleton ins-skeleton--line ins-motion-state" style="width:60%"&gt;&lt;/div&gt;
 &lt;div class="ins-skeleton ins-skeleton--line ins-motion-state"&gt;&lt;/div&gt;
 &lt;div class="ins-skeleton ins-skeleton--block ins-motion-state"&gt;&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-spinner</code></td><td>24px rotating ring; teal top border.</td></tr>
+<tr><td><code>.ins-spinner--sm / --lg</code></td><td>16px / 32px variants.</td></tr>
+<tr><td><code>.ins-progress</code></td><td>4px track (pill) that clips its bar.</td></tr>
+<tr><td><code>.ins-progress__bar</code></td><td>Teal fill; set <code>width</code> for determinate progress.</td></tr>
+<tr><td><code>.ins-progress--indeterminate</code></td><td>Makes the bar sweep left-to-right on a loop.</td></tr>
+<tr><td><code>.ins-typing</code></td><td>Inline row of three animated dots (chat "is typing").</td></tr>
+<tr><td><code>.ins-typing__dot</code></td><td>One dot; children 2 and 3 are delayed for the wave.</td></tr>
+<tr><td><code>.ins-typing--sm</code></td><td>Compact: no padding, 4.5px dots (inline label pairing).</td></tr>
+<tr><td><code>.ins-typing--brand</code></td><td>Tints the dots with the brand highlight colour.</td></tr>
+<tr><td><code>.ins-skeleton</code></td><td>Shimmer placeholder base.</td></tr>
+<tr><td><code>.ins-skeleton--line</code></td><td>12px text-line placeholder.</td></tr>
+<tr><td><code>.ins-skeleton--block</code></td><td>120px block placeholder with larger radius.</td></tr>
+<tr><td><code>.ins-motion-state</code></td><td>Marks an element as animated (kept running at every size).</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

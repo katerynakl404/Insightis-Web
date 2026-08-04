@@ -5,74 +5,106 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Badge</h1><p class="sb-header__description">Status, count, brand, trend, dot, removable, metric-pill. Status badges always pair color + text (a11y).</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Badge</h1><p class="sb-header__description">Small inline pill — status labels, interactive filter tabs, counts, trend numbers and removable tags. Composed by <code>src/components/Chip.jsx</code>. Live instances: the navbar "Coming Soon" (<code>src/components/Header.jsx</code>), category filter tabs on Integrations / AI-chat / Metrics catalog, and the "Insightis" vs "Generic AI" comparison chips.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Status</h2>
+<section class="sb-section"><h2 class="sb-section__title">Status tones</h2>
 <div class="sb-preview"><div class="sb-preview-row">
-  <span class="ins-badge ins-badge--success"><span class="ins-badge__dot"></span>Live</span>
-  <span class="ins-badge ins-badge--info">In progress</span>
-  <span class="ins-badge ins-badge--shipped">Shipped</span>
-  <span class="ins-badge ins-badge--warning">Warning</span>
-  <span class="ins-badge ins-badge--planned">Planned</span>
+  <span class="ins-badge ins-badge--success">Live</span>
+  <span class="ins-badge ins-badge--warning">Syncing</span>
   <span class="ins-badge ins-badge--error">Failed</span>
-</div></div></section>
+  <span class="ins-badge ins-badge--info">Beta</span>
+  <span class="ins-badge ins-badge--planned">Planned</span>
+  <span class="ins-badge ins-badge--shipped">Shipped</span>
+</div></div>
+<div class="sb-code"><pre>&lt;span class="ins-badge ins-badge--success"&gt;Live&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--warning"&gt;Syncing&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--error"&gt;Failed&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--info"&gt;Beta&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--planned"&gt;Planned&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--shipped"&gt;Shipped&lt;/span&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">Count</h2>
+<section class="sb-section"><h2 class="sb-section__title">Brand — "Coming Soon"</h2>
+<p class="sb-section__description">The brand-tinted chip flags coming-soon nav items and the "Insightis" side of comparison panels.</p>
 <div class="sb-preview"><div class="sb-preview-row">
-  <span class="ins-badge ins-badge--count">3</span>
-  <span class="ins-badge ins-badge--count">24</span>
-  <span class="ins-badge ins-badge--count">99+</span>
-</div></div></section>
+  <span class="ins-badge ins-badge--brand">Coming Soon</span>
+  <span class="ins-badge ins-badge--brand"><span class="ins-badge__dot ins-badge__dot--pulse" aria-hidden="true"></span>Insightis</span>
+</div></div>
+<div class="sb-code"><pre>&lt;span class="ins-badge ins-badge--brand"&gt;Coming Soon&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--brand"&gt;&lt;span class="ins-badge__dot ins-badge__dot--pulse" aria-hidden="true"&gt;&lt;/span&gt;Insightis&lt;/span&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">Brand</h2>
+<section class="sb-section"><h2 class="sb-section__title">Status dot &amp; pulse</h2>
+<p class="sb-section__description">Prefix a tone with <code>.ins-badge__dot</code>; add <code>--pulse</code> for a live/animated ring.</p>
 <div class="sb-preview"><div class="sb-preview-row">
-  <span class="ins-badge ins-badge--brand">Beta</span>
-  <span class="ins-badge ins-badge--brand">New</span>
-  <span class="ins-badge ins-badge--brand">Pro</span>
-</div></div></section>
+  <span class="ins-badge ins-badge--success"><span class="ins-badge__dot" aria-hidden="true"></span>Connected</span>
+  <span class="ins-badge ins-badge--success"><span class="ins-badge__dot ins-badge__dot--pulse" aria-hidden="true"></span>Live insight</span>
+  <span class="ins-badge ins-badge--error"><span class="ins-badge__dot" aria-hidden="true"></span>Generic AI</span>
+</div></div>
+<div class="sb-code"><pre>&lt;span class="ins-badge ins-badge--success"&gt;&lt;span class="ins-badge__dot" aria-hidden="true"&gt;&lt;/span&gt;Connected&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--success"&gt;&lt;span class="ins-badge__dot ins-badge__dot--pulse" aria-hidden="true"&gt;&lt;/span&gt;Live insight&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--error"&gt;&lt;span class="ins-badge__dot" aria-hidden="true"&gt;&lt;/span&gt;Generic AI&lt;/span&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">Trend (mono)</h2>
+<section class="sb-section"><h2 class="sb-section__title">Interactive tab (filter chip)</h2>
+<p class="sb-section__description">One control everywhere — category filters on Integrations, AI-chat and the Metrics catalog. Inactive shows a border; <code>aria-pressed="true"</code> brand-tints the active one.</p>
 <div class="sb-preview"><div class="sb-preview-row">
-  <span class="ins-badge ins-badge--success ins-badge--trend">▲ 12.4%</span>
-  <span class="ins-badge ins-badge--error ins-badge--trend">▼ 3.2%</span>
-  <span class="ins-badge ins-badge--info ins-badge--trend">+142</span>
-</div></div></section>
+  <button class="ins-badge ins-badge--tab" aria-pressed="true">RevOps &amp; BizOps</button>
+  <button class="ins-badge ins-badge--tab" aria-pressed="false">Finance</button>
+  <button class="ins-badge ins-badge--tab" aria-pressed="false">Marketing</button>
+  <button class="ins-badge ins-badge--tab" aria-pressed="false">Product</button>
+</div></div>
+<div class="sb-code"><pre>&lt;button class="ins-badge ins-badge--tab" aria-pressed="true"&gt;RevOps &amp; BizOps&lt;/button&gt;
+&lt;button class="ins-badge ins-badge--tab" aria-pressed="false"&gt;Finance&lt;/button&gt;
+&lt;button class="ins-badge ins-badge--tab" aria-pressed="false"&gt;Marketing&lt;/button&gt;
+&lt;button class="ins-badge ins-badge--tab" aria-pressed="false"&gt;Product&lt;/button&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">Dot (pulse)</h2>
-<div class="sb-preview"><div class="sb-preview-row">
-  <span class="ins-badge ins-badge--success"><span class="ins-badge__dot ins-badge__dot--pulse ins-motion-state"></span>Live</span>
-  <span class="ins-badge ins-badge--warning"><span class="ins-badge__dot"></span>Idle</span>
-</div></div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">Removable</h2>
-<div class="sb-preview"><div class="sb-preview-row">
-  <span class="ins-badge ins-badge--brand">Marketing<button class="ins-badge__remove" aria-label="Remove tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button></span>
-  <span class="ins-badge ins-badge--brand">Sales<button class="ins-badge__remove" aria-label="Remove tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button></span>
-</div></div></section>
+<section class="sb-section"><h2 class="sb-section__title">Count &amp; trend</h2>
+<p class="sb-section__description">Count sits next to a label as a running total; trend uses the mono font with tabular figures for deltas.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:center">
+  <span style="display:inline-flex;align-items:center;gap:var(--ins-space-sm);color:var(--ins-text-body);font-size:var(--ins-font-size-14)">Connectors <span class="ins-badge ins-badge--count">50+</span></span>
+  <span class="ins-badge ins-badge--trend ins-badge--success">+12.4%</span>
+  <span class="ins-badge ins-badge--trend ins-badge--error">−3.1%</span>
+</div></div>
+<div class="sb-code"><pre>Connectors &lt;span class="ins-badge ins-badge--count"&gt;50+&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--trend ins-badge--success"&gt;+12.4%&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--trend ins-badge--error"&gt;−3.1%&lt;/span&gt;</pre></div></section>
 
 <section class="sb-section"><h2 class="sb-section__title">Metric pill</h2>
+<p class="sb-section__description">Mono-font chip for surfacing a metric name / value inline.</p>
 <div class="sb-preview"><div class="sb-preview-row">
-  <span class="ins-badge ins-badge--metric-pill">CAC · 30d</span>
-  <span class="ins-badge ins-badge--metric-pill">MRR</span>
-  <span class="ins-badge ins-badge--metric-pill">NRR · Q4</span>
-</div></div></section>
+  <span class="ins-badge ins-badge--metric-pill">@MRR</span>
+  <span class="ins-badge ins-badge--metric-pill">CAC · $412</span>
+  <span class="ins-badge ins-badge--metric-pill">Net revenue retention</span>
+</div></div>
+<div class="sb-code"><pre>&lt;span class="ins-badge ins-badge--metric-pill"&gt;@MRR&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--metric-pill"&gt;CAC · $412&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--metric-pill"&gt;Net revenue retention&lt;/span&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;span class="ins-badge ins-badge--success"&gt;Live&lt;/span&gt;
-&lt;span class="ins-badge ins-badge--count"&gt;3&lt;/span&gt;
-&lt;span class="ins-badge ins-badge--brand"&gt;Beta&lt;/span&gt;
-&lt;span class="ins-badge ins-badge--success ins-badge--trend"&gt;▲ 12.4%&lt;/span&gt;
+<section class="sb-section"><h2 class="sb-section__title">Removable tag</h2>
+<p class="sb-section__description">Add <code>.ins-badge__remove</code> for a close (×) button — padding tightens automatically via <code>:has()</code>.</p>
+<div class="sb-preview"><div class="sb-preview-row">
+  <span class="ins-badge ins-badge--brand">Stripe<button class="ins-badge__remove" type="button" aria-label="Remove Stripe">×</button></span>
+  <span class="ins-badge ins-badge--brand">HubSpot<button class="ins-badge__remove" type="button" aria-label="Remove HubSpot">×</button></span>
+  <span class="ins-badge ins-badge--info">Snowflake<button class="ins-badge__remove" type="button" aria-label="Remove Snowflake">×</button></span>
+</div></div>
+<div class="sb-code"><pre>&lt;span class="ins-badge ins-badge--brand"&gt;Stripe&lt;button class="ins-badge__remove" type="button" aria-label="Remove Stripe"&gt;×&lt;/button&gt;&lt;/span&gt;
+&lt;span class="ins-badge ins-badge--info"&gt;Snowflake&lt;button class="ins-badge__remove" type="button" aria-label="Remove Snowflake"&gt;×&lt;/button&gt;&lt;/span&gt;</pre></div></section>
 
-&lt;!-- With dot (pulse version is state-communicating) --&gt;
-&lt;span class="ins-badge ins-badge--success"&gt;
-  &lt;span class="ins-badge__dot ins-badge__dot--pulse ins-motion-state"&gt;&lt;/span&gt;Live
-&lt;/span&gt;
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-badge</code></td><td>Base pill — inline-flex, 11px medium, pill radius, transparent border.</td></tr>
+<tr><td><code>.ins-badge--success / --warning / --error / --info</code></td><td>Status tones (green / amber / red / blue).</td></tr>
+<tr><td><code>.ins-badge--planned / --shipped</code></td><td>Roadmap tones (planned / shipped).</td></tr>
+<tr><td><code>.ins-badge--brand</code></td><td>Teal brand-tint with brand border — "Coming Soon", "Insightis".</td></tr>
+<tr><td><code>.ins-badge--tab</code></td><td>Interactive filter chip; <code>aria-pressed="true"</code> = active (brand-tinted).</td></tr>
+<tr><td><code>.ins-badge--count</code></td><td>Elevated-surface count pill, min 20px, centered.</td></tr>
+<tr><td><code>.ins-badge--trend</code></td><td>Mono font + tabular figures for deltas (pair with a tone).</td></tr>
+<tr><td><code>.ins-badge--metric-pill</code></td><td>Mono card-surface pill for a metric name / value.</td></tr>
+<tr><td><code>.ins-badge__dot</code></td><td>6px status dot in <code>currentColor</code> before the label.</td></tr>
+<tr><td><code>.ins-badge__dot--pulse</code></td><td>Adds an animated expanding ring (live status).</td></tr>
+<tr><td><code>.ins-badge__remove</code></td><td>Trailing close (×) button; tightens chip padding via <code>:has()</code>.</td></tr>
+</tbody></table></section>
 
-&lt;!-- Removable --&gt;
-&lt;span class="ins-badge ins-badge--brand"&gt;
-  Marketing
-  &lt;button class="ins-badge__remove" aria-label="Remove"&gt;...&lt;/button&gt;
-&lt;/span&gt;</pre></div></section>
+<section class="sb-section"><h2 class="sb-section__title">Usage</h2>
+<p class="sb-section__description">Composed by <code>src/components/Chip.jsx</code>. Live: <code>ins-badge--brand</code> "Coming Soon" in <code>src/components/Header.jsx</code>; <code>ins-badge--tab</code> category filters in <code>src/pages/integrations.jsx</code>, <code>ai-chat.jsx</code> and <code>src/components/MetricsCatalog.jsx</code> (labels "RevOps &amp; BizOps", "Finance", …); the <code>variant="error" dot</code> "Generic AI" vs <code>variant="brand" dot dotPulse</code> "Insightis" pair documented in <code>src/components/README.md</code>. Status, count, trend and metric-pill variants are built from the <code>badge.css</code> API.</p></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

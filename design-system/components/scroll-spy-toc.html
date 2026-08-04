@@ -5,51 +5,66 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Scroll-spy TOC</h1><p class="sb-header__description">Sticky in-page table of contents. Active link tracks scroll via IntersectionObserver. Perfect for Privacy / Terms / Docs.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Scroll-spy TOC</h1><p class="sb-header__description">Sticky "On this page" rail for long legal / docs pages. It mirrors the sidebar's title + rail styling; the link matching the section in view lights up teal (<code>aria-current="location"</code>). Live on Privacy, Terms and Cookie Settings (<code>src/pages/privacy.jsx</code>). Add <code>data-sb-scrollspy</code> to the container and <code>storybook.js</code> wires the <code>IntersectionObserver</code> that toggles the active link as you scroll.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Example</h2>
-<div class="sb-preview" style="padding:0;">
-  <div style="display:grid; grid-template-columns:200px 1fr; gap:var(--ins-space-xl); min-height:500px;">
+<section class="sb-section"><h2 class="sb-section__title">On this page (live scroll-spy)</h2>
+<p class="sb-section__description">Real Privacy-policy headings. Scroll the article on the right — the active TOC link updates automatically via <code>storybook.js</code>. The first item starts <code>.is-active</code> as the static default.</p>
+<div class="sb-preview">
+  <div style="display:grid;grid-template-columns:200px 1fr;gap:var(--ins-space-2xl);align-items:start">
     <nav class="ins-toc" data-sb-scrollspy aria-label="On this page">
-      <div class="ins-toc__title">On this page</div>
-      <ol class="ins-toc__list">
-        <li><a class="ins-toc__link" href="#scope">Scope</a></li>
-        <li><a class="ins-toc__link" href="#data">Data we collect</a></li>
-        <li><a class="ins-toc__link" href="#usage">How we use it</a></li>
-        <li><a class="ins-toc__link" href="#rights">Your rights</a></li>
-        <li><a class="ins-toc__link" href="#contact">Contact</a></li>
-      </ol>
+      <p class="ins-toc__title">On this page</p>
+      <ul class="ins-toc__list">
+        <li><a class="ins-toc__link is-active" href="#data-collected">Data Collected</a></li>
+        <li><a class="ins-toc__link" href="#use-of-data">Use of the Data</a></li>
+        <li><a class="ins-toc__link" href="#who-has-access">Who Has Access to the Data</a></li>
+        <li><a class="ins-toc__link" href="#connected-data">Your Connected Data</a></li>
+        <li><a class="ins-toc__link" href="#ai-processing">AI Processing</a></li>
+        <li><a class="ins-toc__link" href="#where-stored">Where the Data is Stored</a></li>
+        <li><a class="ins-toc__link" href="#gdpr">GDPR Compliance</a></li>
+        <li><a class="ins-toc__link" href="#sharing">Sharing of Data</a></li>
+      </ul>
     </nav>
-    <div style="max-height:500px; overflow-y:auto; padding-right:var(--ins-space-lg);">
-      <section id="scope" style="padding-block:var(--ins-space-xl);"><h2 class="ins-text-h2">Scope</h2><p class="ins-text-body" style="margin-top:var(--ins-space-md); max-width:56ch;">Lorem ipsum dolor sit amet. Scroll this pane — the TOC follows your position. Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris.</p></section>
-      <section id="data" style="padding-block:var(--ins-space-xl);"><h2 class="ins-text-h2">Data we collect</h2><p class="ins-text-body" style="margin-top:var(--ins-space-md); max-width:56ch;">We collect only what we need. Usage analytics, account data, payment history. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident.</p></section>
-      <section id="usage" style="padding-block:var(--ins-space-xl);"><h2 class="ins-text-h2">How we use it</h2><p class="ins-text-body" style="margin-top:var(--ins-space-md); max-width:56ch;">We use your data to provide the service, communicate about it, and improve it. Sunt in culpa qui officia deserunt mollit anim id est laborum sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p></section>
-      <section id="rights" style="padding-block:var(--ins-space-xl);"><h2 class="ins-text-h2">Your rights</h2><p class="ins-text-body" style="margin-top:var(--ins-space-md); max-width:56ch;">You can access, correct, or delete your data at any time. Email privacy@insightis.com. Accusantium doloremque laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis.</p></section>
-      <section id="contact" style="padding-block:var(--ins-space-xl);"><h2 class="ins-text-h2">Contact</h2><p class="ins-text-body" style="margin-top:var(--ins-space-md); max-width:56ch;">Privacy questions: privacy@insightis.com. Et harum quidem rerum facilis est et expedita distinctio.</p></section>
+    <div style="min-width:0">
+      <h3 id="data-collected" class="ins-text-h3" style="scroll-margin-top:var(--ins-scroll-margin)">Data Collected</h3>
+      <p class="ins-text-body" style="margin:var(--ins-space-sm) 0 var(--ins-space-2xl)">We collect the account details you provide and the operational metadata needed to run Insightis — never the contents of your connected warehouses beyond what a query returns.</p>
+      <h3 id="use-of-data" class="ins-text-h3" style="scroll-margin-top:var(--ins-scroll-margin)">Use of the Data</h3>
+      <p class="ins-text-body" style="margin:var(--ins-space-sm) 0 var(--ins-space-2xl)">Data is used to operate, secure and improve the service, and to answer the questions you ask of your own data.</p>
+      <h3 id="who-has-access" class="ins-text-h3" style="scroll-margin-top:var(--ins-scroll-margin)">Who Has Access to the Data</h3>
+      <p class="ins-text-body" style="margin:var(--ins-space-sm) 0 var(--ins-space-2xl)">Access is limited to the members of your workspace and a small set of Devart personnel bound by strict confidentiality controls.</p>
+      <h3 id="connected-data" class="ins-text-h3" style="scroll-margin-top:var(--ins-scroll-margin)">Your Connected Data</h3>
+      <p class="ins-text-body" style="margin:var(--ins-space-sm) 0 var(--ins-space-2xl)">Your warehouse stays in your warehouse. Insightis reads models on demand through the Semantic Layer and does not copy them wholesale.</p>
+      <h3 id="ai-processing" class="ins-text-h3" style="scroll-margin-top:var(--ins-scroll-margin)">AI Processing</h3>
+      <p class="ins-text-body" style="margin:var(--ins-space-sm) 0 var(--ins-space-2xl)">Prompts and results are processed to generate answers and are not used to train third-party foundation models.</p>
+      <h3 id="where-stored" class="ins-text-h3" style="scroll-margin-top:var(--ins-scroll-margin)">Where the Data is Stored</h3>
+      <p class="ins-text-body" style="margin:var(--ins-space-sm) 0 var(--ins-space-2xl)">Operational data is stored on infrastructure in the region tied to your plan, encrypted at rest and in transit.</p>
+      <h3 id="gdpr" class="ins-text-h3" style="scroll-margin-top:var(--ins-scroll-margin)">GDPR Compliance</h3>
+      <p class="ins-text-body" style="margin:var(--ins-space-sm) 0 var(--ins-space-2xl)">We support the access, rectification and erasure rights afforded under the GDPR and equivalent regimes.</p>
+      <h3 id="sharing" class="ins-text-h3" style="scroll-margin-top:var(--ins-scroll-margin)">Sharing of Data</h3>
+      <p class="ins-text-body" style="margin:var(--ins-space-sm) 0 var(--ins-space-3xl)">We do not sell your data. Limited processors are engaged only where necessary to deliver the service.</p>
     </div>
   </div>
-</div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+</div>
 <div class="sb-code"><pre>&lt;nav class="ins-toc" data-sb-scrollspy aria-label="On this page"&gt;
-  &lt;div class="ins-toc__title"&gt;On this page&lt;/div&gt;
-  &lt;ol class="ins-toc__list"&gt;
-    &lt;li&gt;&lt;a class="ins-toc__link" href="#scope"&gt;Scope&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a class="ins-toc__link" href="#data"&gt;Data we collect&lt;/a&gt;&lt;/li&gt;
-  &lt;/ol&gt;
+  &lt;p class="ins-toc__title"&gt;On this page&lt;/p&gt;
+  &lt;ul class="ins-toc__list"&gt;
+    &lt;li&gt;&lt;a class="ins-toc__link is-active" href="#data-collected"&gt;Data Collected&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="ins-toc__link" href="#use-of-data"&gt;Use of the Data&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="ins-toc__link" href="#who-has-access"&gt;Who Has Access to the Data&lt;/a&gt;&lt;/li&gt;
+    &lt;!-- …one &lt;li&gt; per section, href matching the section id --&gt;
+  &lt;/ul&gt;
 &lt;/nav&gt;
+&lt;!-- storybook.js observes each target section and sets
+     aria-current="location" on the matching link while it is in view --&gt;</pre></div></section>
 
-&lt;!-- Targets — headings with matching ids --&gt;
-&lt;section id="scope"&gt;&lt;h2&gt;Scope&lt;/h2&gt;&lt;/section&gt;
-&lt;section id="data"&gt;&lt;h2&gt;Data we collect&lt;/h2&gt;&lt;/section&gt;</pre></div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">Notes</h2>
-<ul style="color:var(--ins-text-body); padding-left:var(--ins-space-lg); line-height:22px;">
-  <li>Active link gets <code>aria-current="location"</code> via IntersectionObserver (storybook.js)</li>
-  <li>Scroll offset = navbar height + breathing room (<code>--ins-scroll-margin</code> on <code>[id]</code>)</li>
-  <li>Keyboard accessible — Tab navigates, Enter jumps</li>
-</ul>
-</section>
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-toc</code></td><td>Sticky rail; scrolls internally if the list is taller than the viewport.</td></tr>
+<tr><td><code>.ins-toc__title</code></td><td>Uppercase "On this page" heading (muted).</td></tr>
+<tr><td><code>.ins-toc__list</code></td><td>Reset <code>&lt;ul&gt;</code> — vertical stack of links.</td></tr>
+<tr><td><code>.ins-toc__link</code></td><td>Anchor link with a subtle 1px left rail; brighter on hover.</td></tr>
+<tr><td><code>.ins-toc__link[aria-current="location"]</code>, <code>.ins-toc__link.is-active</code></td><td>Active section — teal text and a 2px teal rail (no background).</td></tr>
+<tr><td><code>[data-sb-scrollspy]</code></td><td>Storybook hook on the container — wires the <code>IntersectionObserver</code> in <code>storybook.js</code>.</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

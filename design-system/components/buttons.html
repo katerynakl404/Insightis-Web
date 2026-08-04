@@ -1,99 +1,122 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Button — Insightis DS</title>
-<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css">
-</head>
-<body>
-<a class="ins-u-skip-link" href="#main">Skip to content</a>
-<div class="sb-app">
-<aside class="sb-sidebar" data-sb-render-sidebar="../"></aside>
-<main class="sb-main" id="main">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Button — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header">
-  <div class="sb-header__kicker">Component</div>
-  <h1 class="sb-header__title">Button</h1>
-  <p class="sb-header__description">Five variants, three sizes, all states. Icon-only buttons enforce 44×44 touch target on mobile.</p>
-</header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Button</h1><p class="sb-header__description">Five variants (<code>primary / secondary / ghost / icon / link</code>), three sizes (32 / 40 / 48), and every state. Composed by <code>src/components/Button.jsx</code> and used site-wide — the "Sign Up Free" navbar CTA, hero "Start free" buttons, connector-card "Sign in" and the blog "Read more". Every trailing icon is an arrow that nudges right on hover.</p></header>
 
-<section class="sb-section">
-  <h2 class="sb-section__title">Variants</h2>
-  <div class="sb-preview" data-sb-state-target-id>
-    <div class="sb-preview-row">
-      <button class="ins-btn ins-btn--primary">Primary</button>
-      <button class="ins-btn ins-btn--secondary">Secondary</button>
-      <button class="ins-btn ins-btn--ghost">Ghost</button>
-      <button class="ins-btn ins-btn--icon" aria-label="Settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
-      <button class="ins-btn ins-btn--link">Inline link</button>
-    </div>
-  </div>
-</section>
+<section class="sb-section"><h2 class="sb-section__title">Variants</h2>
+<div class="sb-preview"><div class="sb-preview-row">
+  <button class="ins-btn ins-btn--primary">Start free</button>
+  <button class="ins-btn ins-btn--secondary">Sign in</button>
+  <button class="ins-btn ins-btn--ghost">Learn more</button>
+  <button class="ins-btn ins-btn--icon" aria-label="Settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+  <button class="ins-btn ins-btn--link">Read the docs</button>
+</div></div>
+<div class="sb-code"><pre>&lt;button class="ins-btn ins-btn--primary"&gt;Start free&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--secondary"&gt;Sign in&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--ghost"&gt;Learn more&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--icon" aria-label="Settings"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--link"&gt;Read the docs&lt;/button&gt;</pre></div></section>
 
-<section class="sb-section">
-  <h2 class="sb-section__title">Sizes</h2>
-  <div class="sb-preview">
-    <div class="sb-preview-row">
-      <button class="ins-btn ins-btn--primary ins-btn--sm">Small</button>
-      <button class="ins-btn ins-btn--primary ins-btn--md">Medium</button>
-      <button class="ins-btn ins-btn--primary ins-btn--lg">Large</button>
-    </div>
-  </div>
-</section>
+<section class="sb-section"><h2 class="sb-section__title">Sizes</h2>
+<p class="sb-section__description">Site convention: <code>sm</code> on connector cards ("Sign in"), <code>md</code> in body CTAs, <code>lg</code> in page heros.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:center">
+  <button class="ins-btn ins-btn--primary ins-btn--sm">Sign in</button>
+  <button class="ins-btn ins-btn--primary ins-btn--md">Get started</button>
+  <button class="ins-btn ins-btn--primary ins-btn--lg">Start free today</button>
+</div></div>
+<div class="sb-code"><pre>&lt;button class="ins-btn ins-btn--primary ins-btn--sm"&gt;Sign in&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--primary ins-btn--md"&gt;Get started&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--primary ins-btn--lg"&gt;Start free today&lt;/button&gt;</pre></div></section>
 
-<section class="sb-section">
-  <h2 class="sb-section__title">States (primary)</h2>
-  <div class="sb-preview">
-    <div class="sb-preview-row">
-      <div class="sb-specimen"><button class="ins-btn ins-btn--primary">Default</button><span class="sb-specimen__name">default</span></div>
-      <div class="sb-specimen"><button class="ins-btn ins-btn--primary" style="background:var(--ins-button-primary-bg-hover);">Hover</button><span class="sb-specimen__name">hover</span></div>
-      <div class="sb-specimen"><button class="ins-btn ins-btn--primary" style="background:var(--ins-button-primary-bg-active);">Active</button><span class="sb-specimen__name">active</span></div>
-      <div class="sb-specimen"><button class="ins-btn ins-btn--primary" style="box-shadow:var(--ins-focus-ring);">Focus</button><span class="sb-specimen__name">focus</span></div>
-      <div class="sb-specimen"><button class="ins-btn ins-btn--primary" disabled>Disabled</button><span class="sb-specimen__name">disabled</span></div>
-      <div class="sb-specimen"><button class="ins-btn ins-btn--primary is-loading">Saving…</button><span class="sb-specimen__name">loading</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="sb-section">
-  <h2 class="sb-section__title">States (secondary)</h2>
-  <div class="sb-preview">
-    <div class="sb-preview-row">
-      <button class="ins-btn ins-btn--secondary">Default</button>
-      <button class="ins-btn ins-btn--secondary" style="background:var(--ins-button-secondary-bg-hover); border-color:var(--ins-button-secondary-border-hover);">Hover</button>
-      <button class="ins-btn ins-btn--secondary" style="background:var(--ins-button-secondary-bg-active);">Active</button>
-      <button class="ins-btn ins-btn--secondary" style="box-shadow:var(--ins-focus-ring);">Focus</button>
-      <button class="ins-btn ins-btn--secondary" disabled>Disabled</button>
-    </div>
-  </div>
-</section>
-
-<section class="sb-section">
-  <h2 class="sb-section__title">HTML</h2>
-  <div class="sb-code"><pre>&lt;button class="ins-btn ins-btn--primary ins-btn--md"&gt;Primary&lt;/button&gt;
-&lt;button class="ins-btn ins-btn--secondary ins-btn--md"&gt;Secondary&lt;/button&gt;
-&lt;button class="ins-btn ins-btn--ghost ins-btn--md"&gt;Ghost&lt;/button&gt;
-&lt;button class="ins-btn ins-btn--icon" aria-label="Settings"&gt;
-  &lt;svg width="16" height="16" ...&gt;&lt;/svg&gt;
+<section class="sb-section"><h2 class="sb-section__title">With icons (leading &amp; trailing)</h2>
+<p class="sb-section__description">Every hero and bottom-CTA on the site pairs the label with a trailing <code>ArrowRightIcon</code> — it slides 3px right on hover/focus.</p>
+<div class="sb-preview"><div class="sb-preview-row">
+  <button class="ins-btn ins-btn--primary ins-btn--lg"><span class="ins-btn__icon ins-btn__icon--leading" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>Ask a question</button>
+  <button class="ins-btn ins-btn--primary"><span>Start free</span><span class="ins-btn__icon ins-btn__icon--trailing" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+  <button class="ins-btn ins-btn--secondary"><span>See pricing</span><span class="ins-btn__icon ins-btn__icon--trailing" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+</div></div>
+<div class="sb-code"><pre>&lt;button class="ins-btn ins-btn--primary ins-btn--lg"&gt;
+  &lt;span class="ins-btn__icon ins-btn__icon--leading" aria-hidden="true"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/span&gt;Ask a question
 &lt;/button&gt;
-&lt;button class="ins-btn ins-btn--link"&gt;Inline link&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--primary"&gt;
+  &lt;span&gt;Start free&lt;/span&gt;
+  &lt;span class="ins-btn__icon ins-btn__icon--trailing" aria-hidden="true"&gt;&lt;svg&gt;…arrow…&lt;/svg&gt;&lt;/span&gt;
+&lt;/button&gt;</pre></div></section>
 
-&lt;!-- Loading state: reserves min-width --&gt;
-&lt;button class="ins-btn ins-btn--primary is-loading"&gt;Saving&lt;/button&gt;</pre></div>
-</section>
+<section class="sb-section"><h2 class="sb-section__title">Rounding variants</h2>
+<p class="sb-section__description">Default is a full pill. Override with <code>--radius-sm / md / lg / pill</code> when a squarer control is needed.</p>
+<div class="sb-preview"><div class="sb-preview-row">
+  <button class="ins-btn ins-btn--secondary ins-btn--radius-sm">radius-sm</button>
+  <button class="ins-btn ins-btn--secondary ins-btn--radius-md">radius-md</button>
+  <button class="ins-btn ins-btn--secondary ins-btn--radius-lg">radius-lg</button>
+  <button class="ins-btn ins-btn--secondary ins-btn--radius-pill">radius-pill</button>
+</div></div>
+<div class="sb-code"><pre>&lt;button class="ins-btn ins-btn--secondary ins-btn--radius-sm"&gt;radius-sm&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--secondary ins-btn--radius-md"&gt;radius-md&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--secondary ins-btn--radius-lg"&gt;radius-lg&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--secondary ins-btn--radius-pill"&gt;radius-pill&lt;/button&gt;</pre></div></section>
 
-<section class="sb-section">
-  <h2 class="sb-section__title">Accessibility</h2>
-  <ul style="color:var(--ins-text-body); font-size:var(--ins-font-size-14); line-height:22px; padding-left:var(--ins-space-lg);">
-    <li>Icon-only buttons MUST include <code>aria-label</code></li>
-    <li>Loading buttons set <code>aria-busy="true"</code> and stay focusable; add <code>disabled</code> on submits</li>
-    <li>Touch target: minimum 44×44 on mobile (enforced by <code>.ins-btn--icon</code> min-width/height)</li>
-    <li>Focus ring: <code>--ins-focus-ring</code> applied via <code>:focus-visible</code> from base.css</li>
-  </ul>
-</section>
+<section class="sb-section"><h2 class="sb-section__title">States — primary</h2>
+<p class="sb-section__description">Hover / active / focus previews force the DS state tokens inline so the resting page can show them side by side.</p>
+<div class="sb-preview"><div class="sb-preview-row">
+  <div class="sb-specimen"><button class="ins-btn ins-btn--primary">Default</button><span class="sb-specimen__name">default</span></div>
+  <div class="sb-specimen"><button class="ins-btn ins-btn--primary" style="background:var(--ins-button-primary-bg-hover)">Hover</button><span class="sb-specimen__name">hover</span></div>
+  <div class="sb-specimen"><button class="ins-btn ins-btn--primary" style="background:var(--ins-button-primary-bg-active)">Active</button><span class="sb-specimen__name">active</span></div>
+  <div class="sb-specimen"><button class="ins-btn ins-btn--primary" style="box-shadow:var(--ins-focus-ring)">Focus</button><span class="sb-specimen__name">focus</span></div>
+  <div class="sb-specimen"><button class="ins-btn ins-btn--primary" disabled>Disabled</button><span class="sb-specimen__name">disabled</span></div>
+  <div class="sb-specimen"><button class="ins-btn ins-btn--primary is-loading">Saving…</button><span class="sb-specimen__name">loading</span></div>
+</div></div>
+<div class="sb-code"><pre>&lt;button class="ins-btn ins-btn--primary"&gt;Default&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--primary" disabled&gt;Disabled&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--primary is-loading"&gt;Saving…&lt;/button&gt;</pre></div></section>
 
-</main>
-</div>
+<section class="sb-section"><h2 class="sb-section__title">States — secondary, ghost &amp; link</h2>
+<div class="sb-preview"><div class="sb-preview-row">
+  <div class="sb-specimen"><button class="ins-btn ins-btn--secondary">Default</button><span class="sb-specimen__name">secondary</span></div>
+  <div class="sb-specimen"><button class="ins-btn ins-btn--secondary" disabled>Disabled</button><span class="sb-specimen__name">disabled</span></div>
+  <div class="sb-specimen"><button class="ins-btn ins-btn--ghost">Default</button><span class="sb-specimen__name">ghost</span></div>
+  <div class="sb-specimen"><button class="ins-btn ins-btn--ghost" disabled>Disabled</button><span class="sb-specimen__name">disabled</span></div>
+  <div class="sb-specimen"><button class="ins-btn ins-btn--link">Inline link</button><span class="sb-specimen__name">link</span></div>
+  <div class="sb-specimen"><button class="ins-btn ins-btn--link" disabled>Inline link</button><span class="sb-specimen__name">disabled</span></div>
+</div></div>
+<div class="sb-code"><pre>&lt;button class="ins-btn ins-btn--secondary" disabled&gt;Disabled&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--ghost"&gt;Default&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--link"&gt;Inline link&lt;/button&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Icon button — sizes</h2>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:center">
+  <button class="ins-btn ins-btn--icon ins-btn--sm" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <button class="ins-btn ins-btn--icon ins-btn--md" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <button class="ins-btn ins-btn--icon ins-btn--lg" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+</div></div>
+<div class="sb-code"><pre>&lt;button class="ins-btn ins-btn--icon ins-btn--sm" aria-label="Close"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--icon ins-btn--md" aria-label="Close"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--icon ins-btn--lg" aria-label="Close"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/button&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-btn</code></td><td>Base pill button — 40px tall, inline-flex, wide letter-spacing.</td></tr>
+<tr><td><code>.ins-btn--primary</code></td><td>Teal fill, the main site CTA ("Start free", "Sign Up Free").</td></tr>
+<tr><td><code>.ins-btn--secondary</code></td><td>Outlined / bordered button ("Sign in", "See pricing").</td></tr>
+<tr><td><code>.ins-btn--ghost</code></td><td>Transparent; background appears only on hover/active.</td></tr>
+<tr><td><code>.ins-btn--icon</code></td><td>Square icon-only button (40px; 44×44 min on mobile). Needs <code>aria-label</code>.</td></tr>
+<tr><td><code>.ins-btn--link</code></td><td>Inline text link with underline at 30% opacity; intensifies on hover.</td></tr>
+<tr><td><code>.ins-btn--sm / --md / --lg</code></td><td>Sizes: 32 / 40 / 48px tall (icon scales 12 / 16 / 20px).</td></tr>
+<tr><td><code>.ins-btn--radius-sm / md / lg / pill</code></td><td>Override the default pill rounding.</td></tr>
+<tr><td><code>.ins-btn__icon</code></td><td>Icon slot; sized consistently across button sizes.</td></tr>
+<tr><td><code>.ins-btn__icon--leading</code></td><td>Icon before the label (negative right margin tightens the gap).</td></tr>
+<tr><td><code>.ins-btn__icon--trailing</code></td><td>Icon after the label; nudges 3px right on hover/focus.</td></tr>
+<tr><td><code>.is-loading</code></td><td>Loading — hides label, shows a centered spinner, preserves width.</td></tr>
+<tr><td><code>:disabled / [aria-disabled="true"]</code></td><td>Disabled — no pointer events; use aria-disabled on anchor buttons.</td></tr>
+</tbody></table></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Usage</h2>
+<p class="sb-section__description">Composed by <code>src/components/Button.jsx</code>. Live instances: navbar "Sign Up Free" (<code>src/main.jsx</code>), page heros with trailing arrow (<code>src/pages/ai-chat.jsx</code>, <code>about-insightis.jsx</code>, <code>finance-teams.jsx</code>), <code>ins-btn--secondary ins-btn--sm</code> on connector cards (<code>src/components/ConnectorCard.jsx</code>, <code>src/pages/connectors.jsx</code>), and the 404 "Back to home" / "See pricing" pair (<code>src/pages/not-found.jsx</code>).</p></section>
+
+</main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
-<script src="../assets/storybook.js"></script>
-</body></html>
+<script src="../assets/storybook.js"></script></body></html>

@@ -5,31 +5,78 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Select</h1><p class="sb-header__description">Native styled dropdown. On mobile, native UI falls back to OS picker — keeps familiar UX.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Select</h1><p class="sb-header__description">Native <code>&lt;select&gt;</code> styled to match Input — defined in <code>ds/components/input.css</code>. Native chevron is suppressed (<code>appearance:none</code>) and replaced by an inline SVG data-URI arrow with extra right padding. Same 40px height, three sizes, and <code>disabled &gt; error &gt; focus &gt; hover</code> state priority as the other fields.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Default</h2>
+<div class="sb-preview"><div style="max-width:320px">
+  <select class="ins-select" aria-label="Team">
+    <option>RevOps &amp; BizOps</option>
+    <option>Finance</option>
+    <option>Marketing</option>
+    <option>Product &amp; Analytics</option>
+  </select>
+</div></div>
+<div class="sb-code"><pre>&lt;select class="ins-select" aria-label="Team"&gt;
+  &lt;option&gt;RevOps &amp; BizOps&lt;/option&gt;
+  &lt;option&gt;Finance&lt;/option&gt;
+  &lt;option&gt;Marketing&lt;/option&gt;
+  &lt;option&gt;Product &amp; Analytics&lt;/option&gt;
+&lt;/select&gt;</pre></div></section>
 
 <section class="sb-section"><h2 class="sb-section__title">Sizes</h2>
-<div class="sb-preview"><div style="display:flex; flex-direction:column; gap:var(--ins-space-md); max-width:320px;">
-  <select class="ins-select ins-select--sm"><option>Small</option><option>Option 2</option></select>
-  <select class="ins-select"><option>Medium (default)</option><option>Option 2</option></select>
-  <select class="ins-select ins-select--lg"><option>Large</option><option>Option 2</option></select>
-</div></div></section>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:center;flex-wrap:wrap">
+  <select class="ins-select ins-select--sm" aria-label="Range (small)" style="max-width:220px"><option>Last 7 days</option><option>Last 30 days</option></select>
+  <select class="ins-select" aria-label="Range (medium)" style="max-width:220px"><option>Last 7 days</option><option>Last 30 days</option></select>
+  <select class="ins-select ins-select--lg" aria-label="Range (large)" style="max-width:220px"><option>Last 7 days</option><option>Last 30 days</option></select>
+</div></div>
+<div class="sb-code"><pre>&lt;select class="ins-select ins-select--sm"&gt;…&lt;/select&gt;
+&lt;select class="ins-select"&gt;…&lt;/select&gt;
+&lt;select class="ins-select ins-select--lg"&gt;…&lt;/select&gt;</pre></div></section>
 
 <section class="sb-section"><h2 class="sb-section__title">States</h2>
-<div class="sb-preview"><div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:var(--ins-space-md);">
-  <div class="sb-specimen"><select class="ins-select"><option>Default</option></select><span class="sb-specimen__name">default</span></div>
-  <div class="sb-specimen"><select class="ins-select" style="border-color:var(--ins-border-focus); box-shadow:var(--ins-focus-ring);"><option>Focused</option></select><span class="sb-specimen__name">focus</span></div>
-  <div class="sb-specimen"><select class="ins-select is-error"><option>Invalid</option></select><span class="sb-specimen__name">error</span></div>
-  <div class="sb-specimen"><select class="ins-select" disabled><option>Disabled</option></select><span class="sb-specimen__name">disabled</span></div>
-</div></div></section>
+<div class="sb-preview"><div style="display:grid;gap:var(--ins-space-lg);max-width:320px">
+  <select class="ins-select" aria-label="Default"><option>Snowflake</option><option>BigQuery</option><option>Redshift</option></select>
+  <select class="ins-select" aria-label="Focus" style="border-color:var(--ins-border-focus);box-shadow:var(--ins-focus-ring)"><option>Snowflake</option></select>
+  <select class="ins-select is-error" aria-invalid="true" aria-label="Error"><option>Choose a warehouse…</option></select>
+  <select class="ins-select" aria-label="Disabled" disabled><option>Snowflake</option></select>
+</div></div>
+<div class="sb-code"><pre>&lt;select class="ins-select"&gt;…&lt;/select&gt;
+&lt;select class="ins-select" style="border-color:var(--ins-border-focus);box-shadow:var(--ins-focus-ring)"&gt;…&lt;/select&gt;
+&lt;select class="ins-select is-error" aria-invalid="true"&gt;…&lt;/select&gt;
+&lt;select class="ins-select" disabled&gt;…&lt;/select&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;select class="ins-select"&gt;
-  &lt;option&gt;United States&lt;/option&gt;
-  &lt;option&gt;Canada&lt;/option&gt;
-  &lt;option&gt;Mexico&lt;/option&gt;
-&lt;/select&gt;
+<section class="sb-section"><h2 class="sb-section__title">In a form group</h2>
+<div class="sb-preview"><div class="ins-form-group" style="max-width:320px">
+  <label class="ins-form-group__label" for="sel-src">Primary data source</label>
+  <select class="ins-select" id="sel-src">
+    <option>Stripe</option>
+    <option>HubSpot</option>
+    <option>Salesforce</option>
+    <option>Snowflake</option>
+  </select>
+  <span class="ins-form-group__hint">Connect more later from the Integrations page.</span>
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-form-group"&gt;
+  &lt;label class="ins-form-group__label" for="sel-src"&gt;Primary data source&lt;/label&gt;
+  &lt;select class="ins-select" id="sel-src"&gt;
+    &lt;option&gt;Stripe&lt;/option&gt;
+    &lt;option&gt;HubSpot&lt;/option&gt;
+    …
+  &lt;/select&gt;
+  &lt;span class="ins-form-group__hint"&gt;Connect more later from the Integrations page.&lt;/span&gt;
+&lt;/div&gt;</pre></div></section>
 
-&lt;select class="ins-select is-error" aria-invalid="true"&gt;...&lt;/select&gt;</pre></div></section>
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-select</code></td><td>Base native select — suppresses the OS chevron, draws its own SVG arrow with right padding.</td></tr>
+<tr><td><code>.ins-select--sm / --lg</code></td><td>32px (14px text) / 48px sizes.</td></tr>
+<tr><td><code>.is-error</code></td><td>Error — red border + red ring; pair with <code>aria-invalid</code>.</td></tr>
+<tr><td><code>:disabled</code></td><td>Transparent fill, muted border/text, not-allowed cursor.</td></tr>
+<tr><td><code>:hover / :focus-visible</code></td><td>Prominent border on hover; teal border + subtle ring on focus (global outline suppressed).</td></tr>
+</tbody></table></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Usage</h2>
+<p class="sb-section__description">Built from the shared <code>ds/components/input.css</code> Select rules. Option copy mirrors real product taxonomy — team audiences, warehouses (Snowflake / BigQuery / Redshift) and connectors (Stripe / HubSpot / Salesforce) used across the Integrations and Solutions pages.</p></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

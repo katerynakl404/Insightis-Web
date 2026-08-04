@@ -5,52 +5,142 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Stat / KPI</h1><p class="sb-header__description">Label + large number + optional delta trend. Tabular-nums to keep widths stable across updates.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Stat / KPI</h1><p class="sb-header__description">Two related pieces. <code>.ins-stat-kpi</code> is a single figure — uppercase label, oversized tabular value, optional mono delta (positive/negative). <code>.ins-stat-strip</code> is the bordered "by the numbers" band that carries four of them across a row with vertical dividers. The strip is the live <code>&lt;StatStrip&gt;</code> on the homepage ("What you get with Insightis") and the About hero.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Single stat</h2>
-<div class="sb-preview"><div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:var(--ins-space-xl);">
-
+<section class="sb-section"><h2 class="sb-section__title">Single KPI</h2>
+<p class="sb-section__description">Label + value stack. The value drops to 36px on mobile, 48px from the <code>md</code> breakpoint, and uses tabular numerals so digits don't jitter.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="gap:var(--ins-space-2xl)">
   <div class="ins-stat-kpi">
-    <span class="ins-stat-kpi__label">Customers</span>
-    <div class="ins-stat-kpi__value">2,400</div>
+    <span class="ins-stat-kpi__label">Monthly churn</span>
+    <span class="ins-stat-kpi__value">2.1%</span>
   </div>
-
   <div class="ins-stat-kpi">
-    <span class="ins-stat-kpi__label">Monthly revenue</span>
-    <div class="ins-stat-kpi__value">$148K</div>
-    <span class="ins-stat-kpi__delta ins-stat-kpi__delta--positive">▲ 12.4%</span>
+    <span class="ins-stat-kpi__label">MRR</span>
+    <span class="ins-stat-kpi__value">$284k</span>
   </div>
-
-  <div class="ins-stat-kpi">
-    <span class="ins-stat-kpi__label">Churn rate</span>
-    <div class="ins-stat-kpi__value">3.2%</div>
-    <span class="ins-stat-kpi__delta ins-stat-kpi__delta--negative">▼ 0.8%</span>
-  </div>
-
-</div></div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">Stat strip (bordered)</h2>
-<div class="sb-preview">
-  <div class="ins-stat-strip">
-    <div class="ins-stat-kpi"><span class="ins-stat-kpi__label">Customers</span><div class="ins-stat-kpi__value">2,400+</div></div>
-    <div class="ins-stat-kpi"><span class="ins-stat-kpi__label">Queries / day</span><div class="ins-stat-kpi__value">1.2M</div></div>
-    <div class="ins-stat-kpi"><span class="ins-stat-kpi__label">Accuracy</span><div class="ins-stat-kpi__value">98.4%</div></div>
-    <div class="ins-stat-kpi"><span class="ins-stat-kpi__label">Avg. latency</span><div class="ins-stat-kpi__value">1.8s</div></div>
-  </div>
-</div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+</div></div>
 <div class="sb-code"><pre>&lt;div class="ins-stat-kpi"&gt;
-  &lt;span class="ins-stat-kpi__label"&gt;Monthly revenue&lt;/span&gt;
-  &lt;div class="ins-stat-kpi__value"&gt;$148K&lt;/div&gt;
-  &lt;span class="ins-stat-kpi__delta ins-stat-kpi__delta--positive"&gt;▲ 12.4%&lt;/span&gt;
+  &lt;span class="ins-stat-kpi__label"&gt;Monthly churn&lt;/span&gt;
+  &lt;span class="ins-stat-kpi__value"&gt;2.1%&lt;/span&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">With delta</h2>
+<p class="sb-section__description">The mono <code>__delta</code> sits under the value. <code>--positive</code> uses the success color, <code>--negative</code> the error color. Pair with an inline arrow SVG.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="gap:var(--ins-space-2xl)">
+  <div class="ins-stat-kpi">
+    <span class="ins-stat-kpi__label">Churn vs last month</span>
+    <span class="ins-stat-kpi__value">2.1%</span>
+    <span class="ins-stat-kpi__delta ins-stat-kpi__delta--positive">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+      0.7pp lower
+    </span>
+  </div>
+  <div class="ins-stat-kpi">
+    <span class="ins-stat-kpi__label">CAC vs last quarter</span>
+    <span class="ins-stat-kpi__value">$412</span>
+    <span class="ins-stat-kpi__delta ins-stat-kpi__delta--negative">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+      8% higher
+    </span>
+  </div>
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-stat-kpi"&gt;
+  &lt;span class="ins-stat-kpi__label"&gt;Churn vs last month&lt;/span&gt;
+  &lt;span class="ins-stat-kpi__value"&gt;2.1%&lt;/span&gt;
+  &lt;span class="ins-stat-kpi__delta ins-stat-kpi__delta--positive"&gt;
+    &lt;svg&gt;…&lt;/svg&gt; 0.7pp lower
+  &lt;/span&gt;
 &lt;/div&gt;
 
-&lt;!-- Bordered strip (auto-divides on desktop) --&gt;
-&lt;div class="ins-stat-strip"&gt;
-  &lt;div class="ins-stat-kpi"&gt;...&lt;/div&gt;
-  &lt;div class="ins-stat-kpi"&gt;...&lt;/div&gt;
+&lt;span class="ins-stat-kpi__delta ins-stat-kpi__delta--negative"&gt;…8% higher&lt;/span&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Stat strip — "By the numbers"</h2>
+<p class="sb-section__description">The bordered surface band from <code>card.css</code>: a 2-col grid on mobile, four equal columns split by vertical dividers from the <code>md</code> breakpoint. This is the live <code>&lt;StatStrip&gt;</code> — copy verbatim from <code>src/main.jsx</code> (the homepage figures count up on scroll via <code>AnimatedStat</code>).</p>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-stat-strip">
+    <div class="ins-stat-strip__item">
+      <p class="ins-stat-strip__value">200+</p>
+      <p class="ins-stat-strip__label">Connectors</p>
+      <p class="ins-stat-strip__sub">supported out-of-the-box</p>
+    </div>
+    <div class="ins-stat-strip__item">
+      <p class="ins-stat-strip__value">500+</p>
+      <p class="ins-stat-strip__label">Pre-built metrics</p>
+      <p class="ins-stat-strip__sub">auto-mapped from your tools</p>
+    </div>
+    <div class="ins-stat-strip__item">
+      <p class="ins-stat-strip__value">28</p>
+      <p class="ins-stat-strip__label">Years of data tooling</p>
+      <p class="ins-stat-strip__sub">built by the Devart team</p>
+    </div>
+    <div class="ins-stat-strip__item">
+      <p class="ins-stat-strip__value">40,000+</p>
+      <p class="ins-stat-strip__label">Companies</p>
+      <p class="ins-stat-strip__sub">rely on Devart data tools</p>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-stat-strip"&gt;
+  &lt;div class="ins-stat-strip__item"&gt;
+    &lt;p class="ins-stat-strip__value"&gt;200+&lt;/p&gt;
+    &lt;p class="ins-stat-strip__label"&gt;Connectors&lt;/p&gt;
+    &lt;p class="ins-stat-strip__sub"&gt;supported out-of-the-box&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-stat-strip__item"&gt;
+    &lt;p class="ins-stat-strip__value"&gt;500+&lt;/p&gt;
+    &lt;p class="ins-stat-strip__label"&gt;Pre-built metrics&lt;/p&gt;
+    &lt;p class="ins-stat-strip__sub"&gt;auto-mapped from your tools&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-stat-strip__item"&gt;
+    &lt;p class="ins-stat-strip__value"&gt;28&lt;/p&gt;
+    &lt;p class="ins-stat-strip__label"&gt;Years of data tooling&lt;/p&gt;
+    &lt;p class="ins-stat-strip__sub"&gt;built by the Devart team&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-stat-strip__item"&gt;
+    &lt;p class="ins-stat-strip__value"&gt;40,000+&lt;/p&gt;
+    &lt;p class="ins-stat-strip__label"&gt;Companies&lt;/p&gt;
+    &lt;p class="ins-stat-strip__sub"&gt;rely on Devart data tools&lt;/p&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Strip of KPIs (stat-kpi.css variant)</h2>
+<p class="sb-section__description"><code>stat-kpi.css</code> also defines a lighter <code>.ins-stat-strip</code> that lays out bare <code>.ins-stat-kpi</code> children as an auto-fit column flow, adding a left divider between figures from the <code>md</code> breakpoint. Use it when you want raw KPIs without the bordered surface.</p>
+<div class="sb-preview">
+  <div class="ins-stat-strip">
+    <div class="ins-stat-kpi">
+      <span class="ins-stat-kpi__label">Questions answered</span>
+      <span class="ins-stat-kpi__value">1.2M</span>
+    </div>
+    <div class="ins-stat-kpi">
+      <span class="ins-stat-kpi__label">Avg. time to answer</span>
+      <span class="ins-stat-kpi__value">4s</span>
+    </div>
+    <div class="ins-stat-kpi">
+      <span class="ins-stat-kpi__label">Accuracy on your data</span>
+      <span class="ins-stat-kpi__value">3&times;</span>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-stat-strip"&gt;
+  &lt;div class="ins-stat-kpi"&gt;&lt;span class="ins-stat-kpi__label"&gt;Questions answered&lt;/span&gt;&lt;span class="ins-stat-kpi__value"&gt;1.2M&lt;/span&gt;&lt;/div&gt;
+  &lt;div class="ins-stat-kpi"&gt;…&lt;/div&gt;
+  &lt;div class="ins-stat-kpi"&gt;…&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-stat-kpi</code></td><td>One figure: vertical label/value/delta stack.</td></tr>
+<tr><td><code>.ins-stat-kpi__label</code></td><td>Uppercase 11px inactive-color label.</td></tr>
+<tr><td><code>.ins-stat-kpi__value</code></td><td>36px (48px from <code>md</code>) 700-weight value, tight tracking, tabular numerals.</td></tr>
+<tr><td><code>.ins-stat-kpi__delta</code></td><td>Mono 12px inline delta with an arrow icon.</td></tr>
+<tr><td><code>.ins-stat-kpi__delta--positive</code></td><td>Success color (improvement).</td></tr>
+<tr><td><code>.ins-stat-kpi__delta--negative</code></td><td>Error color (regression).</td></tr>
+<tr><td><code>.ins-stat-strip</code></td><td>The "by the numbers" band (<code>card.css</code>): bordered surface, 2-col → 4-col grid with vertical dividers. Also a lighter KPI-flow layout in <code>stat-kpi.css</code>.</td></tr>
+<tr><td><code>.ins-stat-strip__item</code></td><td>One centered column inside the band.</td></tr>
+<tr><td><code>.ins-stat-strip__value</code></td><td>Teal 36px/48px count-up figure.</td></tr>
+<tr><td><code>.ins-stat-strip__label</code></td><td>Heading-color label under the value.</td></tr>
+<tr><td><code>.ins-stat-strip__sub</code></td><td>Optional 12px body sub-label.</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

@@ -5,31 +5,70 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Breadcrumbs</h1><p class="sb-header__description">Location trail. Last item is the current page (not a link, <code>aria-current="page"</code>).</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Breadcrumbs</h1><p class="sb-header__description">Compact trail showing where a page sits in the hierarchy. Anchor crumbs navigate; a plain <code>&lt;span&gt;</code> marks the current page with <code>aria-current="page"</code>; a <code>&lt;button&gt;</code> crumb variant is used for SPA navigation. Live on Docs (<code>src/pages/docs.jsx</code>) and every blog article (<code>src/components/BlogPost.jsx</code>).</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Default</h2>
+<section class="sb-section"><h2 class="sb-section__title">Blog article (link crumbs)</h2>
+<p class="sb-section__description">Exactly the trail every article renders — Home / Blog — with the article title intentionally omitted. Wrapped in a <code>&lt;div role="navigation"&gt;</code> to sidestep the global <code>nav {…}</code> prose rule.</p>
 <div class="sb-preview">
-  <nav aria-label="Breadcrumb"><ol class="ins-breadcrumbs">
-    <li class="ins-breadcrumbs__item"><a href="#">Home</a></li>
-    <li class="ins-breadcrumbs__item"><span class="ins-breadcrumbs__separator">/</span><a href="#">Solutions</a></li>
-    <li class="ins-breadcrumbs__item"><span class="ins-breadcrumbs__separator">/</span><a href="#">Data teams</a></li>
-    <li class="ins-breadcrumbs__item" aria-current="page"><span class="ins-breadcrumbs__separator">/</span>Pricing</li>
-  </ol></nav>
-</div></section>
+  <div class="ins-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    <span class="ins-breadcrumbs__item"><a href="#">Home</a></span>
+    <span class="ins-breadcrumbs__separator" aria-hidden="true">/</span>
+    <span class="ins-breadcrumbs__item"><a href="#">Blog</a></span>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-breadcrumbs" role="navigation" aria-label="Breadcrumb"&gt;
+  &lt;span class="ins-breadcrumbs__item"&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/span&gt;
+  &lt;span class="ins-breadcrumbs__separator" aria-hidden="true"&gt;/&lt;/span&gt;
+  &lt;span class="ins-breadcrumbs__item"&gt;&lt;a href="/blog/"&gt;Blog&lt;/a&gt;&lt;/span&gt;
+&lt;/div&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;nav aria-label="Breadcrumb"&gt;
-  &lt;ol class="ins-breadcrumbs"&gt;
-    &lt;li class="ins-breadcrumbs__item"&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="ins-breadcrumbs__item"&gt;
-      &lt;span class="ins-breadcrumbs__separator"&gt;/&lt;/span&gt;
-      &lt;a href="/solutions"&gt;Solutions&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li class="ins-breadcrumbs__item" aria-current="page"&gt;
-      &lt;span class="ins-breadcrumbs__separator"&gt;/&lt;/span&gt;Pricing
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/nav&gt;</pre></div></section>
+<section class="sb-section"><h2 class="sb-section__title">Docs trail (with current page)</h2>
+<p class="sb-section__description">The Docs breadcrumb: navigable crumbs plus a final non-link crumb carrying <code>aria-current="page"</code>.</p>
+<div class="sb-preview">
+  <div class="ins-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    <span class="ins-breadcrumbs__item"><a href="#">Docs</a></span>
+    <span class="ins-breadcrumbs__separator" aria-hidden="true">/</span>
+    <span class="ins-breadcrumbs__item"><a href="#">Platform</a></span>
+    <span class="ins-breadcrumbs__separator" aria-hidden="true">/</span>
+    <span class="ins-breadcrumbs__item" aria-current="page">Semantic Layer</span>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-breadcrumbs" role="navigation" aria-label="Breadcrumb"&gt;
+  &lt;span class="ins-breadcrumbs__item"&gt;&lt;a href="#"&gt;Docs&lt;/a&gt;&lt;/span&gt;
+  &lt;span class="ins-breadcrumbs__separator" aria-hidden="true"&gt;/&lt;/span&gt;
+  &lt;span class="ins-breadcrumbs__item"&gt;&lt;a href="#"&gt;Platform&lt;/a&gt;&lt;/span&gt;
+  &lt;span class="ins-breadcrumbs__separator" aria-hidden="true"&gt;/&lt;/span&gt;
+  &lt;span class="ins-breadcrumbs__item" aria-current="page"&gt;Semantic Layer&lt;/span&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Button crumbs (SPA navigation)</h2>
+<p class="sb-section__description">When crumbs drive client-side routing rather than full page loads, Docs renders them as <code>&lt;button class="ins-breadcrumbs__item"&gt;</code> — reset to look identical to the link crumbs.</p>
+<div class="sb-preview">
+  <div class="ins-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    <button type="button" class="ins-breadcrumbs__item">Docs</button>
+    <span class="ins-breadcrumbs__separator" aria-hidden="true">/</span>
+    <button type="button" class="ins-breadcrumbs__item">Guides</button>
+    <span class="ins-breadcrumbs__separator" aria-hidden="true">/</span>
+    <span class="ins-breadcrumbs__item" aria-current="page">Connect a data source</span>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-breadcrumbs" role="navigation" aria-label="Breadcrumb"&gt;
+  &lt;button type="button" class="ins-breadcrumbs__item"&gt;Docs&lt;/button&gt;
+  &lt;span class="ins-breadcrumbs__separator" aria-hidden="true"&gt;/&lt;/span&gt;
+  &lt;button type="button" class="ins-breadcrumbs__item"&gt;Guides&lt;/button&gt;
+  &lt;span class="ins-breadcrumbs__separator" aria-hidden="true"&gt;/&lt;/span&gt;
+  &lt;span class="ins-breadcrumbs__item" aria-current="page"&gt;Connect a data source&lt;/span&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-breadcrumbs</code></td><td>Flex, wrapping trail; small muted type.</td></tr>
+<tr><td><code>.ins-breadcrumbs__item</code></td><td>One crumb. As a <code>&lt;span&gt;</code> wrapping an <code>&lt;a&gt;</code> for links, or a bare span for the current page.</td></tr>
+<tr><td><code>.ins-breadcrumbs__item a</code></td><td>Link crumb — body color, teal on hover.</td></tr>
+<tr><td><code>.ins-breadcrumbs__item[aria-current="page"]</code></td><td>Current page crumb — body color, not a link.</td></tr>
+<tr><td><code>button.ins-breadcrumbs__item</code></td><td>Clickable crumb as a reset <code>&lt;button&gt;</code> (SPA navigation); teal on hover.</td></tr>
+<tr><td><code>.ins-breadcrumbs__separator</code></td><td>Muted <code>/</code> divider between crumbs (mark <code>aria-hidden</code>).</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

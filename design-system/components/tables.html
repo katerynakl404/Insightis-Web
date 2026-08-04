@@ -5,51 +5,90 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Table</h1><p class="sb-header__description">Simple data table. Row hover, sticky header. Horizontal scroll on mobile.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Table</h1><p class="sb-header__description">Bordered, horizontally-scrollable data table. The <code>.ins-table-wrap</code> supplies the rounded border and overflow; <code>.ins-table</code> the collapsed grid with sticky uppercase headers, per-row bottom borders and a hover row. Modifiers add zebra striping (<code>--striped</code>) and denser padding (<code>--compact</code>). Copy below is the real plan comparison from <code>src/pages/pricing.jsx</code> / <code>src/data/pricing.js</code>.</p></header>
 
 <section class="sb-section"><h2 class="sb-section__title">Default</h2>
-<div class="sb-preview">
+<p class="sb-section__description">Always wrap the table in <code>.ins-table-wrap</code> — that's what rounds the corners and lets the table scroll on narrow screens. Headers stick to the top of the scroll area.</p>
+<div class="sb-preview sb-preview--fullbleed">
   <div class="ins-table-wrap">
     <table class="ins-table">
-      <thead><tr><th>Name</th><th>Plan</th><th>Status</th><th>MRR</th></tr></thead>
+      <thead><tr><th>Feature</th><th>Free</th><th>Starter</th><th>Pro</th></tr></thead>
       <tbody>
-        <tr><td>Acme Co.</td><td>Team</td><td><span class="ins-badge ins-badge--success">Active</span></td><td>$1,200</td></tr>
-        <tr><td>Widgets Inc.</td><td>Enterprise</td><td><span class="ins-badge ins-badge--success">Active</span></td><td>$8,400</td></tr>
-        <tr><td>Acme Solutions</td><td>Starter</td><td><span class="ins-badge ins-badge--warning">Past due</span></td><td>$29</td></tr>
-        <tr><td>Brightlab</td><td>Team</td><td><span class="ins-badge ins-badge--error">Churned</span></td><td>—</td></tr>
+        <tr><td>AI tokens</td><td>500 / mo</td><td>5,000 / mo</td><td>15,000 / mo</td></tr>
+        <tr><td>Data connectors</td><td>1</td><td>Up to 10</td><td>Unlimited</td></tr>
+        <tr><td>Metrics</td><td>Built-in</td><td>Built-in + Custom</td><td>Built-in + Custom</td></tr>
+        <tr><td>Support</td><td>Community</td><td>Standard</td><td>Priority</td></tr>
       </tbody>
     </table>
   </div>
-</div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">Compact + striped</h2>
-<div class="sb-preview">
-  <div class="ins-table-wrap">
-    <table class="ins-table ins-table--compact ins-table--striped">
-      <thead><tr><th>#</th><th>Event</th><th>Time</th></tr></thead>
-      <tbody>
-        <tr><td>01</td><td>User signed up</td><td>12:03</td></tr>
-        <tr><td>02</td><td>Viewed pricing</td><td>12:05</td></tr>
-        <tr><td>03</td><td>Clicked CTA</td><td>12:07</td></tr>
-        <tr><td>04</td><td>Started trial</td><td>12:09</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+</div>
 <div class="sb-code"><pre>&lt;div class="ins-table-wrap"&gt;
   &lt;table class="ins-table"&gt;
-    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Plan&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Feature&lt;/th&gt;&lt;th&gt;Free&lt;/th&gt;&lt;th&gt;Starter&lt;/th&gt;&lt;th&gt;Pro&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
     &lt;tbody&gt;
-      &lt;tr&gt;&lt;td&gt;Acme&lt;/td&gt;&lt;td&gt;Team&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;AI tokens&lt;/td&gt;&lt;td&gt;500 / mo&lt;/td&gt;&lt;td&gt;5,000 / mo&lt;/td&gt;&lt;td&gt;15,000 / mo&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Data connectors&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;Up to 10&lt;/td&gt;&lt;td&gt;Unlimited&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Metrics&lt;/td&gt;&lt;td&gt;Built-in&lt;/td&gt;&lt;td&gt;Built-in + Custom&lt;/td&gt;&lt;td&gt;Built-in + Custom&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Support&lt;/td&gt;&lt;td&gt;Community&lt;/td&gt;&lt;td&gt;Standard&lt;/td&gt;&lt;td&gt;Priority&lt;/td&gt;&lt;/tr&gt;
     &lt;/tbody&gt;
   &lt;/table&gt;
-&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
 
-&lt;!-- Variants --&gt;
-&lt;table class="ins-table ins-table--compact"&gt;...&lt;/table&gt;
-&lt;table class="ins-table ins-table--striped"&gt;...&lt;/table&gt;</pre></div></section>
+<section class="sb-section"><h2 class="sb-section__title">Striped</h2>
+<p class="sb-section__description"><code>--striped</code> tints even rows; the hover background still wins on every row.</p>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-table-wrap">
+    <table class="ins-table ins-table--striped">
+      <thead><tr><th>Connector</th><th>Category</th><th>Access</th></tr></thead>
+      <tbody>
+        <tr><td>PostgreSQL</td><td>Database</td><td>Read-only</td></tr>
+        <tr><td>Stripe</td><td>Billing</td><td>Read-only</td></tr>
+        <tr><td>Snowflake</td><td>Warehouse</td><td>Read-only</td></tr>
+        <tr><td>Salesforce</td><td>CRM</td><td>Read-only</td></tr>
+        <tr><td>Google Analytics</td><td>Product</td><td>Read-only</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;table class="ins-table ins-table--striped"&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Connector&lt;/th&gt;&lt;th&gt;Category&lt;/th&gt;&lt;th&gt;Access&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;PostgreSQL&lt;/td&gt;&lt;td&gt;Database&lt;/td&gt;&lt;td&gt;Read-only&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Stripe&lt;/td&gt;&lt;td&gt;Billing&lt;/td&gt;&lt;td&gt;Read-only&lt;/td&gt;&lt;/tr&gt;
+    …
+  &lt;/tbody&gt;
+&lt;/table&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Compact</h2>
+<p class="sb-section__description"><code>--compact</code> drops header and cell padding to <code>sm / md</code> for dense reference tables. Combines with <code>--striped</code>.</p>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-table-wrap">
+    <table class="ins-table ins-table--compact ins-table--striped">
+      <thead><tr><th>Metric</th><th>Value</th><th>vs last month</th></tr></thead>
+      <tbody>
+        <tr><td>Monthly churn</td><td>2.1%</td><td>0.7pp lower</td></tr>
+        <tr><td>MRR</td><td>$284k</td><td>4.2% higher</td></tr>
+        <tr><td>CAC</td><td>$412</td><td>8% higher</td></tr>
+        <tr><td>New accounts</td><td>128</td><td>12 more</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;table class="ins-table ins-table--compact ins-table--striped"&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Metric&lt;/th&gt;&lt;th&gt;Value&lt;/th&gt;&lt;th&gt;vs last month&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Monthly churn&lt;/td&gt;&lt;td&gt;2.1%&lt;/td&gt;&lt;td&gt;0.7pp lower&lt;/td&gt;&lt;/tr&gt;
+    …
+  &lt;/tbody&gt;
+&lt;/table&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-table-wrap</code></td><td>Required scroll container: rounded <code>lg</code> border + horizontal overflow.</td></tr>
+<tr><td><code>.ins-table</code></td><td>Collapsed 14px table; sticky uppercase <code>thead th</code>, per-row bottom borders, hover row.</td></tr>
+<tr><td><code>.ins-table--striped</code></td><td>Zebra-tints even body rows; hover still wins.</td></tr>
+<tr><td><code>.ins-table--compact</code></td><td>Reduces header/cell padding to <code>sm / md</code>.</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

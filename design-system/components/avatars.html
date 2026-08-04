@@ -5,56 +5,77 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Avatar</h1><p class="sb-header__description">Five sizes, with optional status dot and grouping. Falls back to initials when no image.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Avatar</h1><p class="sb-header__description">Circular user token holding an image or initials. Five sizes (xs 16 → xl 64), an optional corner status dot in four states, and an overlapping <code>avatar-group</code> stack.</p></header>
 
 <section class="sb-section"><h2 class="sb-section__title">Sizes</h2>
-<div class="sb-preview"><div class="sb-preview-row" style="align-items:flex-end;">
-  <div class="sb-specimen"><div class="ins-avatar ins-avatar--xs">JK</div><span class="sb-specimen__name">xs · 16</span></div>
-  <div class="sb-specimen"><div class="ins-avatar ins-avatar--sm">JK</div><span class="sb-specimen__name">sm · 24</span></div>
-  <div class="sb-specimen"><div class="ins-avatar ins-avatar--md">JK</div><span class="sb-specimen__name">md · 32 (default)</span></div>
-  <div class="sb-specimen"><div class="ins-avatar ins-avatar--lg">JK</div><span class="sb-specimen__name">lg · 40</span></div>
-  <div class="sb-specimen"><div class="ins-avatar ins-avatar--xl">JK</div><span class="sb-specimen__name">xl · 64</span></div>
-</div></div></section>
+<p class="sb-section__description">xs · sm · md (default) · lg · xl. Type scales with the badge.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:center">
+  <span class="ins-avatar ins-avatar--xs">MK</span>
+  <span class="ins-avatar ins-avatar--sm">MK</span>
+  <span class="ins-avatar ins-avatar--md">MK</span>
+  <span class="ins-avatar ins-avatar--lg">MK</span>
+  <span class="ins-avatar ins-avatar--xl">MK</span>
+</div></div>
+<div class="sb-code"><pre>&lt;span class="ins-avatar ins-avatar--xs"&gt;MK&lt;/span&gt;
+&lt;span class="ins-avatar ins-avatar--sm"&gt;MK&lt;/span&gt;
+&lt;span class="ins-avatar ins-avatar--md"&gt;MK&lt;/span&gt;
+&lt;span class="ins-avatar ins-avatar--lg"&gt;MK&lt;/span&gt;
+&lt;span class="ins-avatar ins-avatar--xl"&gt;MK&lt;/span&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Image</h2>
+<p class="sb-section__description">An <code>&lt;img&gt;</code> child fills and crops (<code>object-fit:cover</code>) to the circle.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:center">
+  <span class="ins-avatar ins-avatar--sm"><img src="../assets/img/avatar-1.jpg" alt="Priya N." onerror="this.remove();this.parentNode.textContent='PN'"></span>
+  <span class="ins-avatar ins-avatar--md"><img src="../assets/img/avatar-1.jpg" alt="Priya N." onerror="this.remove();this.parentNode.textContent='PN'"></span>
+  <span class="ins-avatar ins-avatar--lg"><img src="../assets/img/avatar-1.jpg" alt="Priya N." onerror="this.remove();this.parentNode.textContent='PN'"></span>
+</div></div>
+<div class="sb-code"><pre>&lt;span class="ins-avatar ins-avatar--lg"&gt;
+  &lt;img src="/avatars/priya.jpg" alt="Priya N."&gt;
+&lt;/span&gt;</pre></div></section>
 
 <section class="sb-section"><h2 class="sb-section__title">Status dot</h2>
-<div class="sb-preview"><div class="sb-preview-row">
-  <div class="ins-avatar ins-avatar--lg">JK<span class="ins-avatar__status ins-avatar__status--success"></span></div>
-  <div class="ins-avatar ins-avatar--lg">MS<span class="ins-avatar__status ins-avatar__status--warning"></span></div>
-  <div class="ins-avatar ins-avatar--lg">AT<span class="ins-avatar__status ins-avatar__status--error"></span></div>
-  <div class="ins-avatar ins-avatar--lg">RN<span class="ins-avatar__status ins-avatar__status--offline"></span></div>
-</div></div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">Grouped (stacked)</h2>
-<div class="sb-preview"><div class="sb-preview-row">
-  <div class="ins-avatar-group">
-    <div class="ins-avatar ins-avatar--md">JK</div>
-    <div class="ins-avatar ins-avatar--md">MS</div>
-    <div class="ins-avatar ins-avatar--md">AT</div>
-    <div class="ins-avatar ins-avatar--md" style="background:var(--ins-surface-card); color:var(--ins-text-body);">+4</div>
-  </div>
-</div></div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;!-- Initials fallback --&gt;
-&lt;div class="ins-avatar ins-avatar--lg"&gt;JK&lt;/div&gt;
-
-&lt;!-- Image --&gt;
-&lt;div class="ins-avatar ins-avatar--lg"&gt;
-  &lt;img src="avatar.jpg" alt="Jane Kim"&gt;
-&lt;/div&gt;
-
-&lt;!-- With status --&gt;
-&lt;div class="ins-avatar ins-avatar--lg"&gt;
-  JK
+<p class="sb-section__description">Add <code>.ins-avatar__status</code> as a child with a state modifier. The dot scales with avatar size.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:center">
+  <span class="ins-avatar ins-avatar--lg">AL<span class="ins-avatar__status ins-avatar__status--success"></span></span>
+  <span class="ins-avatar ins-avatar--lg">AL<span class="ins-avatar__status ins-avatar__status--warning"></span></span>
+  <span class="ins-avatar ins-avatar--lg">AL<span class="ins-avatar__status ins-avatar__status--error"></span></span>
+  <span class="ins-avatar ins-avatar--lg">AL<span class="ins-avatar__status ins-avatar__status--offline"></span></span>
+</div></div>
+<div class="sb-code"><pre>&lt;span class="ins-avatar ins-avatar--lg"&gt;AL
   &lt;span class="ins-avatar__status ins-avatar__status--success"&gt;&lt;/span&gt;
-&lt;/div&gt;
+&lt;/span&gt;
 
-&lt;!-- Grouped --&gt;
-&lt;div class="ins-avatar-group"&gt;
-  &lt;div class="ins-avatar ins-avatar--md"&gt;JK&lt;/div&gt;
-  &lt;div class="ins-avatar ins-avatar--md"&gt;MS&lt;/div&gt;
-  &lt;div class="ins-avatar ins-avatar--md"&gt;+4&lt;/div&gt;
-&lt;/div&gt;</pre></div></section>
+&lt;!-- States: --success · --warning · --error · --offline --&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Group (overlapping stack)</h2>
+<p class="sb-section__description"><code>.ins-avatar-group</code> overlaps children by 8px and rings each in the page colour.</p>
+<div class="sb-preview"><div class="sb-preview-row" style="align-items:center">
+  <span class="ins-avatar-group">
+    <span class="ins-avatar ins-avatar--md">MK</span>
+    <span class="ins-avatar ins-avatar--md">AL</span>
+    <span class="ins-avatar ins-avatar--md">PN</span>
+    <span class="ins-avatar ins-avatar--md">+4</span>
+  </span>
+</div></div>
+<div class="sb-code"><pre>&lt;span class="ins-avatar-group"&gt;
+  &lt;span class="ins-avatar ins-avatar--md"&gt;MK&lt;/span&gt;
+  &lt;span class="ins-avatar ins-avatar--md"&gt;AL&lt;/span&gt;
+  &lt;span class="ins-avatar ins-avatar--md"&gt;PN&lt;/span&gt;
+  &lt;span class="ins-avatar ins-avatar--md"&gt;+4&lt;/span&gt;
+&lt;/span&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-avatar</code></td><td>Base 32px circle; centers initials, crops any <code>&lt;img&gt;</code> child.</td></tr>
+<tr><td><code>.ins-avatar--xs</code></td><td>16px.</td></tr>
+<tr><td><code>.ins-avatar--sm</code></td><td>24px.</td></tr>
+<tr><td><code>.ins-avatar--md</code></td><td>32px (default).</td></tr>
+<tr><td><code>.ins-avatar--lg</code></td><td>40px, 14px text.</td></tr>
+<tr><td><code>.ins-avatar--xl</code></td><td>64px, 22px text.</td></tr>
+<tr><td><code>.ins-avatar__status</code></td><td>Corner presence dot, ringed in the page colour; scales with size.</td></tr>
+<tr><td><code>.ins-avatar__status--success / --warning / --error / --offline</code></td><td>Dot colour per presence state.</td></tr>
+<tr><td><code>.ins-avatar-group</code></td><td>Inline flex that overlaps its avatars by 8px.</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

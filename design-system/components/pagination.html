@@ -5,41 +5,66 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Pagination</h1><p class="sb-header__description">Page-number bar with ellipsis truncation. Current uses <code>aria-current="page"</code>.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Pagination</h1><p class="sb-header__description">Numbered page control for long lists — 32px square items, a teal fill on the current page (<code>aria-current="page"</code>), dimmed prev/next when they run out, and an <code>…</code> ellipsis for skipped ranges. Intended for the Blog index and other paginated archives. Built from the component CSS API.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Default</h2>
-<div class="sb-preview"><nav aria-label="Pagination" class="ins-pagination">
-  <button class="ins-pagination__item" disabled aria-label="Previous">‹</button>
-  <button class="ins-pagination__item" aria-current="page">1</button>
-  <button class="ins-pagination__item">2</button>
-  <button class="ins-pagination__item">3</button>
-  <span class="ins-pagination__ellipsis">…</span>
-  <button class="ins-pagination__item">12</button>
-  <button class="ins-pagination__item" aria-label="Next">›</button>
-</nav></div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">Mid-range</h2>
-<div class="sb-preview"><nav aria-label="Pagination" class="ins-pagination">
-  <button class="ins-pagination__item" aria-label="Previous">‹</button>
-  <button class="ins-pagination__item">1</button>
-  <span class="ins-pagination__ellipsis">…</span>
-  <button class="ins-pagination__item">5</button>
-  <button class="ins-pagination__item" aria-current="page">6</button>
-  <button class="ins-pagination__item">7</button>
-  <span class="ins-pagination__ellipsis">…</span>
-  <button class="ins-pagination__item">12</button>
-  <button class="ins-pagination__item" aria-label="Next">›</button>
-</nav></div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;nav aria-label="Pagination" class="ins-pagination"&gt;
-  &lt;button class="ins-pagination__item" disabled aria-label="Previous"&gt;‹&lt;/button&gt;
-  &lt;button class="ins-pagination__item" aria-current="page"&gt;1&lt;/button&gt;
-  &lt;button class="ins-pagination__item"&gt;2&lt;/button&gt;
-  &lt;span class="ins-pagination__ellipsis"&gt;…&lt;/span&gt;
+<section class="sb-section"><h2 class="sb-section__title">Default (mid-range)</h2>
+<p class="sb-section__description">Page 2 of 12. Prev / Next are enabled; page 2 carries <code>aria-current="page"</code>; the gap before the last page uses <code>.ins-pagination__ellipsis</code>.</p>
+<div class="sb-preview">
+  <nav class="ins-pagination" aria-label="Blog pagination">
+    <button type="button" class="ins-pagination__item" aria-label="Previous page">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button type="button" class="ins-pagination__item">1</button>
+    <button type="button" class="ins-pagination__item" aria-current="page">2</button>
+    <button type="button" class="ins-pagination__item">3</button>
+    <button type="button" class="ins-pagination__item">4</button>
+    <span class="ins-pagination__ellipsis" aria-hidden="true">…</span>
+    <button type="button" class="ins-pagination__item">12</button>
+    <button type="button" class="ins-pagination__item" aria-label="Next page">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </nav>
+</div>
+<div class="sb-code"><pre>&lt;nav class="ins-pagination" aria-label="Blog pagination"&gt;
+  &lt;button class="ins-pagination__item" aria-label="Previous page"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/button&gt;
+  &lt;button class="ins-pagination__item"&gt;1&lt;/button&gt;
+  &lt;button class="ins-pagination__item" aria-current="page"&gt;2&lt;/button&gt;
+  &lt;button class="ins-pagination__item"&gt;3&lt;/button&gt;
+  &lt;button class="ins-pagination__item"&gt;4&lt;/button&gt;
+  &lt;span class="ins-pagination__ellipsis" aria-hidden="true"&gt;…&lt;/span&gt;
   &lt;button class="ins-pagination__item"&gt;12&lt;/button&gt;
-  &lt;button class="ins-pagination__item" aria-label="Next"&gt;›&lt;/button&gt;
+  &lt;button class="ins-pagination__item" aria-label="Next page"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/button&gt;
 &lt;/nav&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">First page (Prev disabled)</h2>
+<p class="sb-section__description">On page 1 the Previous control is <code>disabled</code> — dimmed and non-interactive.</p>
+<div class="sb-preview">
+  <nav class="ins-pagination" aria-label="Blog pagination, first page">
+    <button type="button" class="ins-pagination__item" aria-label="Previous page" disabled>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button type="button" class="ins-pagination__item" aria-current="page">1</button>
+    <button type="button" class="ins-pagination__item">2</button>
+    <button type="button" class="ins-pagination__item">3</button>
+    <span class="ins-pagination__ellipsis" aria-hidden="true">…</span>
+    <button type="button" class="ins-pagination__item">12</button>
+    <button type="button" class="ins-pagination__item" aria-label="Next page">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </nav>
+</div>
+<div class="sb-code"><pre>&lt;button class="ins-pagination__item" aria-label="Previous page" disabled&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/button&gt;
+&lt;button class="ins-pagination__item" aria-current="page"&gt;1&lt;/button&gt;
+&lt;button class="ins-pagination__item"&gt;2&lt;/button&gt; …</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-pagination</code></td><td>Inline-flex row wrapping the items with a small gap.</td></tr>
+<tr><td><code>.ins-pagination__item</code></td><td>Square 32px page control (button or link). Tinted surface on hover.</td></tr>
+<tr><td><code>.ins-pagination__item[aria-current="page"]</code>, <code>.ins-pagination__item.is-active</code></td><td>Current page — solid teal fill, white text.</td></tr>
+<tr><td><code>.ins-pagination__item:disabled</code></td><td>Disabled control (e.g. Prev on the first page) — dimmed, <code>not-allowed</code> cursor.</td></tr>
+<tr><td><code>.ins-pagination__ellipsis</code></td><td>Non-interactive <code>…</code> gap for skipped page ranges.</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

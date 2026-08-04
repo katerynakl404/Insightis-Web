@@ -5,81 +5,84 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Banner</h1><p class="sb-header__description">Three layouts: top announcement strip, bottom CTA promo, newsletter composer (input + button in one rail).</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Banner</h1><p class="sb-header__description">Three page-level bands: a thin sticky <code>banner-top</code> announcement (five tones), a large <code>banner-promo</code> CTA block, and the gradient <code>banner-newsletter</code> composer that mirrors the homepage "Still waiting on insights?" section (<code>src/main.jsx</code>).</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Top announcement</h2>
-<div class="sb-preview">
-  <div class="ins-banner-top ins-banner-top--brand" style="position:relative;" role="status" aria-live="polite">
-    <span>🎉  Insightis v2.4 ships AI suggestions — <a href="#">read the release notes</a></span>
-    <button class="ins-banner-top__close" aria-label="Dismiss"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+<section class="sb-section"><h2 class="sb-section__title">Top announcement — tones</h2>
+<p class="sb-section__description">Sticky strip that sits above the navbar. Five tints: info, success, warning, error and brand. Shown in-flow here (sticky positioning neutralised).</p>
+<div class="sb-preview sb-preview--fullbleed"><div style="display:flex; flex-direction:column; gap:var(--ins-space-sm); width:100%;">
+  <div class="ins-banner-top ins-banner-top--brand" style="position:static;">
+    <span>Insightis is now SOC 2 Type II certified.</span>
+    <a class="ins-link--inline" href="#">Read the report</a>
+    <button class="ins-banner-top__close" aria-label="Dismiss"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
   </div>
-</div></section>
+  <div class="ins-banner-top ins-banner-top--info" style="position:static;"><span>Scheduled maintenance Sunday 02:00–03:00 UTC.</span></div>
+  <div class="ins-banner-top ins-banner-top--success" style="position:static;"><span>All systems operational — 99.98% uptime this quarter.</span></div>
+  <div class="ins-banner-top ins-banner-top--warning" style="position:static;"><span>Your Snowflake token expires in 3 days.</span> <a class="ins-link--inline" href="#">Renew</a></div>
+  <div class="ins-banner-top ins-banner-top--error" style="position:static;"><span>Sync paused — reconnect your warehouse to resume.</span></div>
+</div></div>
+<div class="sb-code"><pre>&lt;div class="ins-banner-top ins-banner-top--brand"&gt;
+  &lt;span&gt;Insightis is now SOC 2 Type II certified.&lt;/span&gt;
+  &lt;a class="ins-link--inline" href="#"&gt;Read the report&lt;/a&gt;
+  &lt;button class="ins-banner-top__close" aria-label="Dismiss"&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/button&gt;
+&lt;/div&gt;
 
-<section class="sb-section"><h2 class="sb-section__title">Bottom promo</h2>
-<div class="sb-preview" data-sb-viewport-preview>
+&lt;!-- Tones: --info · --success · --warning · --error · --brand --&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Promo — CTA block</h2>
+<p class="sb-section__description">Brand-tinted card with a title, description and action row. Padding steps up at 768px.</p>
+<div class="sb-preview">
   <div class="ins-banner-promo">
-    <span class="ins-text-overline">Get started</span>
-    <h2 class="ins-banner-promo__title">Ready to stop answering the same questions twice?</h2>
-    <p class="ins-banner-promo__description">Start free — no credit card required. Connect your warehouse in 3 clicks.</p>
+    <div class="ins-banner-promo__title">See your Semantic Layer answer in plain English.</div>
+    <p class="ins-banner-promo__description">Connect a warehouse and ask a question — Insightis reads your existing models, no shadow modeling required.</p>
     <div class="ins-banner-promo__actions">
-      <button class="ins-btn ins-btn--primary ins-btn--lg">Create account</button>
-      <button class="ins-btn ins-btn--ghost ins-btn--lg">Book a demo</button>
+      <a class="ins-btn ins-btn--primary" href="#">Book a demo</a>
+      <a class="ins-btn ins-btn--ghost" href="#">View pricing</a>
     </div>
   </div>
-</div></section>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-banner-promo"&gt;
+  &lt;div class="ins-banner-promo__title"&gt;See your Semantic Layer answer in plain English.&lt;/div&gt;
+  &lt;p class="ins-banner-promo__description"&gt;Connect a warehouse and ask a question…&lt;/p&gt;
+  &lt;div class="ins-banner-promo__actions"&gt;
+    &lt;a class="ins-btn ins-btn--primary" href="#"&gt;Book a demo&lt;/a&gt;
+    &lt;a class="ins-btn ins-btn--ghost" href="#"&gt;View pricing&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">Newsletter / CTA composer banner</h2>
-<p class="sb-section__description">Matches the "Still waiting on insights?" pattern. Heading on the left, dark inline composer on the right. Collapses stacked below 768px. <strong>Submit is active by default</strong> — pair with <code>data-sb-validate-email</code> only when validation-gated submission is required.</p>
-<div class="sb-preview sb-preview--fullbleed" data-sb-viewport-preview>
+<section class="sb-section"><h2 class="sb-section__title">Newsletter composer</h2>
+<p class="sb-section__description">Gradient band with a large left heading (<code>em</code> highlights teal) and a right-aligned input+button pill. Stacks on mobile, splits at 768px. Copy mirrors the homepage CTA in <code>src/main.jsx</code>.</p>
+<div class="sb-preview">
   <div class="ins-banner-newsletter">
-    <h3 class="ins-banner-newsletter__title">Still waiting on <em>insights</em> that take <em>days</em>?</h3>
-    <form class="ins-banner-newsletter__composer" onsubmit="event.preventDefault()">
-      <input type="email" placeholder="What info are you looking for?">
-      <button type="submit">
-        Get Insight
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    <div class="ins-banner-newsletter__title">Still waiting on <em>insights</em> that take days?</div>
+    <form class="ins-banner-newsletter__composer" onsubmit="return false">
+      <input type="email" placeholder="you@company.com" aria-label="Work email">
+      <button type="submit">Get early access
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
     </form>
   </div>
-</div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">Newsletter with validation gate</h2>
-<p class="sb-section__description">Opt-in variant — submit stays disabled until the email validates. Add <code>data-sb-validate-email</code>.</p>
-<div class="sb-preview sb-preview--fullbleed">
-  <div class="ins-banner-newsletter">
-    <h3 class="ins-banner-newsletter__title">Ship cleaner answers. Start free.</h3>
-    <form class="ins-banner-newsletter__composer" data-sb-validate-email onsubmit="event.preventDefault()">
-      <input type="email" placeholder="you@work.com" required>
-      <button type="submit">Subscribe</button>
-    </form>
-  </div>
-</div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;!-- Top announcement --&gt;
-&lt;div class="ins-banner-top ins-banner-top--brand" role="status" aria-live="polite"&gt;
-  &lt;span&gt;Message with &lt;a href="#"&gt;CTA&lt;/a&gt;&lt;/span&gt;
-  &lt;button class="ins-banner-top__close" aria-label="Dismiss"&gt;...&lt;/button&gt;
-&lt;/div&gt;
-
-&lt;!-- Bottom promo --&gt;
-&lt;div class="ins-banner-promo"&gt;
-  &lt;span class="ins-text-overline"&gt;Get started&lt;/span&gt;
-  &lt;h2 class="ins-banner-promo__title"&gt;Title&lt;/h2&gt;
-  &lt;p class="ins-banner-promo__description"&gt;Description&lt;/p&gt;
-  &lt;div class="ins-banner-promo__actions"&gt;
-    &lt;button class="ins-btn ins-btn--primary ins-btn--lg"&gt;Primary&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- Newsletter composer --&gt;
-&lt;div class="ins-banner-newsletter"&gt;
-  &lt;div&gt;&lt;h3&gt;Title&lt;/h3&gt;&lt;p&gt;Description&lt;/p&gt;&lt;/div&gt;
-  &lt;div class="ins-input-group"&gt;
-    &lt;input type="email" class="ins-input"&gt;
-    &lt;button class="ins-btn ins-btn--primary"&gt;Subscribe&lt;/button&gt;
-  &lt;/div&gt;
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-banner-newsletter"&gt;
+  &lt;div class="ins-banner-newsletter__title"&gt;Still waiting on &lt;em&gt;insights&lt;/em&gt; that take days?&lt;/div&gt;
+  &lt;form class="ins-banner-newsletter__composer"&gt;
+    &lt;input type="email" placeholder="you@company.com" aria-label="Work email"&gt;
+    &lt;button type="submit"&gt;Get early access &lt;svg&gt;…&lt;/svg&gt;&lt;/button&gt;
+  &lt;/form&gt;
 &lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-banner-top</code></td><td>Thin sticky announcement strip (centered, sits above the navbar).</td></tr>
+<tr><td><code>.ins-banner-top--info / --success / --warning / --error / --brand</code></td><td>Background tint per tone; brand uses the surface brand tint.</td></tr>
+<tr><td><code>.ins-banner-top__close</code></td><td>Inline dismiss button using <code>currentColor</code>.</td></tr>
+<tr><td><code>.ins-banner-promo</code></td><td>Large brand-tinted CTA card; padding grows at 768px.</td></tr>
+<tr><td><code>.ins-banner-promo__title</code></td><td>24px heading (36px ≥768px), tight tracking.</td></tr>
+<tr><td><code>.ins-banner-promo__description</code></td><td>Body copy capped at 56ch.</td></tr>
+<tr><td><code>.ins-banner-promo__actions</code></td><td>Wrapping row of buttons.</td></tr>
+<tr><td><code>.ins-banner-newsletter</code></td><td>Gradient band; column on mobile, row split ≥768px, with a top shimmer accent.</td></tr>
+<tr><td><code>.ins-banner-newsletter__title</code></td><td>Fluid clamp heading; <code>&lt;em&gt;</code> children render teal, not italic.</td></tr>
+<tr><td><code>.ins-banner-newsletter__composer</code></td><td>Rounded input pill; focus-within lights the border; holds a teal-gradient submit button.</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

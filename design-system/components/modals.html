@@ -5,42 +5,63 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Modal</h1><p class="sb-header__description">sm / md / lg sizes plus drawer variant (mobile menu). Focus trap, ESC, outside-click all handled by storybook.js.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Modal</h1><p class="sb-header__description">Centered overlay dialog with a blurred scrim. Three widths (<code>sm</code> 400px, default 560px, <code>lg</code> 800px) plus a right-edge <code>drawer</code>. The live "Request a connector" flow (<code>src/components/RequestConnectorModal.jsx</code>) is an <code>--sm</code> dialog. Open/close, ESC and outside-click are wired by <code>storybook.js</code> via <code>data-sb-open</code> / <code>data-sb-close</code>.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Demos</h2>
+<section class="sb-section"><h2 class="sb-section__title">Live demos</h2>
+<p class="sb-section__description">Click a trigger to open each size. The scrim, ESC key and backdrop click all dismiss the dialog.</p>
 <div class="sb-preview"><div class="sb-preview-row">
-  <button class="ins-btn ins-btn--secondary" data-sb-open="#demo-sm">Open small</button>
-  <button class="ins-btn ins-btn--secondary" data-sb-open="#demo-md">Open medium</button>
-  <button class="ins-btn ins-btn--secondary" data-sb-open="#demo-lg">Open large</button>
-  <button class="ins-btn ins-btn--secondary" data-sb-open="#demo-drawer">Open drawer</button>
-</div></div></section>
+  <button class="ins-btn ins-btn--secondary" data-sb-open="#demo-sm">Small — confirm</button>
+  <button class="ins-btn ins-btn--secondary" data-sb-open="#demo-md">Medium — edit metric</button>
+  <button class="ins-btn ins-btn--secondary" data-sb-open="#demo-lg">Large — query builder</button>
+  <button class="ins-btn ins-btn--secondary" data-sb-open="#demo-drawer">Drawer — navigation</button>
+</div></div>
+<div class="sb-code"><pre>&lt;button class="ins-btn ins-btn--secondary" data-sb-open="#demo-sm"&gt;Small — confirm&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--secondary" data-sb-open="#demo-md"&gt;Medium — edit metric&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--secondary" data-sb-open="#demo-lg"&gt;Large — query builder&lt;/button&gt;
+&lt;button class="ins-btn ins-btn--secondary" data-sb-open="#demo-drawer"&gt;Drawer — navigation&lt;/button&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
-<div class="sb-code"><pre>&lt;button data-sb-open="#my-modal"&gt;Open&lt;/button&gt;
-
-&lt;div class="ins-modal" id="my-modal" role="dialog" aria-modal="true"
+<section class="sb-section"><h2 class="sb-section__title">Anatomy (medium)</h2>
+<p class="sb-section__description">Header (title + close) · scrollable body · footer that reverses to a column on mobile and a right-aligned row from 768px up.</p>
+<div class="sb-code"><pre>&lt;div class="ins-modal" id="my-modal" role="dialog" aria-modal="true"
      aria-labelledby="my-modal-title" aria-hidden="true"&gt;
   &lt;div class="ins-modal__dialog"&gt;
     &lt;header class="ins-modal__header"&gt;
-      &lt;h2 class="ins-modal__title" id="my-modal-title"&gt;Delete account?&lt;/h2&gt;
+      &lt;h2 class="ins-modal__title" id="my-modal-title"&gt;Edit metric&lt;/h2&gt;
       &lt;button class="ins-btn ins-btn--icon" data-sb-close aria-label="Close"&gt;
-        &lt;svg...&gt;&lt;/svg&gt;
+        &lt;svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;path d="M18 6L6 18M6 6l12 12"/&gt;&lt;/svg&gt;
       &lt;/button&gt;
     &lt;/header&gt;
     &lt;div class="ins-modal__body"&gt;
-      &lt;p&gt;This action is permanent.&lt;/p&gt;
+      &lt;div class="ins-form-group"&gt;
+        &lt;label class="ins-form-group__label" for="mm-name"&gt;Metric name&lt;/label&gt;
+        &lt;input class="ins-input" id="mm-name" value="Monthly Recurring Revenue"&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
     &lt;footer class="ins-modal__footer"&gt;
       &lt;button class="ins-btn ins-btn--ghost" data-sb-close&gt;Cancel&lt;/button&gt;
-      &lt;button class="ins-btn ins-btn--primary"&gt;Delete&lt;/button&gt;
+      &lt;button class="ins-btn ins-btn--primary" data-sb-close&gt;Save&lt;/button&gt;
     &lt;/footer&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;!-- Variants --&gt;
-&lt;div class="ins-modal ins-modal--sm"&gt;...&lt;/div&gt;
-&lt;div class="ins-modal ins-modal--lg"&gt;...&lt;/div&gt;
-&lt;div class="ins-modal ins-modal--drawer"&gt;...&lt;/div&gt;</pre></div></section>
+&lt;!-- Width / layout modifiers on the outer .ins-modal --&gt;
+&lt;div class="ins-modal ins-modal--sm"&gt;…&lt;/div&gt;
+&lt;div class="ins-modal ins-modal--lg"&gt;…&lt;/div&gt;
+&lt;div class="ins-modal ins-modal--drawer"&gt;…&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-modal</code></td><td>Fixed full-screen scrim; centers the dialog and blurs the page behind it.</td></tr>
+<tr><td><code>.ins-modal[aria-hidden="true"]</code></td><td>Hidden state — the storybook toggles this attribute to show/hide.</td></tr>
+<tr><td><code>.ins-modal__dialog</code></td><td>The card itself (560px default): surface, border, 2xl radius, large shadow.</td></tr>
+<tr><td><code>.ins-modal--sm</code></td><td>Narrows the dialog to 400px — confirmations and the live connector-request form.</td></tr>
+<tr><td><code>.ins-modal--lg</code></td><td>Widens the dialog to 800px — complex forms and full workflows.</td></tr>
+<tr><td><code>.ins-modal--drawer</code></td><td>Slides a 360px full-height panel in from the right (mobile menu); rounds only the left corners.</td></tr>
+<tr><td><code>.ins-modal__header</code></td><td>Title row with bottom border; holds the close button.</td></tr>
+<tr><td><code>.ins-modal__title</code></td><td>18px semibold heading.</td></tr>
+<tr><td><code>.ins-modal__body</code></td><td>Scrollable content area (flexes to fill).</td></tr>
+<tr><td><code>.ins-modal__footer</code></td><td>Action row; column-reverse on mobile, right-aligned row ≥768px.</td></tr>
+</tbody></table></section>
 
 </main></div>
 
@@ -48,13 +69,13 @@
 <div class="ins-modal ins-modal--sm" id="demo-sm" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="demo-sm-title">
   <div class="ins-modal__dialog">
     <header class="ins-modal__header">
-      <h2 class="ins-modal__title" id="demo-sm-title">Confirm action</h2>
+      <h2 class="ins-modal__title" id="demo-sm-title">Delete metric?</h2>
       <button class="ins-btn ins-btn--icon" data-sb-close aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
     </header>
-    <div class="ins-modal__body"><p class="ins-text-body">Small modals work for yes/no confirmations.</p></div>
+    <div class="ins-modal__body"><p class="ins-text-body">"Monthly Recurring Revenue" is referenced by 3 dashboards. Deleting it cannot be undone.</p></div>
     <footer class="ins-modal__footer">
       <button class="ins-btn ins-btn--ghost" data-sb-close>Cancel</button>
-      <button class="ins-btn ins-btn--primary" data-sb-close>Confirm</button>
+      <button class="ins-btn ins-btn--primary" data-sb-close>Delete</button>
     </footer>
   </div>
 </div>
@@ -84,7 +105,7 @@
       <h2 class="ins-modal__title" id="demo-lg-title">Query builder</h2>
       <button class="ins-btn ins-btn--icon" data-sb-close aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
     </header>
-    <div class="ins-modal__body"><p class="ins-text-body">Large modals fit complex forms or full workflows.</p></div>
+    <div class="ins-modal__body"><p class="ins-text-body">Large modals fit complex forms or full workflows — the extra width keeps side-by-side fields and previews readable.</p></div>
     <footer class="ins-modal__footer">
       <button class="ins-btn ins-btn--ghost" data-sb-close>Close</button>
     </footer>
@@ -94,7 +115,7 @@
 <div class="ins-modal ins-modal--drawer" id="demo-drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="demo-drawer-title">
   <div class="ins-modal__dialog">
     <header class="ins-modal__header">
-      <h2 class="ins-modal__title" id="demo-drawer-title">Navigation</h2>
+      <h2 class="ins-modal__title" id="demo-drawer-title">Menu</h2>
       <button class="ins-btn ins-btn--icon" data-sb-close aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
     </header>
     <div class="ins-modal__body">

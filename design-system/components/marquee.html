@@ -5,50 +5,77 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Marquee</h1><p class="sb-header__description">Infinite horizontal scroll for logo walls / partner strips. Decorative — disabled below 768px and under <code>prefers-reduced-motion</code>. Pauses on hover + when off-screen.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Marquee</h1><p class="sb-header__description">Decorative horizontal auto-scroller with edge fade masks. The track is duplicated and translated <code>-50%</code> for a seamless loop; the animation only runs at ≥768px and pauses on hover. <code>storybook.js</code> also pauses it while off-screen (perf). The intended use is the "200+ Integrations" connector strip (<code>src/components/IntegrationsStrip.jsx</code>, which currently ships its own <code>.marquee-*</code> variant) — this page is the DS reference built from the <code>.ins-marquee</code> CSS API with the real connector catalog.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Logo wall</h2>
-<div class="sb-preview" style="padding:0; overflow:hidden;">
+<section class="sb-section"><h2 class="sb-section__title">Integrations marquee</h2>
+<p class="sb-section__description">Real connectors from the supported catalog. The track holds two identical copies so the loop is seamless; the second copy is <code>aria-hidden</code>. Hover to pause.</p>
+<div class="sb-preview sb-preview--fullbleed">
   <div class="ins-marquee">
     <div class="ins-marquee__track">
-      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">ACME</span>
-      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Widgets</span>
-      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Brightlab</span>
-      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Horizon</span>
-      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Orbit</span>
-      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Helix</span>
-      <!-- Duplicate for seamless loop -->
-      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">ACME</span>
-      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Widgets</span>
-      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Brightlab</span>
-      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Horizon</span>
-      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Orbit</span>
-      <span class="ins-text-mono" style="font-size:24px; font-weight:700; color:var(--ins-text-inactive);">Helix</span>
+      <span class="sb-marquee-pill">HubSpot</span>
+      <span class="sb-marquee-pill">Salesforce</span>
+      <span class="sb-marquee-pill">Stripe</span>
+      <span class="sb-marquee-pill">Slack</span>
+      <span class="sb-marquee-pill">PostgreSQL</span>
+      <span class="sb-marquee-pill">Snowflake</span>
+      <span class="sb-marquee-pill">Google BigQuery</span>
+      <span class="sb-marquee-pill">Redshift</span>
+      <span class="sb-marquee-pill">Google Analytics</span>
+      <span class="sb-marquee-pill">Amplitude</span>
+      <span class="sb-marquee-pill">Intercom</span>
+      <span class="sb-marquee-pill">Databricks</span>
+      <span class="sb-marquee-pill">Shopify</span>
+      <span class="sb-marquee-pill">Jira</span>
+      <span class="sb-marquee-pill">MySQL</span>
+      <span class="sb-marquee-pill" aria-hidden="true">HubSpot</span>
+      <span class="sb-marquee-pill" aria-hidden="true">Salesforce</span>
+      <span class="sb-marquee-pill" aria-hidden="true">Stripe</span>
+      <span class="sb-marquee-pill" aria-hidden="true">Slack</span>
+      <span class="sb-marquee-pill" aria-hidden="true">PostgreSQL</span>
+      <span class="sb-marquee-pill" aria-hidden="true">Snowflake</span>
+      <span class="sb-marquee-pill" aria-hidden="true">Google BigQuery</span>
+      <span class="sb-marquee-pill" aria-hidden="true">Redshift</span>
+      <span class="sb-marquee-pill" aria-hidden="true">Google Analytics</span>
+      <span class="sb-marquee-pill" aria-hidden="true">Amplitude</span>
+      <span class="sb-marquee-pill" aria-hidden="true">Intercom</span>
+      <span class="sb-marquee-pill" aria-hidden="true">Databricks</span>
+      <span class="sb-marquee-pill" aria-hidden="true">Shopify</span>
+      <span class="sb-marquee-pill" aria-hidden="true">Jira</span>
+      <span class="sb-marquee-pill" aria-hidden="true">MySQL</span>
     </div>
   </div>
-</div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+</div>
 <div class="sb-code"><pre>&lt;div class="ins-marquee"&gt;
   &lt;div class="ins-marquee__track"&gt;
-    &lt;!-- Content × 2 for seamless loop --&gt;
-    &lt;img src="/logos/acme.svg" alt="Acme"&gt;
-    &lt;img src="/logos/widgets.svg" alt="Widgets"&gt;
-    ...
-    &lt;!-- Duplicate set --&gt;
-    &lt;img src="/logos/acme.svg" alt="" aria-hidden="true"&gt;
-    ...
+    &lt;!-- One item per connector, then the SAME set again (aria-hidden)
+         so translateX(-50%) loops seamlessly --&gt;
+    &lt;span&gt;HubSpot&lt;/span&gt; &lt;span&gt;Salesforce&lt;/span&gt; &lt;span&gt;Stripe&lt;/span&gt; …
+    &lt;span aria-hidden="true"&gt;HubSpot&lt;/span&gt; &lt;span aria-hidden="true"&gt;Salesforce&lt;/span&gt; …
   &lt;/div&gt;
-&lt;/div&gt;</pre></div></section>
+&lt;/div&gt;
+&lt;!-- storybook.js pauses the track while the marquee is off-screen --&gt;</pre></div></section>
 
-<section class="sb-section"><h2 class="sb-section__title">Rules</h2>
-<ul style="color:var(--ins-text-body); padding-left:var(--ins-space-lg); line-height:22px;">
-  <li>Duplicate content once — the track animates from 0 to -50%</li>
-  <li>First set of logos have meaningful <code>alt</code>; duplicates use <code>alt=""</code> + <code>aria-hidden="true"</code></li>
-  <li>Decorative — no animation below 768px, paused on hover, paused when off-screen (IntersectionObserver in storybook.js)</li>
-</ul>
-</section>
+<section class="sb-section"><h2 class="sb-section__title">Notes</h2>
+<p class="sb-section__description">The pill chips above are demo content styled with DS tokens; the marquee component itself only provides the two classes below. Below 768px the animation is disabled and the row simply overflows (decorative).</p>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-marquee</code></td><td>Overflow-clipped viewport with left/right transparent fade masks.</td></tr>
+<tr><td><code>.ins-marquee__track</code></td><td>Inline-flex row of items; animates a continuous <code>-50%</code> translate at ≥768px, pausing on hover. Must contain two copies of the content for a seamless loop.</td></tr>
+</tbody></table></section>
 
 </main></div>
+<style>
+  .sb-marquee-pill{
+    display:inline-flex;align-items:center;gap:var(--ins-space-sm);
+    padding:6px var(--ins-space-md);
+    background:var(--ins-surface-card);
+    border:var(--ins-border-width-1) solid var(--ins-border-default);
+    border-radius:var(--ins-radius-pill);
+    font-size:var(--ins-font-size-14);color:var(--ins-text-body);white-space:nowrap;
+  }
+  .sb-marquee-pill::before{
+    content:"";width:6px;height:6px;border-radius:50%;
+    background:var(--ins-text-highlight);flex-shrink:0;
+  }
+</style>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 <script src="../assets/storybook.js"></script></body></html>

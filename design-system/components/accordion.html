@@ -5,46 +5,82 @@
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Accordion</h1><p class="sb-header__description">Single-open (default) or <code>data-allow-multiple</code>. Items have hover + focus states — hover over any row to preview.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Accordion</h1><p class="sb-header__description">A stack of expandable rows on the card surface. Each <code>.ins-accordion__item</code> toggles <code>aria-expanded</code>, which rotates the chevron and animates the panel's <code>max-height</code>. <code>storybook.js</code> wires every <code>.ins-accordion</code>: single-open by default, or set <code>data-allow-multiple="true"</code> to keep several open. (For the marketing FAQ styling see the <a href="faq-accordion.html" style="color:var(--ins-text-highlight)">FAQ accordion</a>.)</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Single-open (FAQ)</h2>
+<section class="sb-section"><h2 class="sb-section__title">Single-open (default)</h2>
+<p class="sb-section__description">Opening one row closes the others. The open item carries <code>aria-expanded="true"</code>; a focused trigger lifts the whole item's focus ring via <code>:has()</code>.</p>
 <div class="sb-preview">
   <div class="ins-accordion">
     <div class="ins-accordion__item" aria-expanded="true">
-      <button class="ins-accordion__trigger">What is Insightis?
-        <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <button type="button" class="ins-accordion__trigger">
+        Does Insightis replace our existing data models?
+        <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="ins-accordion__panel"><p class="ins-text-body">Decision intelligence for data teams. Ask a question, get a cited answer sourced from your warehouse.</p></div>
+      <div class="ins-accordion__panel"><p class="ins-text-body">No — it sits on top. Insightis reads your warehouse models directly, so your Semantic Layer stays where it belongs, owned by your data team.</p></div>
     </div>
     <div class="ins-accordion__item" aria-expanded="false">
-      <button class="ins-accordion__trigger">How is it different from BI tools?
-        <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <button type="button" class="ins-accordion__trigger">
+        Will this coexist with our existing BI tool?
+        <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="ins-accordion__panel"><p class="ins-text-body">BI tools produce dashboards. Insightis produces cited, auditable answers to ad-hoc questions.</p></div>
+      <div class="ins-accordion__panel"><p class="ins-text-body">Yes. Looker, Tableau and the rest keep running — Insightis answers the ad-hoc questions that don't warrant a dashboard.</p></div>
     </div>
     <div class="ins-accordion__item" aria-expanded="false">
-      <button class="ins-accordion__trigger">What sources are supported?
-        <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <button type="button" class="ins-accordion__trigger">
+        Is our data used to train AI models?
+        <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="ins-accordion__panel"><p class="ins-text-body">Snowflake, BigQuery, Redshift, Postgres, and dbt models via the semantic layer.</p></div>
+      <div class="ins-accordion__panel"><p class="ins-text-body">Never. All connections are read-only and TLS-encrypted, and your data never leaves your warehouse on Enterprise plans.</p></div>
     </div>
   </div>
-</div></section>
-
-<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+</div>
 <div class="sb-code"><pre>&lt;div class="ins-accordion"&gt;
   &lt;div class="ins-accordion__item" aria-expanded="true"&gt;
-    &lt;button class="ins-accordion__trigger"&gt;Question
-      &lt;svg class="ins-accordion__icon" ...&gt;&lt;/svg&gt;
+    &lt;button type="button" class="ins-accordion__trigger"&gt;
+      Does Insightis replace our existing data models?
+      &lt;svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;polyline points="6 9 12 15 18 9"/&gt;&lt;/svg&gt;
     &lt;/button&gt;
-    &lt;div class="ins-accordion__panel"&gt;
-      &lt;p&gt;Answer.&lt;/p&gt;
-    &lt;/div&gt;
+    &lt;div class="ins-accordion__panel"&gt;&lt;p class="ins-text-body"&gt;No — it sits on top. …&lt;/p&gt;&lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;
+  &lt;div class="ins-accordion__item" aria-expanded="false"&gt;…&lt;/div&gt;
+  &lt;div class="ins-accordion__item" aria-expanded="false"&gt;…&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
 
-&lt;!-- Allow multiple open at once --&gt;
-&lt;div class="ins-accordion" data-allow-multiple="true"&gt;...&lt;/div&gt;</pre></div></section>
+<section class="sb-section"><h2 class="sb-section__title">Allow multiple</h2>
+<p class="sb-section__description"><code>data-allow-multiple="true"</code> on the root lets any number of rows stay open at once.</p>
+<div class="sb-preview">
+  <div class="ins-accordion" data-allow-multiple="true">
+    <div class="ins-accordion__item" aria-expanded="true">
+      <button type="button" class="ins-accordion__trigger">
+        What's included on every plan?
+        <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="ins-accordion__panel"><p class="ins-text-body">Every tier ships with the Semantic Layer, AI Chat and 200+ connectors. Free to start, no credit card required.</p></div>
+    </div>
+    <div class="ins-accordion__item" aria-expanded="true">
+      <button type="button" class="ins-accordion__trigger">
+        Can I change plans later?
+        <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="ins-accordion__panel"><p class="ins-text-body">Yes — pick the plan that fits your team today and change it the moment your needs do.</p></div>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-accordion" data-allow-multiple="true"&gt;
+  &lt;div class="ins-accordion__item" aria-expanded="true"&gt;…&lt;/div&gt;
+  &lt;div class="ins-accordion__item" aria-expanded="true"&gt;…&lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class / attribute</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-accordion</code></td><td>Vertical stack of items. <code>storybook.js</code> binds the toggle here.</td></tr>
+<tr><td><code>[data-allow-multiple="true"]</code></td><td>On the root — allows several items open at once (default: single-open).</td></tr>
+<tr><td><code>.ins-accordion__item</code></td><td>One row on the card surface. State lives in <code>aria-expanded</code> (or <code>.is-open</code>).</td></tr>
+<tr><td><code>.ins-accordion__trigger</code></td><td>Full-width toggle button: heading text + chevron, space-between.</td></tr>
+<tr><td><code>.ins-accordion__icon</code></td><td>20px chevron; rotates 180° when the item is expanded.</td></tr>
+<tr><td><code>.ins-accordion__panel</code></td><td>Answer body; animates from <code>max-height:0</code> to open with bottom padding.</td></tr>
+</tbody></table></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
