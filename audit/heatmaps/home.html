@@ -1,74 +1,142 @@
-<title>Heatmap — Home · Insightis</title>
+<meta charset="utf-8">
+<title>Attention Heatmap — Home · Insightis</title>
 <style>
   :root{
-    --bg:#eef2f1; --surface:#fff; --surface-2:#f6f8f8; --ink:#0f1c1b; --ink-soft:#3c4c4b; --ink-mute:#657876;
-    --line:#d9e0df; --line-strong:#c3cdcc; --accent:#0a6f6c; --accent-ink:#075451;
-    --high:#b26212; --crit:#b8352f; --pos:#1f7a5c;
+    --bg:#eef2f1; --surface:#fff; --ink:#0f1c1b; --ink-soft:#3c4c4b; --ink-mute:#657876;
+    --line:#d9e0df; --accent:#0a6f6c; --accent-ink:#075451;
     --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
     --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    --shadow:0 1px 2px rgba(16,32,31,.05),0 8px 24px -12px rgba(16,32,31,.18);
+    --shadow:0 1px 2px rgba(16,32,31,.05),0 10px 30px -14px rgba(16,32,31,.22);
   }
   @media (prefers-color-scheme:dark){:root{
-    --bg:#0a1211;--surface:#101b1a;--surface-2:#0d1716;--ink:#e9efee;--ink-soft:#b9c7c5;--ink-mute:#839795;
-    --line:#20302e;--line-strong:#2c3f3d;--accent:#43d6d0;--accent-ink:#6fe3de;--high:#e6a24d;--crit:#f0766e;--pos:#5fc99e;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);}}
-  :root[data-theme="dark"]{--bg:#0a1211;--surface:#101b1a;--surface-2:#0d1716;--ink:#e9efee;--ink-soft:#b9c7c5;--ink-mute:#839795;--line:#20302e;--line-strong:#2c3f3d;--accent:#43d6d0;--accent-ink:#6fe3de;--high:#e6a24d;--crit:#f0766e;--pos:#5fc99e;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.7);}
-  :root[data-theme="light"]{--bg:#eef2f1;--surface:#fff;--surface-2:#f6f8f8;--ink:#0f1c1b;--ink-soft:#3c4c4b;--ink-mute:#657876;--line:#d9e0df;--line-strong:#c3cdcc;--accent:#0a6f6c;--accent-ink:#075451;--high:#b26212;--crit:#b8352f;--pos:#1f7a5c;--shadow:0 1px 2px rgba(16,32,31,.05),0 8px 24px -12px rgba(16,32,31,.18);}
+    --bg:#0a1211;--surface:#101b1a;--ink:#e9efee;--ink-soft:#b9c7c5;--ink-mute:#839795;
+    --line:#20302e;--accent:#43d6d0;--accent-ink:#6fe3de;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 34px -16px rgba(0,0,0,.75);}}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:940px;margin:0 auto;padding:40px 24px 64px}
+  .wrap{max-width:1120px;margin:0 auto;padding:40px 24px 64px}
   .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;margin:0 0 10px}
   h1{font-size:clamp(24px,4vw,34px);letter-spacing:-.02em;margin:0 0 8px;font-weight:800}
-  .sub{color:var(--ink-mute);font-size:15px;margin:0 0 26px;max-width:66ch}
-  .grid{display:grid;grid-template-columns:1.5fr .9fr;gap:22px;align-items:start}
-  @media (max-width:760px){.grid{grid-template-columns:1fr}}
-  .frame{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:var(--shadow)}
-  .band{border-radius:9px;padding:13px 15px;margin-bottom:9px;border:1px solid var(--line);
-    display:flex;justify-content:space-between;align-items:center;gap:12px}
-  .band .l{display:flex;align-items:center;gap:11px;min-width:0}
-  .band .num{font-family:var(--mono);font-size:11px;color:var(--ink-mute);flex:none}
-  .band .t{font-weight:650;font-size:14.5px;overflow:hidden;text-overflow:ellipsis}
-  .band .m{font-family:var(--mono);font-size:11px;white-space:nowrap;flex:none}
-  .att-3{border-left:4px solid var(--accent)} .att-2{border-left:4px solid var(--line-strong)}
-  .friction{background:color-mix(in srgb,var(--high) 14%,var(--surface));border-color:color-mix(in srgb,var(--high) 32%,var(--line))}
-  .friction .m{color:var(--high)}
-  .ok .m{color:var(--ink-mute)}
-  .side h2{font-size:13px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 12px}
+  .sub{color:var(--ink-mute);font-size:15px;margin:0 0 26px;max-width:74ch}
+  .layout{display:grid;grid-template-columns:1fr 300px;gap:26px;align-items:start}
+  @media (max-width:900px){.layout{grid-template-columns:1fr}}
+  .stage{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;box-shadow:var(--shadow);overflow:hidden}
+  canvas{display:block;width:100%;height:auto;border-radius:8px}
+  .side h2{font-size:13px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 14px}
+  .scalebar{height:16px;border-radius:8px;margin:0 0 6px;
+    background:linear-gradient(90deg,#2b3dd6 0%,#1fb6e6 25%,#2fd07a 50%,#f5d100 72%,#ff7a00 88%,#ff2d2d 100%)}
+  .scale-lbl{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-bottom:20px}
   .leg{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;font-size:13.5px;color:var(--ink-soft)}
-  .leg .sw{width:15px;height:15px;border-radius:4px;flex:none;margin-top:3px}
+  .leg .dot{width:14px;height:14px;border-radius:50%;flex:none;margin-top:3px}
   .leg b{color:var(--ink)}
-  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);font-size:14px;color:var(--ink-soft)}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);font-size:13.5px;color:var(--ink-soft);margin-top:18px}
   .card b{color:var(--ink)}
   .ref{font-family:var(--mono);font-size:11px;color:var(--accent-ink)}
+  .toggle{display:inline-flex;gap:8px;align-items:center;font-size:13px;color:var(--ink-soft);cursor:pointer;user-select:none;margin-top:14px}
+  .toggle input{accent-color:var(--accent)}
   .foot{margin-top:26px;font-family:var(--mono);font-size:11.5px;color:var(--ink-mute)}
 </style>
 <div class="wrap">
   <p class="eyebrow">Attention heatmap · сторінка Home</p>
-  <h1>Home — карта уваги й тертя</h1>
-  <p class="sub">Прогноз послідовності уваги зверху вниз. Ліва смуга: <b style="color:var(--accent-ink)">бірюза</b> — висока увага, сіра — середня. Підсвічені жовтим — зони із задокументованою слабкістю (посилання на знахідки у спільному <span class="ref">audit-findings.md</span>).</p>
+  <h1>Home — прогноз уваги</h1>
+  <p class="sub">Предиктивна теплокарта поверх реального скрину головної. <b style="color:#ff2d2d">Червоне/жовте</b> — куди око падає першим і найдовше; <b style="color:#2b3dd6">синє</b> — периферія. Модель ваг: заголовки, інтерактивне демо-поле, контрастні CTA та обличчя/іконки. Знахідки → <span class="ref">audit-findings.md</span>.</p>
 
-  <div class="grid">
-    <div class="frame" aria-label="Карта секцій головної сторінки">
-      <div class="band att-3 ok"><span class="l"><span class="num">01</span><span class="t">Hero + чат-демо</span></span><span class="m">увага: дуже висока</span></div>
-      <div class="band att-3 ok"><span class="l"><span class="num">02</span><span class="t">«Every number means the same thing»</span></span><span class="m">увага: висока</span></div>
-      <div class="band att-3 ok"><span class="l"><span class="num">03</span><span class="t">Смуга цифр-доказів (200+ / 500+ / 28 / 40k)</span></span><span class="m">увага: висока</span></div>
-      <div class="band att-2 ok"><span class="l"><span class="num">04</span><span class="t">«What you get» — сітка переваг</span></span><span class="m">увага: середня</span></div>
-      <div class="band att-3 ok"><span class="l"><span class="num">05</span><span class="t">«How it works» 01·02·03</span></span><span class="m">увага: висока</span></div>
-      <div class="band att-2 friction"><span class="l"><span class="num">06</span><span class="t">«Made for every team» — таби</span></span><span class="m">⚠ тач-цілі · U3</span></div>
-      <div class="band att-3 friction"><span class="l"><span class="num">07</span><span class="t">«Why teams switch» — Traditional vs Insightis</span></span><span class="m">⚠ підписи «before» · A2</span></div>
-      <div class="band att-2 friction"><span class="l"><span class="num">08</span><span class="t">Фінальний CTA «Ask your data anything»</span></span><span class="m">⚠ повтор CTA · U4</span></div>
-    </div>
-
+  <div class="layout">
+    <div class="stage"><canvas id="hm"></canvas></div>
     <div class="side">
-      <h2>Легенда</h2>
-      <div class="leg"><span class="sw" style="background:var(--accent)"></span><div><b>Висока увага.</b> Перший/сильний фокус погляду.</div></div>
-      <div class="leg"><span class="sw" style="background:var(--line-strong)"></span><div><b>Середня увага.</b> Проглядається, не затримує.</div></div>
-      <div class="leg"><span class="sw" style="background:color-mix(in srgb,var(--high) 45%,var(--surface));border:1px solid color-mix(in srgb,var(--high) 40%,var(--line))"></span><div><b>Тертя.</b> Зона з задокументованою слабкістю.</div></div>
-      <div class="card" style="margin-top:16px">
-        <b>Висновок по Home.</b> Верхня половина (hero, «how it works») працює без тертя. Тертя дрібне й нижче лінії згину: таби команд (<span class="ref">U3</span>), приглушені підписи в порівнянні (<span class="ref">A2</span>), повтор фінального CTA (<span class="ref">U4</span>). Критичних проблем на Home немає — головні лежать на Pricing.
+      <h2>Шкала інтенсивності</h2>
+      <div class="scalebar"></div>
+      <div class="scale-lbl"><span>низька</span><span>висока</span></div>
+
+      <h2>Гарячі точки</h2>
+      <div class="leg"><span class="dot" style="background:#ff2d2d"></span><div><b>H1 + чат-демо.</b> Головний фокус — заголовок і поле «Why did our…».</div></div>
+      <div class="leg"><span class="dot" style="background:#ff7a00"></span><div><b>Заголовки секцій.</b> «Semantic Layer», «Decision Velocity», фінальний CTA.</div></div>
+      <div class="leg"><span class="dot" style="background:#2fd07a"></span><div><b>Кнопки й діаграма.</b> Send, Start for Free, ноди архітектури.</div></div>
+      <div class="leg"><span class="dot" style="background:#1fb6e6"></span><div><b>Периферія.</b> Логотипи інтеграцій, дрібний текст.</div></div>
+
+      <label class="toggle"><input type="checkbox" id="ov" checked> показувати теплокарту</label>
+
+      <div class="card">
+        <b>Читання Home.</b> Верхня третина тримає майже всю увагу — hero, демо-поле, перший заголовок. Нижче лінії згину увага дробиться: таби команд (<span class="ref">U3</span>), приглушене порівняння (<span class="ref">A2</span>), повтор CTA (<span class="ref">U4</span>). Критичних зон немає.
       </div>
     </div>
   </div>
 
-  <p class="foot">Insightis · attention heatmap · Home · 2026-08-04 · знахідки → audit-findings.md</p>
+  <p class="foot">Insightis · attention heatmap · Home · 2026-08-04</p>
 </div>
+
+<script>
+// Predictive gaze hotspots. x/y/r as fractions of page dimensions; w = weight 0..1.
+var POINTS = [
+  {x:0.500, y:0.096, r:0.20, w:1.00}, // H1 "Your data knows the answer"
+  {x:0.500, y:0.150, r:0.17, w:0.95}, // chat demo input "Why did our"
+  {x:0.690, y:0.203, r:0.06, w:0.55}, // Send button
+  {x:0.880, y:0.011, r:0.05, w:0.55}, // Start for Free (nav)
+  {x:0.120, y:0.011, r:0.05, w:0.40}, // logo
+  {x:0.500, y:0.224, r:0.10, w:0.35}, // hero sub-line / trust
+  {x:0.500, y:0.286, r:0.30, w:0.30}, // integrations strip
+  {x:0.500, y:0.347, r:0.16, w:0.85}, // "Semantic Intelligence Layer" heading
+  {x:0.500, y:0.451, r:0.07, w:0.55}, // architecture center node
+  {x:0.770, y:0.410, r:0.09, w:0.45}, // right feature list top
+  {x:0.770, y:0.490, r:0.09, w:0.35}, // right feature list bottom
+  {x:0.500, y:0.586, r:0.16, w:0.85}, // "Built for Decision Velocity"
+  {x:0.630, y:0.715, r:0.11, w:0.55}, // product demo modal
+  {x:0.205, y:0.700, r:0.09, w:0.45}, // left steps list
+  {x:0.500, y:0.853, r:0.17, w:0.80}, // "Start Making Smarter Decisions"
+  {x:0.435, y:0.886, r:0.06, w:0.65}, // Start Free Trial button
+  {x:0.565, y:0.886, r:0.05, w:0.40}, // Schedule a Demo
+  {x:0.500, y:0.985, r:0.12, w:0.55}  // "Loved by a community"
+];
+
+// intensity(0..1) -> [r,g,b]
+function ramp(t){
+  var stops=[[0,[43,61,214]],[0.25,[31,182,230]],[0.5,[47,208,122]],
+             [0.72,[245,209,0]],[0.88,[255,122,0]],[1,[255,45,45]]];
+  for(var i=1;i<stops.length;i++){
+    if(t<=stops[i][0]){
+      var a=stops[i-1],b=stops[i],f=(t-a[0])/(b[0]-a[0]);
+      return [a[1][0]+(b[1][0]-a[1][0])*f, a[1][1]+(b[1][1]-a[1][1])*f, a[1][2]+(b[1][2]-a[1][2])*f];
+    }
+  }
+  return stops[stops.length-1][1];
+}
+
+var canvas=document.getElementById('hm'),ctx=canvas.getContext('2d'),
+    img=new Image(),overlayOn=true;
+
+function render(){
+  if(!img.complete||!img.naturalWidth)return;
+  var W=img.naturalWidth,H=img.naturalHeight;
+  canvas.width=W;canvas.height=H;
+  ctx.clearRect(0,0,W,H);
+  ctx.drawImage(img,0,0,W,H);
+  if(!overlayOn)return;
+
+  // 1) accumulate grayscale intensity on a scratch layer
+  var s=document.createElement('canvas');s.width=W;s.height=H;
+  var sc=s.getContext('2d');sc.globalCompositeOperation='lighter';
+  POINTS.forEach(function(p){
+    var cx=p.x*W,cy=p.y*H,rad=p.r*W,
+        g=sc.createRadialGradient(cx,cy,0,cx,cy,rad);
+    g.addColorStop(0,'rgba(0,0,0,'+p.w+')');
+    g.addColorStop(1,'rgba(0,0,0,0)');
+    sc.fillStyle=g;sc.beginPath();sc.arc(cx,cy,rad,0,7);sc.fill();
+  });
+
+  // 2) map accumulated alpha -> heat color
+  var id=sc.getImageData(0,0,W,H),d=id.data;
+  for(var i=0;i<d.length;i+=4){
+    var a=d[i+3];
+    if(a===0)continue;
+    var t=Math.min(1,a/255),c=ramp(t);
+    d[i]=c[0];d[i+1]=c[1];d[i+2]=c[2];
+    d[i+3]=Math.round(Math.min(1,t*1.15)*205); // overlay opacity
+  }
+  sc.putImageData(id,0,0);
+  ctx.drawImage(s,0,0);
+}
+
+img.onload=render;
+img.src='home-page.png';
+document.getElementById('ov').addEventListener('change',function(e){overlayOn=e.target.checked;render();});
+</script>
