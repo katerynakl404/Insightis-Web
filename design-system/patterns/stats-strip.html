@@ -1,23 +1,75 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Stats strip — Patterns</title>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Stats strip — Insightis DS</title>
 <link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Stats strip</h1><p class="sb-header__description">Horizontal row of 3–5 stat-KPI blocks with vertical dividers between columns on desktop.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Stats strip</h1><p class="sb-header__description">The real <code>.ins-stat-strip</code> "by the numbers" metric band, rendered by <code>src/components/StatStrip.jsx</code>. Four equal columns split by vertical dividers on desktop, collapsing to a 2-col grid on mobile. Used on the homepage ("What you get with Insightis") and the About hero.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Stats row</h2>
-<div class="sb-preview sb-preview--fullbleed" data-sb-viewport-preview>
-  <div class="ins-container">
-    <div class="ins-stat-strip">
-      <div class="ins-stat-kpi"><span class="ins-stat-kpi__label">Customers</span><div class="ins-stat-kpi__value">2,400+</div></div>
-      <div class="ins-stat-kpi"><span class="ins-stat-kpi__label">Queries / day</span><div class="ins-stat-kpi__value">1.2M</div></div>
-      <div class="ins-stat-kpi"><span class="ins-stat-kpi__label">Accuracy</span><div class="ins-stat-kpi__value">98.4%</div></div>
-      <div class="ins-stat-kpi"><span class="ins-stat-kpi__label">Avg. latency</span><div class="ins-stat-kpi__value">1.8s</div></div>
+<section class="sb-section"><h2 class="sb-section__title">Metric band</h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-stat-strip">
+    <div class="ins-stat-strip__item">
+      <p class="ins-stat-strip__value">200+</p>
+      <p class="ins-stat-strip__label">Connectors</p>
+      <p class="ins-stat-strip__sub">supported out-of-the-box</p>
+    </div>
+    <div class="ins-stat-strip__item">
+      <p class="ins-stat-strip__value">500+</p>
+      <p class="ins-stat-strip__label">Pre-built metrics</p>
+      <p class="ins-stat-strip__sub">auto-mapped from your tools</p>
+    </div>
+    <div class="ins-stat-strip__item">
+      <p class="ins-stat-strip__value">28</p>
+      <p class="ins-stat-strip__label">Years of data tooling</p>
+      <p class="ins-stat-strip__sub">built by the Devart team</p>
+    </div>
+    <div class="ins-stat-strip__item">
+      <p class="ins-stat-strip__value">40,000+</p>
+      <p class="ins-stat-strip__label">Companies</p>
+      <p class="ins-stat-strip__sub">rely on Devart data tools</p>
     </div>
   </div>
-</div></section>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-stat-strip"&gt;
+  &lt;div class="ins-stat-strip__item"&gt;
+    &lt;p class="ins-stat-strip__value"&gt;200+&lt;/p&gt;
+    &lt;p class="ins-stat-strip__label"&gt;Connectors&lt;/p&gt;
+    &lt;p class="ins-stat-strip__sub"&gt;supported out-of-the-box&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-stat-strip__item"&gt;
+    &lt;p class="ins-stat-strip__value"&gt;500+&lt;/p&gt;
+    &lt;p class="ins-stat-strip__label"&gt;Pre-built metrics&lt;/p&gt;
+    &lt;p class="ins-stat-strip__sub"&gt;auto-mapped from your tools&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-stat-strip__item"&gt;
+    &lt;p class="ins-stat-strip__value"&gt;28&lt;/p&gt;
+    &lt;p class="ins-stat-strip__label"&gt;Years of data tooling&lt;/p&gt;
+    &lt;p class="ins-stat-strip__sub"&gt;built by the Devart team&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-stat-strip__item"&gt;
+    &lt;p class="ins-stat-strip__value"&gt;40,000+&lt;/p&gt;
+    &lt;p class="ins-stat-strip__label"&gt;Companies&lt;/p&gt;
+    &lt;p class="ins-stat-strip__sub"&gt;rely on Devart data tools&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+<p class="sb-section__description">Each <code>__value</code> is a count-up in the real site: the prerendered HTML ships the final figure (e.g. <code>40,000+</code>), so crawlers and no-JS visitors never see <code>0+</code>; a layout effect resets to 0 and animates up when the strip scrolls into view (skipped under <code>prefers-reduced-motion</code>). This static specimen shows the resting final values.</p>
+</section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table">
+<thead><tr><th>Class</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>.ins-stat-strip</code></td><td>Bordered surface band; 2-col grid → 4 equal columns at ≥768px.</td></tr>
+<tr><td><code>.ins-stat-strip__item</code></td><td>One centered metric cell; adds a left divider between items on desktop.</td></tr>
+<tr><td><code>.ins-stat-strip__value</code></td><td>Big teal figure (36/48px), tabular, the count-up target.</td></tr>
+<tr><td><code>.ins-stat-strip__label</code></td><td>Metric name line.</td></tr>
+<tr><td><code>.ins-stat-strip__sub</code></td><td>Optional sub-label detail line.</td></tr>
+</tbody>
+</table>
+<p class="sb-section__description"><strong>Usage.</strong> Source <code>src/components/StatStrip.jsx</code> (CSS <code>ds/components/stat-kpi.css</code> + the <code>.ins-stat-strip</code> block in <code>ds/components/card.css</code>). Figures from the homepage strip in <code>src/main.jsx</code>; the About hero (<code>src/pages/about-insightis.jsx</code>) reuses the same component with its own numbers.</p>
+</section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

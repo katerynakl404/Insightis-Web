@@ -1,44 +1,142 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pricing section — Patterns</title>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pricing section — Insightis DS</title>
 <link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Pricing section</h1><p class="sb-header__description">Segmented monthly/yearly toggle + 3 pricing cards. Card CTAs align to same baseline via <code>margin-top: auto</code>.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Pricing section</h1><p class="sb-header__description">The real /pricing tier cards, rendered by <code>src/pages/pricing.jsx</code>. Each tier is a <code>.ins-card.ins-card--pricing</code> (the featured tier adds <code>.ins-card--selected</code>) inside an inline <code>[data-pricing-grid]</code>; above them sits the inline <code>role="tablist"</code> billing pill from <code>src/components/BillingToggle.jsx</code>.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Pricing tiers</h2>
-<div class="sb-preview sb-preview--fullbleed" data-sb-viewport-preview>
-  <div class="ins-container" style="padding-block:var(--ins-space-3xl);">
-    <div style="text-align:center; margin-bottom:var(--ins-space-2xl);">
-      <h2 class="ins-text-h1" style="margin-bottom:var(--ins-space-lg);">Simple pricing</h2>
-      <div role="tablist" class="ins-segmented" style="margin:0 auto;">
-        <button role="tab" class="ins-segmented__item" aria-selected="true">Monthly</button>
-        <button role="tab" class="ins-segmented__item" aria-selected="false">Yearly</button>
-      </div>
-    </div>
-    <div class="ins-grid">
-      <div class="ins-card ins-card--pricing ins-col-third">
-        <div class="ins-card__eyebrow">Starter</div>
-        <div class="ins-card__price">$29<span style="font-size:14px; color:var(--ins-text-inactive); font-weight:400;">/mo</span></div>
-        <p class="ins-card__body">Core features for small teams starting with decision intelligence.</p>
-        <button class="ins-btn ins-btn--secondary">Get started</button>
-      </div>
-      <div class="ins-card ins-card--pricing ins-card--selected ins-col-third">
-        <div class="ins-card__eyebrow">Team</div>
-        <div class="ins-card__price">$99<span style="font-size:14px; color:var(--ins-text-inactive); font-weight:400;">/mo</span></div>
-        <p class="ins-card__body">Everything in Starter, plus analytics, SSO, and priority support.</p>
-        <button class="ins-btn ins-btn--primary">Choose Team</button>
-      </div>
-      <div class="ins-card ins-card--pricing ins-col-third">
-        <div class="ins-card__eyebrow">Enterprise</div>
-        <div class="ins-card__price">Custom</div>
-        <p class="ins-card__body">SSO, SLA, dedicated CSM, custom connectors.</p>
-        <button class="ins-btn ins-btn--secondary">Contact sales</button>
-      </div>
+<section class="sb-section"><h2 class="sb-section__title">Tier cards + billing toggle</h2>
+<div class="sb-preview sb-preview--fullbleed">
+
+  <!-- BillingToggle.jsx — inline role=tablist pill (yearly leads) -->
+  <div style="display:flex;justify-content:center;margin-bottom:var(--ins-size-8);">
+    <div role="tablist" aria-label="Billing cycle" style="display:inline-flex;padding:var(--ins-size-1);background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:999px;gap:var(--ins-size-1);">
+      <button type="button" role="tab" aria-selected="true" style="padding:9px 18px;border-radius:999px;border:none;background:var(--ins-surface-elevated);color:var(--ins-text-heading);font-size:var(--ins-font-size-14);font-weight:500;font-family:var(--ins-font-family-sans);cursor:pointer;display:inline-flex;align-items:center;gap:var(--ins-size-2);transition:background-color 180ms,color 180ms;">Yearly</button>
+      <button type="button" role="tab" aria-selected="false" style="padding:9px 18px;border-radius:999px;border:none;background:transparent;color:var(--ins-text-body);font-size:var(--ins-font-size-14);font-weight:500;font-family:var(--ins-font-family-sans);cursor:pointer;display:inline-flex;align-items:center;gap:var(--ins-size-2);transition:background-color 180ms,color 180ms;">Monthly</button>
     </div>
   </div>
-</div></section>
+
+  <!-- Inline pricing grid (yearly cycle shown) -->
+  <div data-pricing-grid style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--ins-size-5);">
+
+    <!-- Free -->
+    <div class="ins-card ins-card--pricing" style="position:relative;padding:28px 22px;">
+      <div style="display:flex;align-items:center;gap:var(--ins-size-2);margin-bottom:var(--ins-size-1);">
+        <h3 style="font-size:var(--ins-font-size-22);font-weight:600;color:var(--ins-text-heading);letter-spacing:-0.02em;margin:0;">Free</h3>
+      </div>
+      <p class="ins-text-body" style="margin-bottom:var(--ins-size-3);">For getting started</p>
+      <div style="margin-bottom:var(--ins-size-4);">
+        <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+          <span style="font-size:40px;font-weight:500;color:var(--ins-text-heading);letter-spacing:-0.03em;">$0</span>
+          <span style="font-size:var(--ins-font-size-18);color:var(--ins-text-inactive);text-decoration:line-through;visibility:hidden;">&nbsp;</span>
+        </div>
+        <div style="font-size:var(--ins-font-size-14);color:var(--ins-text-body);margin-top:var(--ins-size-half);visibility:hidden;">per user / month</div>
+        <div style="font-size:var(--ins-font-size-12);color:var(--ins-text-inactive);margin-top:var(--ins-size-half);visibility:hidden;">&nbsp;</div>
+      </div>
+      <a class="ins-btn ins-btn--secondary ins-btn--md" href="/auth/sign-up/" style="width:100%;justify-content:center;margin-bottom:24px;">Start for free<span class="ins-btn__icon ins-btn__icon--trailing" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span></a>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;padding:0;margin:0;">
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg>500 AI tokens / month</li>
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg>1 data connector</li>
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg>Built-in Metrics</li>
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg>Community support</li>
+      </ul>
+    </div>
+
+    <!-- Starter -->
+    <div class="ins-card ins-card--pricing" style="position:relative;padding:28px 22px;">
+      <div style="display:flex;align-items:center;gap:var(--ins-size-2);margin-bottom:var(--ins-size-1);">
+        <h3 style="font-size:var(--ins-font-size-22);font-weight:600;color:var(--ins-text-heading);letter-spacing:-0.02em;margin:0;">Starter</h3>
+        <span style="display:inline-flex;align-items:center;padding:2px 8px;background:var(--ins-surface-brand-tint);border:1px solid var(--ins-border-brand);border-radius:var(--ins-radius-sm);font-size:10px;font-family:var(--ins-font-family-mono);color:var(--ins-text-highlight);font-weight:600;letter-spacing:.04em;">50% OFF</span>
+      </div>
+      <p class="ins-text-body" style="margin-bottom:var(--ins-size-3);">For small teams</p>
+      <div style="margin-bottom:var(--ins-size-4);">
+        <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+          <span style="font-size:40px;font-weight:500;color:var(--ins-text-heading);letter-spacing:-0.03em;">$7.99</span>
+          <span style="font-size:var(--ins-font-size-18);color:var(--ins-text-inactive);text-decoration:line-through;">$15.99</span>
+        </div>
+        <div style="font-size:var(--ins-font-size-14);color:var(--ins-text-body);margin-top:var(--ins-size-half);">per user / month</div>
+        <div style="font-size:var(--ins-font-size-12);color:var(--ins-text-inactive);margin-top:var(--ins-size-half);">billed annually · $95.88/yr</div>
+      </div>
+      <a class="ins-btn ins-btn--secondary ins-btn--md" href="/auth/sign-up/" style="width:100%;justify-content:center;margin-bottom:24px;">Start for free<span class="ins-btn__icon ins-btn__icon--trailing" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span></a>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;padding:0;margin:0;">
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg>5,000 AI tokens / month</li>
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg>Up to 10 data connectors</li>
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg>Built-in + Custom Metrics</li>
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg>Standard support</li>
+      </ul>
+    </div>
+
+    <!-- Pro — featured (selected) -->
+    <div class="ins-card ins-card--pricing ins-card--selected" style="position:relative;padding:28px 22px;">
+      <div style="position:absolute;top:0;left:50%;transform:translate(-50%,-50%);padding:4px 12px;background:linear-gradient(135deg,var(--ins-button-primary-bg-hover),var(--ins-button-primary-bg));color:var(--ins-text-body);font-size:var(--ins-font-size-11);font-weight:500;letter-spacing:.05em;border-radius:999px;text-transform:uppercase;">Most popular</div>
+      <div style="display:flex;align-items:center;gap:var(--ins-size-2);margin-bottom:var(--ins-size-1);">
+        <h3 style="font-size:var(--ins-font-size-22);font-weight:600;color:var(--ins-text-heading);letter-spacing:-0.02em;margin:0;">Pro</h3>
+        <span style="display:inline-flex;align-items:center;padding:2px 8px;background:var(--ins-surface-brand-tint);border:1px solid var(--ins-border-brand);border-radius:var(--ins-radius-sm);font-size:10px;font-family:var(--ins-font-family-mono);color:var(--ins-text-highlight);font-weight:600;letter-spacing:.04em;">50% OFF</span>
+      </div>
+      <p class="ins-text-body" style="margin-bottom:var(--ins-size-3);">For growing teams</p>
+      <div style="margin-bottom:var(--ins-size-4);">
+        <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+          <span style="font-size:40px;font-weight:500;color:var(--ins-text-heading);letter-spacing:-0.03em;">$15.99</span>
+          <span style="font-size:var(--ins-font-size-18);color:var(--ins-text-inactive);text-decoration:line-through;">$31.99</span>
+        </div>
+        <div style="font-size:var(--ins-font-size-14);color:var(--ins-text-body);margin-top:var(--ins-size-half);">per user / month</div>
+        <div style="font-size:var(--ins-font-size-12);color:var(--ins-text-inactive);margin-top:var(--ins-size-half);">billed annually · $191.88/yr</div>
+      </div>
+      <a class="ins-btn ins-btn--primary ins-btn--md" href="/auth/sign-up/" style="width:100%;justify-content:center;margin-bottom:24px;">Start for free<span class="ins-btn__icon ins-btn__icon--trailing" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></span></a>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;padding:0;margin:0;">
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg>15,000 AI tokens / month</li>
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg>Unlimited data connectors</li>
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg>Built-in + Custom Metrics</li>
+        <li style="display:flex;align-items:flex-start;gap:9px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"/></svg>Priority Support</li>
+      </ul>
+    </div>
+
+  </div>
+  <style>
+    /* Real /pricing override: CTA sits directly under the equal-height price block. */
+    [data-pricing-grid] .ins-card--pricing .ins-btn { margin-top: 0; }
+    @media (max-width: 900px) {
+      [data-pricing-grid] { grid-template-columns: 1fr !important; max-width: 480px; margin: 0 auto; }
+    }
+  </style>
+</div>
+<div class="sb-code"><pre>&lt;!-- BillingToggle.jsx — inline role=tablist pill --&gt;
+&lt;div role="tablist" aria-label="Billing cycle" style="display:inline-flex;padding:var(--ins-size-1);background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:999px;gap:var(--ins-size-1);"&gt;
+  &lt;button role="tab" aria-selected="true" style="…background:var(--ins-surface-elevated);color:var(--ins-text-heading);…"&gt;Yearly&lt;/button&gt;
+  &lt;button role="tab" aria-selected="false" style="…background:transparent;color:var(--ins-text-body);…"&gt;Monthly&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Inline grid + tier cards --&gt;
+&lt;div data-pricing-grid style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--ins-size-5);"&gt;
+  &lt;div class="ins-card ins-card--pricing" style="position:relative;padding:28px 22px;"&gt;…&lt;/div&gt;
+  &lt;div class="ins-card ins-card--pricing" …&gt;…&lt;/div&gt;
+  &lt;div class="ins-card ins-card--pricing ins-card--selected" …&gt;
+    &lt;div style="position:absolute;top:0;left:50%;transform:translate(-50%,-50%);…"&gt;Most popular&lt;/div&gt;
+    &lt;h3&gt;Pro&lt;/h3&gt; &lt;span&gt;50% OFF&lt;/span&gt;
+    &lt;span&gt;$15.99&lt;/span&gt; &lt;span style="text-decoration:line-through;"&gt;$31.99&lt;/span&gt;
+    &lt;a class="ins-btn ins-btn--primary ins-btn--md" href="/auth/sign-up/"&gt;Start for free …&lt;/a&gt;
+    &lt;ul&gt;&lt;li&gt;&lt;svg …&gt;&lt;polyline points="20 6 9 17 4 12"/&gt;&lt;/svg&gt;15,000 AI tokens / month&lt;/li&gt;…&lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+<p class="sb-section__description">The grid and the billing toggle are built with inline styles in the real page, not DS layout classes — reproduced verbatim here. The toggle leads with <em>Yearly</em> (the default cycle and quoted price); switching to Monthly swaps every card's headline/struck figures and hides the "billed annually" line. Only the tier surface (<code>.ins-card--pricing</code> / <code>.ins-card--selected</code>) and the CTA (<code>.ins-btn</code>) are DS classes.</p>
+</section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table">
+<thead><tr><th>Class</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>.ins-card</code></td><td>Base card surface.</td></tr>
+<tr><td><code>.ins-card--pricing</code></td><td>Pricing variant — flex column, body flexes, CTA aligns to baseline.</td></tr>
+<tr><td><code>.ins-card--selected</code></td><td>Featured tier — brand border + brand-tint surface (Pro).</td></tr>
+<tr><td><code>.ins-btn / --primary / --secondary / --md</code></td><td>Per-tier CTA button (primary on the featured tier).</td></tr>
+<tr><td><code>[data-pricing-grid]</code></td><td>Inline 3-col grid hook (not a DS class); collapses to 1 col ≤900px.</td></tr>
+<tr><td><code>role="tablist"</code> / <code>role="tab"</code></td><td>Inline billing toggle (BillingToggle.jsx) — no DS segmented class.</td></tr>
+</tbody>
+</table>
+<p class="sb-section__description"><strong>Usage.</strong> Source <code>src/pages/pricing.jsx</code> with plan data from <code>src/data/pricing.js</code>, the toggle from <code>src/components/BillingToggle.jsx</code> and the card shell from <code>src/components/Card.jsx</code> (CSS <code>ds/components/card.css</code>). Prices, features and the 50% launch badge are the real yearly-cycle figures.</p>
+</section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Integrations strip — Patterns</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/app-blocks.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Integrations strip</h1><p class="sb-header__description">The shared "200+ Integrations" marquee strip that runs full-bleed below the hero. A fixed left label, then an auto-scrolling <code>.marquee-left</code> track of connector pills inside a masked <code>.marquee-container</code>. Each pill pairs a sprite logo (<code>.ins-connector-logo &lt;slug&gt;</code>) with its name on a <code>--ins-surface-card</code> pill. The real component ships Tailwind utilities + the <code>.marquee-*</code> animation; reproduced here with equivalent inline styles.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">200+ Integrations marquee</h2>
+<div class="sb-preview sb-preview--fullbleed" data-sb-viewport-preview>
+  <div style="width:100%;border-top:1px solid var(--ins-border-default);border-bottom:1px solid var(--ins-border-default);background:rgba(255,255,255,.02);padding:20px 0;position:relative;z-index:10">
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:24px">
+      <span style="font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--ins-text-body);white-space:nowrap;flex-shrink:0">200+ Integrations</span>
+      <div class="marquee-container" style="overflow:hidden;flex:1;-webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%)">
+        <div class="marquee-left" style="display:flex;gap:14px;width:max-content">
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo salesforce" style="--ins-connector-size:22px" role="img" aria-label="Salesforce"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Salesforce</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo hubspot" style="--ins-connector-size:22px" role="img" aria-label="HubSpot"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">HubSpot</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo stripe" style="--ins-connector-size:22px" role="img" aria-label="Stripe"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Stripe</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo snowflake" style="--ins-connector-size:22px" role="img" aria-label="Snowflake"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Snowflake</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo bigquery" style="--ins-connector-size:22px" role="img" aria-label="Google BigQuery"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Google BigQuery</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo postgresql" style="--ins-connector-size:22px" role="img" aria-label="PostgreSQL"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">PostgreSQL</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo googleanalytics" style="--ins-connector-size:22px" role="img" aria-label="Google Analytics"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Google Analytics</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo zoho" style="--ins-connector-size:22px" role="img" aria-label="Zoho"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Zoho</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo quickbooks" style="--ins-connector-size:22px" role="img" aria-label="QuickBooks"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">QuickBooks</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo amplitude" style="--ins-connector-size:22px" role="img" aria-label="Amplitude"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Amplitude</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo redshift" style="--ins-connector-size:22px" role="img" aria-label="Redshift"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Redshift</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo mysql" style="--ins-connector-size:22px" role="img" aria-label="MySQL"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">MySQL</span></div>
+          <!-- aria-hidden duplicate copy for a seamless -50% loop -->
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo salesforce" style="--ins-connector-size:22px"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Salesforce</span></div>
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo hubspot" style="--ins-connector-size:22px"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">HubSpot</span></div>
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo stripe" style="--ins-connector-size:22px"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Stripe</span></div>
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo snowflake" style="--ins-connector-size:22px"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Snowflake</span></div>
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo bigquery" style="--ins-connector-size:22px"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Google BigQuery</span></div>
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo postgresql" style="--ins-connector-size:22px"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">PostgreSQL</span></div>
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo googleanalytics" style="--ins-connector-size:22px"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Google Analytics</span></div>
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo zoho" style="--ins-connector-size:22px"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Zoho</span></div>
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo quickbooks" style="--ins-connector-size:22px"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">QuickBooks</span></div>
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo amplitude" style="--ins-connector-size:22px"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Amplitude</span></div>
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo redshift" style="--ins-connector-size:22px"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">Redshift</span></div>
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"><span class="ins-connector-logo mysql" style="--ins-connector-size:22px"></span><span class="ins-text-body" style="font-size:13px;white-space:nowrap">MySQL</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div style="width:100%;border-top:1px solid var(--ins-border-default);border-bottom:1px solid var(--ins-border-default);
+            background:rgba(255,255,255,.02);padding:20px 0;position:relative;z-index:10"&gt;
+  &lt;div style="max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:24px"&gt;
+    &lt;span style="font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:.12em;
+                 color:var(--ins-text-body);white-space:nowrap;flex-shrink:0"&gt;200+ Integrations&lt;/span&gt;
+    &lt;div class="marquee-container" style="overflow:hidden;flex:1;
+         -webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);
+         mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%)"&gt;
+      &lt;div class="marquee-left" style="display:flex;gap:14px;width:max-content"&gt;
+        &lt;div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--ins-surface-card);
+                    border:1px solid var(--ins-border-default);border-radius:9999px;flex-shrink:0"&gt;
+          &lt;span class="ins-connector-logo salesforce" style="--ins-connector-size:22px" role="img" aria-label="Salesforce"&gt;&lt;/span&gt;
+          &lt;span class="ins-text-body" style="font-size:13px;white-space:nowrap"&gt;Salesforce&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;!-- …12 pills, then an aria-hidden duplicate set for the seamless -50% loop --&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+
+<table class="sb-table"><thead><tr><th>Class / attribute</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.marquee-container</code></td><td>Overflow clip + edge-fade mask; pauses the track on hover (app-blocks.css).</td></tr>
+<tr><td><code>.marquee-left</code></td><td>The scrolling track — <code>translateX(0 → -50%)</code> over 30s linear infinite. Requires two identical pill sets so the wrap is seamless; the second is <code>aria-hidden</code>. Animation is disabled under <code>prefers-reduced-motion</code>.</td></tr>
+<tr><td><code>.ins-connector-logo &lt;slug&gt;</code></td><td>Sprite logo cell at <code>--ins-connector-size:22px</code>; slug picks the cell (salesforce, hubspot, stripe, snowflake, bigquery, postgresql, googleanalytics, zoho, quickbooks, amplitude, redshift, mysql).</td></tr>
+<tr><td><code>var(--ins-surface-card)</code> pill · <code>var(--ins-border-default)</code></td><td>Rounded pill surface and border; <code>.ins-text-body</code> name at 13px.</td></tr>
+</tbody></table>
+<p class="sb-section__description"><strong>Usage.</strong> Source: <code>src/components/IntegrationsStrip.jsx</code>. The live component renders logos via <code>&lt;ConnectorIcon&gt;</code> from the Skyvia sprite and only shows names that resolve to a sprite cell; here the pills use the DS's <code>.ins-connector-logo &lt;slug&gt;</code> sprite classes directly with 12 real connector slugs.</p>
+</section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

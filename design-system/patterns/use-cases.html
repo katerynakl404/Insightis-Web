@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Use cases — Patterns</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/app-blocks.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Use cases</h1><p class="sb-header__description">The "What &lt;role&gt; teams use Insightis for" section every Solutions page runs: a full-width gradient promo banner, a <code>SectionHeader</code>, then a 3×2 grid of icon cards. The banner and grid layout are app-level inline styles from <code>src/components/UseCases.jsx</code>; the grid uses <code>[data-usecase-grid]</code> (collapses to 2-up / 1-up). Copy is the real <code>cases</code> array and promo copy from <code>src/pages/marketing-teams.jsx</code>.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Promo banner + use-case grid</h2>
+<div class="sb-preview sb-preview--fullbleed" data-sb-viewport-preview>
+  <section style="padding:100px 0;background:var(--ins-glow-section)">
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px">
+
+      <div style="margin-bottom:var(--ins-size-20)">
+        <div style="position:relative;border-radius:var(--ins-radius-16);border:1px solid rgba(30,30,48,1);padding:32px 48px;overflow:hidden;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:var(--ins-size-6);flex-wrap:wrap;background:linear-gradient(135deg,var(--ins-color-promo-a) 0%,var(--ins-color-promo-b) 50%,var(--ins-color-promo-a) 100%)">
+          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)"></div>
+          <div style="flex:1 1 360px;min-width:0">
+            <h3 style="font-size:clamp(22px,3vw,30px);font-weight:500;color:var(--ins-text-heading);letter-spacing:-.03em;line-height:1.2;margin-bottom:var(--ins-size-2)">See it on <span style="color:var(--ins-button-primary-bg)">your own campaigns</span></h3>
+            <p class="ins-text-body">Connect Google Ads or Facebook Ads and ask Insightis the campaign question that always takes too long to answer.</p>
+          </div>
+          <a class="ins-btn ins-btn--primary ins-btn--lg" href="/auth/sign-up/">Start for free<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+
+      <div style="margin-bottom:var(--ins-size-14)">
+        <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;max-width:760px;margin-inline:auto">
+          <span class="ins-eyebrow ins-eyebrow--pill">Use cases</span>
+          <h2 class="ins-text-display" style="text-wrap:balance;margin:0">What marketing teams use Insightis for</h2>
+        </div>
+      </div>
+
+      <div data-usecase-grid style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+
+        <div style="background:rgba(13,17,23,.6);border:1px solid var(--ins-color-white-a-06);border-radius:var(--ins-radius-16);padding:var(--ins-size-6);position:relative;overflow:hidden;transition:all .2s">
+          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)"></div>
+          <div style="width:38px;height:38px;border-radius:10px;background:var(--ins-color-teal-a-08);border:1px solid rgba(9,160,157,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="var(--ins-text-highlight)" stroke-width="1.5" stroke-linecap="round"/><path d="M7 14l4-4 4 4 5-6" stroke="var(--ins-text-highlight)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="font-size:var(--ins-font-size-15);font-weight:600;color:var(--ins-text-heading-soft);margin-bottom:6px">Live ROAS by channel</h3>
+          <p class="ins-text-body">Live ROAS and spend by channel anytime — no more waiting for the agency deck or a Monday pull. Every platform, every campaign, real-time.</p>
+        </div>
+
+        <div style="background:rgba(13,17,23,.6);border:1px solid var(--ins-color-white-a-06);border-radius:var(--ins-radius-16);padding:var(--ins-size-6);position:relative;overflow:hidden;transition:all .2s">
+          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)"></div>
+          <div style="width:38px;height:38px;border-radius:10px;background:var(--ins-color-teal-a-08);border:1px solid rgba(9,160,157,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m6-5h6M8 3v18m8-18v18M16 3h3a2 2 0 0 1 2 2v3M2 9h20M2 15h20M2 21h3m16 0h3" stroke="var(--ins-text-highlight)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 style="font-size:var(--ins-font-size-15);font-weight:600;color:var(--ins-text-heading-soft);margin-bottom:6px">One attribution model</h3>
+          <p class="ins-text-body">One Semantic Layer governs ROAS, CAC and blended CAC under one attribution model owned by Marketing Ops. No more arguing whose number is right.</p>
+        </div>
+
+        <div style="background:rgba(13,17,23,.6);border:1px solid var(--ins-color-white-a-06);border-radius:var(--ins-radius-16);padding:var(--ins-size-6);position:relative;overflow:hidden;transition:all .2s">
+          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)"></div>
+          <div style="width:38px;height:38px;border-radius:10px;background:var(--ins-color-teal-a-08);border:1px solid rgba(9,160,157,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--ins-text-highlight)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="var(--ins-text-highlight)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 style="font-size:var(--ins-font-size-15);font-weight:600;color:var(--ins-text-heading-soft);margin-bottom:6px">Proactive funnel drop-off alerts</h3>
+          <p class="ins-text-body">Funnel leaks flagged before they compound. The moment Click → MQL or MQL → SQL starts converting worse, you know — not at the quarterly review.</p>
+        </div>
+
+        <div style="background:rgba(13,17,23,.6);border:1px solid var(--ins-color-white-a-06);border-radius:var(--ins-radius-16);padding:var(--ins-size-6);position:relative;overflow:hidden;transition:all .2s">
+          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)"></div>
+          <div style="width:38px;height:38px;border-radius:10px;background:var(--ins-color-teal-a-08);border:1px solid rgba(9,160,157,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="var(--ins-text-highlight)" stroke-width="1.5"/><path d="M7 9h10M7 13h6" stroke="var(--ins-text-highlight)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 style="font-size:var(--ins-font-size-15);font-weight:600;color:var(--ins-text-heading-soft);margin-bottom:6px">Ad hoc campaign analysis without SQL</h3>
+          <p class="ins-text-body">Any campaign question answered instantly — ROAS by channel, CAC by platform, funnel drop-off by source. No analyst queue, no pivot-table archaeology.</p>
+        </div>
+
+        <div style="background:rgba(13,17,23,.6);border:1px solid var(--ins-color-white-a-06);border-radius:var(--ins-radius-16);padding:var(--ins-size-6);position:relative;overflow:hidden;transition:all .2s">
+          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)"></div>
+          <div style="width:38px;height:38px;border-radius:10px;background:var(--ins-color-teal-a-08);border:1px solid rgba(9,160,157,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="14" rx="2" stroke="var(--ins-text-highlight)" stroke-width="1.5"/><line x1="3" y1="10" x2="21" y2="10" stroke="var(--ins-text-highlight)" stroke-width="1.5"/><line x1="8" y1="3" x2="8" y2="9" stroke="var(--ins-text-highlight)" stroke-width="1.5"/><line x1="16" y1="3" x2="16" y2="9" stroke="var(--ins-text-highlight)" stroke-width="1.5"/></svg>
+          </div>
+          <h3 style="font-size:var(--ins-font-size-15);font-weight:600;color:var(--ins-text-heading-soft);margin-bottom:6px">Same-day budget reallocation</h3>
+          <p class="ins-text-body">See which channels are over- and under-performing and shift budget the same day — no analyst queue, no waiting for the weekly report.</p>
+        </div>
+
+        <div style="background:rgba(13,17,23,.6);border:1px solid var(--ins-color-white-a-06);border-radius:var(--ins-radius-16);padding:var(--ins-size-6);position:relative;overflow:hidden;transition:all .2s">
+          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(9,160,157,.2),transparent)"></div>
+          <div style="width:38px;height:38px;border-radius:10px;background:var(--ins-color-teal-a-08);border:1px solid rgba(9,160,157,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="var(--ins-text-highlight)" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="var(--ins-text-highlight)" stroke-width="1.5"/><path d="M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75" stroke="var(--ins-text-highlight)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 style="font-size:var(--ins-font-size-15);font-weight:600;color:var(--ins-text-heading-soft);margin-bottom:6px">Cross-source MQL → customer view</h3>
+          <p class="ins-text-body">Correlate ad spend, analytics and CRM in one question — how many MQLs from paid social became customers. No SQL, no analyst, no two-week wait.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+<div class="sb-code"><pre>&lt;section style="padding:100px 0;background:var(--ins-glow-section)"&gt;
+  &lt;div style="max-width:1280px;margin:0 auto;padding:0 24px"&gt;
+    &lt;!-- Promo banner --&gt;
+    &lt;div style="position:relative;border-radius:var(--ins-radius-16);border:1px solid rgba(30,30,48,1);
+                padding:32px 48px;overflow:hidden;display:flex;justify-content:space-between;flex-wrap:wrap;
+                background:linear-gradient(135deg,var(--ins-color-promo-a),var(--ins-color-promo-b),var(--ins-color-promo-a))"&gt;
+      &lt;div style="position:absolute;top:0;left:0;right:0;height:1px;
+                  background:linear-gradient(90deg,transparent,rgba(7,128,126,.3),transparent)"&gt;&lt;/div&gt;
+      &lt;div style="flex:1 1 360px"&gt;
+        &lt;h3 style="font-size:clamp(22px,3vw,30px);font-weight:500;color:var(--ins-text-heading)"&gt;
+          See it on &lt;span style="color:var(--ins-button-primary-bg)"&gt;your own campaigns&lt;/span&gt;&lt;/h3&gt;
+        &lt;p class="ins-text-body"&gt;Connect Google Ads or Facebook Ads…&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;a class="ins-btn ins-btn--primary ins-btn--lg" href="/auth/sign-up/"&gt;Start for free &lt;svg…arrow/&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;!-- SectionHeader (eyebrow "Use cases" + display heading) --&gt;
+    &lt;div data-usecase-grid style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px"&gt;
+      &lt;div style="background:rgba(13,17,23,.6);border:1px solid var(--ins-color-white-a-06);
+                  border-radius:var(--ins-radius-16);padding:var(--ins-size-6);position:relative;overflow:hidden"&gt;
+        &lt;div style="…1px teal top hairline…"&gt;&lt;/div&gt;
+        &lt;div style="width:38px;height:38px;border-radius:10px;background:var(--ins-color-teal-a-08);
+                    border:1px solid rgba(9,160,157,.2)"&gt;{icon}&lt;/div&gt;
+        &lt;h3 style="font-size:var(--ins-font-size-15);font-weight:600;color:var(--ins-text-heading-soft)"&gt;Live ROAS by channel&lt;/h3&gt;
+        &lt;p class="ins-text-body"&gt;Live ROAS and spend by channel anytime…&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;!-- ×6 --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre></div>
+
+<table class="sb-table"><thead><tr><th>Class / attribute</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>linear-gradient(135deg, promo-a, promo-b, promo-a)</code></td><td>Banner fill from <code>--ins-color-promo-a</code> / <code>--ins-color-promo-b</code>; 1px top gradient hairline over it.</td></tr>
+<tr><td><code>&lt;span style="color:var(--ins-button-primary-bg)"&gt;</code></td><td>The teal highlight phrase in the banner heading (the <code>UseCases.Highlight</code> helper — bare span, no class).</td></tr>
+<tr><td><code>.ins-btn.ins-btn--primary.ins-btn--lg</code></td><td>Banner CTA (rendered as an anchor) with a trailing arrow icon.</td></tr>
+<tr><td><code>.ins-eyebrow.ins-eyebrow--pill</code> · <code>.ins-text-display</code></td><td>SectionHeader eyebrow "Use cases" + display heading.</td></tr>
+<tr><td><code>[data-usecase-grid]</code></td><td>3-column card grid; collapses to 2-up ≤900px and 1-up ≤640px (app-blocks.css).</td></tr>
+<tr><td><code>.ins-color-teal-a-08</code> tile · <code>.ins-text-highlight</code> icon</td><td>Per-card teal icon tile (38px, 10px radius) and the teal-stroked Lucide icon inside it.</td></tr>
+</tbody></table>
+<p class="sb-section__description"><strong>Usage.</strong> Source: <code>src/components/UseCases.jsx</code> (promo banner + SectionHeader + 3×2 icon grid) with the real <code>cases</code> array, <code>promoTitle</code>/<code>promoDesc</code> and heading from <code>src/pages/marketing-teams.jsx</code>. The six card icons are passed in per page as <code>cases[].icon</code>.</p>
+</section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

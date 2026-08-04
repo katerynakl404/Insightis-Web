@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Section Header — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Section Header</h1><p class="sb-header__description">The eyebrow + heading + lede triplet that opens nearly every marketing section. <code>&lt;SectionHeader&gt;</code> composes <code>.ins-eyebrow</code> (optionally <code>--pill</code>), a <code>.ins-text-display</code> heading and a <code>.ins-text-body-lg</code> lede inside a flex wrapper, replacing 22+ hand-rolled copies across <code>src/pages/*.jsx</code>. Alignment and spacing come from inline layout styles; every visible token is a real class.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Centered (default)</h2>
+<p class="sb-section__description">Default <code>align="center"</code>: wrapper is a centred column capped at 760&nbsp;px, lede capped at 640&nbsp;px. Eyebrow defaults to the pill variant. Heading renders <code>&lt;h2&gt;</code> at the <code>.ins-text-display</code> scale.</p>
+<div class="sb-preview">
+  <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;max-width:760px;margin-inline:auto">
+    <span class="ins-eyebrow ins-eyebrow--pill">Why Insightis</span>
+    <h2 class="ins-text-display" style="text-wrap:balance;margin:0">One workspace for every metric</h2>
+    <p class="ins-text-body-lg" style="margin:0;max-width:640px">Connect your data, ask in plain language, and get answers your whole team can trust — without waiting on a dashboard rebuild.</p>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div style="text-align:center;display:flex;flex-direction:column;align-items:center;
+            gap:16px;max-width:760px;margin-inline:auto"&gt;
+  &lt;span class="ins-eyebrow ins-eyebrow--pill"&gt;Why Insightis&lt;/span&gt;
+  &lt;h2 class="ins-text-display" style="text-wrap:balance;margin:0"&gt;One workspace for every metric&lt;/h2&gt;
+  &lt;p class="ins-text-body-lg" style="margin:0;max-width:640px"&gt;Connect your data…&lt;/p&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Left-aligned</h2>
+<p class="sb-section__description"><code>align="left"</code> flips the wrapper to <code>align-items:flex-start</code>, drops the max-width cap (<code>max-width:none</code>) and removes the auto side margins; the lede loses its 640&nbsp;px cap too.</p>
+<div class="sb-preview">
+  <div style="text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:16px;max-width:none;margin-inline:0">
+    <span class="ins-eyebrow ins-eyebrow--pill">How it works</span>
+    <h2 class="ins-text-display" style="text-wrap:balance;margin:0">From question to answer in three steps</h2>
+    <p class="ins-text-body-lg" style="margin:0;max-width:none">No SQL, no ticket queue. Point Insightis at a connector and it does the joins for you.</p>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div style="text-align:left;display:flex;flex-direction:column;align-items:flex-start;
+            gap:16px;max-width:none;margin-inline:0"&gt;
+  &lt;span class="ins-eyebrow ins-eyebrow--pill"&gt;How it works&lt;/span&gt;
+  &lt;h2 class="ins-text-display" style="text-wrap:balance;margin:0"&gt;From question to answer in three steps&lt;/h2&gt;
+  &lt;p class="ins-text-body-lg" style="margin:0;max-width:none"&gt;No SQL, no ticket queue…&lt;/p&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Plain eyebrow (no pill)</h2>
+<p class="sb-section__description"><code>eyebrowVariant="plain"</code> renders the bare <code>.ins-eyebrow</code> without the tinted pill — the ✦ star and uppercase label remain.</p>
+<div class="sb-preview">
+  <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;max-width:760px;margin-inline:auto">
+    <span class="ins-eyebrow">Pricing</span>
+    <h2 class="ins-text-display" style="text-wrap:balance;margin:0">Simple plans that scale with you</h2>
+    <p class="ins-text-body-lg" style="margin:0;max-width:640px">Start free. Upgrade only when your team outgrows it.</p>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div style="text-align:center;display:flex;flex-direction:column;align-items:center;
+            gap:16px;max-width:760px;margin-inline:auto"&gt;
+  &lt;span class="ins-eyebrow"&gt;Pricing&lt;/span&gt;
+  &lt;h2 class="ins-text-display" style="text-wrap:balance;margin:0"&gt;Simple plans that scale with you&lt;/h2&gt;
+  &lt;p class="ins-text-body-lg" style="margin:0;max-width:640px"&gt;Start free…&lt;/p&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Size + heading level (md vs lg)</h2>
+<p class="sb-section__description">Both <code>size="md"</code> (default, <code>&lt;h2&gt;</code>) and <code>size="lg"</code> (hero, paired with <code>as="h1"</code>) render the heading at the same <code>.ins-text-display</code> scale — per the component, <code>size</code> now only tunes letter-spacing and does not change the class. The <code>as</code> prop swaps the underlying heading tag for correct document outline.</p>
+<div class="sb-preview">
+  <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;max-width:760px;margin-inline:auto">
+    <span class="ins-eyebrow ins-eyebrow--pill">Insightis</span>
+    <h1 class="ins-text-display" style="text-wrap:balance;margin:0">Ask your data anything</h1>
+    <p class="ins-text-body-lg" style="margin:0;max-width:640px">The analytics workspace that answers in plain language.</p>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;!-- size="lg" as="h1" — hero prominence, same display scale --&gt;
+&lt;div style="text-align:center;display:flex;flex-direction:column;align-items:center;
+            gap:16px;max-width:760px;margin-inline:auto"&gt;
+  &lt;span class="ins-eyebrow ins-eyebrow--pill"&gt;Insightis&lt;/span&gt;
+  &lt;h1 class="ins-text-display" style="text-wrap:balance;margin:0"&gt;Ask your data anything&lt;/h1&gt;
+  &lt;p class="ins-text-body-lg" style="margin:0;max-width:640px"&gt;The analytics workspace…&lt;/p&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-eyebrow</code></td><td>Uppercase label above the heading (auto ✦ star). Rendered when the <code>eyebrow</code> prop is set.</td></tr>
+<tr><td><code>.ins-eyebrow--pill</code></td><td>Added when <code>eyebrowVariant="pill"</code> (the default) — teal-tinted pill.</td></tr>
+<tr><td><code>.ins-text-display</code></td><td>The heading, for both <code>size</code> values (36&nbsp;px mobile / 48&nbsp;px desktop). Tag set by <code>as</code>.</td></tr>
+<tr><td><code>.ins-text-body-lg</code></td><td>The lede paragraph. Rendered when the <code>lede</code> prop is set.</td></tr>
+</tbody></table>
+<p class="sb-section__description">Source: <code>src/components/SectionHeader.jsx</code> — props <code>eyebrow</code>, <code>title</code>, <code>lede</code>, <code>align</code> (center/left), <code>size</code> (md/lg), <code>as</code> (h1/h2/h3), <code>eyebrowVariant</code> (pill/plain). Layout (flex column, 16&nbsp;px gap, max-width caps, alignment) is applied via inline styles; only the eyebrow, heading and lede carry DS classes.</p>
+</section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

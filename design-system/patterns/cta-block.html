@@ -1,24 +1,63 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CTA block — Patterns</title>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CTA block — Insightis DS</title>
 <link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">CTA block</h1><p class="sb-header__description">End-of-section call-to-action — smaller than promo banner, centered type + button pair.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">CTA block</h1><p class="sb-header__description">The centered <code>--text</code> variant of the real <code>.ins-bottom-cta</code> organism: a headline, a supporting sentence, and a primary/secondary button pair. Rendered by <code>&lt;BottomCTA variant="text"&gt;</code> and reused mid-page through <code>MidCTA</code>.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Centered CTA</h2>
-<div class="sb-preview" data-sb-viewport-preview>
-  <div style="text-align:center; padding-block:var(--ins-space-3xl);">
-    <span class="ins-text-overline">Get started</span>
-    <h2 class="ins-text-display" style="margin:var(--ins-space-sm) 0 var(--ins-space-md);">See Insightis in action</h2>
-    <p class="ins-text-body-lg" style="max-width:54ch; margin:0 auto var(--ins-space-xl);">Book a 15-minute demo or start a free trial. No credit card required.</p>
-    <div style="display:flex; gap:var(--ins-space-md); justify-content:center; flex-wrap:wrap;">
-      <button class="ins-btn ins-btn--primary ins-btn--lg">Start for Free</button>
-      <button class="ins-btn ins-btn--ghost ins-btn--lg">Book a demo</button>
+<section class="sb-section"><h2 class="sb-section__title">Heading + supporting sentence + button pair</h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-bottom-cta ins-bottom-cta--text">
+    <h2 class="ins-bottom-cta__title">Start free. <span class="ins-bottom-cta__highlight">Upgrade</span> when you're ready.</h2>
+    <p class="ins-bottom-cta__desc">Connect your stack and get a decision-ready answer in under two minutes — no SQL, no analyst queue.</p>
+    <div class="ins-bottom-cta__actions">
+      <a href="/auth/sign-up/" class="ins-btn ins-btn--primary ins-btn--lg">Start for free <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="/company/contacts" class="ins-btn ins-btn--secondary ins-btn--lg">Talk to sales</a>
+    </div>
+    <p class="ins-bottom-cta__note">Free plan · No credit card required</p>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-bottom-cta ins-bottom-cta--text"&gt;
+  &lt;h2 class="ins-bottom-cta__title"&gt;Start free. &lt;span class="ins-bottom-cta__highlight"&gt;Upgrade&lt;/span&gt; when you're ready.&lt;/h2&gt;
+  &lt;p class="ins-bottom-cta__desc"&gt;Connect your stack and get a decision-ready answer in under two minutes — no SQL, no analyst queue.&lt;/p&gt;
+  &lt;div class="ins-bottom-cta__actions"&gt;
+    &lt;a href="/auth/sign-up/" class="ins-btn ins-btn--primary ins-btn--lg"&gt;Start for free &lt;svg .../&gt;&lt;/a&gt;
+    &lt;a href="/company/contacts" class="ins-btn ins-btn--secondary ins-btn--lg"&gt;Talk to sales&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;p class="ins-bottom-cta__note"&gt;Free plan · No credit card required&lt;/p&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Single CTA (no secondary, no note)</h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-bottom-cta ins-bottom-cta--text">
+    <h2 class="ins-bottom-cta__title">See Insightis on your own data</h2>
+    <div class="ins-bottom-cta__actions">
+      <a href="/auth/sign-up/" class="ins-btn ins-btn--primary ins-btn--lg">Start for free <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
   </div>
-</div></section>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-bottom-cta ins-bottom-cta--text"&gt;
+  &lt;h2 class="ins-bottom-cta__title"&gt;See Insightis on your own data&lt;/h2&gt;
+  &lt;div class="ins-bottom-cta__actions"&gt;
+    &lt;a href="/auth/sign-up/" class="ins-btn ins-btn--primary ins-btn--lg"&gt;Start for free &lt;svg .../&gt;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-bottom-cta</code></td><td>Base organism — glow card, top brand line, responsive flex layout.</td></tr>
+<tr><td><code>.ins-bottom-cta--text</code></td><td>Centered column variant: title + optional desc + CTA(s), stacked and centered.</td></tr>
+<tr><td><code>.ins-bottom-cta__title</code></td><td>Headline. Scales up (28→36px) in the centered variant.</td></tr>
+<tr><td><code>.ins-bottom-cta__highlight</code></td><td>Teal-tinted inline span for the emphasized phrase in the title.</td></tr>
+<tr><td><code>.ins-bottom-cta__desc</code></td><td>Supporting sentence between the title and the actions.</td></tr>
+<tr><td><code>.ins-bottom-cta__actions</code></td><td>Flex wrapper that centers one or two CTA buttons.</td></tr>
+<tr><td><code>.ins-bottom-cta__note</code></td><td>Optional one-line reassurance strip under the actions.</td></tr>
+<tr><td><code>.ins-btn .ins-btn--primary .ins-btn--lg</code></td><td>Primary CTA button (anchor).</td></tr>
+<tr><td><code>.ins-btn .ins-btn--secondary .ins-btn--lg</code></td><td>Secondary CTA button (anchor).</td></tr>
+</tbody></table>
+<p class="sb-section__description"><strong>Usage.</strong> Rendered by <code>src/components/BottomCTA.jsx</code> with <code>variant="text"</code> (single CTA) or <code>variant="buttons"</code> for the primary/secondary pair; the highlight is <code>&lt;BottomCTA.Highlight&gt;</code>. The mid-page reuse lives in <code>src/components/MidCTA.jsx</code>.</p></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

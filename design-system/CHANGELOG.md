@@ -2,6 +2,26 @@
 
 All notable changes to the Insightis Design System.
 
+## v1.1.2 — 2026-08-05
+
+Patterns section reconciled with the real site — every documented block now maps to
+a real reusable element and uses the real classes.
+
+- **Removed 3 fabricated patterns** the site has no counterpart for: `feature-grid`,
+  `team-grid`, `logo-wall` (they used `.ins-grid`/`.ins-col-third`/`.ins-avatar`
+  scaffolding that appears nowhere in `insightis-site/src`).
+- **Rebuilt 7 patterns** to use the real block classes instead of generic/invented ones:
+  `cta-block`/`promo-banner`/`newsletter-block` → `.ins-bottom-cta` variants;
+  `faq-block` → `.ins-faq` (was `.ins-accordion`); `testimonial-row` → `.ins-testimonial`
+  (was generic `.ins-card`); `stats-strip` → `.ins-stat-strip__item` children;
+  `pricing-section` → `.ins-card--pricing`/`--selected` + real inline billing toggle
+  (dropped `.ins-segmented`/`.ins-grid`/`.ins-card__*`).
+- **Added pages for real reusable elements that were undocumented:** patterns
+  `feature-spotlights`, `use-cases`, `integrations-strip`, `hero-mockup`; components
+  `section` (`.ins-section`), `section-header`, `billing-toggle`, `waitlist-form`.
+- `app-blocks.css` extended with the real `[data-spotlight-grid]`/`[data-usecase-grid]`
+  responsive rules and the integrations `marquee-*` animation (mirrored from app.css).
+
 ## v1.1.1 — 2026-08-04
 
 Storybook content rebuilt from the real repo (not resurrected old demos), plus

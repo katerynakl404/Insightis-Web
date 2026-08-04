@@ -1,38 +1,104 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Testimonial row — Patterns</title>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Testimonial row — Insightis DS</title>
 <link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Testimonial row</h1><p class="sb-header__description">Quote + avatar + role composition. Built from <code>.ins-card</code> + <code>.ins-avatar</code> + typography atoms — no <code>--testimonial</code> variant needed.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Testimonial row</h1><p class="sb-header__description">The real <code>.ins-testimonial</code> quote card, rendered by <code>src/components/TestimonialCard.jsx</code>. Two idioms share one class: the Solutions style (opening-quote SVG + optional company pill) and the homepage style (5-star row + corner mark + avatar).</p></header>
 
 <section class="sb-section"><h2 class="sb-section__title">3-up quotes</h2>
-<div class="sb-preview">
-  <div class="ins-grid">
-    <div class="ins-card ins-col-third">
-      <p class="ins-card__body" style="font-size:16px; line-height:24px; margin-bottom:var(--ins-space-md);">"Cut our CFO-prep time by 70%. No more Monday spreadsheet marathons."</p>
-      <div style="display:flex; align-items:center; gap:var(--ins-space-sm);">
-        <div class="ins-avatar ins-avatar--md">JK</div>
-        <div><div style="color:var(--ins-text-heading); font-weight:500; font-size:14px;">Jane K.</div><div style="color:var(--ins-text-inactive); font-size:12px;">VP Finance, Acme</div></div>
+<div class="sb-preview sb-preview--fullbleed">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--ins-space-xl);">
+
+    <!-- Solutions idiom: opening-quote icon + company pill -->
+    <div class="ins-testimonial">
+      <svg class="ins-testimonial__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5C8 19 6 19 3 19v2zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5c0 3.5-2 3.5-5 3.5v2z"/></svg>
+      <p class="ins-testimonial__quote">In the first month we deflected ~70% of ad hoc SQL tickets — analysts self-serve and my team ships instead of firefighting.</p>
+      <div class="ins-testimonial__footer">
+        <div class="ins-testimonial__name">Maya Chen</div>
+        <div class="ins-testimonial__role">Head of Data</div>
+        <div class="ins-testimonial__company">Series-B SaaS</div>
       </div>
     </div>
-    <div class="ins-card ins-col-third">
-      <p class="ins-card__body" style="font-size:16px; line-height:24px; margin-bottom:var(--ins-space-md);">"We replaced three dashboards with Insightis. Analysts finally build, not rebuild."</p>
-      <div style="display:flex; align-items:center; gap:var(--ins-space-sm);">
-        <div class="ins-avatar ins-avatar--md">DM</div>
-        <div><div style="color:var(--ins-text-heading); font-weight:500; font-size:14px;">Diego M.</div><div style="color:var(--ins-text-inactive); font-size:12px;">Head of Data, Widgets</div></div>
+
+    <!-- Homepage idiom: 5-star row + corner mark + avatar -->
+    <div class="ins-testimonial ins-testimonial--has-avatar">
+      <span class="ins-testimonial__corner" aria-hidden="true">&ldquo;</span>
+      <div class="ins-testimonial__stars" aria-label="5 out of 5 stars">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <p class="ins-testimonial__quote">Insightis transformed how we make decisions — we ask a question and get a cited answer in seconds, not a ticket in the backlog.</p>
+      <div class="ins-testimonial__footer">
+        <span class="ins-testimonial__avatar-fallback" aria-hidden="true">SC</span>
+        <div>
+          <div class="ins-testimonial__name">Sarah Chen</div>
+          <div class="ins-testimonial__role">VP of Analytics · Meridian Health</div>
+        </div>
       </div>
     </div>
-    <div class="ins-card ins-col-third">
-      <p class="ins-card__body" style="font-size:16px; line-height:24px; margin-bottom:var(--ins-space-md);">"Cited answers mean execs trust the numbers. That changed our weekly rhythm."</p>
-      <div style="display:flex; align-items:center; gap:var(--ins-space-sm);">
-        <div class="ins-avatar ins-avatar--md">RO</div>
-        <div><div style="color:var(--ins-text-heading); font-weight:500; font-size:14px;">Rose O.</div><div style="color:var(--ins-text-inactive); font-size:12px;">COO, Brightlab</div></div>
+
+    <!-- Solutions idiom, no pill: real customer story quote -->
+    <div class="ins-testimonial">
+      <svg class="ins-testimonial__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5C8 19 6 19 3 19v2zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h2c1 0 2 .75 2 2v.5c0 3.5-2 3.5-5 3.5v2z"/></svg>
+      <p class="ins-testimonial__quote">It has saved my time, which is money. And now my stakeholders get a better response time from me.</p>
+      <div class="ins-testimonial__footer">
+        <div class="ins-testimonial__name">Vantage Data Co</div>
+        <div class="ins-testimonial__role">On the Insights Engine</div>
       </div>
     </div>
+
   </div>
-</div></section>
+</div>
+<div class="sb-code"><pre>&lt;!-- Solutions idiom --&gt;
+&lt;div class="ins-testimonial"&gt;
+  &lt;svg class="ins-testimonial__icon" viewBox="0 0 24 24" fill="currentColor" …&gt;…&lt;/svg&gt;
+  &lt;p class="ins-testimonial__quote"&gt;In the first month we deflected ~70% of ad hoc SQL tickets…&lt;/p&gt;
+  &lt;div class="ins-testimonial__footer"&gt;
+    &lt;div class="ins-testimonial__name"&gt;Maya Chen&lt;/div&gt;
+    &lt;div class="ins-testimonial__role"&gt;Head of Data&lt;/div&gt;
+    &lt;div class="ins-testimonial__company"&gt;Series-B SaaS&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Homepage idiom: stars + corner + avatar --&gt;
+&lt;div class="ins-testimonial ins-testimonial--has-avatar"&gt;
+  &lt;span class="ins-testimonial__corner" aria-hidden="true"&gt;&amp;ldquo;&lt;/span&gt;
+  &lt;div class="ins-testimonial__stars" aria-label="5 out of 5 stars"&gt;&lt;svg …&gt;&lt;polygon points="12 2 15.09 8.26 …"/&gt;&lt;/svg&gt; ×5&lt;/div&gt;
+  &lt;p class="ins-testimonial__quote"&gt;Insightis transformed how we make decisions…&lt;/p&gt;
+  &lt;div class="ins-testimonial__footer"&gt;
+    &lt;span class="ins-testimonial__avatar-fallback" aria-hidden="true"&gt;SC&lt;/span&gt;
+    &lt;div&gt;
+      &lt;div class="ins-testimonial__name"&gt;Sarah Chen&lt;/div&gt;
+      &lt;div class="ins-testimonial__role"&gt;VP of Analytics · Meridian Health&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+<p class="sb-section__description">The <code>::before</code> top brand-glow line is always on; hover tints the border teal. When an <code>avatar</code> or <code>initials</code> is present the component adds <code>.ins-testimonial--has-avatar</code>, which switches the footer to a horizontal avatar + text row (no top border).</p>
+</section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table">
+<thead><tr><th>Class</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>.ins-testimonial</code></td><td>Quote card shell — dark surface, top glow line, hover border.</td></tr>
+<tr><td><code>.ins-testimonial--has-avatar</code></td><td>Footer becomes a horizontal avatar + name/role row.</td></tr>
+<tr><td><code>.ins-testimonial__icon</code></td><td>Opening-quote SVG (Solutions idiom).</td></tr>
+<tr><td><code>.ins-testimonial__stars</code></td><td>Amber 5-star row (homepage idiom).</td></tr>
+<tr><td><code>.ins-testimonial__corner</code></td><td>Decorative &ldquo; mark, top-right.</td></tr>
+<tr><td><code>.ins-testimonial__quote</code></td><td>Quote body; flexes to push the footer down.</td></tr>
+<tr><td><code>.ins-testimonial__footer</code></td><td>Attribution block (top border, or avatar row when has-avatar).</td></tr>
+<tr><td><code>.ins-testimonial__name / __role</code></td><td>Person / role lines.</td></tr>
+<tr><td><code>.ins-testimonial__company</code></td><td>Mono uppercase pill badge (Solutions idiom).</td></tr>
+<tr><td><code>.ins-testimonial__avatar / __avatar-fallback</code></td><td>36px avatar image, or gradient initials fallback.</td></tr>
+</tbody>
+</table>
+<p class="sb-section__description"><strong>Usage.</strong> Source <code>src/components/TestimonialCard.jsx</code> (CSS <code>ds/components/testimonial-card.css</code>). Quotes from the component's own doc examples and from <code>src/pages/success-stories.jsx</code>.</p>
+</section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

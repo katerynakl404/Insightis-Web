@@ -1,25 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Newsletter block — Patterns</title>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Newsletter block — Insightis DS</title>
 <link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Newsletter block</h1><p class="sb-header__description">"Still waiting on insights?" composer — heading + inline input-with-button rail. Submit active by default. Optional <code>data-sb-validate-email</code> to gate until valid.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Newsletter block</h1><p class="sb-header__description">The default (form) variant of the real <code>.ins-bottom-cta</code> organism: a headline paired with an inline capture rail — an input plus a submit button sharing one rounded chrome via <code>.ins-input-group</code>. Rendered by <code>&lt;BottomCTA variant="form"&gt;</code>.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">Default (submit always active)</h2>
-<div class="sb-preview sb-preview--fullbleed" data-sb-viewport-preview>
-  <div class="ins-banner-newsletter">
-    <h3 class="ins-banner-newsletter__title">Still waiting on <em>insights</em> that take <em>days</em>?</h3>
-    <form class="ins-banner-newsletter__composer" onsubmit="event.preventDefault()">
-      <input type="email" placeholder="What info are you looking for?">
-      <button type="submit">
-        Get Insight
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-      </button>
+<section class="sb-section"><h2 class="sb-section__title">Inline capture form</h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-bottom-cta">
+    <h2 class="ins-bottom-cta__title">Still waiting on <span class="ins-bottom-cta__highlight">insights</span> that take <span class="ins-bottom-cta__highlight">days?</span></h2>
+    <form action="/auth/sign-up/" method="get" class="ins-input-group ins-bottom-cta__form">
+      <input class="ins-input ins-bottom-cta__input" name="q" type="email" required placeholder="you@company.com" aria-label="Work email">
+      <button type="submit" class="ins-btn ins-btn--primary ins-btn--sm" style="flex-shrink:0;">Start for free <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
     </form>
   </div>
-</div></section>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-bottom-cta"&gt;
+  &lt;h2 class="ins-bottom-cta__title"&gt;Still waiting on &lt;span class="ins-bottom-cta__highlight"&gt;insights&lt;/span&gt; that take &lt;span class="ins-bottom-cta__highlight"&gt;days?&lt;/span&gt;&lt;/h2&gt;
+  &lt;form action="/auth/sign-up/" method="get" class="ins-input-group ins-bottom-cta__form"&gt;
+    &lt;input class="ins-input ins-bottom-cta__input" name="q" type="email" required
+           placeholder="you@company.com" aria-label="Work email"&gt;
+    &lt;button type="submit" class="ins-btn ins-btn--primary ins-btn--sm"&gt;Start for free &lt;svg .../&gt;&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Metric-question capture (default site copy)</h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="ins-bottom-cta">
+    <h2 class="ins-bottom-cta__title">Stop arguing about <span class="ins-bottom-cta__highlight">which number</span> is right.</h2>
+    <form action="/auth/sign-up/" method="get" class="ins-input-group ins-bottom-cta__form">
+      <input class="ins-input ins-bottom-cta__input" name="q" type="text" required placeholder="What metric do you want to unify?" aria-label="What metric do you want to unify?">
+      <button type="submit" class="ins-btn ins-btn--primary ins-btn--sm" style="flex-shrink:0;">Start for free <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    </form>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div class="ins-bottom-cta"&gt;
+  &lt;h2 class="ins-bottom-cta__title"&gt;Stop arguing about &lt;span class="ins-bottom-cta__highlight"&gt;which number&lt;/span&gt; is right.&lt;/h2&gt;
+  &lt;form action="/auth/sign-up/" method="get" class="ins-input-group ins-bottom-cta__form"&gt;
+    &lt;input class="ins-input ins-bottom-cta__input" name="q" type="text" required
+           placeholder="What metric do you want to unify?" aria-label="What metric do you want to unify?"&gt;
+    &lt;button type="submit" class="ins-btn ins-btn--primary ins-btn--sm"&gt;Start for free &lt;svg .../&gt;&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-bottom-cta</code></td><td>Base organism — glow card, top brand line, responsive flex layout. Default = form variant.</td></tr>
+<tr><td><code>.ins-bottom-cta__title</code></td><td>Headline (left-aligned at ≥768px in the form layout).</td></tr>
+<tr><td><code>.ins-bottom-cta__highlight</code></td><td>Teal-tinted inline span for the emphasized phrase in the title.</td></tr>
+<tr><td><code>.ins-input-group</code></td><td>Kit rail that supplies the shared chrome (bg, border, radius, focus) for input + button.</td></tr>
+<tr><td><code>.ins-bottom-cta__form</code></td><td>BottomCTA-specific layout on the same element as <code>.ins-input-group</code>.</td></tr>
+<tr><td><code>.ins-input .ins-bottom-cta__input</code></td><td>Transparent input inside the group (fixed ~280px on desktop).</td></tr>
+<tr><td><code>.ins-btn .ins-btn--primary .ins-btn--sm</code></td><td>The submit button nested in the rail.</td></tr>
+</tbody></table>
+<p class="sb-section__description"><strong>Usage.</strong> Rendered by <code>src/components/BottomCTA.jsx</code> with <code>variant="form"</code> (the default; 16 page-level uses). The form posts <code>method="get"</code> to <code>ctaHref</code>; the input <code>name</code> defaults to <code>q</code> and the submit label defaults to "Start for free". Headline copy is the row-alternative documented in <code>src/main.jsx</code>; the metric-question example is the component's own default.</p></section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

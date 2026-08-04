@@ -9,9 +9,15 @@
    SYNC.md). Loaded only on the pattern pages that use these blocks.
 
    Source: insightis-site/src/app.css
-     .section-label      -> lines 186-193
-     .showcase / .sc-*   -> lines 253-312
-     responsive override -> @media(max-width:900px) lines 473-475
+     .section-label            -> lines 186-193
+     .showcase / .sc-*         -> lines 253-312
+     showcase responsive       -> @media(max-width:900px) lines 473-475
+     [data-spotlight-grid]     -> @media(max-width:900px) lines 1049-1063
+     [data-usecase-grid]       -> @media(max-width:900px) line 1069 + @media(max-width:640px)
+   Feature-spotlights and use-cases lay out with INLINE styles in their JSX
+   (FeatureSpotlights.jsx / UseCases.jsx); only their responsive collapse lives
+   in app.css, so only that is mirrored here — the pattern pages carry the same
+   inline styles the site renders.
    ══════════════════════════════════════════════════════════════════ */
 
 /* Section eyebrow used by the showcase / how-it-works headers (app-level
@@ -80,4 +86,34 @@
   .showcase{grid-template-columns:1fr}
   .sc-steps{order:2;border-right:none;border-top:1px solid rgba(255,255,255,.05)}
   .sc-preview{order:1;border-left:none;min-height:400px}
+}
+
+/* Feature-spotlights + use-cases responsive collapse (app.css @media 900px/640px,
+   lines 1049-1069 / 1104). Base layout is inline in the JSX; only this lives in app.css. */
+@media(max-width:900px){
+  [data-spotlight-grid][data-spotlight-grid]{grid-template-columns:minmax(0,1fr)!important;gap:32px!important}
+  [data-spotlight-grid] > [data-spotlight-visual]{height:auto!important;min-height:320px!important;min-width:0!important;order:1!important}
+  [data-spotlight-grid] > [data-spotlight-visual] > *{min-width:0!important;max-width:100%!important}
+  [data-spotlight-grid] > [data-spotlight-text]{order:0!important}
+  [data-usecase-grid]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:640px){
+  [data-usecase-grid]{grid-template-columns:minmax(0,1fr)!important}
+}
+
+/* Integrations marquee (app.css lines 44-62) -- IntegrationsStrip "200+ integrations"
+   strip. The strip itself is Tailwind-utility + this animation + .ins-connector-logo;
+   the storybook page reproduces the tailwind layout with inline styles. */
+@keyframes marquee-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes marquee-right{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+.marquee-left{animation:marquee-left 30s linear infinite}
+.marquee-right{animation:marquee-right 30s linear infinite}
+.marquee-left-slow{animation:marquee-left 40s linear infinite}
+.marquee-right-slow{animation:marquee-right 40s linear infinite}
+.marquee-container:hover .marquee-left,
+.marquee-container:hover .marquee-right,
+.marquee-container:hover .marquee-left-slow,
+.marquee-container:hover .marquee-right-slow{animation-play-state:paused}
+@media (prefers-reduced-motion: reduce){
+  .marquee-left,.marquee-right,.marquee-left-slow,.marquee-right-slow{animation:none!important}
 }

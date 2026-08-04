@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Feature spotlights — Patterns</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/app-blocks.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Feature spotlights</h1><p class="sb-header__description">The alternating text/visual "How it works" section every Solutions page runs below its hero. A <code>SectionHeader</code> slot, then one full-width row per capability, the visual alternating left/right (odd rows reverse). Layout is app-level inline styles on <code>[data-spotlight-grid]</code> / <code>[data-spotlight-text]</code> / <code>[data-spotlight-visual]</code>; the visual arrives as a per-page mockup node — here a simple <code>.ins-card</code> mock stands in. Copy is the real <code>spots</code> array from <code>src/pages/marketing-teams.jsx</code>.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Alternating spotlight rows</h2>
+<div class="sb-preview sb-preview--fullbleed" data-sb-viewport-preview>
+  <section style="padding:80px 0 100px;background:var(--ins-glow-section)">
+    <div style="max-width:1280px;margin:0 auto;padding:0 24px">
+      <div style="margin-bottom:72px">
+        <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;max-width:760px;margin-inline:auto">
+          <span class="ins-eyebrow ins-eyebrow--pill">How it works</span>
+          <h2 class="ins-text-display" style="text-wrap:balance;margin:0">Built for the way marketing teams actually work</h2>
+          <p class="ins-text-body-lg" style="margin:0;max-width:640px">Four capabilities that turn marketing data from a Monday-morning bottleneck into answers you can act on today.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:88px">
+
+        <div data-spotlight-grid style="display:grid;grid-template-columns:1fr 1fr;gap:var(--ins-size-16);align-items:center">
+          <div data-spotlight-text style="order:0">
+            <div class="ins-eyebrow ins-eyebrow--pill" style="margin-bottom:18px">
+              <span style="font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;font-family:var(--ins-font-family-mono)">Self-Serve</span>
+            </div>
+            <h3 class="ins-text-h2" style="margin-bottom:18px">Campaign answers on demand</h3>
+            <p class="ins-text-body-lg" style="margin-bottom:22px">Ask any campaign, channel, or spend question in plain English — ROAS, CAC, funnel drop-off — and Insightis answers from your ad platforms, analytics, and CRM in seconds.</p>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:var(--ins-size-1)"><polyline points="20 6 9 17 4 12"/></svg>
+                Plain-English questions across every channel</li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:var(--ins-size-1)"><polyline points="20 6 9 17 4 12"/></svg>
+                Marketers unblock themselves without SQL or exports</li>
+            </ul>
+          </div>
+          <div data-spotlight-visual style="order:2;display:flex;align-items:stretch;height:440px">
+            <div class="ins-card" style="width:100%;display:flex;flex-direction:column;gap:14px;justify-content:center">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:8px;height:8px;border-radius:50%;background:var(--ins-button-primary-bg)"></div>
+                <span style="font-family:var(--ins-font-family-mono);font-size:11px;color:var(--ins-text-body);letter-spacing:.06em">ask insightis</span>
+              </div>
+              <div style="background:rgba(13,17,23,.6);border:1px solid var(--ins-color-white-a-06);border-radius:var(--ins-radius-12);padding:14px">
+                <p style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading-soft);margin:0">"What's our blended ROAS by channel this month?"</p>
+              </div>
+              <div style="display:flex;gap:12px">
+                <div style="flex:1;background:rgba(9,160,157,.06);border:1px solid rgba(9,160,157,.2);border-radius:var(--ins-radius-12);padding:14px">
+                  <div style="font-family:var(--ins-font-family-mono);font-size:22px;color:var(--ins-text-heading);letter-spacing:-.02em">4.2×</div>
+                  <div style="font-size:var(--ins-font-size-12);color:var(--ins-text-body);margin-top:4px">Paid search</div>
+                </div>
+                <div style="flex:1;background:rgba(9,160,157,.06);border:1px solid rgba(9,160,157,.2);border-radius:var(--ins-radius-12);padding:14px">
+                  <div style="font-family:var(--ins-font-family-mono);font-size:22px;color:var(--ins-text-heading);letter-spacing:-.02em">2.7×</div>
+                  <div style="font-size:var(--ins-font-size-12);color:var(--ins-text-body);margin-top:4px">Paid social</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div data-spotlight-grid style="display:grid;grid-template-columns:1fr 1fr;gap:var(--ins-size-16);align-items:center">
+          <div data-spotlight-text style="order:2">
+            <div class="ins-eyebrow ins-eyebrow--pill" style="margin-bottom:18px">
+              <span style="font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;font-family:var(--ins-font-family-mono)">Semantic Layer</span>
+            </div>
+            <h3 class="ins-text-h2" style="margin-bottom:18px">One attribution model everyone trusts</h3>
+            <p class="ins-text-body-lg" style="margin-bottom:22px">Demand Gen counts last-touch, Brand counts first-touch, Finance counts blended CAC. Insightis aligns ROAS and CAC under one certified attribution model the whole company trusts.</p>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:var(--ins-size-1)"><polyline points="20 6 9 17 4 12"/></svg>
+                ROAS and CAC agreed across teams</li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:var(--ins-font-size-14);color:var(--ins-text-body);line-height:1.55">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--ins-text-highlight)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:var(--ins-size-1)"><polyline points="20 6 9 17 4 12"/></svg>
+                Attribution model defined once, applied everywhere</li>
+            </ul>
+          </div>
+          <div data-spotlight-visual style="order:0;display:flex;align-items:stretch;height:440px">
+            <div class="ins-card" style="width:100%;display:flex;flex-direction:column;gap:12px;justify-content:center">
+              <span style="font-family:var(--ins-font-family-mono);font-size:11px;color:var(--ins-text-body);letter-spacing:.06em">semantic layer · attribution</span>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(13,17,23,.6);border:1px solid var(--ins-color-white-a-06);border-radius:10px;padding:12px 14px">
+                  <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading-soft)">Demand Gen</span><span style="font-family:var(--ins-font-family-mono);font-size:var(--ins-font-size-12);color:var(--ins-text-body)">last-touch</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(13,17,23,.6);border:1px solid var(--ins-color-white-a-06);border-radius:10px;padding:12px 14px">
+                  <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading-soft)">Brand</span><span style="font-family:var(--ins-font-family-mono);font-size:var(--ins-font-size-12);color:var(--ins-text-body)">first-touch</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(9,160,157,.06);border:1px solid rgba(9,160,157,.2);border-radius:10px;padding:12px 14px">
+                  <span style="font-size:var(--ins-font-size-14);color:var(--ins-text-heading)">Certified model</span><span style="font-family:var(--ins-font-family-mono);font-size:var(--ins-font-size-12);color:var(--ins-button-primary-bg)">one source</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+<div class="sb-code"><pre>&lt;section style="padding:80px 0 100px;background:var(--ins-glow-section)"&gt;
+  &lt;div style="max-width:1280px;margin:0 auto;padding:0 24px"&gt;
+    &lt;!-- SectionHeader slot (eyebrow + display heading + lede) --&gt;
+    &lt;div style="display:flex;flex-direction:column;gap:88px"&gt;
+      &lt;div data-spotlight-grid style="display:grid;grid-template-columns:1fr 1fr;gap:var(--ins-size-16);align-items:center"&gt;
+        &lt;div data-spotlight-text style="order:0"&gt;
+          &lt;div class="ins-eyebrow ins-eyebrow--pill"&gt;&lt;span&gt;Self-Serve&lt;/span&gt;&lt;/div&gt;
+          &lt;h3 class="ins-text-h2"&gt;Campaign answers on demand&lt;/h3&gt;
+          &lt;p class="ins-text-body-lg"&gt;Ask any campaign, channel, or spend question…&lt;/p&gt;
+          &lt;ul&gt;&lt;li&gt;&lt;svg…check/&gt; Plain-English questions across every channel&lt;/li&gt;…&lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;div data-spotlight-visual style="order:2;height:440px"&gt;{visual: .ins-card mock}&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- 2nd row: order swaps (text order:2, visual order:0) --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre></div>
+
+<table class="sb-table"><thead><tr><th>Class / attribute</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>[data-spotlight-grid]</code></td><td>Two-column grid (<code>1fr 1fr</code>, <code>gap:var(--ins-size-16)</code>); collapses to one column ≤900px (app-blocks.css).</td></tr>
+<tr><td><code>[data-spotlight-text]</code> · <code>[data-spotlight-visual]</code></td><td>The text and visual halves. <code>order</code> swaps on odd rows so the visual alternates left/right; the visual is a fixed <code>440px</code> tall.</td></tr>
+<tr><td><code>.ins-eyebrow.ins-eyebrow--pill</code></td><td>Per-row mono eyebrow pill above the row heading.</td></tr>
+<tr><td><code>.ins-text-h2</code> · <code>.ins-text-body-lg</code></td><td>Row heading and lede type scales.</td></tr>
+<tr><td><code>.ins-card</code></td><td>Stand-in visual. On the real pages this slot holds a per-page mockup node (SpotlightChat, SpotlightSemantic, …).</td></tr>
+</tbody></table>
+<p class="sb-section__description"><strong>Usage.</strong> Source: <code>src/components/FeatureSpotlights.jsx</code> (shell + alternating rows) with the real <code>spots</code> array and section copy from <code>src/pages/marketing-teams.jsx</code>. The visual for each row is passed in per page as <code>spots[].visual</code>; a simple <code>.ins-card</code> mock stands in here.</p>
+</section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

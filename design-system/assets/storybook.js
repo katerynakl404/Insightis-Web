@@ -50,6 +50,8 @@
         <a class="sb-sidebar__link" href="${p}components/checkbox-radio-toggle.html">Checkbox / Radio / Toggle</a>
         <a class="sb-sidebar__link" href="${p}components/segmented-control.html">Segmented control</a>
         <a class="sb-sidebar__link" href="${p}components/form-group.html">Form group</a>
+        <a class="sb-sidebar__link" href="${p}components/billing-toggle.html">Billing toggle</a>
+        <a class="sb-sidebar__link" href="${p}components/waitlist-form.html">Waitlist form</a>
       </nav>
       <nav class="sb-sidebar__section" aria-label="Data display">
         <span class="sb-sidebar__section-title">Data display</span>
@@ -104,27 +106,30 @@
         <a class="sb-sidebar__link" href="${p}components/code.html">Code</a>
         <a class="sb-sidebar__link" href="${p}components/kbd.html">Kbd</a>
         <a class="sb-sidebar__link" href="${p}components/eyebrow.html">Eyebrow</a>
+        <a class="sb-sidebar__link" href="${p}components/section-header.html">Section header</a>
       </nav>
       <nav class="sb-sidebar__section" aria-label="Layout">
         <span class="sb-sidebar__section-title">Layout</span>
         <a class="sb-sidebar__link" href="${p}components/capsule.html">Capsule</a>
+        <a class="sb-sidebar__link" href="${p}components/section.html">Section</a>
       </nav>
       <nav class="sb-sidebar__section" aria-label="Patterns">
         <span class="sb-sidebar__section-title">Patterns</span>
         <a class="sb-sidebar__link" href="${p}patterns/screens-side-tabs.html">Screens + side tabs</a>
         <a class="sb-sidebar__link" href="${p}patterns/hero.html">Hero</a>
-        <a class="sb-sidebar__link" href="${p}patterns/feature-grid.html">Feature grid</a>
         <a class="sb-sidebar__link" href="${p}patterns/pricing-section.html">Pricing section</a>
         <a class="sb-sidebar__link" href="${p}patterns/cta-block.html">CTA block</a>
         <a class="sb-sidebar__link" href="${p}patterns/promo-banner.html">Promo banner</a>
         <a class="sb-sidebar__link" href="${p}patterns/newsletter-block.html">Newsletter block</a>
         <a class="sb-sidebar__link" href="${p}patterns/stats-strip.html">Stats strip</a>
-        <a class="sb-sidebar__link" href="${p}patterns/team-grid.html">Team grid</a>
         <a class="sb-sidebar__link" href="${p}patterns/sidebar-content.html">Sidebar + content</a>
         <a class="sb-sidebar__link" href="${p}patterns/testimonial-row.html">Testimonial row</a>
-        <a class="sb-sidebar__link" href="${p}patterns/logo-wall.html">Logo wall</a>
         <a class="sb-sidebar__link" href="${p}patterns/faq-block.html">FAQ block</a>
         <a class="sb-sidebar__link" href="${p}patterns/legal-prose.html">Legal prose</a>
+        <a class="sb-sidebar__link" href="${p}patterns/feature-spotlights.html">Feature spotlights</a>
+        <a class="sb-sidebar__link" href="${p}patterns/use-cases.html">Use cases</a>
+        <a class="sb-sidebar__link" href="${p}patterns/integrations-strip.html">Integrations strip</a>
+        <a class="sb-sidebar__link" href="${p}patterns/hero-mockup.html">Hero mockup</a>
       </nav>
     `;
   }

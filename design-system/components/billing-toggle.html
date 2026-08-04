@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Billing Toggle — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Billing Toggle</h1><p class="sb-header__description">Yearly / Monthly segmented control shared by the <code>/pricing</code> cards and the home-page pricing section, so both surfaces switch cycles the same way. It is built entirely from <strong>inline styles on a <code>role="tablist"</code></strong> — it carries no <code>.ins-*</code> class — using surface, border and text tokens. The two tabs come from <code>BILLING_CYCLES</code>: Yearly leads (first segment) and is the quoted price.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Yearly active (default)</h2>
+<p class="sb-section__description">The active tab gets the raised <code>--ins-surface-elevated</code> pill and <code>--ins-text-heading</code> text; the inactive tab is transparent with <code>--ins-text-body</code> text. The container sits on <code>--ins-surface-card</code> with a <code>--ins-border-default</code> hairline and fully-rounded <code>999px</code> ends.</p>
+<div class="sb-preview">
+  <div role="tablist" aria-label="Billing cycle" style="display:inline-flex;padding:var(--ins-size-1);background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:999px;gap:var(--ins-size-1)">
+    <button type="button" role="tab" aria-selected="true" style="padding:9px 18px;border-radius:999px;border:none;background:var(--ins-surface-elevated);color:var(--ins-text-heading);font-size:var(--ins-font-size-14);font-weight:500;font-family:var(--ins-font-family-sans);cursor:pointer;display:inline-flex;align-items:center;gap:var(--ins-size-2);transition:background-color 180ms, color 180ms">Yearly</button>
+    <button type="button" role="tab" aria-selected="false" style="padding:9px 18px;border-radius:999px;border:none;background:transparent;color:var(--ins-text-body);font-size:var(--ins-font-size-14);font-weight:500;font-family:var(--ins-font-family-sans);cursor:pointer;display:inline-flex;align-items:center;gap:var(--ins-size-2);transition:background-color 180ms, color 180ms">Monthly</button>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div role="tablist" aria-label="Billing cycle"
+     style="display:inline-flex;padding:var(--ins-size-1);background:var(--ins-surface-card);
+            border:1px solid var(--ins-border-default);border-radius:999px;gap:var(--ins-size-1)"&gt;
+  &lt;!-- active tab --&gt;
+  &lt;button type="button" role="tab" aria-selected="true"
+          style="padding:9px 18px;border-radius:999px;border:none;
+                 background:var(--ins-surface-elevated);color:var(--ins-text-heading);
+                 font-size:var(--ins-font-size-14);font-weight:500;
+                 font-family:var(--ins-font-family-sans);cursor:pointer;
+                 display:inline-flex;align-items:center;gap:var(--ins-size-2);
+                 transition:background-color 180ms, color 180ms"&gt;Yearly&lt;/button&gt;
+  &lt;!-- inactive tab --&gt;
+  &lt;button type="button" role="tab" aria-selected="false"
+          style="…background:transparent;color:var(--ins-text-body);…"&gt;Monthly&lt;/button&gt;
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Monthly active</h2>
+<p class="sb-section__description">Same control with the second segment selected — the elevated pill and heading colour move to <em>Monthly</em>, and <em>Yearly</em> drops back to the transparent/body-text state.</p>
+<div class="sb-preview">
+  <div role="tablist" aria-label="Billing cycle" style="display:inline-flex;padding:var(--ins-size-1);background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:999px;gap:var(--ins-size-1)">
+    <button type="button" role="tab" aria-selected="false" style="padding:9px 18px;border-radius:999px;border:none;background:transparent;color:var(--ins-text-body);font-size:var(--ins-font-size-14);font-weight:500;font-family:var(--ins-font-family-sans);cursor:pointer;display:inline-flex;align-items:center;gap:var(--ins-size-2);transition:background-color 180ms, color 180ms">Yearly</button>
+    <button type="button" role="tab" aria-selected="true" style="padding:9px 18px;border-radius:999px;border:none;background:var(--ins-surface-elevated);color:var(--ins-text-heading);font-size:var(--ins-font-size-14);font-weight:500;font-family:var(--ins-font-family-sans);cursor:pointer;display:inline-flex;align-items:center;gap:var(--ins-size-2);transition:background-color 180ms, color 180ms">Monthly</button>
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;!-- aria-selected moves to the Monthly button --&gt;
+&lt;button role="tab" aria-selected="false" style="…background:transparent;…"&gt;Yearly&lt;/button&gt;
+&lt;button role="tab" aria-selected="true"
+        style="…background:var(--ins-surface-elevated);color:var(--ins-text-heading);…"&gt;Monthly&lt;/button&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Tokens &amp; attributes</h2>
+<table class="sb-table"><thead><tr><th>Element / token</th><th>Value</th></tr></thead><tbody>
+<tr><td>Container</td><td><code>role="tablist"</code>, <code>aria-label="Billing cycle"</code>, inline-flex pill.</td></tr>
+<tr><td>Container background</td><td><code>--ins-surface-card</code> + <code>--ins-border-default</code> border, <code>border-radius:999px</code>.</td></tr>
+<tr><td>Active tab</td><td><code>aria-selected="true"</code> · background <code>--ins-surface-elevated</code> · color <code>--ins-text-heading</code>.</td></tr>
+<tr><td>Inactive tab</td><td><code>aria-selected="false"</code> · background <code>transparent</code> · color <code>--ins-text-body</code>.</td></tr>
+<tr><td>Tab metrics</td><td><code>padding:9px 18px</code>, <code>--ins-font-size-14</code>, weight 500, <code>--ins-font-family-sans</code>.</td></tr>
+<tr><td>Spacing</td><td>container padding &amp; gap <code>--ins-size-1</code>; in-tab gap <code>--ins-size-2</code>.</td></tr>
+</tbody></table>
+<p class="sb-section__description">Source: <code>src/components/BillingToggle.jsx</code> (tabs from <code>BILLING_CYCLES</code> in <code>src/data/pricing.js</code>). Reproduced <strong>verbatim</strong> from the JSX inline styles — the component uses no class. Note: the real toggle carries <em>no</em> discount badge inside it; the two tabs are simply <em>Yearly</em> and <em>Monthly</em>. The 20%-off / launch-price framing lives in the surrounding pricing cards, not this control.</p>
+</section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

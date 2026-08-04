@@ -1,38 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>FAQ block — Patterns</title>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>FAQ block — Insightis DS</title>
 <link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
 <body><a class="ins-u-skip-link" href="#main">Skip to content</a>
 <div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
 
-<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">FAQ block</h1><p class="sb-header__description">Heading + accordion. Composes <code>.ins-accordion</code> atom inside a section container.</p></header>
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">FAQ block</h1><p class="sb-header__description">The real <code>.ins-faq</code> chevron-toggle accordion, rendered by <code>src/components/FAQAccordion.jsx</code> and used on the /pricing page and the Solutions pages. One <code>.ins-faq__row</code> per Q&amp;A; the open row gets a teal-tinted border and a rotated chevron.</p></header>
 
-<section class="sb-section"><h2 class="sb-section__title">FAQ</h2>
-<div class="sb-preview">
-  <div style="max-width:720px; margin:0 auto;">
-    <h2 class="ins-text-h1" style="text-align:center; margin-bottom:var(--ins-space-xl);">Frequently asked</h2>
-    <div class="ins-accordion">
-      <div class="ins-accordion__item" aria-expanded="true">
-        <button class="ins-accordion__trigger">What is Insightis?
-          <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+<section class="sb-section"><h2 class="sb-section__title">FAQ section</h2>
+<div class="sb-preview sb-preview--fullbleed">
+  <div style="max-width:880px;margin:0 auto;">
+    <p class="ins-eyebrow" style="margin-bottom:var(--ins-space-md);">FAQ</p>
+    <h2 class="ins-text-h2" style="margin-bottom:var(--ins-space-2xl);">Frequently asked questions</h2>
+    <div class="ins-faq">
+      <div class="ins-faq__row is-open">
+        <button type="button" class="ins-faq__question" aria-expanded="true">
+          <span>Can I switch plans later?</span>
+          <svg class="ins-faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="ins-accordion__panel"><p class="ins-text-body">Decision intelligence for data teams. Ask a question in plain English; get a cited answer sourced from your warehouse.</p></div>
+        <div class="ins-text-body ins-faq__answer">Yes — upgrades take effect immediately, downgrades at the start of your next billing cycle. You can also pause or cancel anytime from the admin panel.</div>
       </div>
-      <div class="ins-accordion__item" aria-expanded="false">
-        <button class="ins-accordion__trigger">How is it different from BI tools?
-          <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <div class="ins-faq__row">
+        <button type="button" class="ins-faq__question" aria-expanded="false">
+          <span>Do you offer a free trial of paid plans?</span>
+          <svg class="ins-faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="ins-accordion__panel"><p class="ins-text-body">BI tools produce dashboards. Insightis produces cited, auditable answers to ad-hoc questions.</p></div>
       </div>
-      <div class="ins-accordion__item" aria-expanded="false">
-        <button class="ins-accordion__trigger">What data sources are supported?
-          <svg class="ins-accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <div class="ins-faq__row">
+        <button type="button" class="ins-faq__question" aria-expanded="false">
+          <span>Is my data secure?</span>
+          <svg class="ins-faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="ins-accordion__panel"><p class="ins-text-body">Snowflake, BigQuery, Redshift, Postgres, and dbt models via the semantic layer.</p></div>
       </div>
     </div>
   </div>
-</div></section>
+</div>
+<div class="sb-code"><pre>&lt;p class="ins-eyebrow"&gt;FAQ&lt;/p&gt;
+&lt;h2 class="ins-text-h2"&gt;Frequently asked questions&lt;/h2&gt;
+&lt;div class="ins-faq"&gt;
+  &lt;div class="ins-faq__row is-open"&gt;
+    &lt;button type="button" class="ins-faq__question" aria-expanded="true"&gt;
+      &lt;span&gt;Can I switch plans later?&lt;/span&gt;
+      &lt;svg class="ins-faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;polyline points="6 9 12 15 18 9"/&gt;&lt;/svg&gt;
+    &lt;/button&gt;
+    &lt;div class="ins-text-body ins-faq__answer"&gt;Yes — upgrades take effect immediately, downgrades at the start of your next billing cycle…&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="ins-faq__row"&gt;
+    &lt;button type="button" class="ins-faq__question" aria-expanded="false"&gt;
+      &lt;span&gt;Do you offer a free trial of paid plans?&lt;/span&gt;
+      &lt;svg class="ins-faq__chevron" …&gt;&lt;polyline points="6 9 12 15 18 9"/&gt;&lt;/svg&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+<p class="sb-section__description">Only the open row renders an <code>.ins-faq__answer</code>. In the real site the React component toggles <code>.is-open</code> and mounts/unmounts the answer on click (one row open at a time) — this static page shows the first row pre-opened. Answer copy is set via <code>.ins-text-body</code> on the answer element (layout only from <code>.ins-faq__answer</code>).</p>
+</section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table">
+<thead><tr><th>Class</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>.ins-faq</code></td><td>Flex column wrapper; <code>--ins-space-sm</code> gap between rows.</td></tr>
+<tr><td><code>.ins-faq__row</code></td><td>One Q&amp;A card. Default white-a-06 border, rounded <code>--ins-radius-xl</code>.</td></tr>
+<tr><td><code>.ins-faq__row.is-open</code></td><td>Open state — teal-a-30 border; rotates the chevron 180°.</td></tr>
+<tr><td><code>.ins-faq__question</code></td><td>Full-width trigger button; label span + chevron, space-between.</td></tr>
+<tr><td><code>.ins-faq__chevron</code></td><td>18px down-chevron SVG (<code>polyline 6 9 12 15 18 9</code>); rotates when open.</td></tr>
+<tr><td><code>.ins-faq__answer</code></td><td>Answer body layout (padding). Type comes from <code>.ins-text-body</code>.</td></tr>
+</tbody>
+</table>
+<p class="sb-section__description"><strong>Usage.</strong> Source <code>src/components/FAQAccordion.jsx</code> (CSS <code>ds/components/faq-accordion.css</code>). Real Q&amp;A copy from the <code>FAQ</code> section of <code>src/pages/pricing.jsx</code>.</p>
+</section>
 
 </main></div>
 <button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>

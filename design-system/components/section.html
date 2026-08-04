@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Section — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Section</h1><p class="sb-header__description">The DS section wrapper that sets vertical rhythm and centres content at a fixed max-width. <code>&lt;Section&gt;</code> renders <code>.ins-section</code> plus a <code>.ins-section__inner</code> child, tokenizing the <code>py-* max-w-* mx-auto px-6</code> Tailwind pattern repeated 30+ times across the site. Padding, container width and tone are opt-in modifiers.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Base</h2>
+<p class="sb-section__description">Bare <code>.ins-section</code> wraps its content in <code>.ins-section__inner</code>, which caps width at <code>--ins-container-max</code>, centres it and applies responsive horizontal padding. The dashed outline below marks the section box so the vertical padding is visible.</p>
+<div class="sb-preview sb-preview--fullbleed">
+  <section class="ins-section" style="outline:1px dashed var(--ins-border-default)">
+    <div class="ins-section__inner">
+      <div style="background:var(--ins-surface-card);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-md);padding:var(--ins-space-lg)">
+        <span class="ins-text-body">Content sits inside <code>.ins-section__inner</code> — centred, max-width capped, padded.</span>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="sb-code"><pre>&lt;section class="ins-section"&gt;
+  &lt;div class="ins-section__inner"&gt;
+    …content…
+  &lt;/div&gt;
+&lt;/section&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Padding tiers</h2>
+<p class="sb-section__description"><code>--sm</code> 48&nbsp;px, <code>--md</code> 64&nbsp;px, <code>--lg</code> 80&nbsp;px (canonical), <code>--xl</code> 96&nbsp;px on mobile; each bumps one tier larger from the 768&nbsp;px breakpoint up (lg&rarr;96, xl&rarr;120). Bare <code>.ins-section</code> alone keeps the legacy 80/96 default.</p>
+<div class="sb-preview sb-preview--fullbleed">
+  <section class="ins-section ins-section--sm" style="outline:1px dashed var(--ins-border-default)">
+    <div class="ins-section__inner"><span class="ins-text-body-lg">ins-section--sm &middot; 48&nbsp;px</span></div>
+  </section>
+  <section class="ins-section ins-section--md" style="outline:1px dashed var(--ins-border-default)">
+    <div class="ins-section__inner"><span class="ins-text-body-lg">ins-section--md &middot; 64&nbsp;px</span></div>
+  </section>
+  <section class="ins-section ins-section--lg" style="outline:1px dashed var(--ins-border-default)">
+    <div class="ins-section__inner"><span class="ins-text-body-lg">ins-section--lg &middot; 80&nbsp;px (canonical)</span></div>
+  </section>
+  <section class="ins-section ins-section--xl" style="outline:1px dashed var(--ins-border-default)">
+    <div class="ins-section__inner"><span class="ins-text-body-lg">ins-section--xl &middot; 96&nbsp;px</span></div>
+  </section>
+</div>
+<div class="sb-code"><pre>&lt;section class="ins-section ins-section--sm"&gt;…&lt;/section&gt;
+&lt;section class="ins-section ins-section--md"&gt;…&lt;/section&gt;
+&lt;section class="ins-section ins-section--lg"&gt;…&lt;/section&gt;
+&lt;section class="ins-section ins-section--xl"&gt;…&lt;/section&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Container widths</h2>
+<p class="sb-section__description">The container modifier caps <code>.ins-section__inner</code> max-width: <code>--container-5xl</code> 1024&nbsp;px, <code>--container-6xl</code> 1152&nbsp;px, <code>--container-7xl</code> 1280&nbsp;px (canonical). The teal-tinted bars below show each inner's rendered width.</p>
+<div class="sb-preview sb-preview--fullbleed">
+  <section class="ins-section ins-section--sm ins-section--container-5xl">
+    <div class="ins-section__inner"><div style="background:var(--ins-color-teal-a-08);border:1px solid var(--ins-color-teal-a-20);border-radius:var(--ins-radius-md);padding:var(--ins-space-md);text-align:center"><span class="ins-text-body">container-5xl &middot; 1024&nbsp;px</span></div></div>
+  </section>
+  <section class="ins-section ins-section--sm ins-section--container-6xl">
+    <div class="ins-section__inner"><div style="background:var(--ins-color-teal-a-08);border:1px solid var(--ins-color-teal-a-20);border-radius:var(--ins-radius-md);padding:var(--ins-space-md);text-align:center"><span class="ins-text-body">container-6xl &middot; 1152&nbsp;px</span></div></div>
+  </section>
+  <section class="ins-section ins-section--sm ins-section--container-7xl">
+    <div class="ins-section__inner"><div style="background:var(--ins-color-teal-a-08);border:1px solid var(--ins-color-teal-a-20);border-radius:var(--ins-radius-md);padding:var(--ins-space-md);text-align:center"><span class="ins-text-body">container-7xl &middot; 1280&nbsp;px (canonical)</span></div></div>
+  </section>
+</div>
+<div class="sb-code"><pre>&lt;section class="ins-section ins-section--container-5xl"&gt;…&lt;/section&gt;
+&lt;section class="ins-section ins-section--container-6xl"&gt;…&lt;/section&gt;
+&lt;section class="ins-section ins-section--container-7xl"&gt;…&lt;/section&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Tones</h2>
+<p class="sb-section__description">Default tone is transparent. <code>--tint</code> layers a subtle teal radial-glow background (top + bottom); <code>--dark</code> fills with <code>--ins-surface-elevated</code>, a deeper surface than the page background.</p>
+<div class="sb-preview sb-preview--fullbleed">
+  <section class="ins-section ins-section--sm ins-section--tint">
+    <div class="ins-section__inner" style="text-align:center"><span class="ins-text-body-lg">ins-section--tint — teal radial glow</span></div>
+  </section>
+  <section class="ins-section ins-section--sm ins-section--dark">
+    <div class="ins-section__inner" style="text-align:center"><span class="ins-text-body-lg">ins-section--dark — elevated surface</span></div>
+  </section>
+</div>
+<div class="sb-code"><pre>&lt;section class="ins-section ins-section--tint"&gt;…&lt;/section&gt;
+&lt;section class="ins-section ins-section--dark"&gt;…&lt;/section&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.ins-section</code></td><td>Section wrapper; sets vertical padding rhythm (80/96&nbsp;px default). Also <code>position:relative</code>.</td></tr>
+<tr><td><code>.ins-section__inner</code></td><td>Inner container — <code>max-width:--ins-container-max</code>, <code>margin-inline:auto</code>, responsive horizontal padding.</td></tr>
+<tr><td><code>.ins-section--sm</code> / <code>--md</code> / <code>--lg</code> / <code>--xl</code></td><td>Padding tiers: 48 / 64 / 80 / 96&nbsp;px mobile, each one tier larger from 768&nbsp;px up.</td></tr>
+<tr><td><code>.ins-section--container-5xl</code> / <code>-6xl</code> / <code>-7xl</code></td><td>Override inner max-width: 1024 / 1152 / 1280&nbsp;px.</td></tr>
+<tr><td><code>.ins-section--tint</code></td><td>Teal radial-glow background (top + bottom).</td></tr>
+<tr><td><code>.ins-section--dark</code></td><td>Fills with <code>--ins-surface-elevated</code>.</td></tr>
+</tbody></table>
+<p class="sb-section__description">Source: <code>src/components/Section.jsx</code> — props <code>padding</code> (sm/md/lg/xl, default lg), <code>container</code> (5xl/6xl/7xl, default 7xl), <code>tone</code> (default/tint/dark). CSS: <code>.ins-section</code> rules in <code>ds/global.css</code>.</p>
+</section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

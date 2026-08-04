@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Waitlist Form — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Component</div><h1 class="sb-header__title">Waitlist Form</h1><p class="sb-header__description">The single email field on the auth "coming soon" cards. It posts to <code>/api/waitlist</code> and is <strong>deliberately not shaped like a login</strong>: one <code>type="email"</code> field, no password, the button reads "Join the waitlist" — so Safe Browsing never mistakes it for credential harvesting. Built entirely from <strong>inline styles</strong> (no <code>.ins-input</code>/<code>.ins-btn</code>); token values are used where the source uses them, with a few literal hex/rgba values kept verbatim from the JSX.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Default (idle, empty)</h2>
+<p class="sb-section__description">With no valid address the submit button is disabled: a muted <code>rgba(9,160,157,.18)</code> fill with <code>--ins-color-teal-a-40</code> text and <code>cursor:default</code>. The label is a small uppercase "EMAIL"; the input sits on a faint white-alpha surface with a 10&nbsp;px radius.</p>
+<div class="sb-preview">
+  <form style="margin:0;text-align:left;width:100%;max-width:440px">
+    <label for="wl-email-1" style="display:block;margin-bottom:6px;font-size:var(--ins-font-size-12);font-weight:600;letter-spacing:.04em;color:#9BBAC5">EMAIL</label>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <input id="wl-email-1" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" placeholder="you@company.com" style="flex:1 1 200px;min-width:0;box-sizing:border-box;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:11px 14px;font-size:16px;color:var(--ins-color-gray-100);font-family:inherit;outline:none;transition:border-color .2s">
+      <button type="submit" disabled style="flex:0 0 auto;padding:11px 20px;border-radius:10px;border:none;background:rgba(9,160,157,.18);color:var(--ins-color-teal-a-40);font-size:var(--ins-font-size-14);font-weight:600;font-family:inherit;cursor:default;transition:background .18s, color .18s">Join the waitlist</button>
+    </div>
+    <p role="alert" style="min-height:1.2em;margin-top:8px;font-size:var(--ins-font-size-12);line-height:1.5;color:#F87171"></p>
+  </form>
+</div>
+<div class="sb-code"><pre>&lt;form style="margin:0 0 24px;text-align:left" noValidate&gt;
+  &lt;label for="waitlist-email" style="display:block;margin-bottom:6px;
+         font-size:var(--ins-font-size-12);font-weight:600;letter-spacing:.04em;color:#9BBAC5"&gt;EMAIL&lt;/label&gt;
+  &lt;div style="display:flex;gap:8px;flex-wrap:wrap"&gt;
+    &lt;input id="waitlist-email" type="email" autocomplete="email" maxlength="254" required
+           placeholder="you@company.com"
+           style="flex:1 1 200px;min-width:0;box-sizing:border-box;background:rgba(255,255,255,0.04);
+                  border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:11px 14px;
+                  font-size:16px;color:var(--ins-color-gray-100);outline:none"&gt;
+    &lt;button type="submit" disabled
+            style="padding:11px 20px;border-radius:10px;border:none;
+                   background:rgba(9,160,157,.18);color:var(--ins-color-teal-a-40);
+                   font-size:var(--ins-font-size-14);font-weight:600;cursor:default"&gt;Join the waitlist&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Valid (ready to submit)</h2>
+<p class="sb-section__description">Once the address passes validation the button becomes active — the teal vertical gradient <code>linear-gradient(180deg,#0EC4C1,#07807E)</code>, <code>--ins-text-body</code> text and <code>cursor:pointer</code>. On focus the input border shifts to teal (<code>rgba(14,196,193,.5)</code>).</p>
+<div class="sb-preview">
+  <form style="margin:0;text-align:left;width:100%;max-width:440px">
+    <label for="wl-email-2" style="display:block;margin-bottom:6px;font-size:var(--ins-font-size-12);font-weight:600;letter-spacing:.04em;color:#9BBAC5">EMAIL</label>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <input id="wl-email-2" name="email" type="email" value="ada@company.com" style="flex:1 1 200px;min-width:0;box-sizing:border-box;background:rgba(255,255,255,0.04);border:1px solid rgba(14,196,193,.5);border-radius:10px;padding:11px 14px;font-size:16px;color:var(--ins-color-gray-100);font-family:inherit;outline:none;transition:border-color .2s">
+      <button type="submit" style="flex:0 0 auto;padding:11px 20px;border-radius:10px;border:none;background:linear-gradient(180deg, #0EC4C1 0%, #07807E 100%);color:var(--ins-text-body);font-size:var(--ins-font-size-14);font-weight:600;font-family:inherit;cursor:pointer;transition:background .18s, color .18s">Join the waitlist</button>
+    </div>
+    <p role="alert" style="min-height:1.2em;margin-top:8px;font-size:var(--ins-font-size-12);line-height:1.5;color:#F87171"></p>
+  </form>
+</div>
+<div class="sb-code"><pre>&lt;!-- valid &amp;&amp; !sending --&gt;
+&lt;input … style="…border:1px solid rgba(14,196,193,.5);…"&gt; &lt;!-- focused --&gt;
+&lt;button type="submit"
+        style="…background:linear-gradient(180deg, #0EC4C1 0%, #07807E 100%);
+               color:var(--ins-text-body);cursor:pointer"&gt;Join the waitlist&lt;/button&gt;
+&lt;!-- while posting the label becomes "Joining…" and aria-busy is set --&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Error</h2>
+<p class="sb-section__description">On a rejected submission the input border turns red (<code>rgba(239,68,68,.5)</code>) and the <code>role="alert"</code> paragraph fills with the matching copy in <code>#F87171</code>. The input is wired to it via <code>aria-describedby</code>.</p>
+<div class="sb-preview">
+  <form style="margin:0;text-align:left;width:100%;max-width:440px">
+    <label for="wl-email-3" style="display:block;margin-bottom:6px;font-size:var(--ins-font-size-12);font-weight:600;letter-spacing:.04em;color:#9BBAC5">EMAIL</label>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <input id="wl-email-3" name="email" type="email" value="ada@company" aria-describedby="wl-err-3" style="flex:1 1 200px;min-width:0;box-sizing:border-box;background:rgba(255,255,255,0.04);border:1px solid rgba(239,68,68,.5);border-radius:10px;padding:11px 14px;font-size:16px;color:var(--ins-color-gray-100);font-family:inherit;outline:none;transition:border-color .2s">
+      <button type="submit" disabled style="flex:0 0 auto;padding:11px 20px;border-radius:10px;border:none;background:rgba(9,160,157,.18);color:var(--ins-color-teal-a-40);font-size:var(--ins-font-size-14);font-weight:600;font-family:inherit;cursor:default;transition:background .18s, color .18s">Join the waitlist</button>
+    </div>
+    <p id="wl-err-3" role="alert" style="min-height:1.2em;margin-top:8px;font-size:var(--ins-font-size-12);line-height:1.5;color:#F87171">Please enter a valid email address.</p>
+  </form>
+</div>
+<div class="sb-code"><pre>&lt;input … aria-describedby="waitlist-error" style="…border:1px solid rgba(239,68,68,.5);…"&gt;
+&lt;p id="waitlist-error" role="alert" aria-live="assertive"
+   style="…color:#F87171"&gt;Please enter a valid email address.&lt;/p&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Success (submitted)</h2>
+<p class="sb-section__description">When the post succeeds the whole form is replaced by a <code>role="status"</code> confirmation panel on a teal-tinted <code>rgba(9,160,157,0.10)</code> surface with a <code>rgba(9,160,157,0.30)</code> border.</p>
+<div class="sb-preview">
+  <div role="status" aria-live="polite" style="width:100%;max-width:440px;margin:0;padding:14px 16px;border-radius:10px;background:rgba(9,160,157,0.10);border:1px solid rgba(9,160,157,0.30);font-size:var(--ins-font-size-14);line-height:1.55;color:var(--ins-text-heading)">
+    <strong style="font-weight:600">You&rsquo;re on the list.</strong><br>
+    We&rsquo;ll email you the moment Insightis opens up.
+  </div>
+</div>
+<div class="sb-code"><pre>&lt;div role="status" aria-live="polite"
+     style="margin:0 0 28px;padding:14px 16px;border-radius:10px;
+            background:rgba(9,160,157,0.10);border:1px solid rgba(9,160,157,0.30);
+            font-size:var(--ins-font-size-14);line-height:1.55;color:var(--ins-text-heading)"&gt;
+  &lt;strong style="font-weight:600"&gt;You&amp;rsquo;re on the list.&lt;/strong&gt;&lt;br /&gt;
+  We&amp;rsquo;ll email you the moment Insightis opens up.
+&lt;/div&gt;</pre></div></section>
+
+<section class="sb-section"><h2 class="sb-section__title">Elements &amp; states</h2>
+<table class="sb-table"><thead><tr><th>Element / state</th><th>Detail</th></tr></thead><tbody>
+<tr><td>Label</td><td>Uppercase "EMAIL", <code>--ins-font-size-12</code>, weight 600, <code>letter-spacing:.04em</code>, colour <code>#9BBAC5</code>.</td></tr>
+<tr><td>Input</td><td><code>type="email"</code>, <code>autocomplete="email"</code>, <code>maxlength="254"</code>; white-alpha surface, 10&nbsp;px radius, <code>font-size:16px</code> (stops iOS zoom).</td></tr>
+<tr><td>Input border</td><td>idle <code>rgba(255,255,255,.10)</code> · focus <code>rgba(14,196,193,.5)</code> · error <code>rgba(239,68,68,.5)</code>.</td></tr>
+<tr><td>Button — disabled</td><td>background <code>rgba(9,160,157,.18)</code>, colour <code>--ins-color-teal-a-40</code>, <code>cursor:default</code>.</td></tr>
+<tr><td>Button — active</td><td>gradient <code>#0EC4C1&rarr;#07807E</code>, colour <code>--ins-text-body</code>, <code>cursor:pointer</code>; label "Joining…" while posting.</td></tr>
+<tr><td>Error text</td><td><code>role="alert"</code>, colour <code>#F87171</code>, linked via <code>aria-describedby</code>.</td></tr>
+<tr><td>Success</td><td><code>role="status"</code> panel replaces the form on a teal-tint surface.</td></tr>
+</tbody></table>
+<p class="sb-section__description">Source: <code>src/components/WaitlistForm.jsx</code>. All styling is inline in the JSX — the component intentionally uses no <code>.ins-input</code>/<code>.ins-btn</code> so the page stays unmistakably a mailing-list signup, not a login. Reproduced here verbatim, including a hidden off-screen honeypot (<code>name="company_website"</code>) and the four <code>ERROR_COPY</code> messages that map to the API's error codes.</p>
+</section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>
