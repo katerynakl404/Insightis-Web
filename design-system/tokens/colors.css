@@ -1,0 +1,303 @@
+:root {
+  /* ─ Color primitives — Neutral (gray) ─ */
+  --ins-color-white:     #FFFFFF;
+  --ins-color-gray-50:   #E8F2F5;
+  --ins-color-gray-100:  #C0D4DC;
+  --ins-color-gray-200:  #A8BFC8;
+  --ins-color-gray-300:  #7FA0AC;
+  --ins-color-gray-400:  #6E8D9A;
+  --ins-color-gray-500:  #4A6070;
+  --ins-color-gray-600:  #2E3E50;
+  --ins-color-gray-700:  #1A2230;
+  --ins-color-gray-800:  #131820;
+  --ins-color-gray-900:  #0D1117;
+  --ins-color-gray-950:  #0A0E13;
+  --ins-color-black:     #000000;
+
+  /* ─ Color primitives — Brand (teal) ─ */
+  --ins-color-teal-100:  #9FE4E2;
+  --ins-color-teal-200:  #5DCFCC;
+  --ins-color-teal-300:  #13D4D1;  /* vivid */
+  --ins-color-teal-400:  #0EC4C1;  /* UI accent */
+  --ins-color-teal-500:  #148F8D;
+  --ins-color-teal-600:  #07807E;  /* primary button bg */
+  --ins-color-teal-650:  #096968;  /* primary hover */
+  --ins-color-teal-700:  #0A9896;
+  --ins-color-teal-800:  #055E5C;
+  --ins-color-teal-850:  #055957;  /* primary active */
+  --ins-color-teal-950:  #0D3A39;  /* primary disabled */
+
+  /* ─ Color primitives — Status ─ */
+  --ins-color-green-400: #34D399;
+  --ins-color-green-500: #22C55E;
+  --ins-color-green-600: #15803D;
+  --ins-color-green-700: #047857;
+  --ins-color-amber-400: #FBBF24;
+  --ins-color-amber-700: #B45309;
+  --ins-color-red-400:   #F87171;
+  --ins-color-red-600:   #DC2626;
+  --ins-color-blue-400:  #60A5FA;
+  --ins-color-blue-600:  #2563EB;
+  --ins-color-purple-400:#A78BFA;
+  --ins-color-purple-600:#7C3AED;
+
+  /* ─ Color primitives — Alpha-blended (explicit, named, never raw rgba in semantic) ─
+     Added Sweep-0 (ISS-06 prep): the audit's call-site frequency map showed
+     white-a-02/03/04/05/07/08/10 and teal-a-04/06/10/15/18/30/40/60 as the
+     most common raw rgba values in src/. Defining them here lets Sweep 2
+     replace inline rgba()s mechanically with named tokens.
+
+     Canonical brand teal is rgba(14, 196, 193, …) = #0EC4C1 (brand-bright);
+     the legacy rgba(9, 160, 157, …) = #09A09D (Devart dark) is preserved
+     as -dark-* aliases. Pre-existing tokens are left as-is so no call site
+     breaks.
+  */
+  --ins-color-white-a-02: rgba(255, 255, 255, 0.02);
+  --ins-color-white-a-03: rgba(255, 255, 255, 0.03);
+  --ins-color-white-a-04: rgba(255, 255, 255, 0.04);
+  --ins-color-white-a-05: rgba(255, 255, 255, 0.05);
+  --ins-color-white-a-06: rgba(255, 255, 255, 0.06);
+  --ins-color-white-a-07: rgba(255, 255, 255, 0.07);
+  --ins-color-white-a-08: rgba(255, 255, 255, 0.08);
+  --ins-color-white-a-10: rgba(255, 255, 255, 0.10);
+  --ins-color-white-a-12: rgba(255, 255, 255, 0.12);
+  --ins-color-white-a-45: rgba(255, 255, 255, 0.45);
+  /* Brand-bright teal (#0EC4C1) — preferred for new call sites */
+  --ins-color-teal-a-04: rgba(14, 196, 193, 0.04);
+  --ins-color-teal-a-06: rgba(14, 196, 193, 0.06);
+  --ins-color-teal-a-10: rgba(14, 196, 193, 0.10);
+  --ins-color-teal-a-15: rgba(14, 196, 193, 0.15);
+  --ins-color-teal-a-18: rgba(14, 196, 193, 0.18);
+  --ins-color-teal-a-30: rgba(14, 196, 193, 0.30);
+  --ins-color-teal-a-40: rgba(14, 196, 193, 0.40);
+  --ins-color-teal-a-60: rgba(14, 196, 193, 0.60);
+  /* Pre-existing teal alphas (some on dark-teal 9,160,157, some bright) — left untouched. */
+  --ins-color-teal-a-08: rgba(9, 160, 157, 0.08);
+  --ins-color-teal-a-12: rgba(9, 196, 193, 0.12);
+  --ins-color-teal-a-20: rgba(14, 196, 193, 0.20);
+  --ins-color-teal-a-25: rgba(9, 196, 193, 0.25);
+  --ins-color-teal-a-50: rgba(9, 160, 157, 0.50);
+  /* Status colors */
+  --ins-color-red-a-06:  rgba(248, 113, 113, 0.06);
+  --ins-color-red-a-12:  rgba(248, 113, 113, 0.12);
+  --ins-color-red-a-25:  rgba(248, 113, 113, 0.25);
+  --ins-color-red-a-30:  rgba(248, 113, 113, 0.30);
+  --ins-color-body-a-30: rgba(168, 191, 200, 0.30);    /* inline-link underline — 30% of body color */
+  --ins-color-overlay:   rgba(10, 14, 19, 0.72);
+  --ins-color-status-success-bg: rgba(34, 197, 94, 0.10);
+  --ins-color-status-warning-bg: rgba(251, 191, 36, 0.10);
+  --ins-color-status-error-bg:   rgba(248, 113, 113, 0.10);
+  --ins-color-status-info-bg:    rgba(96, 165, 250, 0.10);
+  --ins-color-status-planned-bg: rgba(167, 139, 250, 0.10);
+  --ins-color-status-shipped-bg: rgba(52, 211, 153, 0.10);
+
+  /* Named alpha of surface-container — for navbar/popover glass */
+  --ins-color-container-a-72: rgba(13, 17, 23, 0.72);
+
+  /* Named alpha variants — for promo/composer gradients + scrim overlays */
+  --ins-color-black-a-30:    rgba(0, 0, 0, 0.30);
+  --ins-color-black-a-50:    rgba(0, 0, 0, 0.50);
+  --ins-color-promo-a:       rgba(18, 18, 31, 0.95);      /* promo gradient outer */
+  --ins-color-promo-b:       rgba(13, 13, 26, 0.98);      /* promo gradient mid */
+  --ins-color-promo-solid:   #0D0D1A;                      /* composer dark bg */
+  --ins-color-page-a-97:     rgba(10, 14, 19, 0.97);      /* mega-menu panel bg */
+  /* ─ Text tier (three progressive levels — body > inactive > disabled) ─
+     body     → default prose / UI. AA-compliant on every surface.
+     inactive → secondary / resting meta / placeholders. AA-compliant (≥ 4.5:1) on page+container; marginal on card — prefer body there.
+     disabled → non-interactive disabled state only. WCAG 1.4.3 exempt (visibly dimmer than inactive).
+  */
+  --ins-text-heading:      var(--ins-color-white);
+  --ins-text-heading-soft: var(--ins-color-gray-50);   /* display sizes on surface-page only */
+  /* ── section glow ──────────────────────────────────────────────────────
+     The teal wash behind page sections, as three tokens instead of the 55
+     hand-written gradients that were here before. Those had drifted into ten
+     recipes across two hues, four alphas and ten geometries: analytics-teams and
+     product-teams ran at alpha 0.38 with a 70% falloff — nearly double the
+     opacity of everywhere else, and stopping short of transparent leaves a
+     visible rim rather than fading out — which is why those pages read as a
+     different design. Home had four sizes of its own; about-insightis, security
+     and .ins-hero-glow used teal-500 while everything else used teal-650.
+
+     CENTRED, AND SIZED SO THE ELLIPSE FITS INSIDE ITS BOX
+     A background is painted only within its element, so anything outside is
+     sliced off — and because alpha peaks at the centre, an ellipse whose top edge
+     lands above y=0 leaves a hard bright band across the section boundary. A
+     px-sized attempt at these tokens did exactly that: radius 340px centred 280px
+     down put the top edge at -60px, and every section showed a cut edge.
+
+     Percentages are the right unit for the constraint, because the constraint is
+     relative to the box: centre - radius >= 0 and centre + radius <= 100%. At
+     centre 50% the radius may go to 50% before it clips, so 32% leaves 18% of
+     clear space above and below. Measured across the 12 washed pages, the 35
+     washed sections run 849px to 1160px — a 1.37x spread, narrow enough for one
+     recipe to read consistently on all of them.
+
+       hero      26% x 32% at 50% 50%  ->  spans 18%..82%
+       section   36% x 32% at 50% 50%  ->  spans 18%..82%, i.e. 64% of the block
+
+     FAQ sections deliberately carry no wash: they are long lists of text and a
+     glow behind an accordion reads as a smudge rather than emphasis.
+
+     KNOWN CHARACTERISTIC, ACCEPTED ON PURPOSE (2026-08-03)
+     A per-section wash fades to zero at its own top and bottom edge, so two
+     washed sections stacked back-to-back always leave a dark seam between them.
+     Measured composited alpha down revenue-teams: 0.20 -> 0.00 -> 0.20 -> 0.00 ->
+     0.20, three seams. Home and AI Chat show it less only because their washed
+     sections come in two pairs separated by a ~1000px unwashed gap, so it reads as
+     "wash, then none" instead of a rhythm of stripes.
+
+     The alternative — one continuous page-level wash on the wrapper, measured at
+     zero seams on every page — was built and set aside at the owner's choice. It
+     lives in the stash entry "atmosphere-final" and as
+     scratchpad/atmosphere-final.patch. Do not re-derive this: tuning the geometry
+     of a per-section wash cannot remove the seams, only move them.
+
+     Alpha is owner-tuned (2026-07-31 visibility pass): the original 0.06-0.08
+     washes were measurably present and imperceptible. Keep the falloff at 100% —
+     anything less leaves a rim where the gradient stops short of transparent. */
+  --ins-glow-hero:    radial-gradient(ellipse 26% 32% at 50% 50%, rgba(7,128,126,0.20) 0%, transparent 100%);
+  --ins-glow-section: radial-gradient(ellipse 36% 32% at 50% 50%, rgba(7,128,126,0.20) 0%, transparent 100%);
+
+  --ins-text-body:         var(--ins-color-gray-100);  /* #C0D4DC — lifted from gray-200 on 2026-08-03 for headroom on cards */
+  --ins-text-inactive:     var(--ins-color-gray-200);  /* #A8BFC8 — lifted from gray-300, which was only marginal on card surfaces */
+  --ins-text-disabled:     var(--ins-color-gray-400);  /* #6E8D9A — exempt from AA */
+  --ins-text-highlight:    var(--ins-color-teal-400);
+  /* Muted caption foregrounds — negative (red) vs positive (teal) comparison captions.
+     60% alpha is intrinsic to the muted treatment, so it is baked into the token. */
+  --ins-text-error:           rgba(248, 113, 113, 0.60);  /* red-400 @ 60% */
+  --ins-text-highlight-muted: rgba(9, 160, 157, 0.60);    /* dark-teal @ 60% */
+
+  /* ─ Surface ─ */
+  --ins-surface-page:       var(--ins-color-gray-950);
+  --ins-surface-container:  var(--ins-color-gray-900);
+  --ins-surface-card:       var(--ins-color-gray-800);
+  --ins-surface-elevated:   var(--ins-color-gray-700);
+  --ins-surface-overlay:    var(--ins-color-overlay);
+  --ins-surface-brand-tint: var(--ins-color-teal-a-08);
+  --ins-surface-glass:      var(--ins-color-container-a-72);   /* generic glass — popovers, light overlays behind backdrop-blur */
+  --ins-surface-navbar-glass:    rgba(10, 14, 19, 0.92);         /* navbar — gray-950 at 92%, denser than --ins-surface-glass */
+  --ins-surface-navbar-dropdown: rgba(10, 14, 19, 0.97);         /* navbar dropdown panel — gray-950 at 97%, near-opaque */
+
+  /* ─ Border ─ */
+  --ins-border-default:   var(--ins-color-white-a-06);
+  --ins-border-hover:     var(--ins-color-white-a-12);
+  --ins-border-prominent: var(--ins-color-white-a-45);
+  --ins-border-strong:    var(--ins-color-gray-700);
+  --ins-border-brand:     var(--ins-color-teal-a-20);
+  --ins-border-focus:     var(--ins-color-teal-400);    /* solid thin border — matches error-border pattern */
+  --ins-border-error:     var(--ins-color-red-400);
+  --ins-border-inactive:  var(--ins-color-white-a-06);  /* AA 3:1 for essential UI borders */
+  --ins-border-disabled:  var(--ins-color-white-a-06);  /* matches default — relies on bg + text to signal */
+
+  /* ─ Icon (separate from text) ─ */
+  --ins-icon-default:   var(--ins-color-gray-200);
+  --ins-icon-inactive:  var(--ins-color-gray-300);  /* AA-compliant icon (≥ 3:1) */
+  --ins-icon-disabled:  var(--ins-color-gray-400);  /* WCAG 1.4.3 exempt */
+  --ins-icon-highlight: var(--ins-color-teal-400);
+
+  /* ─ Interactive (buttons) ─ */
+  --ins-button-primary-bg:           var(--ins-color-teal-600);
+  --ins-button-primary-bg-hover:     var(--ins-color-teal-650);
+  --ins-button-primary-bg-active:    var(--ins-color-teal-850);
+  --ins-button-primary-bg-disabled:  var(--ins-color-teal-950);
+  --ins-button-primary-fg:           var(--ins-color-white);
+  /* Canonical hover glow for primary CTAs (PR 0 — applied site-wide in PR 2). */
+  --ins-button-primary-shadow-hover: var(--ins-glow-brand);
+
+  --ins-button-secondary-bg:          var(--ins-surface-card);
+  --ins-button-secondary-bg-hover:    var(--ins-surface-elevated);
+  --ins-button-secondary-bg-active:   var(--ins-color-gray-600);
+  --ins-button-secondary-fg:          var(--ins-text-heading);
+  --ins-button-secondary-border:      var(--ins-border-default);
+  --ins-button-secondary-border-hover:var(--ins-border-hover);
+
+  --ins-button-ghost-fg:         var(--ins-text-heading);      /* higher contrast for transparent-bg button */
+  --ins-button-ghost-bg-hover:   var(--ins-color-white-a-06);
+  --ins-button-ghost-bg-active:  var(--ins-color-white-a-12);
+
+  /* Unified disabled-button text (same color across primary/secondary/ghost/icon) */
+  --ins-button-fg-disabled:      var(--ins-text-disabled);
+
+  /* ─ Status (fg + bg pairs) ─ */
+  --ins-status-success-fg: var(--ins-color-green-500);
+  --ins-status-success-bg: var(--ins-color-status-success-bg);
+  --ins-status-warning-fg: var(--ins-color-amber-400);
+  --ins-status-warning-bg: var(--ins-color-status-warning-bg);
+  --ins-status-error-fg:   var(--ins-color-red-400);
+  --ins-status-error-bg:   var(--ins-color-status-error-bg);
+  --ins-status-info-fg:    var(--ins-color-blue-400);
+  --ins-status-info-bg:    var(--ins-color-status-info-bg);
+  --ins-status-planned-fg: var(--ins-color-purple-400);
+  --ins-status-planned-bg: var(--ins-color-status-planned-bg);
+  --ins-status-shipped-fg: var(--ins-color-green-400);
+  --ins-status-shipped-bg: var(--ins-color-status-shipped-bg);
+
+  /* Lifecycle aliases → map to SEMANTIC, not primitives */
+  --ins-status-live:        var(--ins-status-success-fg);
+  --ins-status-in-progress: var(--ins-status-info-fg);
+  --ins-status-coming-soon: var(--ins-status-planned-fg);
+  --ins-status-negative:    var(--ins-status-error-fg);
+
+  /* ─ Chart palette (6 series) ─ */
+  --ins-chart-1: var(--ins-color-teal-400);
+  --ins-chart-2: var(--ins-color-blue-400);
+  --ins-chart-3: var(--ins-color-purple-400);
+  --ins-chart-4: var(--ins-color-green-400);
+  --ins-chart-5: var(--ins-color-amber-400);
+  --ins-chart-6: var(--ins-color-red-400);
+  --ins-text-primary:   var(--ins-text-heading);      /* @deprecated → --ins-text-heading */
+  --ins-text-secondary: var(--ins-text-body);         /* @deprecated → --ins-text-body */
+
+  --ins-primary-100:    var(--ins-color-teal-100);    /* @deprecated → --ins-color-teal-* */
+  --ins-primary-200:    var(--ins-color-teal-200);
+  --ins-primary-400:    var(--ins-color-teal-400);
+  --ins-primary-500:    var(--ins-color-teal-500);
+  --ins-primary-600:    var(--ins-color-teal-600);
+  --ins-primary-700:    var(--ins-color-teal-700);
+  --ins-primary-800:    var(--ins-color-teal-800);
+  --ins-primary-vivid:  var(--ins-color-teal-300);
+  --ins-primary-dark:   var(--ins-color-teal-850);
+
+  --ins-gray-0:         var(--ins-color-white);       /* @deprecated → --ins-color-* */
+  --ins-gray-100:       var(--ins-color-gray-50);
+  --ins-gray-200:       var(--ins-color-gray-100);
+  --ins-gray-300:       var(--ins-color-gray-200);
+  --ins-gray-350:       var(--ins-color-gray-300);
+  --ins-gray-400:       var(--ins-color-gray-400);
+  --ins-gray-500:       var(--ins-color-gray-500);
+  --ins-gray-600:       var(--ins-color-gray-600);
+  --ins-gray-700:       var(--ins-color-gray-700);
+  --ins-gray-800:       var(--ins-color-gray-800);
+  --ins-gray-900:       var(--ins-color-gray-900);
+  --ins-gray-950:       var(--ins-color-gray-950);
+
+  /* Legacy state aliases — map to SEMANTIC tokens only */
+  --ins-state-live:        var(--ins-status-live);
+  --ins-state-in-progress: var(--ins-status-in-progress);
+  --ins-state-shipped:     var(--ins-status-shipped-fg);
+  --ins-state-warning:     var(--ins-status-warning-fg);
+  --ins-state-planned:     var(--ins-status-planned-fg);
+  --ins-state-error:       var(--ins-status-error-fg);
+  --ins-state-coming-soon: var(--ins-status-coming-soon);
+  --ins-state-negative:    var(--ins-status-negative);
+  --ins-state-amber:       var(--ins-status-warning-fg);
+  --ins-state-live-bg:        var(--ins-color-green-500);
+  --ins-state-live-fg:        var(--ins-color-green-600);
+  --ins-state-in-progress-bg: var(--ins-color-blue-400);
+  --ins-state-in-progress-fg: var(--ins-color-blue-600);
+  --ins-state-shipped-bg:     var(--ins-color-green-400);
+  --ins-state-shipped-fg:     var(--ins-color-green-700);
+  --ins-state-warning-bg:     var(--ins-color-amber-400);
+  --ins-state-warning-fg:     var(--ins-color-amber-700);
+  --ins-state-planned-bg:     var(--ins-color-purple-400);
+  --ins-state-planned-fg:     var(--ins-color-purple-600);
+  --ins-state-error-bg:       var(--ins-color-red-400);
+  --ins-state-error-fg:       var(--ins-color-red-600);
+
+  /* Legacy surface + border aliases */
+  --ins-surface-hover:      var(--ins-color-white-a-06);
+  --ins-surface-brand-weak: var(--ins-color-teal-a-08);
+  --ins-card-border-hover:  var(--ins-border-hover);
+  --ins-chat-user-bg:       var(--ins-color-teal-a-12);
+  --ins-chat-user-border:   var(--ins-color-teal-a-25);
+}

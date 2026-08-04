@@ -22,16 +22,17 @@ deployed site code**. The site that ships to production lives in a separate repo
 
 ---
 
-## `audit/` — current UX/UI audit
+## `audit/` — versioned UX/UI audits
 
-A weaknesses-focused audit of the live site (home, pricing, and the Platform pages), measured against
-WCAG 2.1 with DOM/CSS inspection.
+The audit program is a **versioned, interactive process**. Each global audit is a full-site
+weaknesses sweep captured as a numbered version folder; every finalized version ships two English
+deliverables. Read [`audit/README.md`](audit/README.md) before running or continuing an audit.
 
-| File | Purpose |
+| Path | Purpose |
 |---|---|
-| `audit/audit-findings.md` | **Text audit** — findings across accessibility, usability, clarity, modernity + a prioritized action plan. Cross-page findings and per-page notes live in one file. |
-| `audit/heatmaps/` | Per-page **attention/friction heatmaps** (HTML, one per page). |
-| `audit/handoff-embed-404.md` | **Handoff prompt** to embed the branded 404 page into the site repo and fix broken routes (for whoever has commit access to the site code). |
+| `audit/README.md` | **The process** — versioning, the interactive decision gate, the two deliverable formats. Start here. |
+| `audit/templates/` | Starter files for a new version (findings, visual report, dev handoff). |
+| `audit/v1/` | **First global audit** (2026-08-04): `findings.md` (source of truth) + `deliverables/report-visual.html` (visual) + `deliverables/dev-handoff.md` (engineer) + `evidence/`. |
 
 ---
 

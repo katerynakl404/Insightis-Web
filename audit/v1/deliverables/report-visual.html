@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Insightis — Audit v1 · Visual Report</title>
+<style>
+  /* ── Tokens mirrored from design-system/assets/tokens.css (keep in sync; do not invent new hex) ── */
+  :root{
+    --ins-color-gray-950:#0A0E13; --ins-color-gray-900:#0D1117; --ins-color-gray-800:#131820;
+    --ins-color-gray-700:#1A2230; --ins-color-gray-600:#2E3E50; --ins-color-gray-300:#7FA0AC;
+    --ins-color-gray-100:#C0D4DC; --ins-color-gray-50:#E8F2F5;
+    --ins-color-teal-400:#0EC4C1; --ins-color-teal-500:#148F8D; --ins-color-teal-600:#07807E;
+    --ins-color-red-400:#F87171; --ins-color-amber-400:#FBBF24; --ins-color-green-400:#34D399;
+    --border:rgba(255,255,255,0.06); --border-strong:rgba(255,255,255,0.10);
+    --sev-critical:var(--ins-color-red-400); --sev-high:#FB923C;
+    --sev-medium:var(--ins-color-amber-400); --sev-low:var(--ins-color-gray-300);
+    --page:var(--ins-color-gray-950); --surface:var(--ins-color-gray-900);
+    --heading:var(--ins-color-gray-50); --text:var(--ins-color-gray-100); --muted:var(--ins-color-gray-300);
+  }
+  *{box-sizing:border-box}
+  body{ margin:0; background:var(--page); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Geist",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6;
+    background-image:radial-gradient(60% 45% at 50% 0%, rgba(14,196,193,0.08), transparent 70%); background-repeat:no-repeat; }
+  .wrap{max-width:1000px;margin:0 auto;padding:48px 24px 96px}
+  header.rpt{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:12px}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ins-color-teal-400);margin:0 0 8px}
+  h1{color:var(--heading);font-size:clamp(26px,4vw,36px);letter-spacing:-.02em;margin:0 0 10px}
+  .meta{color:var(--muted);font-size:14px;margin:0}
+  .totals{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;
+    border:1px solid var(--border-strong);font-size:13px;font-weight:600;color:var(--heading);background:var(--surface)}
+  .dot{width:9px;height:9px;border-radius:50%}
+  .lead-note{color:var(--muted);font-size:13.5px;margin:20px 0 0;padding:14px 16px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin:20px 0}
+  .card-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .id{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:var(--muted)}
+  .sev{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  .tag{font-size:11.5px;padding:3px 9px;border-radius:6px;border:1px solid var(--border-strong);color:var(--muted)}
+  .card h3{color:var(--heading);font-size:19px;letter-spacing:-.01em;margin:8px 0 14px}
+  .field{margin:10px 0}
+  .field .lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  @media (max-width:640px){.compare{grid-template-columns:1fr}}
+  .pane{border-radius:12px;padding:16px;border:1px solid var(--border);font-size:14px}
+  .pane.before{background:rgba(248,113,113,0.05);border-color:rgba(248,113,113,0.25)}
+  .pane.after{background:rgba(52,211,153,0.05);border-color:rgba(52,211,153,0.25)}
+  .pane .cap{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+  .pane.before .cap{color:var(--ins-color-red-400)} .pane.after .cap{color:var(--ins-color-green-400)}
+  .pane code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--heading);background:var(--ins-color-gray-800);padding:1px 5px;border-radius:4px}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+  th{color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+  td .pr{font-weight:700;color:var(--heading)}
+  h2.section{color:var(--heading);font-size:22px;margin:52px 0 6px;letter-spacing:-.01em}
+  a{color:var(--ins-color-teal-400)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="rpt">
+    <p class="eyebrow">Insightis · UX/UI Audit</p>
+    <h1>Global Audit v1 — Visual Report</h1>
+    <p class="meta">insightis-landing.vercel.app · Dark theme · Verified 2026-08-04 · Pages: Home, Pricing, AI Chat, Integrations, Semantic Layer</p>
+    <div class="totals">
+      <span class="chip"><span class="dot" style="background:var(--sev-critical)"></span> Critical · 2</span>
+      <span class="chip"><span class="dot" style="background:var(--sev-high)"></span> High · 3</span>
+      <span class="chip"><span class="dot" style="background:var(--sev-medium)"></span> Medium · 4</span>
+      <span class="chip"><span class="dot" style="background:var(--sev-low)"></span> Low · 3</span>
+    </div>
+    <p class="lead-note">Body text passes WCAG AA everywhere (contrast re-measured with composited translucent backgrounds). The findings below are content, navigation, accessibility, and hygiene issues — the visual style of the site is intentionally not being redesigned in v1.</p>
+  </header>
+
+  <!-- AUD-01 -->
+  <article class="card">
+    <div class="card-head">
+      <span class="id">AUD-01</span>
+      <span class="sev" style="color:var(--sev-critical)"><span class="dot" style="background:var(--sev-critical)"></span> Critical</span>
+      <span class="tag">Code + Design</span><span class="tag">Pricing</span><span class="tag">Content</span>
+    </div>
+    <h3>Contradictory discount: cards say 50% OFF, FAQ says save 20%</h3>
+    <div class="field"><div class="lbl">Problem</div>Plan cards advertise <code>50% OFF</code> ($7.99 vs $15.99), while the FAQ says users "save 20% per seat." 50% ≠ 20%.</div>
+    <div class="field"><div class="lbl">Expected</div>One discount figure across the page — card math and FAQ copy must agree.</div>
+    <div class="compare">
+      <div class="pane before"><div class="cap">Current</div>Card badge <code>50% OFF</code> &nbsp;·&nbsp; FAQ: "save 20% per seat"</div>
+      <div class="pane after"><div class="cap">Recommended</div>Both read the same number (e.g. 50%), matching $7.99 vs $15.99.</div>
+    </div>
+  </article>
+
+  <!-- AUD-02 -->
+  <article class="card">
+    <div class="card-head">
+      <span class="id">AUD-02</span>
+      <span class="sev" style="color:var(--sev-critical)"><span class="dot" style="background:var(--sev-critical)"></span> Critical</span>
+      <span class="tag">Code + Design</span><span class="tag">Pricing</span><span class="tag">Content</span>
+    </div>
+    <h3>FAQ references pricing tiers that don't exist</h3>
+    <div class="field"><div class="lbl">Problem</div>Pricing shows only Free / Starter / Pro, but the FAQ describes <strong>Team</strong> and <strong>Enterprise</strong> ("14-day free trial", "available on Team and Enterprise").</div>
+    <div class="field"><div class="lbl">Expected</div>FAQ names only tiers that exist on the page — add the tiers, or remove the references.</div>
+    <div class="compare">
+      <div class="pane before"><div class="cap">Current</div>FAQ mentions Team / Enterprise; plan grid has no such cards.</div>
+      <div class="pane after"><div class="cap">Recommended</div>FAQ references only Free / Starter / Pro.</div>
+    </div>
+  </article>
+
+  <!-- AUD-03 -->
+  <article class="card">
+    <div class="card-head">
+      <span class="id">AUD-03</span>
+      <span class="sev" style="color:var(--sev-high)"><span class="dot" style="background:var(--sev-high)"></span> High</span>
+      <span class="tag">Code</span><span class="tag">AI Chat</span><span class="tag">Navigation</span>
+    </div>
+    <h3>Broken internal link in the static fallback</h3>
+    <div class="field"><div class="lbl">Problem</div><code>platform/ai-chat.html:193</code> has <code>&lt;a href="/integrations"&gt;</code> → 404 (correct path is <code>/platform/integrations</code>). The adjacent "Start for free" points to <code>/pricing</code> instead of <code>/auth/sign-up/</code>.</div>
+    <div class="field"><div class="lbl">Expected</div>Every internal link resolves. "Start for free" → sign-up.</div>
+    <div class="compare">
+      <div class="pane before"><div class="cap">Current</div>"See all integrations" → 404 page.</div>
+      <div class="pane after"><div class="cap">Recommended</div>Link resolves to <code>/platform/integrations</code>.</div>
+    </div>
+  </article>
+
+  <!-- AUD-04 -->
+  <article class="card">
+    <div class="card-head">
+      <span class="id">AUD-04</span>
+      <span class="sev" style="color:var(--sev-high)"><span class="dot" style="background:var(--sev-high)"></span> High</span>
+      <span class="tag">Code</span><span class="tag">Global</span><span class="tag">Navigation</span>
+    </div>
+    <h3>No custom 404 page + dead route mappings</h3>
+    <div class="field"><div class="lbl">Problem</div>Unknown URLs render the raw Vercel <code>404: NOT_FOUND</code> (no header, nav, or branding). <code>Memory &amp; Storage → /platform/memory-storage</code> is mapped in <code>Header.jsx:66</code> and <code>Footer.jsx:21</code>, but the page doesn't exist.</div>
+    <div class="field"><div class="lbl">Expected</div>A branded 404 in the site's style; no mappings to non-existent pages.</div>
+    <div class="compare">
+      <div class="pane before"><div class="cap">Current</div>Raw white Vercel "404: NOT_FOUND", no branding or nav.</div>
+      <div class="pane after"><div class="cap">Recommended</div>Dark branded 404 with logo, teal "404", and links back into the site (already drafted in <code>public/404.html</code>).</div>
+    </div>
+  </article>
+
+  <!-- AUD-05 -->
+  <article class="card">
+    <div class="card-head">
+      <span class="id">AUD-05</span>
+      <span class="sev" style="color:var(--sev-high)"><span class="dot" style="background:var(--sev-high)"></span> High</span>
+      <span class="tag">Code + Design</span><span class="tag">Home · Integrations · Semantic Layer</span><span class="tag">Content</span>
+    </div>
+    <h3>Numbers disagree across pages</h3>
+    <div class="field"><div class="lbl">Problem</div>Home: "500+ pre-built definitions" ↔ Semantic Layer: "498 built-in metrics". Home: "200+ connectors" ↔ Integrations: "20 sources".</div>
+    <div class="field"><div class="lbl">Expected</div>One source of truth per metric, used consistently everywhere.</div>
+    <div class="compare">
+      <div class="pane before"><div class="cap">Current</div>500+ vs 498 · 200+ vs 20 (a 10× gap, not rounding).</div>
+      <div class="pane after"><div class="cap">Recommended</div>Identical figures on every page they appear.</div>
+    </div>
+  </article>
+
+  <!-- AUD-06 -->
+  <article class="card">
+    <div class="card-head">
+      <span class="id">AUD-06</span>
+      <span class="sev" style="color:var(--sev-medium)"><span class="dot" style="background:var(--sev-medium)"></span> Medium</span>
+      <span class="tag">Code</span><span class="tag">Header / Nav</span><span class="tag">Accessibility</span>
+    </div>
+    <h3>Menu buttons lack ARIA state</h3>
+    <div class="field"><div class="lbl">Problem</div><code>Platform</code> / <code>Solutions</code> / <code>Resources</code> have no <code>aria-expanded</code> or <code>aria-haspopup</code> (WCAG 4.1.2).</div>
+    <div class="field"><div class="lbl">Expected</div>Add <code>aria-haspopup="menu"</code>, toggle <code>aria-expanded</code>, verify keyboard + Esc.</div>
+    <div class="compare">
+      <div class="pane before"><div class="cap">Current</div>Screen readers don't announce that the button opens a menu or its open/closed state.</div>
+      <div class="pane after"><div class="cap">Recommended</div>Menu role + state announced; keyboard users get Esc-to-close.</div>
+    </div>
+  </article>
+
+  <!-- AUD-07 -->
+  <article class="card">
+    <div class="card-head">
+      <span class="id">AUD-07</span>
+      <span class="sev" style="color:var(--sev-medium)"><span class="dot" style="background:var(--sev-medium)"></span> Medium</span>
+      <span class="tag">Code</span><span class="tag">Home · Submenu</span><span class="tag">Accessibility</span>
+    </div>
+    <h3>Sub-44px tap targets on tabs and submenus</h3>
+    <div class="field"><div class="lbl">Problem</div>Team tabs ("Made for every team") and the Platform submenu are ≈18–19px tall — below 24px (WCAG 2.5.8) and far below 44px.</div>
+    <div class="field"><div class="lbl">Expected</div>Increase clickable padding to ≥44px on mobile (SC 2.5.8 / 2.5.5).</div>
+    <div class="compare">
+      <div class="pane before"><div class="cap">Current</div>Cramped 18–19px targets, easy to mis-tap on mobile.</div>
+      <div class="pane after"><div class="cap">Recommended</div>≥44px hit area via padding (label size unchanged).</div>
+    </div>
+  </article>
+
+  <!-- AUD-08 -->
+  <article class="card">
+    <div class="card-head">
+      <span class="id">AUD-08</span>
+      <span class="sev" style="color:var(--sev-medium)"><span class="dot" style="background:var(--sev-medium)"></span> Medium</span>
+      <span class="tag">Code + Design</span><span class="tag">Demo widgets</span><span class="tag">Color</span>
+    </div>
+    <h3>Low-contrast functional captions in demo widgets</h3>
+    <div class="field"><div class="lbl">Problem</div>A few functional labels fall below AA: the <code>Thinking</code> state (≈2.8:1) and the "before" side of comparisons (≈2.5:1). Graphic-only captions that pass 3:1 are fine.</div>
+    <div class="field"><div class="lbl">Expected</div>Functional labels ≥4.5:1 and ≥12px; add a non-color cue to the "before"/"bad" side (WCAG 1.4.1).</div>
+    <div class="compare">
+      <div class="pane before"><div class="cap">Current</div>Dim "before" label; meaning carried by color alone.</div>
+      <div class="pane after"><div class="cap">Recommended</div>AA-contrast labels + a marker (icon/pattern) on the "before" side.</div>
+    </div>
+  </article>
+
+  <!-- AUD-09 -->
+  <article class="card">
+    <div class="card-head">
+      <span class="id">AUD-09</span>
+      <span class="sev" style="color:var(--sev-medium)"><span class="dot" style="background:var(--sev-medium)"></span> Medium</span>
+      <span class="tag">Code + Design</span><span class="tag">Global</span><span class="tag">Typography</span>
+    </div>
+    <h3>Body paragraphs default to 14px</h3>
+    <div class="field"><div class="lbl">Problem</div>14px dominates description paragraphs; 16px is rare. (Small 11–13px labels/badges/nav are intentional and fine.)</div>
+    <div class="field"><div class="lbl">Expected</div>Raise only real description paragraphs to 15–16px — "how it works" steps, Solutions descriptions, the Devart trust line, Pricing plan features.</div>
+    <div class="compare">
+      <div class="pane before"><div class="cap">Current</div>14px description paragraphs — dense on long sections.</div>
+      <div class="pane after"><div class="cap">Recommended</div>15–16px body descriptions; labels untouched.</div>
+    </div>
+  </article>
+
+  <!-- AUD-10 -->
+  <article class="card">
+    <div class="card-head">
+      <span class="id">AUD-10</span>
+      <span class="sev" style="color:var(--sev-low)"><span class="dot" style="background:var(--sev-low)"></span> Low</span>
+      <span class="tag">Design</span><span class="tag">Home · AI Chat</span><span class="tag">Content</span>
+    </div>
+    <h3>Repeated CTA blocks</h3>
+    <div class="field"><div class="lbl">Problem</div>"Get answers… not days" is duplicated; the <code>Start for free / Explore Pricing</code> pair repeats in nearly every section.</div>
+    <div class="field"><div class="lbl">Expected</div>Vary the CTA pattern; avoid repeating the same headline + button pair per section.</div>
+    <div class="compare">
+      <div class="pane before"><div class="cap">Current</div>The same CTA pair stacked down the page.</div>
+      <div class="pane after"><div class="cap">Recommended</div>One primary CTA per intent, varied supporting copy.</div>
+    </div>
+  </article>
+
+  <!-- AUD-11 -->
+  <article class="card">
+    <div class="card-head">
+      <span class="id">AUD-11</span>
+      <span class="sev" style="color:var(--sev-low)"><span class="dot" style="background:var(--sev-low)"></span> Low</span>
+      <span class="tag">Code</span><span class="tag">Home · Semantic Layer</span><span class="tag">Content</span>
+    </div>
+    <h3>Minor copywriting defects</h3>
+    <div class="field"><div class="lbl">Problem</div>Words glued together in H1 by line breaks ("Get answers in / seconds"); a double space in "Stop arguing about&nbsp;&nbsp;which number."</div>
+    <div class="field"><div class="lbl">Expected</div>Clean copy — no words glued by <code>&lt;br&gt;</code>, no double spaces.</div>
+    <div class="compare">
+      <div class="pane before"><div class="cap">Current</div>"Get answers inseconds"; "about&nbsp;&nbsp;which".</div>
+      <div class="pane after"><div class="cap">Recommended</div>Correct spacing throughout.</div>
+    </div>
+  </article>
+
+  <!-- AUD-12 -->
+  <article class="card">
+    <div class="card-head">
+      <span class="id">AUD-12</span>
+      <span class="sev" style="color:var(--sev-low)"><span class="dot" style="background:var(--sev-low)"></span> Low</span>
+      <span class="tag">Code</span><span class="tag">Global</span><span class="tag">Tokens</span>
+    </div>
+    <h3>Inline <code>&lt;style&gt;</code> blocks inside <code>&lt;main&gt;</code></h3>
+    <div class="field"><div class="lbl">Problem</div>Every page carries inline CSS with media queries inside <code>&lt;main&gt;</code> — a sign of hand-patched styling.</div>
+    <div class="field"><div class="lbl">Expected</div>Move these into stylesheets / design-system tokens. No visual change — hygiene only.</div>
+    <div class="compare">
+      <div class="pane before"><div class="cap">Current</div>Per-page inline <code>&lt;style&gt;</code> with duplicated media queries.</div>
+      <div class="pane after"><div class="cap">Recommended</div>Shared token-driven styles; pages inherit.</div>
+    </div>
+  </article>
+
+  <h2 class="section">Prioritized action plan</h2>
+  <table>
+    <thead><tr><th>Priority</th><th>Action</th><th>Findings</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pr">P0</span></td><td>Remove the 50% vs 20% discount contradiction</td><td>AUD-01</td></tr>
+      <tr><td><span class="pr">P0</span></td><td>Align pricing tiers — FAQ names non-existent Team/Enterprise</td><td>AUD-02</td></tr>
+      <tr><td><span class="pr">P0</span></td><td>Fix broken link <code>/integrations</code> → <code>/platform/integrations</code></td><td>AUD-03</td></tr>
+      <tr><td><span class="pr">P1</span></td><td>Custom 404 + remove dead Memory &amp; Storage mappings</td><td>AUD-04</td></tr>
+      <tr><td><span class="pr">P1</span></td><td>Sync numbers across pages</td><td>AUD-05</td></tr>
+      <tr><td><span class="pr">P1</span></td><td>ARIA states for menus (haspopup / expanded)</td><td>AUD-06</td></tr>
+      <tr><td><span class="pr">P2</span></td><td>Tap targets ≥44px; small-caption contrast; 15–16px body</td><td>AUD-07, AUD-08, AUD-09</td></tr>
+      <tr><td><span class="pr">P3</span></td><td>Remove CTA repetition; clean copy; extract inline CSS</td><td>AUD-10, AUD-11, AUD-12</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section">Evidence</h2>
+  <p><a href="../evidence/heatmaps/home.html">Home — attention/friction heatmap</a></p>
+  <p class="meta">Full findings + decision history: <a href="../findings.md">findings.md</a> · Ready-to-apply fixes: <a href="dev-handoff.md">dev-handoff.md</a></p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Insightis — Audit vN · Visual Report</title>
+<style>
+  /* ── Tokens mirrored from design-system/assets/tokens.css (keep in sync; do not invent new hex) ── */
+  :root{
+    --ins-color-gray-950:#0A0E13; --ins-color-gray-900:#0D1117; --ins-color-gray-800:#131820;
+    --ins-color-gray-700:#1A2230; --ins-color-gray-600:#2E3E50; --ins-color-gray-300:#7FA0AC;
+    --ins-color-gray-100:#C0D4DC; --ins-color-gray-50:#E8F2F5;
+    --ins-color-teal-400:#0EC4C1; --ins-color-teal-500:#148F8D; --ins-color-teal-600:#07807E;
+    --ins-color-red-400:#F87171; --ins-color-amber-400:#FBBF24; --ins-color-green-400:#34D399;
+    --ins-color-blue-400:#60A5FA;
+    --border:rgba(255,255,255,0.06); --border-strong:rgba(255,255,255,0.10);
+    /* severity */
+    --sev-critical:var(--ins-color-red-400); --sev-high:#FB923C;
+    --sev-medium:var(--ins-color-amber-400); --sev-low:var(--ins-color-gray-300);
+    --page:var(--ins-color-gray-950); --surface:var(--ins-color-gray-900);
+    --heading:var(--ins-color-gray-50); --text:var(--ins-color-gray-100); --muted:var(--ins-color-gray-300);
+  }
+  *{box-sizing:border-box}
+  body{ margin:0; background:var(--page); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Geist",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6;
+    background-image:radial-gradient(60% 45% at 50% 0%, rgba(14,196,193,0.08), transparent 70%); background-repeat:no-repeat; }
+  .wrap{max-width:1000px;margin:0 auto;padding:48px 24px 96px}
+  header.rpt{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:36px}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ins-color-teal-400);margin:0 0 8px}
+  h1{color:var(--heading);font-size:clamp(26px,4vw,36px);letter-spacing:-.02em;margin:0 0 10px}
+  .meta{color:var(--muted);font-size:14px;margin:0}
+  .totals{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;
+    border:1px solid var(--border-strong);font-size:13px;font-weight:600;color:var(--heading);background:var(--surface)}
+  .dot{width:9px;height:9px;border-radius:50%}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin:20px 0}
+  .card-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+  .id{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:var(--muted)}
+  .sev{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  .tag{font-size:11.5px;padding:3px 9px;border-radius:6px;border:1px solid var(--border-strong);color:var(--muted)}
+  .card h3{color:var(--heading);font-size:19px;letter-spacing:-.01em;margin:6px 0 14px}
+  .field{margin:10px 0}
+  .field .lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  @media (max-width:640px){.compare{grid-template-columns:1fr}}
+  .pane{border-radius:12px;padding:16px;border:1px solid var(--border)}
+  .pane.before{background:rgba(248,113,113,0.05);border-color:rgba(248,113,113,0.25)}
+  .pane.after{background:rgba(52,211,153,0.05);border-color:rgba(52,211,153,0.25)}
+  .pane .cap{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+  .pane.before .cap{color:var(--ins-color-red-400)} .pane.after .cap{color:var(--ins-color-green-400)}
+  .pane img{max-width:100%;border-radius:8px;display:block}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border)}
+  th{color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+  h2.section{color:var(--heading);font-size:22px;margin:48px 0 6px;letter-spacing:-.01em}
+  a{color:var(--ins-color-teal-400)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="rpt">
+    <p class="eyebrow">Insightis · UX/UI Audit</p>
+    <h1>Global Audit vN — Visual Report</h1>
+    <p class="meta">insightis-landing.vercel.app · Dark theme · Verified YYYY-MM-DD · Pages: &lt;list&gt;</p>
+    <div class="totals">
+      <span class="chip"><span class="dot" style="background:var(--sev-critical)"></span> Critical · N</span>
+      <span class="chip"><span class="dot" style="background:var(--sev-high)"></span> High · N</span>
+      <span class="chip"><span class="dot" style="background:var(--sev-medium)"></span> Medium · N</span>
+      <span class="chip"><span class="dot" style="background:var(--sev-low)"></span> Low · N</span>
+    </div>
+  </header>
+
+  <!-- ── One card per Accepted finding. Duplicate this block. ────────────── -->
+  <article class="card">
+    <div class="card-head">
+      <span class="id">AUD-NN</span>
+      <span class="sev" style="color:var(--sev-high)"><span class="dot" style="background:var(--sev-high)"></span> High</span>
+      <span class="tag">Design</span>
+      <span class="tag">Section: Hero</span>
+      <span class="tag">Page: Home</span>
+    </div>
+    <h3>&lt;One-line finding title&gt;</h3>
+
+    <div class="field"><div class="lbl">Problem</div>&lt;What is on the page now.&gt;</div>
+    <div class="field"><div class="lbl">Expected</div>&lt;DS / UX / WCAG expectation; cite a token or SC.&gt;</div>
+
+    <div class="compare">
+      <div class="pane before"><div class="cap">Current</div>&lt;describe, or &lt;img src="../evidence/…"&gt;&gt;</div>
+      <div class="pane after"><div class="cap">Recommended</div>&lt;describe, or &lt;img src="../evidence/…"&gt;&gt;</div>
+    </div>
+  </article>
+  <!-- ────────────────────────────────────────────────────────────────────── -->
+
+  <h2 class="section">Prioritized action plan</h2>
+  <table>
+    <thead><tr><th>Priority</th><th>Action</th><th>Findings</th></tr></thead>
+    <tbody>
+      <tr><td>P0</td><td>&lt;action&gt;</td><td>AUD-NN</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="section">Evidence</h2>
+  <p><a href="../evidence/heatmaps/home.html">Home — attention/friction heatmap</a></p>
+
+</div>
+</body>
+</html>

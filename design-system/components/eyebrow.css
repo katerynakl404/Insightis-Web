@@ -1,0 +1,64 @@
+/* ══════════════════════════════════════════════════════════════════
+   31. EYEBROW (PR 0)
+   Small uppercase label that sits above section h2s. Optional pill
+   treatment via .ins-eyebrow--pill.
+
+   The four-pointed star is part of the base class, not an opt-in slot:
+   the site had three competing marks side by side — a Lucide Sparkles
+   glyph with satellite dots, an eight-ray asterisk, and this star —
+   depending on which section you happened to be looking at. Putting it
+   on .ins-eyebrow means a label cannot be built without it. Same glyph
+   as .section-label::before in src/app.css, which is the showcase
+   template's own label and the one this was standardised on.
+   ══════════════════════════════════════════════════════════════════ */
+
+.ins-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ins-space-xs);
+  font-family: var(--ins-font-family-sans);
+  font-size: var(--ins-font-size-11);
+  font-weight: var(--ins-font-weight-500);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ins-text-highlight);
+  margin: 0;
+  line-height: 1;
+}
+
+/* colour is inherited, so the --error / --grey variants tint the star with the text */
+.ins-eyebrow::before {
+  content: '✦';
+  font-size: 13px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Pill treatment — used in hero eyebrows + section eyebrows that need more presence. */
+.ins-eyebrow--pill {
+  padding: 6px var(--ins-space-md);
+  background: var(--ins-color-teal-a-08);
+  border: var(--ins-border-width-1) solid var(--ins-color-teal-a-20);
+  border-radius: var(--ins-radius-pill);
+}
+
+/* Centered eyebrow inside a centered section header — kept as a separate modifier
+   so the bare .ins-eyebrow stays a true inline-flex element. */
+.ins-eyebrow--center {
+  margin-inline: auto;
+}
+
+/* Status color variants (audit #3) — combine with --pill for the filled treatment. */
+.ins-eyebrow--error { color: var(--ins-status-error-fg); }
+.ins-eyebrow--error.ins-eyebrow--pill {
+  background: var(--ins-status-error-bg);
+  border-color: var(--ins-color-red-a-30);
+}
+.ins-eyebrow--grey { color: var(--ins-text-inactive); }
+.ins-eyebrow--grey.ins-eyebrow--pill {
+  background: var(--ins-color-white-a-06);
+  border-color: var(--ins-color-white-a-12);
+}
+
+
+

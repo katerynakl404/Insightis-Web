@@ -1,0 +1,133 @@
+/* ══════════════════════════════════════════════════════════════════
+   CONNECTOR GALLERY + "Sign in to connect" hover overlay
+   Used by Resources/Connectors (the .connector-tile gallery) and the
+   Platform/Integrations audience cards (opt in via .connector-card.has-overlay).
+   Consumes semantic tokens only. Dark-mode only.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Gallery grid (Connectors) ── */
+.connector-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--ins-size-3);
+}
+@media (max-width: 1100px) { .connector-grid { grid-template-columns: repeat(5, 1fr); } }
+@media (max-width: 900px)  { .connector-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 640px)  { .connector-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 440px)  { .connector-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ── Tile ── */
+.connector-tile {
+  position: relative;
+  background: var(--ins-color-white-a-02);
+  border: 1px solid var(--ins-color-white-a-06);
+  border-radius: var(--ins-radius-12);
+  aspect-ratio: 1 / 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px;
+  padding: 16px 10px;
+  transition: border-color .2s, background .2s, transform .2s;
+  cursor: pointer;
+  overflow: hidden;
+  animation: tileIn .35s ease both;
+}
+.connector-tile:hover {
+  border-color: rgba(9,160,157,.4);
+  background: rgba(13,17,23,0.6);
+}
+.connector-tile:hover .connector-overlay { opacity: 1; pointer-events: auto; }
+.connector-tile:hover .connector-face     { opacity: 0.85; transform: scale(.97); }
+
+/* ── Bare logo slot (no chip) ── */
+.connector-logo {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px;
+  flex-shrink: 0;
+}
+.connector-logo img { width: 100%; height: 100%; object-fit: contain; }
+.connector-logo .fallback {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: var(--ins-font-size-15);
+  color: var(--ins-surface-page);
+}
+.connector-face {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px;
+  transition: opacity .2s, transform .2s;
+  text-align: center;
+  max-width: 100%;
+}
+.connector-name {
+  font-size: 12.5px; color: #C8D8DE; font-weight: 500;
+  text-align: center; line-height: 1.25;
+  max-width: 100%;
+  /* Long names ("Dynamics 365 Business Central") wrap onto a second line
+     instead of clipping; clamp at 2 lines so square tiles stay aligned.
+     Reserve the full 2-line height always (min-height) so single- and
+     two-line names share the same baseline across a row — the logo and the
+     name's first line line up tile-to-tile. */
+  min-height: 2.5em;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* ── Connector card (Platform/Integrations is the source of truth; reused by
+      the Solutions "relevant integrations" grids via <ConnectorCard>) ── */
+.connector-card {
+  display: flex; align-items: center; gap: var(--ins-size-3);
+  padding: 14px 16px;
+  background: rgba(255,255,255,.025);
+  border: 1px solid var(--ins-color-white-a-06);
+  border-radius: var(--ins-radius-12);
+  cursor: default;
+  position: relative;
+}
+.connector-icon {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 10px; font-weight: 700;
+  font-family: var(--ins-font-family-mono);
+  letter-spacing: -.02em;
+}
+
+/* ── Integrations audience cards opt into the same overlay via .has-overlay ── */
+.connector-card.has-overlay { overflow: hidden; }
+.connector-card.has-overlay > :not(.connector-overlay) { transition: opacity .18s; }
+.connector-card.has-overlay:hover > :not(.connector-overlay) { opacity: 0.85; }
+.connector-card.has-overlay:hover .connector-overlay { opacity: 1; pointer-events: auto; }
+
+/* ── "Sign in to connect" frosted hover overlay (shared) ── */
+.connector-overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px;
+  padding: 12px 10px;
+  border-radius: inherit;
+  background: rgba(13,17,23,0.3);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .18s;
+}
+.connector-overlay .banner-label {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  margin-bottom: var(--ins-size-half);
+}
+/* Overlay CTA now uses the DS secondary button (.ins-btn ins-btn--secondary
+   ins-btn--sm) — the custom .overlay-btn recipe was retired so the hover
+   button matches secondary buttons everywhere. Icon gap comes from .ins-btn. */
+.connector-overlay .ins-btn { gap: 6px; }
