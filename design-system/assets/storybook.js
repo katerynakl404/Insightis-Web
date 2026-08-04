@@ -116,11 +116,12 @@
       <nav class="sb-sidebar__section" aria-label="Patterns">
         <span class="sb-sidebar__section-title">Patterns</span>
         <a class="sb-sidebar__link" href="${p}patterns/screens-side-tabs.html">Screens + side tabs</a>
+        <a class="sb-sidebar__link" href="${p}patterns/accuracy-comparison.html">Accuracy comparison</a>
+        <a class="sb-sidebar__link" href="${p}patterns/connector-grid.html">Connector grid section</a>
         <a class="sb-sidebar__link" href="${p}patterns/hero.html">Hero</a>
         <a class="sb-sidebar__link" href="${p}patterns/pricing-section.html">Pricing section</a>
         <a class="sb-sidebar__link" href="${p}patterns/cta-block.html">CTA block</a>
         <a class="sb-sidebar__link" href="${p}patterns/promo-banner.html">Promo banner</a>
-        <a class="sb-sidebar__link" href="${p}patterns/newsletter-block.html">Newsletter block</a>
         <a class="sb-sidebar__link" href="${p}patterns/stats-strip.html">Stats strip</a>
         <a class="sb-sidebar__link" href="${p}patterns/sidebar-content.html">Sidebar + content</a>
         <a class="sb-sidebar__link" href="${p}patterns/testimonial-row.html">Testimonial row</a>
