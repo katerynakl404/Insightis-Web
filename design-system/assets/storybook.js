@@ -111,6 +111,7 @@
       </nav>
       <nav class="sb-sidebar__section" aria-label="Patterns">
         <span class="sb-sidebar__section-title">Patterns</span>
+        <a class="sb-sidebar__link" href="${p}patterns/screens-side-tabs.html">Screens + side tabs</a>
         <a class="sb-sidebar__link" href="${p}patterns/hero.html">Hero</a>
         <a class="sb-sidebar__link" href="${p}patterns/feature-grid.html">Feature grid</a>
         <a class="sb-sidebar__link" href="${p}patterns/pricing-section.html">Pricing section</a>
@@ -240,6 +241,27 @@
         e.preventDefault();
         tabs[next].focus();
         tabs[next].click();
+      });
+    });
+  });
+
+  // ── Screens + side-tabs showcase (patterns/screens-side-tabs) ─
+  // Left .sc-step tabs drive the stacked .sc-panel screens (index-matched),
+  // mirroring the site's showcase / QuestionsGallery interaction.
+  document.querySelectorAll('.showcase').forEach(show => {
+    const steps  = [...show.querySelectorAll('.sc-step')];
+    const panels = [...show.querySelectorAll('.sc-panel')];
+    if (!steps.length || !panels.length) return;
+    const activate = i => {
+      steps.forEach((s, n) => s.classList.toggle('active', n === i));
+      panels.forEach((p, n) => p.classList.toggle('active', n === i));
+    };
+    steps.forEach((s, i) => {
+      s.setAttribute('role', 'tab');
+      s.setAttribute('tabindex', '0');
+      s.addEventListener('click', () => activate(i));
+      s.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(i); }
       });
     });
   });

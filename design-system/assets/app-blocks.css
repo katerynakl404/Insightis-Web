@@ -1,0 +1,83 @@
+/* ══════════════════════════════════════════════════════════════════
+   APP-LEVEL BLOCKS — mirror of section styles from insightis-site/src/app.css
+   ------------------------------------------------------------------
+   These recurring marketing blocks are styled at the SITE app level
+   (src/app.css), NOT in the design system (design-system/). They are
+   mirrored here VERBATIM so the storybook can document them exactly as
+   they appear on the real site. Do NOT hand-edit — re-copy from app.css
+   when it changes (assets/sync-ds.ps1 -Check flags app.css changes; see
+   SYNC.md). Loaded only on the pattern pages that use these blocks.
+
+   Source: insightis-site/src/app.css
+     .section-label      -> lines 186-193
+     .showcase / .sc-*   -> lines 253-312
+     responsive override -> @media(max-width:900px) lines 473-475
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Section eyebrow used by the showcase / how-it-works headers (app-level
+   sibling of the DS .ins-eyebrow--pill). */
+.section-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:500;
+  color:var(--ins-text-highlight);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;
+  padding:6px 16px;border:1px solid rgba(7,128,126,.4);background:rgba(7,128,126,.1);border-radius:var(--ins-radius-pill)
+}
+.section-label::before{content:'✦';font-size:13px;color:var(--ins-text-highlight)}
+
+/* Screens + side-tabs showcase: left vertical tab list (.sc-steps) + right
+   screen/preview panel (.sc-preview) whose stacked .sc-panel screens
+   cross-fade as a tab is selected. Homepage "how it works" + ai-chat gallery. */
+.showcase{
+  display:grid;grid-template-columns:380px 1fr;
+  border-radius:var(--ins-radius-3xl);overflow:hidden;
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow: none;
+  min-height:520px;margin:0 auto;position:relative
+}
+.showcase::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(10,152,150,.6),rgba(255,255,255,.1),rgba(10,152,150,.6),transparent);
+  z-index:20;pointer-events:none
+}
+
+.sc-steps{order:1}
+.sc-preview{
+  order:2;position:relative;
+  background:radial-gradient(ellipse 100% 80% at 30% 30%,rgba(10,152,150,.06) 0%,transparent 60%),rgba(10,14,19,.95);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px 20px;overflow:hidden;border-left:1px solid rgba(255,255,255,.05)
+}
+.sc-panel{
+  position:absolute;inset:24px 20px;
+  display:flex;align-items:stretch;justify-content:center;
+  overflow:hidden;
+  opacity:0;pointer-events:none;
+  transform:translateY(8px) scale(.99);
+  transition:opacity .45s var(--ins-easing-standard),transform .45s var(--ins-easing-standard)
+}
+.sc-panel.active{opacity:1;transform:translateY(0) scale(1)}
+.sc-panel .aw{align-self:stretch;display:flex;flex-direction:column;width:100%;height:100%;overflow:hidden}
+.sc-panel .aw-body{flex:1;overflow:hidden}
+
+.sc-steps{display:flex;flex-direction:column;background:rgba(10,14,19,.9);border-right:1px solid rgba(255,255,255,.05);text-align:left}
+.sc-step{
+  flex:1;padding:0 28px;
+  display:flex;flex-direction:column;justify-content:center;
+  border-bottom:1px solid var(--ins-border-default);
+  cursor:pointer;min-height:80px;
+  transition:background .2s var(--ins-easing-standard);position:relative
+}
+.sc-step:last-child{border-bottom:none}
+.sc-step:hover{background:rgba(255,255,255,.03)}
+.sc-step.active{background:rgba(7,128,126,.12);box-shadow:inset 0 0 24px rgba(7,128,126,.08)}
+.sc-lbl{font-family:var(--ins-font-family-sans);font-size:19px;font-weight:500;color:var(--ins-text-heading);letter-spacing:-.03em;transition:color .22s,font-weight .22s;line-height:1.2}
+.sc-step:hover .sc-lbl{color:var(--ins-text-heading)}
+.sc-step.active .sc-lbl{color:var(--ins-text-heading);font-weight:500;text-shadow:0 0 20px rgba(7,200,180,.2)}
+.sc-desc{font-size:14px;color:var(--ins-text-body);line-height:1.58;margin-top:7px;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s var(--ins-easing-standard),opacity .4s var(--ins-easing-standard)}
+.sc-step.active .sc-desc{max-height:120px;opacity:1}
+
+@media(max-width:900px){
+  .showcase{grid-template-columns:1fr}
+  .sc-steps{order:2;border-right:none;border-top:1px solid rgba(255,255,255,.05)}
+  .sc-preview{order:1;border-left:none;min-height:400px}
+}

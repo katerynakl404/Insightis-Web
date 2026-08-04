@@ -30,6 +30,25 @@
 The one thing that CAN drift is the mirror itself, if the site's DS changes and
 the mirror isn't refreshed. That's what the sync script below is for.
 
+## App-level blocks (`assets/app-blocks.css`)
+
+A few recurring marketing blocks — the `.showcase` / `.sc-*` **screens + side-tabs**
+showcase and the `.section-label` eyebrow — are styled at the **site app level** in
+`insightis-site/src/app.css`, not in the design system. They're mirrored **by hand**
+into `assets/app-blocks.css` (loaded only on the pattern pages that use them, e.g.
+`patterns/screens-side-tabs.html`) so the storybook matches the site exactly.
+
+Because `app-blocks.css` is a curated subset, it can't be auto-diffed. Instead the sync
+script **fingerprints the whole `src/app.css`**: if it changes, `-Check` warns you to
+re-verify `app-blocks.css` against it. After you re-check (and update it if needed),
+record the new baseline:
+
+```bash
+powershell -ExecutionPolicy Bypass -File assets/sync-ds.ps1 -AcceptAppCss
+```
+
+The baseline hash lives in `assets/.app-css.sha256` (committed, travels with the repo).
+
 ## Check for divergence (read-only)
 
 Run this any time — before publishing to GitHub Pages, or on a schedule — to see

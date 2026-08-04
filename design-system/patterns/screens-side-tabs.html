@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Screens + side tabs — Insightis DS</title>
+<link rel="stylesheet" href="../assets/tokens.css"><link rel="stylesheet" href="../assets/base.css"><link rel="stylesheet" href="../assets/components.css"><link rel="stylesheet" href="../assets/app-blocks.css"><link rel="stylesheet" href="../assets/storybook.css"></head>
+<body><a class="ins-u-skip-link" href="#main">Skip to content</a>
+<div class="sb-app"><aside class="sb-sidebar" data-sb-render-sidebar="../"></aside><main class="sb-main" id="main">
+
+<header class="sb-header"><div class="sb-header__kicker">Pattern</div><h1 class="sb-header__title">Screens + side tabs</h1><p class="sb-header__description">Split showcase: a vertical <strong>left tab list</strong> and a <strong>right screen panel</strong> whose stacked screens cross-fade as a tab is selected. The site's "how it works" showcase on the homepage (<code>src/main.jsx</code>) and the questions gallery on <code>src/pages/ai-chat.jsx</code> both use this exact <code>.showcase</code> / <code>.sc-*</code> system.</p></header>
+
+<section class="sb-section"><h2 class="sb-section__title">Interactive showcase</h2>
+<p class="sb-section__description">Click a question on the left — the matching answer screen fades in on the right. Below 900px the panel stacks above the tabs.</p>
+<div class="sb-preview sb-preview--fullbleed">
+  <div class="showcase">
+    <div class="sc-steps">
+      <div class="sc-step active">
+        <div class="sc-lbl">Why did MRR drop last week?</div>
+        <div class="sc-desc">Trial expiry without activation drove most of the $1,240 drop.</div>
+      </div>
+      <div class="sc-step">
+        <div class="sc-lbl">Highest pipeline drop-off?</div>
+        <div class="sc-desc">Prospect → MQL is leaking 71% of volume.</div>
+      </div>
+      <div class="sc-step">
+        <div class="sc-lbl">CAC trend vs. 6 months ago?</div>
+        <div class="sc-desc">Blended CAC is down as PLG onboarding scales.</div>
+      </div>
+    </div>
+    <div class="sc-preview">
+      <div class="sc-panel active">
+        <div class="ins-chat" style="width:100%;max-width:440px;">
+          <div class="ins-chat__bubble ins-chat__bubble--user">Why did MRR drop last week?</div>
+          <div class="ins-chat__bubble ins-chat__bubble--ai">
+            <strong>Trial expiry without activation</strong> drove 60% of last week's <strong>$1,240</strong> MRR drop. Six distinct causes identified.
+            <span class="ins-badge ins-badge--brand" style="margin-top:12px;">Trigger re-engagement sequence</span>
+            <div class="ins-text-mono-xs" style="margin-top:10px;color:var(--ins-text-inactive);">Source: Stripe · HubSpot</div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-panel">
+        <div class="ins-chat" style="width:100%;max-width:440px;">
+          <div class="ins-chat__bubble ins-chat__bubble--user">Highest pipeline drop-off?</div>
+          <div class="ins-chat__bubble ins-chat__bubble--ai">
+            <strong>Prospect → MQL</strong> loses <strong>71%</strong> of volume — the biggest single leak in the funnel.
+            <span class="ins-badge ins-badge--brand" style="margin-top:12px;">Refine ICP scoring in HubSpot</span>
+            <div class="ins-text-mono-xs" style="margin-top:10px;color:var(--ins-text-inactive);">Source: Stripe · Google Ads · HubSpot</div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-panel">
+        <div class="ins-chat" style="width:100%;max-width:440px;">
+          <div class="ins-chat__bubble ins-chat__bubble--user">CAC trend vs. 6 months ago?</div>
+          <div class="ins-chat__bubble ins-chat__bubble--ai">
+            Blended CAC is <strong>down 22%</strong> over six months as PLG onboarding scales.
+            <span class="ins-badge ins-badge--brand" style="margin-top:12px;">Double down on PLG onboarding</span>
+            <div class="ins-text-mono-xs" style="margin-top:10px;color:var(--ins-text-inactive);">Source: Stripe · QuickBooks Online</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="sb-section"><h2 class="sb-section__title">HTML</h2>
+<div class="sb-code"><pre>&lt;div class="showcase"&gt;
+  &lt;!-- LEFT: tab list. .active marks the current tab --&gt;
+  &lt;div class="sc-steps"&gt;
+    &lt;div class="sc-step active"&gt;
+      &lt;div class="sc-lbl"&gt;Why did MRR drop last week?&lt;/div&gt;
+      &lt;div class="sc-desc"&gt;Trial expiry without activation drove most of the drop.&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="sc-step"&gt;&lt;div class="sc-lbl"&gt;Highest pipeline drop-off?&lt;/div&gt;&lt;div class="sc-desc"&gt;…&lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- RIGHT: stacked screens. .active is the visible one --&gt;
+  &lt;div class="sc-preview"&gt;
+    &lt;div class="sc-panel active"&gt;
+      &lt;div class="ins-chat"&gt;
+        &lt;div class="ins-chat__bubble ins-chat__bubble--user"&gt;Why did MRR drop last week?&lt;/div&gt;
+        &lt;div class="ins-chat__bubble ins-chat__bubble--ai"&gt;…answer…&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="sc-panel"&gt;…&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+<p class="sb-section__description">storybook.js index-matches each <code>.sc-step</code> to the <code>.sc-panel</code> at the same position and toggles <code>.active</code> on click (Enter/Space too).</p>
+</section>
+
+<section class="sb-section"><h2 class="sb-section__title">Classes</h2>
+<table class="sb-table"><thead><tr><th>Class</th><th>Use</th></tr></thead><tbody>
+<tr><td><code>.showcase</code></td><td>Grid shell (380px tab column + fluid screen). Collapses to one column below 900px.</td></tr>
+<tr><td><code>.sc-steps</code></td><td>Left vertical tab list.</td></tr>
+<tr><td><code>.sc-step</code> / <code>.sc-step.active</code></td><td>One tab; <code>.active</code> = teal wash + revealed description.</td></tr>
+<tr><td><code>.sc-lbl</code> / <code>.sc-desc</code></td><td>Tab title / description (description reveals via max-height on active).</td></tr>
+<tr><td><code>.sc-preview</code></td><td>Right screen stage (radial teal glow bg).</td></tr>
+<tr><td><code>.sc-panel</code> / <code>.sc-panel.active</code></td><td>One stacked screen; only <code>.active</code> is shown (cross-fade).</td></tr>
+</tbody></table>
+<p class="sb-section__description"><strong>App-level block.</strong> These <code>.showcase</code>/<code>.sc-*</code> classes live in <code>src/app.css</code>, not the design system — the screen content (<code>.ins-chat</code>, <code>.ins-badge</code>) is DS. They are mirrored into <code>assets/app-blocks.css</code> so the storybook matches the site exactly; <code>assets/sync-ds.ps1 -Check</code> flags <code>app.css</code> changes (see SYNC.md).</p>
+</section>
+
+</main></div>
+<button class="sb-mobile-toggle" data-sb-toggle=".sb-sidebar" aria-label="Toggle navigation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+<script src="../assets/storybook.js"></script></body></html>

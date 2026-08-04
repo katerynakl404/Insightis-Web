@@ -2,6 +2,23 @@
 
 All notable changes to the Insightis Design System.
 
+## v1.1.1 — 2026-08-04
+
+Storybook content rebuilt from the real repo (not resurrected old demos), plus
+app-level blocks.
+
+- **Rebuilt all 32 component pages from real site sources**: variants/classes from
+  each component's CSS, examples/copy from real usage in `insightis-site/src`
+  (Button.jsx, BottomCTA.jsx, ai-chat.jsx, StatStrip.jsx, Header/Footer, pricing
+  data, …). Every page cites where its examples came from.
+- **Sidebar no longer jumps** between pages — scroll position persists in
+  `sessionStorage` and is restored before first paint.
+- **New pattern: Screens + side tabs** (`patterns/screens-side-tabs.html`) — the
+  homepage / ai-chat `.showcase` + `.sc-*` block (left question tabs → right answer
+  screen, cross-fade). These are app-level classes from `src/app.css`, mirrored into
+  `assets/app-blocks.css`; `sync-ds.ps1` now also fingerprints `app.css` and warns
+  when it changes (`-AcceptAppCss` records a new baseline). See SYNC.md.
+
 ## v1.1.0 — 2026-08-04
 
 Re-synced the storybook to the **live site** design system

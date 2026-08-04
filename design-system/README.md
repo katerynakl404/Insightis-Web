@@ -24,7 +24,8 @@ design-system/
 │   ├── components.css        # SHIM -> ds/components/index.css
 │   ├── storybook.css         # Docs-site chrome + local asset-path overrides (NOT for production)
 │   ├── storybook.js          # Interactivity + scroll-spy + contrast widget (NOT for production)
-│   ├── sync-ds.ps1           # Divergence check + pull from the live site
+│   ├── app-blocks.css        # Mirror of app-level block styles from site src/app.css (.showcase/.sc-*)
+│   ├── sync-ds.ps1           # Divergence check + pull from the live site (DS + app.css)
 │   ├── fonts/                # Geist + Geist Mono (variable TTF)
 │   ├── img/noise.svg         # Atmosphere utility asset
 │   └── connectors/sprite.svg # Connector logo sprite (local copy)
