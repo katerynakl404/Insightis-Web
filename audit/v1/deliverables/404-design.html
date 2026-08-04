@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,11 +14,11 @@
 <style>
   /* Layout only — every colour, font, radius, button and the background come from the DS above. */
   html,body{height:100%}
-  body{margin:0;display:flex;flex-direction:column;min-height:100vh}
+  html{background:var(--ins-surface-page)}                 /* dark base — the tint below is only an overlay */
+  body{margin:0;display:flex;flex-direction:column;min-height:100vh;color:var(--ins-text-body)}
   .n4-header{padding:22px 24px}
-  .n4-brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
-  .n4-brand .logo{width:26px;height:26px;border-radius:var(--ins-radius-sm);
-    background:linear-gradient(135deg,var(--ins-color-teal-400),var(--ins-color-teal-650))}
+  .n4-brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ins-text-heading)}
+  .n4-brand svg{width:26px;height:24px;display:block}
   .n4-main{flex:1;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
   .n4-box{max-width:560px}
   .n4-code{font-size:clamp(84px,18vw,150px);line-height:.9;font-weight:800;letter-spacing:-.04em;margin:0;
@@ -34,7 +34,7 @@
 <body class="ins-section--tint">
   <header class="n4-header">
     <a class="n4-brand" href="/" aria-label="Insightis home">
-      <span class="logo" aria-hidden="true"></span>
+      <svg viewBox="0 0 25.5 22.84" aria-hidden="true"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="var(--ins-color-teal-400)"/></svg>
       <span class="ins-text-h4" style="letter-spacing:-.01em">Insightis</span>
     </a>
   </header>
