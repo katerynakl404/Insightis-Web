@@ -923,7 +923,10 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 
 **Current** — The "Traditional Approach" / "Without" card is styled **red** (error glow, red border, red ✗). Red signals *error/danger*, but this is just the "before" state — overusing red cheapens real error states and leans on color to carry meaning (SC 1.4.1).
 **Expected** — Neutral (gray) treatment for the "before" card; keep meaning on the ✗ vs ✓ icons, reserve teal for the positive side and red for genuine errors. Alternative shown in `deliverables/fix-examples.html`.
-**Status history** | 2026-08-04 | Accepted | User-requested alternative. |
+**Decision (2026-08-05):** ✅ **Keep the neutral gray approach** — apply the gray "before" card across all comparison blocks (Why teams switch, Integrations "Tools guess", AI Chat "Not the internet"). The red version is retained in the concept only as the current-state reference.
+**Status history**
+| 2026-08-04 | Accepted | User-requested alternative. |
+| 2026-08-05 | Accepted | Decision confirmed: neutral gray approach chosen. |
 
 ---
 
