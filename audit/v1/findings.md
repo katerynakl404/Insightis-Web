@@ -374,7 +374,8 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 | Page(s) | Home, Semantic Layer, Pricing | Verify | https://insightis-landing.vercel.app/pricing |
 
 **Current** — "Pre-built metrics" (Home) · "built-in metrics" (Semantic Layer) · "Predefined Metrics" (Pricing) · "Metric definitions" (Pricing).
-**Expected** — One canonical term + a short glossary.
+**Expected** — One canonical term. **Decision: use "built-in metrics"** everywhere.
+**Fix** — Replace "Pre-built" / "Predefined" / "Metric definitions" with **"built-in metrics"** site-wide; add a short glossary entry.
 **Status history** | 2026-08-04 | Accepted | Filed in v1. |
 
 ---
