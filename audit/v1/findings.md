@@ -26,8 +26,8 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 |                | 🔴 Critical | 🟠 High | 🟡 Medium | ⚪ Low | Total |
 |---|---|---|---|---|---|
 | Pending Review | 0 | 0 | 0 | 0 | 0 |
-| Accepted       | 3 | 11 | 27 | 35 | 76 |
-| Declined       | 0 | 0 | 0 | 0 | 0 |
+| Accepted       | 3 | 11 | 27 | 34 | 75 |
+| Declined       | 0 | 0 | 0 | 1 | 1 |
 | Deferred       | 0 | 0 | 0 | 0 | 0 |
 | **Total**      | 3 | 11 | 27 | 35 | 76 |
 
@@ -275,7 +275,7 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 
 ---
 
-### AUD-10 — Repeated CTA blocks (Accepted)
+### AUD-10 — Repeated CTA blocks (Declined — withdrawn by user 2026-08-05)
 
 | | |
 |---|---|
@@ -440,7 +440,7 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 | Page(s) | Home, Integrations, Semantic Layer, AI Chat | Verify | https://insightis-landing.vercel.app/platform/ai-chat |
 
 **Current** — "Explore Pricing" (Home, Integrations, Semantic Layer) vs "Pricing" (AI Chat) — both link to `/pricing`.
-**Expected** — One label for the pricing CTA.
+**Expected** — One label, chosen by context. For a **button** CTA, "See pricing" reads best (sentence case); a plain nav item can stay "Pricing".
 **Status history** | 2026-08-04 | Accepted | Filed in v1. |
 
 ---
@@ -713,7 +713,7 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 | Page(s) | All | Verify | https://insightis-landing.vercel.app/ |
 
 **Current** — 5 link groups but `.ins-footer__cols` is `repeat(3, 1fr)` at 768–1023px → Company/Legal orphan onto a 2nd row with an empty cell + large blank area; at ≥1024 `justify-content:flex-end` pushes columns right. *Source:* `design-system/components/footer.css:47,52,53`.
-**Expected** — Columns flow evenly (`repeat(auto-fit, minmax(130px,1fr))`), left-aligned, clean mobile stack. See `deliverables/fix-examples.html`.
+**Expected** — A balanced **3 + 2**: Platform/Solutions/Resources on top, **Company & Legal together** on the bottom row (use a 3-column grid for the 5 groups; drop `justify-content:flex-end`; stack on mobile). See `deliverables/fix-examples.html`.
 **Status history** | 2026-08-04 | Accepted | User-reported; verified in source. |
 
 ---
@@ -765,8 +765,9 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 | Page(s) | AI Chat, Home | Verify | https://insightis-landing.vercel.app/platform/ai-chat |
 
 **Current** — `.ins-chat__bubble--ai` is used but its radius/padding/maxWidth/font are inline-overridden with raw px; two chat surfaces on the same page use different paddings (`24px 32px` vs `20px 18px 16px`); action chips, MRR chart cards, and "suggested actions" cards are inline-styled divs (hardcoded rgba, `10px` radius) instead of any DS class. *Source:* `src/pages/ai-chat.jsx:736,744-751,780,1051,1116,1122-1162`.
-**Expected** — Consume DS `.ins-chat`/`.ins-chat__bubble` without px overrides; promote the recurring rich cards to a DS component/tokens.
-**Status history** | 2026-08-04 | Accepted | Source-audit (DS consistency pass). |
+**Expected** — **Canon = the site's current chat, not the current DS spec.** The site's chat is the reference; the DS must match it.
+**Fix** — (1) Reconcile the two chat surfaces to one appearance (they differ now). (2) Codify that look into the DS `.ins-chat`/`.ins-chat__bubble` (+ a card sub-component) — update the DS to match the site. (3) Refactor the site's inline chat to consume the DS component — **no visual change to the site**.
+**Status history** | 2026-08-04 | Accepted | Source-audit; site = canon (user). |
 
 ---
 
@@ -947,7 +948,7 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 | Page(s) | Semantic Layer | Verify | https://insightis-landing.vercel.app/platform/semantic-layer |
 
 **Current** — Italic teal-tinted line "One certified definition. Queried through the Semantic Layer. Always your numbers." is low-contrast against the dark background (below WCAG AA for body text).
-**Expected** — Raise to ≥4.5:1 (use `--ins-text-body`/`--ins-text-heading`, not a dim teal tint).
+**Expected** — Keep the teal (it's an intentional highlight), but raise the green itself to the accessible text-highlight contrast — use `--ins-text-highlight` (the teal used for text), **not** a dim teal tint and **not** a swap to gray body/heading.
 **Status history** | 2026-08-04 | Accepted | User-reported (low contrast). |
 
 ---

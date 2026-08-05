@@ -13,7 +13,7 @@
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--page);color:var(--text);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:900px;margin:0 auto;padding:32px 20px 80px}
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 24px 80px}   /* desktop-first width */
   h1{color:var(--heading);font-size:21px;margin:0 0 4px}
   .sub{color:var(--muted);font-size:13px;margin:0 0 8px}
   h2{color:var(--heading);font-size:16px;margin:36px 0 4px}
@@ -32,7 +32,7 @@
   .btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:600;border:1px solid transparent;cursor:pointer;background:none;color:inherit}
   .btn-primary{background:var(--teal600);color:#fff;border-color:var(--teal500)}
   .btn-sec-bad{background:var(--card);color:var(--heading);border-color:var(--white06)}
-  .btn-sec-good{background:var(--card);color:var(--heading);border-color:rgba(255,255,255,0.16)}
+  .btn-sec-good{background:var(--card);color:var(--heading);border-color:rgba(255,255,255,0.12)}
   .btnrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
   .swatch-bg{background:var(--page);padding:16px;border-radius:8px}
   /* footer demos */
@@ -40,10 +40,10 @@
   .ftr .brand{color:var(--heading);font-weight:700;margin-bottom:14px}
   .ftr h4{color:var(--heading);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px}
   .ftr a{display:block;color:var(--muted);text-decoration:none;font-size:13px;margin:5px 0}
-  /* BAD footer: fixed 3 cols -> 5 link groups orphan into a 2nd row with an empty cell */
-  .ftr-bad .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  /* GOOD footer: columns flow evenly, no orphaned empty cell, left-aligned */
-  .ftr-good .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:20px}
+  /* BAD footer: 4 cols -> the 5th group (Legal) orphans alone on row 2 */
+  .ftr-bad .cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+  /* GOOD footer: 3 cols -> balanced 3 + 2 (Company & Legal together on the bottom row) */
+  .ftr-good .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
   /* comparison — neutral vs red */
   .cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
   @media(max-width:640px){.cmp{grid-template-columns:1fr}}
@@ -82,6 +82,8 @@
   .mcard.sel{border-color:var(--teal);background:rgba(14,196,193,0.05)}
   .mcard .mtitle{color:var(--heading);font-weight:600;font-size:13.5px}
   .mcard .mid{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--muted)}
+  .mcard .mname{font-family:ui-monospace,Menlo,monospace;font-weight:600;font-size:14px;color:var(--heading)}  /* metric NAME is primary */
+  .mcard.sel .mname{color:var(--teal)}
   .mcard .mdesc{color:var(--muted);font-size:12px;margin-top:3px}
   .mcard .msrc{display:inline-block;margin-top:8px;font-size:10.5px;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:1px 7px}
   .detail{border:1px solid var(--line);border-radius:12px;padding:16px;background:#0D1117;align-self:start}
@@ -122,9 +124,9 @@
 --ins-button-secondary-border-hover: rgba(255,255,255,0.40);  /* intensify on hover */
 /* Verify ≥3:1 against --ins-surface-card (#131820). A mid-gray (e.g. --ins-color-gray-500 #4A6070) also works. */</pre>
 
-  <h2>2 · Footer — broken reflow at tablet widths (AUD-40)</h2>
-  <p class="note">There are 5 link groups (Platform, Solutions, Resources, Company, Legal) but at 768–1023px the grid is a fixed <code>repeat(3, 1fr)</code> → the last two groups orphan onto a second row, leaving an empty cell and a large blank area. Best practice: let columns flow so each row fills evenly, keep them left-aligned, and stack cleanly on mobile.</p>
-  <h3>Current (fixed 3 columns → orphaned Company/Legal)</h3>
+  <h2>2 · Footer — unbalanced reflow (AUD-40)</h2>
+  <p class="note">There are 5 link groups (Platform, Solutions, Resources, Company, Legal). Currently they wrap to <b>4 + 1</b> — Legal is orphaned alone on the second row (and at 768–1023px the fixed 3-col grid leaves an empty cell). Expected: a balanced <b>3 + 2</b> — Platform/Solutions/Resources on top, <b>Company &amp; Legal together</b> on the bottom row.</p>
+  <h3>Current — 4 columns → Legal orphaned alone on row 2</h3>
   <div class="ftr ftr-bad">
     <div class="brand">◆ Insightis</div>
     <div style="color:var(--teal);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:2px 0 8px">AI Analytics Workspace for instant insights</div>
@@ -214,6 +216,34 @@
 
   <h2>4 · Metrics catalog — UX rethink</h2>
   <p class="note">UX improvements over the current 3-pane block: (1) add a <b>search</b> + result count — 498 metrics can't be browsed by tabs alone; (2) add a <b>source filter</b> and show the source on each card; (3) give each metric a <b>human title</b> above the mono id for scannability; (4) make the detail panel <b>sticky</b> with <b>Copy name / Copy SQL</b> and the Semantic-Layer trust signals (<b>owner, freshness, certified</b>); (5) on mobile the detail becomes a drawer; (6) reuse the DS tab/chip + input primitives (AUD-54); (7) keep the footer count consistent with the rest of the site (AUD-05).</p>
+  <h3>Current — how it looks on the site (the metric name is the primary element)</h3>
+  <div class="cat-toolbar">
+    <button class="cat-chip on">CRM</button><button class="cat-chip">Billing &amp; Finance</button><button class="cat-chip">Marketing</button><button class="cat-chip">Web &amp; Product</button><button class="cat-chip">Data &amp; Engineering</button><button class="cat-chip">Planning &amp; Work</button>
+  </div>
+  <div class="cat">
+    <div class="cat-list">
+      <div class="mcard"><div class="mname">mrr_won</div><div class="mdesc">Monthly Recurring Revenue</div></div>
+      <div class="mcard sel"><div class="mname">total_arr_won</div><div class="mdesc">Annual Recurring Revenue</div></div>
+      <div class="mcard"><div class="mname">avg_acv_won</div><div class="mdesc">Average Annual Contract Value of won deals</div></div>
+      <div class="mcard"><div class="mname">win_rate_by_value</div><div class="mdesc">Share of CLOSED-opportunity VALUE that was won</div></div>
+      <div class="mcard"><div class="mname">saas_mrr</div><div class="mdesc">Monthly Recurring Revenue</div></div>
+      <div class="mcard"><div class="mname">sales_velocity</div><div class="mdesc">Sales velocity ($ per day)</div></div>
+    </div>
+    <aside class="detail">
+      <div class="idbig">total_arr_won</div>
+      <div class="dmeta"><span>◆ Salesforce</span><span>✓ Built-in</span></div>
+      <p style="color:var(--text);font-size:13px;margin:12px 0 0">Total Annual Recurring Revenue (won). ARR = SUM of won "Amount".</p>
+      <div class="mid" style="color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-top:12px">How it is computed</div>
+      <pre>SELECT SUM("Amount")
+FROM "Opportunity"
+WHERE "IsWon" = true</pre>
+      <div style="color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-top:12px">Ask for it in AI chat</div>
+      <p style="color:var(--text);font-size:13px;margin:6px 0 0">Ask <code style="color:var(--teal)">@total_arr_won</code></p>
+    </aside>
+  </div>
+  <p style="color:var(--teal);font-family:ui-monospace,Menlo,monospace;font-size:13px;text-align:center;margin-top:12px"><b>498</b> built-in metrics · across <b>20</b> sources · plus your own, defined in plain English</p>
+
+  <h3>Recommended — keep the metric name primary; add search + source filter + sticky detail with copy</h3>
   <div class="cat-toolbar">
     <input class="cat-search" placeholder="Search 498 metrics by name or description…" />
     <button class="cat-chip on">All</button><button class="cat-chip">CRM</button><button class="cat-chip">Billing</button><button class="cat-chip">Marketing</button>
