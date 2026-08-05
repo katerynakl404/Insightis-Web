@@ -148,10 +148,10 @@
       <div class="note">Give the secondary button its OWN token, not the generic faint border.</div>
     </div>
   </div>
-  <pre>/* tokens/colors.css — add a dedicated, higher-contrast token */
---ins-button-secondary-border:       rgba(255,255,255,0.24);  /* was: var(--ins-border-default) = 6% */
---ins-button-secondary-border-hover: rgba(255,255,255,0.40);  /* intensify on hover */
-/* Verify ≥3:1 against --ins-surface-card (#131820). A mid-gray (e.g. --ins-color-gray-500 #4A6070) also works. */</pre>
+  <pre>/* ds/tokens/colors.css:211 — give the secondary button its OWN token (was var(--ins-border-default) = white 6%) */
+--ins-button-secondary-border:       rgba(255,255,255,0.12);  /* toned: visible but not harsh */
+--ins-button-secondary-border-hover: rgba(255,255,255,0.24);  /* intensify on hover */
+/* consumed by .ins-btn--secondary { border-color } in ds/components/button.css:84 — no change needed there. */</pre>
 
   <h2>2 · Footer — unbalanced reflow (AUD-40)</h2>
   <p class="note">There are 5 link groups (Platform, Solutions, Resources, Company, Legal). At 768–1023px <code>.ins-footer__cols</code> is a fixed 3-col grid, so the groups wrap to <b>3 + 2</b> — <b>Company &amp; Legal drop to a second row</b>, leaving an empty trailing cell and a large blank area; at ≥1024px <code>justify-content:flex-end</code> pushes the whole row to the right edge. Expected: let the columns flow into an even, gap-free row (auto-fit) with no empty cell and no right-push.</p>
@@ -185,13 +185,16 @@
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px"><span>X · YouTube · LinkedIn</span><span>© DevartSoftware Ltd. 2026</span></div>
     <div style="color:var(--muted);font-size:11.5px;margin-top:8px">Reg. no. HE 450349 · VAT CY-60027592L · Office 201, Patsias Court, 143-145 Agias Faneromenis, 6031 Larnaca, Cyprus · legal@insightis.ai</div>
   </div>
-  <pre>/* components/footer.css — let columns flow instead of a fixed 3-col that orphans 2 groups */
-.ins-footer__cols{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));  /* was: repeat(2/3/5,…) */
-  gap:var(--ins-space-2xl);
+  <pre>/* ds/components/footer.css — fix the orphan/gap in .ins-footer__cols */
+/* line 52 (≥768px): keep 3 columns but align groups to the top so a short */
+/*   column doesn't stretch the row and push Company/Legal far down.        */
+@media (min-width:768px){
+  .ins-footer__cols{ grid-template-columns:repeat(3, minmax(0,1fr)); align-items:start; }  /* + align-items:start */
 }
-/* drop `justify-content:flex-end` at ≥1024 — align columns to the start for a balanced row */</pre>
+/* line 53 (≥1024px): remove justify-content:flex-end (was pushing the row right). */
+@media (min-width:1024px){
+  .ins-footer__cols{ grid-template-columns:repeat(5, minmax(0,1fr)); /* justify-content:flex-end REMOVED */ }
+}</pre>
   <p class="note">Best-practice alternative: keep the brand+tagline block full-width on top (as now) and place all link groups in one auto-fitting row — on tablet it becomes an even 3×2 or 4-wide grid with no empty cell; on mobile it stacks to 2 columns.</p>
 
   <h2 style="margin-top:48px;border-top:1px solid var(--line);padding-top:22px">Proposed block redesigns — <span style="color:#FBBF24">pending sign-off</span></h2>
@@ -199,7 +202,7 @@
 
   <h2>3 · Comparison block — keep the glow, make "before" neutral (AUD-56)</h2>
   <p class="note" style="border:1px solid rgba(52,211,153,0.35);background:rgba(52,211,153,0.06);border-radius:8px;padding:10px 14px"><b style="color:#34D399">✓ Decision:</b> the <b>neutral gray</b> "before" approach is chosen — apply it to all comparison blocks below. The red version stays only as the current-state reference.</p>
-  <p class="note">Keep the glow (it works). Only change the "before" card from red to neutral gray — red reads as error/danger, but the "before" is just the prior state; meaning stays on the ✗/✓ icons (SC 1.4.1) and red is reserved for real errors. "Current" below is the exact live content (5 items each).</p>
+  <p class="note">Keep the glow (it works). Only change the "before" card from red to neutral gray — red reads as error/danger, but the "before" is just the prior state; meaning stays on the ✗/✓ icons (SC 1.4.1) and red is reserved for real errors. "Current" below is the exact live content (5 items each). <b>Implement:</b> the "before" card is <code>.ins-card--glow--error</code> → change to plain <code>.ins-card--glow</code>; its ✗ icon + header colour <code>--ins-status-error-fg</code> → <code>--ins-text-inactive</code> (source of the red: <code>ds/components/card.css:125,144</code>). The "with" card stays <code>.ins-card--glow--brand</code>.</p>
   <h3>Current — exact live block: eyebrow + title + red "before", teal section glow</h3>
   <div class="cmp-block">
     <div class="cmp-head">
@@ -261,30 +264,9 @@
   </div>
 
   <h2>3b · Integrations comparison — richer "Tools guess" block (red vs neutral)</h2>
-  <p class="note">The Integrations page's before/after, reproduced in the updated light-glow styling. Exact live content. Version A keeps the red "before"; Version B uses a neutral gray "before".</p>
+  <p class="note">The Integrations "Tools guess" before/after with the <b>chosen neutral</b> "before" (exact live content; red not used). <b>Implement:</b> the before card is <code>&lt;Card variant="glow" className="ins-card--glow--error"&gt;</code> — change the class to plain <code>.ins-card--glow</code> (neutral); in <code>ds/components/card.css</code> the red bits then no longer apply (<code>.ins-card--glow--error::before</code> gradient uses <code>--ins-color-red-a-30</code>; <code>.ins-card--glow--error .ins-card__header</code> uses <code>--ins-status-error-fg</code>). Set the ✗ icon/heading colour to <code>--ins-text-inactive</code>. The "with" card stays <code>.ins-card--glow--brand</code>.</p>
 
-  <h3>Version A — red "Disconnected data"</h3>
-  <div class="cmp-block">
-    <div class="cmp-head">
-      <span class="cmp-eyebrow">Direct integration</span>
-      <h2 class="cmp-title">Tools guess. Insightis answers</h2>
-      <p class="cmp-sub">One source of truth. Answers in seconds.</p>
-    </div>
-    <div class="cmp">
-      <div class="cmp-card neg-red">
-        <div class="cmp-hd"><span class="cmp-dot"></span>Disconnected data</div>
-        <div class="cmp-mono">→ "Which channel drove the most signups last month?"<br><br><span class="n">3–5 days</span>&nbsp;&nbsp;to produce one number — export CSVs, VLOOKUP, reconcile by hand<br><br><span class="n">4 tools</span>&nbsp;&nbsp;to query for a request — HubSpot, Stripe and the warehouse</div>
-        <div class="cmp-foot">Exports, manual joins, copy-pasted dashboards. Stale by the time they land.</div>
-      </div>
-      <div class="cmp-card pos">
-        <div class="cmp-hd"><span class="cmp-dot"></span>Insightis</div>
-        <div class="cmp-mono">Answered in seconds. What direct integration unlocks:<br><br><span class="n">12×</span>&nbsp;&nbsp;faster time to insight — vs. manual exports &amp; BI tools<br><br><span class="n">90%</span>&nbsp;&nbsp;fewer data requests — teams self-serve in plain English</div>
-        <div class="cmp-foot">Direct connectors + Semantic Layer. Real numbers, refreshed continuously.</div>
-      </div>
-    </div>
-  </div>
-
-  <h3>Version B — neutral "Disconnected data"</h3>
+  <h3>Neutral "before" (chosen — red not used)</h3>
   <div class="cmp-block">
     <div class="cmp-head">
       <span class="cmp-eyebrow">Direct integration</span>
@@ -306,30 +288,9 @@
   </div>
 
   <h2>3c · AI Chat comparison — "Not the internet. Your data." (red vs neutral)</h2>
-  <p class="note">The AI Chat accuracy before/after, reproduced in the light-glow styling. Exact live content. Version A red "before", Version B neutral.</p>
+  <p class="note">The AI Chat accuracy before/after with the <b>chosen neutral</b> "before" (exact live content; red not used). <b>Implement:</b> same as above — swap the "Generic AI" card from <code>.ins-card--glow--error</code> to <code>.ins-card--glow</code>, and its ✗ dot/heading from <code>--ins-status-error-fg</code> to <code>--ins-text-inactive</code>. "Insightis" card stays <code>.ins-card--glow--brand</code>.</p>
 
-  <h3>Version A — red "Generic AI"</h3>
-  <div class="cmp-block">
-    <div class="cmp-head">
-      <span class="cmp-eyebrow">Accuracy</span>
-      <h2 class="cmp-title">Not the internet. Your data.</h2>
-      <p class="cmp-sub">Generic AI guesses. Insightis knows.</p>
-    </div>
-    <div class="cmp">
-      <div class="cmp-card neg-red">
-        <div class="cmp-hd"><span class="cmp-dot"></span>Generic AI</div>
-        <div class="cmp-mono">→ "What's our churn rate?"<br><br>The average SaaS churn rate is typically between <span class="n">3–8% monthly</span>, depending on your segment and pricing tier. Companies in the SMB market typically see higher rates. This estimate may or may not reflect your situation.</div>
-        <div class="cmp-foot">Searches the internet. Returns industry averages. Not your numbers.</div>
-      </div>
-      <div class="cmp-card pos">
-        <div class="cmp-hd"><span class="cmp-dot"></span>Insightis</div>
-        <div class="cmp-mono">→ "What's our churn rate?"<br><br>Your churn rate in March was <span class="n">2.1%</span> — down from 2.8% in February. Main driver: reduced churn in Starter plan (↓ 0.9pp). 3 accounts churned vs 5 last month.</div>
-        <div class="cmp-foot">Queries your Stripe + PostgreSQL through Semantic Layer. Always your numbers.</div>
-      </div>
-    </div>
-  </div>
-
-  <h3>Version B — neutral "Generic AI"</h3>
+  <h3>Neutral "before" (chosen — red not used)</h3>
   <div class="cmp-block">
     <div class="cmp-head">
       <span class="cmp-eyebrow">Accuracy</span>
@@ -351,7 +312,7 @@
   </div>
 
   <h2>4 · Metrics catalog — UX rethink</h2>
-  <p class="note">UX improvements over the current 3-pane block: (1) add a <b>search</b> + result count — 498 metrics can't be browsed by tabs alone; (2) add a <b>source filter</b> and show the source on each card; (3) give each metric a <b>human title</b> above the mono id for scannability; (4) make the detail panel <b>sticky</b> with <b>Copy name / Copy SQL</b> and the Semantic-Layer trust signals (<b>owner, freshness, certified</b>); (5) on mobile the detail becomes a drawer; (6) reuse the DS tab/chip + input primitives (AUD-54); (7) keep the footer count consistent with the rest of the site (AUD-05).</p>
+  <p class="note">UX improvements over the current 3-pane block: (1) add a <b>search</b> + result count — 498 metrics can't be browsed by tabs alone; (2) add a <b>source filter</b> and show the source on each card; (3) give each metric a <b>human title</b> above the mono id for scannability; (4) make the detail panel <b>sticky</b> with <b>Copy name / Copy SQL</b> and the Semantic-Layer trust signals (<b>owner, freshness, certified</b>); (5) on mobile the detail becomes a drawer; (6) reuse the DS tab/chip + input primitives (AUD-54); (7) keep the footer count consistent with the rest of the site (AUD-05). <b>Implement:</b> category tabs → <code>&lt;Chip variant="tab"&gt;</code> (<code>.ins-badge--tab</code>) at its native size; search → <code>&lt;SearchInput&gt;</code> (<code>.ins-input-wrap .ins-input--sm</code>); source filter → same <code>.ins-badge--tab</code>; keep the metric <b>name (mono id)</b> as the card's primary line; detail panel <code>position:sticky</code>; Copy buttons → <code>&lt;Button variant="secondary" size="sm"&gt;</code>.</p>
   <h3>Current — how it looks on the site (the metric name is the primary element)</h3>
   <div class="cat-toolbar">
     <button class="cat-chip on">CRM</button><button class="cat-chip">Billing &amp; Finance</button><button class="cat-chip">Marketing</button><button class="cat-chip">Web &amp; Product</button><button class="cat-chip">Data &amp; Engineering</button><button class="cat-chip">Planning &amp; Work</button>
