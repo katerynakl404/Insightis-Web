@@ -40,11 +40,14 @@
   .ftr .brand{color:var(--heading);font-weight:700;margin-bottom:14px}
   .ftr h4{color:var(--heading);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px}
   .ftr a{display:block;color:var(--muted);text-decoration:none;font-size:13px;margin:5px 0}
-  /* BAD footer: exact prod tablet grid (footer.css:52 → repeat(3) at 768–1023px).
-     5 groups in 3 cols wrap to 3 + 2 — Company & Legal drop to row 2 with an empty trailing cell. */
-  .ftr-bad .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-  /* GOOD footer: let the columns flow (auto-fit) into an even, gap-free row — matches the recommended CSS below. */
-  .ftr-good .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:20px}
+  /* BAD footer: exact prod state — a 3-col GRID equalises row height to the tallest
+     column (Solutions/Resources = 6 items), so a big empty gap opens under the short
+     Platform column and Company/Legal drop far down onto row 2. */
+  .ftr-bad .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 24px}
+  /* GOOD footer: 3 columns via MULTI-COLUMN — groups pack top-to-bottom into 3 balanced
+     columns with NO row-height equalisation, so there is no gap and no orphan. */
+  .ftr-good .cols{column-count:3;column-gap:28px}
+  .ftr-good .cols > div{break-inside:avoid;-webkit-column-break-inside:avoid;margin-bottom:20px}
   /* comparison — neutral vs red */
   .cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
   @media(max-width:640px){.cmp{grid-template-columns:1fr}}
@@ -170,7 +173,7 @@
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px"><span>X · YouTube · LinkedIn</span><span>© DevartSoftware Ltd. 2026</span></div>
     <div style="color:var(--muted);font-size:11.5px;margin-top:8px">Reg. no. HE 450349 · VAT CY-60027592L · Office 201, Patsias Court, 143-145 Agias Faneromenis, 6031 Larnaca, Cyprus · legal@insightis.ai</div>
   </div>
-  <h3>Recommended (auto-fit flow → even rows, no orphan)</h3>
+  <h3>Recommended — 3 balanced columns (multi-column) → no gap, no orphan</h3>
   <div class="ftr ftr-good">
     <div class="brand"><svg viewBox="0 0 25.5 22.84" style="width:22px;height:20px;vertical-align:-4px;margin-right:8px"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="var(--teal)"/></svg>Insightis</div>
     <div style="color:var(--teal);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:2px 0 8px">AI Analytics Workspace for instant insights</div>
@@ -185,17 +188,17 @@
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px"><span>X · YouTube · LinkedIn</span><span>© DevartSoftware Ltd. 2026</span></div>
     <div style="color:var(--muted);font-size:11.5px;margin-top:8px">Reg. no. HE 450349 · VAT CY-60027592L · Office 201, Patsias Court, 143-145 Agias Faneromenis, 6031 Larnaca, Cyprus · legal@insightis.ai</div>
   </div>
-  <pre>/* ds/components/footer.css — fix the orphan/gap in .ins-footer__cols */
-/* line 52 (≥768px): keep 3 columns but align groups to the top so a short */
-/*   column doesn't stretch the row and push Company/Legal far down.        */
-@media (min-width:768px){
-  .ins-footer__cols{ grid-template-columns:repeat(3, minmax(0,1fr)); align-items:start; }  /* + align-items:start */
+  <pre>/* ds/components/footer.css — .ins-footer__cols (lines 45–53) */
+/* Root cause: a row-based GRID equalises each row's height to its tallest column, */
+/* so the short Platform column leaves a gap and Company/Legal drop far down.       */
+/* Fix: pack the 5 groups into 3 balanced columns with multi-column (no row equalise): */
+.ins-footer__cols{
+  column-count: 3;                     /* was: grid + repeat(3)/repeat(5,…) */
+  column-gap: var(--ins-space-4xl);
 }
-/* line 53 (≥1024px): remove justify-content:flex-end (was pushing the row right). */
-@media (min-width:1024px){
-  .ins-footer__cols{ grid-template-columns:repeat(5, minmax(0,1fr)); /* justify-content:flex-end REMOVED */ }
-}</pre>
-  <p class="note">Best-practice alternative: keep the brand+tagline block full-width on top (as now) and place all link groups in one auto-fitting row — on tablet it becomes an even 3×2 or 4-wide grid with no empty cell; on mobile it stacks to 2 columns.</p>
+.ins-footer__cols > *{ break-inside: avoid; margin-bottom: var(--ins-space-2xl); }
+/* and drop the ≥1024px `justify-content:flex-end` (line 53). */</pre>
+  <p class="note">Keep the brand + tagline block full-width on top (as now); the link groups become 3 balanced multi-column columns (Company/Legal pack under the shorter columns — no gap, no orphan). On mobile: <code>column-count:1</code> (single stacked list).</p>
 
   <h2 style="margin-top:48px;border-top:1px solid var(--line);padding-top:22px">Proposed block redesigns — <span style="color:#FBBF24">pending sign-off</span></h2>
   <p class="sub">These are concept variants that change layout/behaviour, not just tokens — they need design approval before build. Kept here (separate from the audit findings) for review.</p>
