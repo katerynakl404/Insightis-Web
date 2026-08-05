@@ -55,11 +55,11 @@
   .cmp-card{position:relative;border-radius:14px;padding:20px;border:1px solid var(--line);background:#0D1117;overflow:hidden}
   .cmp-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;pointer-events:none;border-radius:14px 14px 0 0}
   .cmp-card>*{position:relative;z-index:1}
-  .cmp-card.neg-red{border-color:rgba(248,113,113,0.25);box-shadow:0 0 12px rgba(248,113,113,0.30)}
+  .cmp-card.neg-red{border-color:rgba(248,113,113,0.25);box-shadow:0 0 12px rgba(248,113,113,0.30);background:linear-gradient(155deg,rgba(248,113,113,0.10) 0%,transparent 55%),#0D1117}
   .cmp-card.neg-red::before{background:linear-gradient(90deg,transparent,rgba(248,113,113,0.30),transparent)}
-  .cmp-card.neg{border-color:rgba(255,255,255,0.14);box-shadow:0 0 12px rgba(255,255,255,0.10)}
+  .cmp-card.neg{border-color:rgba(255,255,255,0.14);box-shadow:0 0 12px rgba(255,255,255,0.10);background:linear-gradient(155deg,rgba(255,255,255,0.05) 0%,transparent 55%),#0D1117}
   .cmp-card.neg::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)}
-  .cmp-card.pos{border-color:rgba(14,196,193,0.20);box-shadow:0 0 12px rgba(14,196,193,0.30)}
+  .cmp-card.pos{border-color:rgba(14,196,193,0.20);box-shadow:0 0 12px rgba(14,196,193,0.30);background:linear-gradient(155deg,rgba(14,196,193,0.10) 0%,transparent 55%),#0D1117}
   .cmp-card.pos::before{background:linear-gradient(90deg,transparent,rgba(9,160,157,0.50),transparent)}
   .cmp-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
   .cmp-ico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
@@ -254,6 +254,96 @@
     <div class="cmp-card pos">
       <div class="cmp-h"><span class="cmp-ico">✓</span><div><h4>Insightis</h4><div class="s">"What's our churn rate?"</div></div></div>
       <ul><li><span class="mk">✓</span>Queries your Stripe + PostgreSQL through Semantic Layer. Always your numbers.</li></ul>
+    </div>
+  </div>
+
+  <h2>3b · Integrations comparison — richer "Tools guess" block (red vs neutral)</h2>
+  <p class="note">The Integrations page's before/after, reproduced in the updated light-glow styling. Exact live content. Version A keeps the red "before"; Version B uses a neutral gray "before".</p>
+
+  <h3>Version A — red "Disconnected data"</h3>
+  <div class="cmp-block">
+    <div class="cmp-head">
+      <span class="cmp-eyebrow">Direct integration</span>
+      <h2 class="cmp-title">Tools guess. Insightis answers</h2>
+      <p class="cmp-sub">One source of truth. Answers in seconds.</p>
+    </div>
+    <div class="cmp">
+      <div class="cmp-card neg-red">
+        <div class="cmp-hd"><span class="cmp-dot"></span>Disconnected data</div>
+        <div class="cmp-mono">→ "Which channel drove the most signups last month?"<br><br><span class="n">3–5 days</span>&nbsp;&nbsp;to produce one number — export CSVs, VLOOKUP, reconcile by hand<br><br><span class="n">4 tools</span>&nbsp;&nbsp;to query for a request — HubSpot, Stripe and the warehouse</div>
+        <div class="cmp-foot">Exports, manual joins, copy-pasted dashboards. Stale by the time they land.</div>
+      </div>
+      <div class="cmp-card pos">
+        <div class="cmp-hd"><span class="cmp-dot"></span>Insightis</div>
+        <div class="cmp-mono">Answered in seconds. What direct integration unlocks:<br><br><span class="n">12×</span>&nbsp;&nbsp;faster time to insight — vs. manual exports &amp; BI tools<br><br><span class="n">90%</span>&nbsp;&nbsp;fewer data requests — teams self-serve in plain English</div>
+        <div class="cmp-foot">Direct connectors + Semantic Layer. Real numbers, refreshed continuously.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Version B — neutral "Disconnected data"</h3>
+  <div class="cmp-block">
+    <div class="cmp-head">
+      <span class="cmp-eyebrow">Direct integration</span>
+      <h2 class="cmp-title">Tools guess. Insightis answers</h2>
+      <p class="cmp-sub">One source of truth. Answers in seconds.</p>
+    </div>
+    <div class="cmp">
+      <div class="cmp-card neg">
+        <div class="cmp-hd"><span class="cmp-dot"></span>Disconnected data</div>
+        <div class="cmp-mono">→ "Which channel drove the most signups last month?"<br><br><span class="n">3–5 days</span>&nbsp;&nbsp;to produce one number — export CSVs, VLOOKUP, reconcile by hand<br><br><span class="n">4 tools</span>&nbsp;&nbsp;to query for a request — HubSpot, Stripe and the warehouse</div>
+        <div class="cmp-foot">Exports, manual joins, copy-pasted dashboards. Stale by the time they land.</div>
+      </div>
+      <div class="cmp-card pos">
+        <div class="cmp-hd"><span class="cmp-dot"></span>Insightis</div>
+        <div class="cmp-mono">Answered in seconds. What direct integration unlocks:<br><br><span class="n">12×</span>&nbsp;&nbsp;faster time to insight — vs. manual exports &amp; BI tools<br><br><span class="n">90%</span>&nbsp;&nbsp;fewer data requests — teams self-serve in plain English</div>
+        <div class="cmp-foot">Direct connectors + Semantic Layer. Real numbers, refreshed continuously.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>3c · AI Chat comparison — "Not the internet. Your data." (red vs neutral)</h2>
+  <p class="note">The AI Chat accuracy before/after, reproduced in the light-glow styling. Exact live content. Version A red "before", Version B neutral.</p>
+
+  <h3>Version A — red "Generic AI"</h3>
+  <div class="cmp-block">
+    <div class="cmp-head">
+      <span class="cmp-eyebrow">Accuracy</span>
+      <h2 class="cmp-title">Not the internet. Your data.</h2>
+      <p class="cmp-sub">Generic AI guesses. Insightis knows.</p>
+    </div>
+    <div class="cmp">
+      <div class="cmp-card neg-red">
+        <div class="cmp-hd"><span class="cmp-dot"></span>Generic AI</div>
+        <div class="cmp-mono">→ "What's our churn rate?"<br><br>The average SaaS churn rate is typically between <span class="n">3–8% monthly</span>, depending on your segment and pricing tier. Companies in the SMB market typically see higher rates. This estimate may or may not reflect your situation.</div>
+        <div class="cmp-foot">Searches the internet. Returns industry averages. Not your numbers.</div>
+      </div>
+      <div class="cmp-card pos">
+        <div class="cmp-hd"><span class="cmp-dot"></span>Insightis</div>
+        <div class="cmp-mono">→ "What's our churn rate?"<br><br>Your churn rate in March was <span class="n">2.1%</span> — down from 2.8% in February. Main driver: reduced churn in Starter plan (↓ 0.9pp). 3 accounts churned vs 5 last month.</div>
+        <div class="cmp-foot">Queries your Stripe + PostgreSQL through Semantic Layer. Always your numbers.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Version B — neutral "Generic AI"</h3>
+  <div class="cmp-block">
+    <div class="cmp-head">
+      <span class="cmp-eyebrow">Accuracy</span>
+      <h2 class="cmp-title">Not the internet. Your data.</h2>
+      <p class="cmp-sub">Generic AI guesses. Insightis knows.</p>
+    </div>
+    <div class="cmp">
+      <div class="cmp-card neg">
+        <div class="cmp-hd"><span class="cmp-dot"></span>Generic AI</div>
+        <div class="cmp-mono">→ "What's our churn rate?"<br><br>The average SaaS churn rate is typically between <span class="n">3–8% monthly</span>, depending on your segment and pricing tier. Companies in the SMB market typically see higher rates. This estimate may or may not reflect your situation.</div>
+        <div class="cmp-foot">Searches the internet. Returns industry averages. Not your numbers.</div>
+      </div>
+      <div class="cmp-card pos">
+        <div class="cmp-hd"><span class="cmp-dot"></span>Insightis</div>
+        <div class="cmp-mono">→ "What's our churn rate?"<br><br>Your churn rate in March was <span class="n">2.1%</span> — down from 2.8% in February. Main driver: reduced churn in Starter plan (↓ 0.9pp). 3 accounts churned vs 5 last month.</div>
+        <div class="cmp-foot">Queries your Stripe + PostgreSQL through Semantic Layer. Always your numbers.</div>
+      </div>
     </div>
   </div>
 
