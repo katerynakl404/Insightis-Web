@@ -40,22 +40,27 @@
   .ftr .brand{color:var(--heading);font-weight:700;margin-bottom:14px}
   .ftr h4{color:var(--heading);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px}
   .ftr a{display:block;color:var(--muted);text-decoration:none;font-size:13px;margin:5px 0}
-  /* BAD footer: 4 cols -> the 5th group (Legal) orphans alone on row 2 */
-  .ftr-bad .cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-  /* GOOD footer: 3 cols -> balanced 3 + 2 (Company & Legal together on the bottom row) */
-  .ftr-good .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  /* BAD footer: exact prod tablet grid (footer.css:52 → repeat(3) at 768–1023px).
+     5 groups in 3 cols wrap to 3 + 2 — Company & Legal drop to row 2 with an empty trailing cell. */
+  .ftr-bad .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  /* GOOD footer: let the columns flow (auto-fit) into an even, gap-free row — matches the recommended CSS below. */
+  .ftr-good .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:20px}
   /* comparison — neutral vs red */
   .cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
   @media(max-width:640px){.cmp{grid-template-columns:1fr}}
+  /* Exact prod recipe (verified live via the DS tokens): opaque base, a 1px top
+     hairline, and a SUBTLE 0 0 12px / 30% glow — --ins-shadow-glow-brand
+     (#0ec4c14d) / --ins-glow-error (#f871714d). Earlier this pane used a 44–46px
+     wash, which over-glowed and read as a punched-up variation, not the live state. */
   .cmp-card{position:relative;border-radius:14px;padding:20px;border:1px solid var(--line);background:#0D1117;overflow:hidden}
-  .cmp-card::before{content:"";position:absolute;inset:0;pointer-events:none}
+  .cmp-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;pointer-events:none;border-radius:14px 14px 0 0}
   .cmp-card>*{position:relative;z-index:1}
-  .cmp-card.neg-red{border-color:rgba(248,113,113,0.35);box-shadow:0 0 44px -12px rgba(248,113,113,0.40)}
-  .cmp-card.neg-red::before{background:radial-gradient(120% 80% at 50% 0%,rgba(248,113,113,0.10),transparent 70%)}
-  .cmp-card.neg{border-color:rgba(255,255,255,0.16);box-shadow:0 0 44px -14px rgba(255,255,255,0.12)}
-  .cmp-card.neg::before{background:radial-gradient(120% 80% at 50% 0%,rgba(255,255,255,0.06),transparent 70%)}
-  .cmp-card.pos{border-color:rgba(14,196,193,0.38);box-shadow:0 0 46px -12px rgba(14,196,193,0.40)}
-  .cmp-card.pos::before{background:radial-gradient(120% 80% at 50% 0%,rgba(14,196,193,0.12),transparent 70%)}
+  .cmp-card.neg-red{border-color:rgba(248,113,113,0.25);box-shadow:0 0 12px rgba(248,113,113,0.30)}
+  .cmp-card.neg-red::before{background:linear-gradient(90deg,transparent,rgba(248,113,113,0.30),transparent)}
+  .cmp-card.neg{border-color:rgba(255,255,255,0.14);box-shadow:0 0 12px rgba(255,255,255,0.10)}
+  .cmp-card.neg::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)}
+  .cmp-card.pos{border-color:rgba(14,196,193,0.20);box-shadow:0 0 12px rgba(14,196,193,0.30)}
+  .cmp-card.pos::before{background:linear-gradient(90deg,transparent,rgba(9,160,157,0.50),transparent)}
   .cmp-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
   .cmp-ico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
   .cmp-card.neg-red .cmp-ico{background:rgba(248,113,113,0.12);color:#F87171}
@@ -69,6 +74,17 @@
   .cmp-card.neg-red .mk{color:#F87171}
   .cmp-card.neg .mk{color:var(--muted)}
   .cmp-card.pos .mk{color:var(--teal)}
+  /* full block wrapper — reproduces the prod section: eyebrow + title + subtitle,
+     with the teal section glow (--ins-glow-section) pooling behind the cards. */
+  .cmp-block{position:relative;border:1px solid var(--line);border-radius:14px;padding:40px 28px;margin-top:10px;overflow:hidden;background:var(--page)}
+  .cmp-block::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 36% 32% at 50% 50%,rgba(7,128,126,0.20) 0%,transparent 100%)}
+  .cmp-block>*{position:relative;z-index:1}
+  .cmp-head{text-align:center;max-width:680px;margin:0 auto 34px}
+  .cmp-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);padding:6px 14px;border:1px solid rgba(14,196,193,0.20);background:rgba(14,196,193,0.08);border-radius:999px;margin-bottom:18px}
+  .cmp-eyebrow::before{content:"\2726";font-size:12px}
+  .cmp-title{color:var(--heading);font-size:clamp(28px,4vw,44px);font-weight:500;letter-spacing:-.02em;line-height:1.1;margin:0 0 14px}
+  .cmp-sub{color:var(--text);font-size:16px;line-height:1.6;max-width:600px;margin:0 auto}
+  .cmp-block .cmp{margin-top:0}
   /* metrics catalog concept */
   .cat{display:grid;grid-template-columns:1fr 300px;gap:16px;margin-top:10px}
   @media(max-width:760px){.cat{grid-template-columns:1fr}}
@@ -125,8 +141,8 @@
 /* Verify ≥3:1 against --ins-surface-card (#131820). A mid-gray (e.g. --ins-color-gray-500 #4A6070) also works. */</pre>
 
   <h2>2 · Footer — unbalanced reflow (AUD-40)</h2>
-  <p class="note">There are 5 link groups (Platform, Solutions, Resources, Company, Legal). Currently they wrap to <b>4 + 1</b> — Legal is orphaned alone on the second row (and at 768–1023px the fixed 3-col grid leaves an empty cell). Expected: a balanced <b>3 + 2</b> — Platform/Solutions/Resources on top, <b>Company &amp; Legal together</b> on the bottom row.</p>
-  <h3>Current — 4 columns → Legal orphaned alone on row 2</h3>
+  <p class="note">There are 5 link groups (Platform, Solutions, Resources, Company, Legal). At 768–1023px <code>.ins-footer__cols</code> is a fixed 3-col grid, so the groups wrap to <b>3 + 2</b> — <b>Company &amp; Legal drop to a second row</b>, leaving an empty trailing cell and a large blank area; at ≥1024px <code>justify-content:flex-end</code> pushes the whole row to the right edge. Expected: let the columns flow into an even, gap-free row (auto-fit) with no empty cell and no right-push.</p>
+  <h3>Current — 3-col grid → Company &amp; Legal drop to row 2 (empty cell)</h3>
   <div class="ftr ftr-bad">
     <div class="brand">◆ Insightis</div>
     <div style="color:var(--teal);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:2px 0 8px">AI Analytics Workspace for instant insights</div>
@@ -168,26 +184,40 @@
 
   <h2>3 · Comparison block — keep the glow, make "before" neutral (AUD-56)</h2>
   <p class="note">Keep the glow (it works). Only change the "before" card from red to neutral gray — red reads as error/danger, but the "before" is just the prior state; meaning stays on the ✗/✓ icons (SC 1.4.1) and red is reserved for real errors. "Current" below is the exact live content (5 items each).</p>
-  <h3>Current — red "before" (exact live content)</h3>
-  <div class="cmp">
-    <div class="cmp-card neg-red">
-      <div class="cmp-h"><span class="cmp-ico">✕</span><div><h4>Traditional Approach</h4><div class="s">Manual, slow, expensive</div></div></div>
-      <ul><li><span class="mk">✕</span>Manual data aggregation required</li><li><span class="mk">✕</span>Complex SQL &amp; Python scripts</li><li><span class="mk">✕</span>Days to set up new reports</li><li><span class="mk">✕</span>Siloed tools &amp; fragmented views</li><li><span class="mk">✕</span>High ongoing engineering overhead</li></ul>
+  <h3>Current — exact live block: eyebrow + title + red "before", teal section glow</h3>
+  <div class="cmp-block">
+    <div class="cmp-head">
+      <span class="cmp-eyebrow">Why Insightis</span>
+      <h2 class="cmp-title">Why teams switch to Insightis</h2>
+      <p class="cmp-sub">Instead of charging for every person in your company, Insightis ties cost to actual AI activity and the storage you need — so pricing stays fair, scalable, and aligned with value.</p>
     </div>
-    <div class="cmp-card pos">
-      <div class="cmp-h"><span class="cmp-ico">✓</span><div><h4>With Insightis</h4><div class="s">Automated, instant, scalable</div></div></div>
-      <ul><li><span class="mk">✓</span>Automated data unification</li><li><span class="mk">✓</span>Natural language — no SQL needed</li><li><span class="mk">✓</span>Instant reports, zero code</li><li><span class="mk">✓</span>Unified intelligence layer</li><li><span class="mk">✓</span>10× more cost-effective</li></ul>
+    <div class="cmp">
+      <div class="cmp-card neg-red">
+        <div class="cmp-h"><span class="cmp-ico">✕</span><div><h4>Traditional Approach</h4><div class="s">Manual, slow, expensive</div></div></div>
+        <ul><li><span class="mk">✕</span>Manual data aggregation required</li><li><span class="mk">✕</span>Complex SQL &amp; Python scripts</li><li><span class="mk">✕</span>Days to set up new reports</li><li><span class="mk">✕</span>Siloed tools &amp; fragmented views</li><li><span class="mk">✕</span>High ongoing engineering overhead</li></ul>
+      </div>
+      <div class="cmp-card pos">
+        <div class="cmp-h"><span class="cmp-ico">✓</span><div><h4>With Insightis</h4><div class="s">Automated, instant, scalable</div></div></div>
+        <ul><li><span class="mk">✓</span>Automated data unification</li><li><span class="mk">✓</span>Natural language — no SQL needed</li><li><span class="mk">✓</span>Instant reports, zero code</li><li><span class="mk">✓</span>Unified intelligence layer</li><li><span class="mk">✓</span>10× more cost-effective</li></ul>
+      </div>
     </div>
   </div>
-  <h3>Recommended — neutral "before", glow kept (same content)</h3>
-  <div class="cmp">
-    <div class="cmp-card neg">
-      <div class="cmp-h"><span class="cmp-ico">✕</span><div><h4>Traditional Approach</h4><div class="s">Manual, slow, expensive</div></div></div>
-      <ul><li><span class="mk">✕</span>Manual data aggregation required</li><li><span class="mk">✕</span>Complex SQL &amp; Python scripts</li><li><span class="mk">✕</span>Days to set up new reports</li><li><span class="mk">✕</span>Siloed tools &amp; fragmented views</li><li><span class="mk">✕</span>High ongoing engineering overhead</li></ul>
+  <h3>Recommended — neutral "before", glow kept (same block)</h3>
+  <div class="cmp-block">
+    <div class="cmp-head">
+      <span class="cmp-eyebrow">Why Insightis</span>
+      <h2 class="cmp-title">Why teams switch to Insightis</h2>
+      <p class="cmp-sub">Instead of charging for every person in your company, Insightis ties cost to actual AI activity and the storage you need — so pricing stays fair, scalable, and aligned with value.</p>
     </div>
-    <div class="cmp-card pos">
-      <div class="cmp-h"><span class="cmp-ico">✓</span><div><h4>With Insightis</h4><div class="s">Automated, instant, scalable</div></div></div>
-      <ul><li><span class="mk">✓</span>Automated data unification</li><li><span class="mk">✓</span>Natural language — no SQL needed</li><li><span class="mk">✓</span>Instant reports, zero code</li><li><span class="mk">✓</span>Unified intelligence layer</li><li><span class="mk">✓</span>10× more cost-effective</li></ul>
+    <div class="cmp">
+      <div class="cmp-card neg">
+        <div class="cmp-h"><span class="cmp-ico">✕</span><div><h4>Traditional Approach</h4><div class="s">Manual, slow, expensive</div></div></div>
+        <ul><li><span class="mk">✕</span>Manual data aggregation required</li><li><span class="mk">✕</span>Complex SQL &amp; Python scripts</li><li><span class="mk">✕</span>Days to set up new reports</li><li><span class="mk">✕</span>Siloed tools &amp; fragmented views</li><li><span class="mk">✕</span>High ongoing engineering overhead</li></ul>
+      </div>
+      <div class="cmp-card pos">
+        <div class="cmp-h"><span class="cmp-ico">✓</span><div><h4>With Insightis</h4><div class="s">Automated, instant, scalable</div></div></div>
+        <ul><li><span class="mk">✓</span>Automated data unification</li><li><span class="mk">✓</span>Natural language — no SQL needed</li><li><span class="mk">✓</span>Instant reports, zero code</li><li><span class="mk">✓</span>Unified intelligence layer</li><li><span class="mk">✓</span>10× more cost-effective</li></ul>
+      </div>
     </div>
   </div>
   <h3>Same neutral treatment on other real comparisons (exact live content)</h3>
