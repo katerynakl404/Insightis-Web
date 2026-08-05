@@ -6,7 +6,7 @@
 | **Status** | Finalized |
 | **Opened** | 2026-08-04 |
 | **Finalized** | 2026-08-04 |
-| **Object** | insightis-landing.vercel.app (dark theme) |
+| **Object** | insightis.ai (dark theme) |
 | **Pages in scope** | Full site (17 pages): Home, Pricing, AI Chat, Integrations, Semantic Layer, 6× Solutions, Docs, Blog, Connectors, Roadmap, Prompt Library, Contact Support |
 | **Diffed against** | — (baseline version) |
 | **Accepted findings** | 74 (3 Critical · 11 High · 27 Medium · 33 Low) |

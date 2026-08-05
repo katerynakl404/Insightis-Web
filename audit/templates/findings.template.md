@@ -6,7 +6,7 @@
 > Framework (taxonomy/severity/schema): [`../../review-framework.md`](../../review-framework.md).
 > Decision machinery (accept/decline/defer, diffs, dedup): [`../../review-iteration-protocol.md`](../../review-iteration-protocol.md).
 
-- **Object:** insightis-landing.vercel.app · **Theme:** dark (bg `#0A0E13`)
+- **Object:** insightis.ai · **Theme:** dark (bg `#0A0E13`)
 - **Method:** live DOM/CSS inspection + source review (`insightis-site/`) + heuristics
 - **Pages in scope:** <list>
 - **Date:** YYYY-MM-DD
