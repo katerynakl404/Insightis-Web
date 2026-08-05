@@ -26,10 +26,10 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 |                | 🔴 Critical | 🟠 High | 🟡 Medium | ⚪ Low | Total |
 |---|---|---|---|---|---|
 | Pending Review | 0 | 0 | 0 | 0 | 0 |
-| Accepted       | 3 | 11 | 27 | 33 | 74 |
+| Accepted       | 3 | 11 | 27 | 35 | 76 |
 | Declined       | 0 | 0 | 0 | 0 | 0 |
 | Deferred       | 0 | 0 | 0 | 0 | 0 |
-| **Total**      | 3 | 11 | 27 | 33 | 74 |
+| **Total**      | 3 | 11 | 27 | 35 | 76 |
 
 ---
 
@@ -1156,6 +1156,34 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 **Current** — `FeatureComparison` uses fixed `cols='1.6fr 1fr 1fr 1fr'`; the ≤768px query only shrinks font/padding, never reflows the 4 columns → cramped at 320px.
 **Expected** — Stack or horizontally scroll the plan columns on mobile.
 **Status history** | 2026-08-04 | Accepted | Source-audit. |
+
+---
+
+### AUD-75 — Sidebar nav hover paints the whole row (should only brighten the text) (Accepted)
+
+| | |
+|---|---|
+| Domain | Code + Design | Severity | ⚪ Low | Section | Docs sidebar nav | Category | Accessibility |
+| Page(s) | Docs (+ any sidebar nav) | Verify | https://insightis-landing.vercel.app/docs/ |
+
+**Current** — Hovering a sidebar item fills the entire row with a background block — heavy/noisy, and easily confused with the active state.
+**Expected** — Hover should only brighten the label (a higher-contrast text class), no full-row fill; keep the filled/bar treatment for the **active** item only.
+**Fix** — Replace the row-background hover with a text-color shift (e.g. → `--ins-text-heading`/`--ins-text-highlight`); reserve the background + left bar for `[aria-current]`/active.
+**Status history** | 2026-08-04 | Accepted | User-reported. |
+
+---
+
+### AUD-76 — Docs prev/next nav card uses a bespoke teal outline (should match the secondary button) (Accepted)
+
+| | |
+|---|---|
+| Domain | Code + Design | Severity | ⚪ Low | Section | Docs — prev/next nav card | Category | Consistency |
+| Page(s) | Docs (all) | Verify | https://insightis-landing.vercel.app/docs/plans-and-tokens |
+
+**Current** — The docs "Next → / Prev" navigation card has a green/teal outline border (bespoke), inconsistent with the site's button system.
+**Expected** — Same styling/behaviour as the DS **secondary button** (border, hover), not a custom teal outline.
+**Fix** — Style the nav card with the secondary-button tokens/behaviour (`--ins-button-secondary-*`) — resting border like AUD-39, teal only on hover; drop the bespoke green outline.
+**Status history** | 2026-08-04 | Accepted | User-reported (docs/plans-and-tokens). |
 
 ---
 

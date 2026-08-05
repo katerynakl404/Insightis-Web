@@ -43,7 +43,7 @@
   <h1>Insightis — UX/UI Audit v1</h1>
   <p class="sub">insightis-landing.vercel.app · dark · verified 2026-08-04 · <b>full site (17 pages)</b></p>
   <p class="sub">Method: live DOM/CSS + source (<code>insightis-site/</code>) + attention heatmaps + heuristic (Nielsen) + parallel source audits (component/token consistency, IA/block logic). Each finding: <b style="color:var(--crit)">Now</b> (current state) · <b>Should be</b> (expected) · <b style="color:var(--teal)">Fix</b> (how) · a live verify link.</p>
-  <p class="sub"><b>74 findings — 3 Critical · 11 High · 27 Medium · 33 Low.</b> Body text passes WCAG AA; the site's visual style is not being redesigned in v1 (proposed redesigns: <a href="fix-examples.html">fix-examples.html</a>, pending sign-off).</p>
+  <p class="sub"><b>76 findings — 3 Critical · 11 High · 27 Medium · 35 Low.</b> Body text passes WCAG AA; the site's visual style is not being redesigned in v1 (proposed redesigns: <a href="fix-examples.html">fix-examples.html</a>, pending sign-off).</p>
 
   <div class="callout"><b>Release blockers:</b> AUD-01, AUD-02, AUD-24 (Critical); AUD-03, AUD-04, AUD-05, AUD-21, AUD-25, AUD-26, AUD-27, AUD-43, AUD-50, AUD-51, AUD-66 (High).</div>
 
@@ -263,6 +263,11 @@
     <div class="r exp"><span class="k">Should be</span><span class="v">One highlight token.</span></div>
     <div class="r fix"><span class="k">Fix</span><span class="v">Use <code>--ins-text-highlight</code> on every banner.</span></div>
   </div>
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-76</span><span class="ti">Docs prev/next nav card has a bespoke teal outline</span><span class="lnk"><a href="https://insightis-landing.vercel.app/docs/plans-and-tokens">verify ↗</a></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">The docs "Next → / Prev" card has a green/teal outline border — inconsistent with the button system.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">Same styling/behaviour as the DS secondary button, not a custom teal outline.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Use the secondary-button treatment (<code>--ins-button-secondary-*</code>): resting border, teal only on hover.</span></div>
+  </div>
   <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-61</span><span class="ti">"See all 200+ integrations" custom outline</span><span class="lnk"><a href="https://insightis-landing.vercel.app/solutions/revenue-teams">verify ↗</a></span></div>
     <div class="r now"><span class="k">Now</span><span class="v">A bespoke teal-outline pill, not the DS secondary button.</span></div>
     <div class="r exp"><span class="k">Should be</span><span class="v">The secondary button.</span></div>
@@ -355,6 +360,11 @@
     <div class="r now"><span class="k">Now</span><span class="v">Hovering a question barely changes anything.</span></div>
     <div class="r exp"><span class="k">Should be</span><span class="v">A clear hover state for the clickable row.</span></div>
     <div class="r fix"><span class="k">Fix</span><span class="v">Add a background/border shift in <code>&lt;FAQAccordion&gt;</code>.</span></div>
+  </div>
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-75</span><span class="ti">Sidebar nav hover paints the whole row</span><span class="lnk"><a href="https://insightis-landing.vercel.app/docs/">verify ↗</a></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">Hovering a sidebar item fills the entire row — heavy, and easily confused with the active state.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">Hover only brightens the label; the filled row + bar is for the active item only.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Swap the row-background hover for a text-color shift (→ <code>--ins-text-heading</code>/<code>--ins-text-highlight</code>); reserve the fill for <code>[aria-current]</code>.</span></div>
   </div>
   <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-73</span><span class="ti">Roadmap content only in SVG</span><span class="lnk"><a href="https://insightis-landing.vercel.app/resources/roadmap">verify ↗</a></span></div>
     <div class="r now"><span class="k">Now</span><span class="v">Milestones are SVG <code>&lt;text&gt;</code> — absent from the DOM outline; not reliably reflowable.</span></div>
