@@ -58,19 +58,24 @@
      hairline, and a SUBTLE 0 0 12px / 30% glow — --ins-shadow-glow-brand
      (#0ec4c14d) / --ins-glow-error (#f871714d). Earlier this pane used a 44–46px
      wash, which over-glowed and read as a punched-up variation, not the live state. */
-  /* Card geometry = EXACT prod (getComputedStyle on insightis.ai): radius 12px, padding 24px, border 0.8px */
-  .cmp-card{position:relative;border-radius:12px;padding:24px;border:0.8px solid var(--line);background:#0D1117;overflow:hidden}
-  .cmp-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;pointer-events:none;border-radius:12px 12px 0 0}
+  /* ── Base card look = the Recommended/concept aesthetic (soft glow, light directional gradient).
+        Used by the "Recommended" pane + blocks 3b/3c. Intentionally softer than prod — do NOT bump. ── */
+  .cmp-card{position:relative;border-radius:14px;padding:20px;border:1px solid var(--line);background:#0D1117;overflow:hidden}
+  .cmp-card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;pointer-events:none;border-radius:14px 14px 0 0}
   .cmp-card>*{position:relative;z-index:1}
-  /* neg-red (live "before") & pos (live "with") = EXACT prod: FLAT uniform tint overlay + 0 0 12px @0.30 glow.
-     Prod tint is linear-gradient(rgba(c,a),rgba(c,a)) — a solid wash, NOT a directional 155deg fade. */
-  .cmp-card.neg-red{border-color:rgba(248,113,113,0.25);box-shadow:0 0 12px rgba(248,113,113,0.30);background:linear-gradient(rgba(248,113,113,0.10),rgba(248,113,113,0.10)),#0D1117}
+  .cmp-card.neg-red{border-color:rgba(248,113,113,0.25);box-shadow:0 0 10px rgba(248,113,113,0.16);background:linear-gradient(155deg,rgba(248,113,113,0.10) 0%,transparent 55%),#0D1117}
   .cmp-card.neg-red::before{background:linear-gradient(90deg,transparent,rgba(248,113,113,0.30),transparent)}
-  .cmp-card.pos{border-color:rgba(14,196,193,0.20);box-shadow:0 0 12px rgba(14,196,193,0.30);background:linear-gradient(rgba(9,160,157,0.08),rgba(9,160,157,0.08)),#0D1117}
-  .cmp-card.pos::before{background:linear-gradient(90deg,transparent,rgba(9,160,157,0.50),transparent)}
-  /* neg = neutral-gray recommendation: mirrors prod geometry (flat tint + kept glow), red swapped for neutral */
-  .cmp-card.neg{border-color:rgba(255,255,255,0.14);box-shadow:0 0 12px rgba(255,255,255,0.10);background:linear-gradient(rgba(255,255,255,0.05),rgba(255,255,255,0.05)),#0D1117}
+  .cmp-card.neg{border-color:rgba(255,255,255,0.14);box-shadow:0 0 10px rgba(255,255,255,0.06);background:linear-gradient(155deg,rgba(255,255,255,0.05) 0%,transparent 55%),#0D1117}
   .cmp-card.neg::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)}
+  .cmp-card.pos{border-color:rgba(14,196,193,0.20);box-shadow:0 0 10px rgba(14,196,193,0.16);background:linear-gradient(155deg,rgba(14,196,193,0.10) 0%,transparent 55%),#0D1117}
+  .cmp-card.pos::before{background:linear-gradient(90deg,transparent,rgba(9,160,157,0.50),transparent)}
+  /* ── "Current" pane ONLY (.cmp-live) = insightis.ai reproduced 1:1: FLAT uniform tint + 0 0 12px @0.30 glow,
+        border 0.8px, radius 12px, padding 24px (verified via getComputedStyle on prod). Scoped so it does
+        NOT alter the Recommended pane, whose softer look is intentional and stays as it was. ── */
+  .cmp-live .cmp-card{border-radius:12px;padding:24px;border-width:0.8px}
+  .cmp-live .cmp-card::before{border-radius:12px 12px 0 0}
+  .cmp-live .cmp-card.neg-red{box-shadow:0 0 12px rgba(248,113,113,0.30);background:linear-gradient(rgba(248,113,113,0.10),rgba(248,113,113,0.10)),#0D1117}
+  .cmp-live .cmp-card.pos{box-shadow:0 0 12px rgba(14,196,193,0.30);background:linear-gradient(rgba(9,160,157,0.08),rgba(9,160,157,0.08)),#0D1117}
   .cmp-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
   .cmp-ico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
   .cmp-card.neg-red .cmp-ico{background:rgba(248,113,113,0.12);color:#F87171}
@@ -223,7 +228,7 @@
   <p class="note" style="border:1px solid rgba(52,211,153,0.35);background:rgba(52,211,153,0.06);border-radius:8px;padding:10px 14px"><b style="color:#34D399">✓ Decision:</b> the <b>neutral gray</b> "before" approach is chosen — apply it to all comparison blocks below. The red version stays only as the current-state reference.</p>
   <p class="note">Keep the glow (it works). Only change the "before" card from red to neutral gray — red reads as error/danger, but the "before" is just the prior state; meaning stays on the ✗/✓ icons (SC 1.4.1) and red is reserved for real errors. "Current" below is the exact live content (5 items each). <b>Implement:</b> the "before" card is <code>.ins-card--glow--error</code> → change to plain <code>.ins-card--glow</code>; its ✗ icon + header colour <code>--ins-status-error-fg</code> → <code>--ins-text-inactive</code> (source of the red: <code>ds/components/card.css:125,144</code>). The "with" card stays <code>.ins-card--glow--brand</code>.</p>
   <h3>Current — exact live block: eyebrow + title + red "before", teal section glow</h3>
-  <div class="cmp-block">
+  <div class="cmp-block cmp-live">
     <div class="cmp-head">
       <span class="cmp-eyebrow">Why Insightis</span>
       <h2 class="cmp-title">Why teams switch to Insightis</h2>
