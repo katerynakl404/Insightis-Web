@@ -43,12 +43,12 @@
   /* BAD footer: exact prod state — a 3-col GRID equalises row height to the tallest
      column (Solutions/Resources = 6 items), so a big empty gap opens under the short
      Platform column and Company/Legal drop far down onto row 2. */
-  .ftr-bad .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 24px}
+  .ftr-bad .cols{display:grid;grid-template-columns:repeat(3,180px);justify-content:start;gap:24px 48px}
   /* GOOD footer: 3 columns via MULTI-COLUMN — groups pack top-to-bottom into 3 balanced
      columns with NO row-height equalisation, so there is no gap and no orphan. */
   /* GOOD footer: 3 layout-columns, each stacking its group(s). One row of 3 → no row-height
      equalisation, so no gap and no orphan. Platform+Company | Solutions+Legal | Resources. */
-  .ftr-good .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 32px;align-items:start}
+  .ftr-good .cols{display:grid;grid-template-columns:repeat(3,180px);justify-content:start;gap:0 48px;align-items:start}
   .ftr-good .cols > div > div{margin-bottom:26px}
   .ftr-good .cols > div > div:last-child{margin-bottom:0}
   /* comparison — neutral vs red */
@@ -323,60 +323,7 @@
     </div>
   </div>
 
-  <h2>4 · Metrics catalog — UX rethink</h2>
-  <p class="note">UX improvements over the current 3-pane block: (1) add a <b>search</b> + result count — 498 metrics can't be browsed by tabs alone; (2) add a <b>source filter</b> and show the source on each card; (3) give each metric a <b>human title</b> above the mono id for scannability; (4) make the detail panel <b>sticky</b> with <b>Copy name / Copy SQL</b> and the Semantic-Layer trust signals (<b>owner, freshness, certified</b>); (5) on mobile the detail becomes a drawer; (6) reuse the DS tab/chip + input primitives (AUD-54); (7) keep the footer count consistent with the rest of the site (AUD-05). <b>Implement:</b> category tabs → <code>&lt;Chip variant="tab"&gt;</code> (<code>.ins-badge--tab</code>) at its native size; search → <code>&lt;SearchInput&gt;</code> (<code>.ins-input-wrap .ins-input--sm</code>); source filter → same <code>.ins-badge--tab</code>; keep the metric <b>name (mono id)</b> as the card's primary line; detail panel <code>position:sticky</code>; Copy buttons → <code>&lt;Button variant="secondary" size="sm"&gt;</code>.</p>
-  <h3>Current — how it looks on the site (the metric name is the primary element)</h3>
-  <div class="cat-toolbar">
-    <button class="cat-chip on">CRM</button><button class="cat-chip">Billing &amp; Finance</button><button class="cat-chip">Marketing</button><button class="cat-chip">Web &amp; Product</button><button class="cat-chip">Data &amp; Engineering</button><button class="cat-chip">Planning &amp; Work</button>
-  </div>
-  <div class="cat">
-    <div class="cat-list">
-      <div class="mcard"><div class="mname">mrr_won</div><div class="mdesc">Monthly Recurring Revenue</div></div>
-      <div class="mcard sel"><div class="mname">total_arr_won</div><div class="mdesc">Annual Recurring Revenue</div></div>
-      <div class="mcard"><div class="mname">avg_acv_won</div><div class="mdesc">Average Annual Contract Value of won deals</div></div>
-      <div class="mcard"><div class="mname">win_rate_by_value</div><div class="mdesc">Share of CLOSED-opportunity VALUE that was won</div></div>
-      <div class="mcard"><div class="mname">saas_mrr</div><div class="mdesc">Monthly Recurring Revenue</div></div>
-      <div class="mcard"><div class="mname">sales_velocity</div><div class="mdesc">Sales velocity ($ per day)</div></div>
-    </div>
-    <aside class="detail">
-      <div class="idbig">total_arr_won</div>
-      <div class="dmeta"><span>◆ Salesforce</span><span>✓ Built-in</span></div>
-      <p style="color:var(--text);font-size:13px;margin:12px 0 0">Total Annual Recurring Revenue (won). ARR = SUM of won "Amount".</p>
-      <div class="mid" style="color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-top:12px">How it is computed</div>
-      <pre>SELECT SUM("Amount")
-FROM "Opportunity"
-WHERE "IsWon" = true</pre>
-      <div style="color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-top:12px">Ask for it in AI chat</div>
-      <p style="color:var(--text);font-size:13px;margin:6px 0 0">Ask <code style="color:var(--teal)">@total_arr_won</code></p>
-    </aside>
-  </div>
-  <p style="color:var(--teal);font-family:ui-monospace,Menlo,monospace;font-size:13px;text-align:center;margin-top:12px"><b>498</b> built-in metrics · across <b>20</b> sources · plus your own, defined in plain English</p>
 
-  <h3>Recommended — keep the metric name primary; add search + source filter + sticky detail with copy</h3>
-  <div class="cat-toolbar">
-    <input class="cat-search" placeholder="Search 498 metrics by name or description…" />
-    <button class="cat-chip on">All</button><button class="cat-chip">CRM</button><button class="cat-chip">Billing</button><button class="cat-chip">Marketing</button>
-    <button class="cat-chip">◧ Source</button>
-  </div>
-  <div class="cat">
-    <div class="cat-list">
-      <div class="mcard sel"><div class="mtitle">Total ARR (won)</div><div class="mid">total_arr_won</div><div class="mdesc">Annual Recurring Revenue from won opportunities.</div><span class="msrc">Salesforce · certified</span></div>
-      <div class="mcard"><div class="mtitle">Monthly Recurring Revenue</div><div class="mid">mrr_won</div><div class="mdesc">MRR from won opportunities.</div><span class="msrc">Salesforce</span></div>
-      <div class="mcard"><div class="mtitle">Win rate by value</div><div class="mid">win_rate_by_value</div><div class="mdesc">Share of closed-opportunity value that was won.</div><span class="msrc">Salesforce</span></div>
-      <div class="mcard"><div class="mtitle">Sales velocity</div><div class="mid">sales_velocity</div><div class="mdesc">Revenue generated per day.</div><span class="msrc">HubSpot</span></div>
-    </div>
-    <aside class="detail">
-      <div class="idbig">total_arr_won</div>
-      <div class="dmeta"><span>◆ Salesforce</span><span>✓ Certified</span><span>Owner: @revenue</span><span>Fresh: 2 min</span></div>
-      <p style="color:var(--text);font-size:13px;margin:12px 0 0">Total Annual Recurring Revenue (won). ARR = SUM of won "Amount".</p>
-      <div class="mid" style="color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-top:12px">How it is computed</div>
-      <pre>SELECT SUM("Amount")
-FROM "Opportunity"
-WHERE "IsWon" = true</pre>
-      <div class="drow"><button class="db">Copy name</button><button class="db">Copy SQL</button><button class="db">Ask in AI Chat →</button></div>
-    </aside>
-  </div>
-  <p class="note"><b>Note (not a proposal):</b> the footer stat's inconsistent number styling is a <b>direct finding fix (AUD-57)</b> — match the plain treatment the site already uses ("+ 180 more connectors available": one color, one typeface). It's tracked in findings.md, not here.</p>
 
 </div>
 </body>
