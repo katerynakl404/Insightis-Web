@@ -44,13 +44,11 @@
      column (Solutions/Resources = 6 items), so a big empty gap opens under the short
      Platform column and Company/Legal drop far down onto row 2. */
   .ftr-bad .cols{display:grid;grid-template-columns:repeat(3,180px);justify-content:start;gap:24px 48px}
-  /* GOOD footer: 3 columns via MULTI-COLUMN — groups pack top-to-bottom into 3 balanced
-     columns with NO row-height equalisation, so there is no gap and no orphan. */
-  /* GOOD footer: 3 layout-columns, each stacking its group(s). One row of 3 → no row-height
-     equalisation, so no gap and no orphan. Platform+Company | Solutions+Legal | Resources. */
-  .ftr-good .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 40px;align-items:start}
-  .ftr-good .cols > div > div{margin-bottom:26px}
-  .ftr-good .cols > div > div:last-child{margin-bottom:0}
+  /* GOOD footer: the 5 groups are DIRECT children of a proportional 3-col grid (1fr, full-width).
+     They flow row 1 = Platform | Solutions | Resources, row 2 = Company | Legal; grid row-height
+     equalisation makes the row-2 headings (Company, Legal) START AT THE SAME HEIGHT. Full-width,
+     unlike Current's left-packed fixed-180px columns. */
+  .ftr-good .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px 40px;align-items:start}
   /* comparison — neutral vs red */
   .cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
   @media(max-width:640px){.cmp{grid-template-columns:1fr}}
@@ -65,7 +63,9 @@
   .cmp-card>*{position:relative;z-index:1}
   .cmp-card.neg-red{border-color:rgba(248,113,113,0.25);box-shadow:0 0 10px rgba(248,113,113,0.16);background:linear-gradient(155deg,rgba(248,113,113,0.10) 0%,transparent 55%),#0D1117}
   .cmp-card.neg-red::before{background:linear-gradient(90deg,transparent,rgba(248,113,113,0.30),transparent)}
-  .cmp-card.neg{border-color:rgba(255,255,255,0.14);box-shadow:0 0 10px rgba(255,255,255,0.06);background:linear-gradient(155deg,rgba(255,255,255,0.05) 0%,transparent 55%),#0D1117}
+  /* neg keeps a VISIBLE glow (the recommendation is "keep the glow, only change the colour"),
+     neutralised: gray-200 hue = the proposed --ins-glow-neutral: 0 0 12px rgba(168,191,200,.18). */
+  .cmp-card.neg{border-color:rgba(255,255,255,0.12);box-shadow:0 0 12px rgba(168,191,200,0.18);background:linear-gradient(155deg,rgba(255,255,255,0.05) 0%,transparent 55%),#0D1117}
   .cmp-card.neg::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)}
   .cmp-card.pos{border-color:rgba(14,196,193,0.20);box-shadow:0 0 10px rgba(14,196,193,0.16);background:linear-gradient(155deg,rgba(14,196,193,0.10) 0%,transparent 55%),#0D1117}
   .cmp-card.pos::before{background:linear-gradient(90deg,transparent,rgba(9,160,157,0.50),transparent)}
@@ -169,7 +169,7 @@
 /* consumed by .ins-btn--secondary { border-color } in ds/components/button.css:84 — no change needed there. */</pre>
 
   <h2>2 · Footer — unbalanced reflow (AUD-40)</h2>
-  <p class="note">There are 5 link groups (Platform, Solutions, Resources, Company, Legal). At 768–1023px <code>.ins-footer__cols</code> is a fixed 3-col grid, so the groups wrap to <b>3 + 2</b> — <b>Company &amp; Legal drop to a second row</b>, leaving an empty trailing cell and a large blank area; at ≥1024px <code>justify-content:flex-end</code> pushes the whole row to the right edge. Expected: let the columns flow into an even, gap-free row (auto-fit) with no empty cell and no right-push.</p>
+  <p class="note">There are 5 link groups (Platform, Solutions, Resources, Company, Legal). At 768–1023px <code>.ins-footer__cols</code> is a fixed 3-col grid, so the groups wrap to <b>3 + 2</b> — <b>Company &amp; Legal drop to a second row</b>, leaving an empty trailing cell and a large blank area; at ≥1024px <code>justify-content:flex-end</code> pushes the whole row to the right edge. Expected: a <b>proportional 3-col grid</b> (1fr) that fills the width, with the second row (Company &amp; Legal) aligned at the same height and no right-push.</p>
   <h3>Current — 3-col grid → Company &amp; Legal drop to row 2 (empty cell)</h3>
   <div class="ftr ftr-bad">
     <div class="brand"><svg viewBox="0 0 25.5 22.84" style="width:22px;height:20px;vertical-align:-4px;margin-right:8px"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="var(--teal)"/></svg>Insightis</div>
@@ -191,42 +191,37 @@
     <div style="color:var(--teal);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:2px 0 8px">AI Analytics Workspace for instant insights</div>
     <div style="color:var(--muted);font-size:13px;max-width:60ch;margin-bottom:20px">Built by the Devart team — the trusted data partner of 40,000+ companies worldwide for over 28 years.</div>
     <div class="cols">
-      <div>
-        <div><h4>Platform</h4><a>AI Chat</a><a>Integrations</a><a>Semantic Layer</a></div>
-        <div><h4>Company</h4><a>About Insightis</a><a>About Devart ↗</a><a>Careers ↗</a><a>Contacts</a></div>
-      </div>
-      <div>
-        <div><h4>Solutions</h4><a>For Revenue Teams</a><a>For Executive Teams</a><a>For Marketing Teams</a><a>For Product Teams</a><a>For Analytics Teams</a><a>For Finance Teams</a></div>
-        <div><h4>Legal</h4><a>Privacy</a><a>Terms</a><a>Security</a><a>Cookie Settings</a></div>
-      </div>
-      <div>
-        <div><h4>Resources</h4><a>Documentation</a><a>Prompt Library</a><a>Blog</a><a>Support Center</a><a>Data Connectors</a><a>Roadmap</a></div>
-      </div>
+      <div><h4>Platform</h4><a>AI Chat</a><a>Integrations</a><a>Semantic Layer</a></div>
+      <div><h4>Solutions</h4><a>For Revenue Teams</a><a>For Executive Teams</a><a>For Marketing Teams</a><a>For Product Teams</a><a>For Analytics Teams</a><a>For Finance Teams</a></div>
+      <div><h4>Resources</h4><a>Documentation</a><a>Prompt Library</a><a>Blog</a><a>Support Center</a><a>Data Connectors</a><a>Roadmap</a></div>
+      <div><h4>Company</h4><a>About Insightis</a><a>About Devart ↗</a><a>Careers ↗</a><a>Contacts</a></div>
+      <div><h4>Legal</h4><a>Privacy</a><a>Terms</a><a>Security</a><a>Cookie Settings</a></div>
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px"><span>X · YouTube · LinkedIn</span><span>© DevartSoftware Ltd. 2026</span></div>
     <div style="color:var(--muted);font-size:11.5px;margin-top:8px">Reg. no. HE 450349 · VAT CY-60027592L · Office 201, Patsias Court, 143-145 Agias Faneromenis, 6031 Larnaca, Cyprus · legal@insightis.ai</div>
   </div>
   <pre>/* ds/components/footer.css — .ins-footer__cols (Tailwind: grid-cols-2 / sm:grid-cols-3 / xl:grid-cols-5) */
-/* Root cause: at the 3-col (sm) width a row-based grid equalises each row's height to its   */
-/* tallest column, so the short Platform column leaves a gap and Company/Legal drop far down. */
-/* Fix: group the 5 sections into 3 layout-columns and spread them PROPORTIONALLY (1fr):     */
-/*   col1 = Platform + Company    col2 = Solutions + Legal    col3 = Resources               */
+/* Issue: at xl the 5 groups sit in a grid pushed to the right edge (xl:ml-auto); at the sm   */
+/* 3-col width they are fixed-width and left-packed — never spread across the footer width.   */
+/* Fix: a PROPORTIONAL 3-col grid (1fr, full-width) over the SAME 5 groups (no nesting). They */
+/*   flow row 1 = Platform | Solutions | Resources, row 2 = Company | Legal; grid equalises    */
+/*   row 1 to its tallest column, so the row-2 headings (Company, Legal) align at one height.  */
 .ins-footer__cols{
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));   /* proportional, full-width — not fixed / left-packed */
+  grid-template-columns: repeat(3, minmax(0, 1fr));   /* proportional, full-width — not fixed / left-packed / right-pushed */
   align-items: start;
-  gap: 0 var(--ins-space-4xl);
+  column-gap: var(--ins-space-4xl);
+  row-gap: 2.25rem;                                    /* space above the aligned Company / Legal (row 2) */
 }
-/* each column stacks its own group(s) → no row-height equalise → no gap, no orphan.         */
-/* mobile: 1 column; drop the xl:ml-auto / justify-content:flex-end right-push.              */</pre>
-  <p class="note">Keep the brand + tagline block full-width on top; the 5 sections are grouped into <b>3 proportional (1fr) columns</b> spread across the width (Platform+Company | Solutions+Legal | Resources) — each column stacks its groups, so no gap and no orphan. On mobile: 1 column.</p>
+/* mobile: 1 column; drop the xl:ml-auto / justify-content:flex-end right-push.               */</pre>
+  <p class="note">Keep the brand + tagline block full-width on top. The 5 sections flow into a <b>proportional 3-col grid (1fr, full-width)</b>: row 1 = Platform | Solutions | Resources, row 2 = Company | Legal — so the <b>second-row headings (Company &amp; Legal) start at the same height</b> (grid equalises row 1 to its tallest column). On mobile: 1 column.</p>
 
   <h2 style="margin-top:48px;border-top:1px solid var(--line);padding-top:22px">Proposed block redesigns — <span style="color:#FBBF24">pending sign-off</span></h2>
   <p class="sub">These are concept variants that change layout/behaviour, not just tokens — they need design approval before build. Kept here (separate from the audit findings) for review.</p>
 
   <h2>3 · Comparison block — keep the glow, make "before" neutral (AUD-56)</h2>
   <p class="note" style="border:1px solid rgba(52,211,153,0.35);background:rgba(52,211,153,0.06);border-radius:8px;padding:10px 14px"><b style="color:#34D399">✓ Decision:</b> the <b>neutral gray</b> "before" approach is chosen — apply it to all comparison blocks below. The red version stays only as the current-state reference.</p>
-  <p class="note">Keep the glow (it works). Only change the "before" card from red to neutral gray — red reads as error/danger, but the "before" is just the prior state; meaning stays on the ✗/✓ icons (SC 1.4.1) and red is reserved for real errors. "Current" below is the exact live content (5 items each). <b>Implement:</b> the "before" card is <code>.ins-card--glow--error</code> → change to plain <code>.ins-card--glow</code>; its ✗ icon + header colour <code>--ins-status-error-fg</code> → <code>--ins-text-inactive</code> (source of the red: <code>ds/components/card.css:125,144</code>). The "with" card stays <code>.ins-card--glow--brand</code>.</p>
+  <p class="note">Keep the glow (it works). Only change the "before" card from red to neutral gray — red reads as error/danger, but the "before" is just the prior state; meaning stays on the ✗/✓ icons (SC 1.4.1) and red is reserved for real errors. "Current" below is the exact live content (5 items each). <b>Implement:</b> prod's "before" card is <code>.ins-card--glow--error</code> (red tint <code>--ins-status-error-bg</code>, border <code>--ins-color-red-a-25</code>, glow <code>--ins-glow-error</code>, top-hairline <code>--ins-color-red-a-30</code>, header <code>--ins-status-error-fg</code> — <code>ds/components/card.css:114–125,144</code>). Plain <code>.ins-card--glow</code> is <b>not</b> the swap — it is teal-tinted (<code>--ins-surface-brand-tint</code>) and carries no glow shadow (the shadow lives only on the <code>--brand</code>/<code>--error</code> modifiers, card.css:113,123). Add a neutral modifier <code>.ins-card--glow--neutral</code> that keeps the glow and neutralises every red token: tint → <code>--ins-color-white-a-06</code> over <code>--ins-color-gray-900</code>; border → <code>--ins-border-hover</code> (white 12%); glow → new <code>--ins-glow-neutral: 0 0 12px rgba(168,191,200,.18)</code> (same 12px geometry as <code>--ins-glow-error</code>, hue = <code>--ins-text-inactive</code>/gray-200); <code>::before</code> hairline → <code>rgba(168,191,200,.18)</code>; header + ✗ icon → <code>--ins-text-inactive</code>. The "with" card stays <code>.ins-card--glow--brand</code>.</p>
   <h3>Current — exact live block: eyebrow + title + red "before", teal section glow</h3>
   <div class="cmp-block cmp-live">
     <div class="cmp-head">
