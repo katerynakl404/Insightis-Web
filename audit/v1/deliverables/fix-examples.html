@@ -48,7 +48,7 @@
      columns with NO row-height equalisation, so there is no gap and no orphan. */
   /* GOOD footer: 3 layout-columns, each stacking its group(s). One row of 3 → no row-height
      equalisation, so no gap and no orphan. Platform+Company | Solutions+Legal | Resources. */
-  .ftr-good .cols{display:grid;grid-template-columns:repeat(3,180px);justify-content:start;gap:0 48px;align-items:start}
+  .ftr-good .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 40px;align-items:start}
   .ftr-good .cols > div > div{margin-bottom:26px}
   .ftr-good .cols > div > div:last-child{margin-bottom:0}
   /* comparison — neutral vs red */
@@ -176,7 +176,7 @@
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px"><span>X · YouTube · LinkedIn</span><span>© DevartSoftware Ltd. 2026</span></div>
     <div style="color:var(--muted);font-size:11.5px;margin-top:8px">Reg. no. HE 450349 · VAT CY-60027592L · Office 201, Patsias Court, 143-145 Agias Faneromenis, 6031 Larnaca, Cyprus · legal@insightis.ai</div>
   </div>
-  <h3>Recommended — 3 balanced columns (multi-column) → no gap, no orphan</h3>
+  <h3>Recommended — 3 proportional columns (1fr, grouped) → full-width, no gap, no orphan</h3>
   <div class="ftr ftr-good">
     <div class="brand"><svg viewBox="0 0 25.5 22.84" style="width:22px;height:20px;vertical-align:-4px;margin-right:8px"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="var(--teal)"/></svg>Insightis</div>
     <div style="color:var(--teal);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:2px 0 8px">AI Analytics Workspace for instant insights</div>
@@ -197,17 +197,20 @@
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px"><span>X · YouTube · LinkedIn</span><span>© DevartSoftware Ltd. 2026</span></div>
     <div style="color:var(--muted);font-size:11.5px;margin-top:8px">Reg. no. HE 450349 · VAT CY-60027592L · Office 201, Patsias Court, 143-145 Agias Faneromenis, 6031 Larnaca, Cyprus · legal@insightis.ai</div>
   </div>
-  <pre>/* ds/components/footer.css — .ins-footer__cols (lines 45–53) */
-/* Root cause: a row-based GRID equalises each row's height to its tallest column, */
-/* so the short Platform column leaves a gap and Company/Legal drop far down.       */
-/* Fix: pack the 5 groups into 3 balanced columns with multi-column (no row equalise): */
+  <pre>/* ds/components/footer.css — .ins-footer__cols (Tailwind: grid-cols-2 / sm:grid-cols-3 / xl:grid-cols-5) */
+/* Root cause: at the 3-col (sm) width a row-based grid equalises each row's height to its   */
+/* tallest column, so the short Platform column leaves a gap and Company/Legal drop far down. */
+/* Fix: group the 5 sections into 3 layout-columns and spread them PROPORTIONALLY (1fr):     */
+/*   col1 = Platform + Company    col2 = Solutions + Legal    col3 = Resources               */
 .ins-footer__cols{
-  column-count: 3;                     /* was: grid + repeat(3)/repeat(5,…) */
-  column-gap: var(--ins-space-4xl);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));   /* proportional, full-width — not fixed / left-packed */
+  align-items: start;
+  gap: 0 var(--ins-space-4xl);
 }
-.ins-footer__cols > *{ break-inside: avoid; margin-bottom: var(--ins-space-2xl); }
-/* and drop the ≥1024px `justify-content:flex-end` (line 53). */</pre>
-  <p class="note">Keep the brand + tagline block full-width on top (as now); the link groups become 3 balanced multi-column columns (Company/Legal pack under the shorter columns — no gap, no orphan). On mobile: <code>column-count:1</code> (single stacked list).</p>
+/* each column stacks its own group(s) → no row-height equalise → no gap, no orphan.         */
+/* mobile: 1 column; drop the xl:ml-auto / justify-content:flex-end right-push.              */</pre>
+  <p class="note">Keep the brand + tagline block full-width on top; the 5 sections are grouped into <b>3 proportional (1fr) columns</b> spread across the width (Platform+Company | Solutions+Legal | Resources) — each column stacks its groups, so no gap and no orphan. On mobile: 1 column.</p>
 
   <h2 style="margin-top:48px;border-top:1px solid var(--line);padding-top:22px">Proposed block redesigns — <span style="color:#FBBF24">pending sign-off</span></h2>
   <p class="sub">These are concept variants that change layout/behaviour, not just tokens — they need design approval before build. Kept here (separate from the audit findings) for review.</p>

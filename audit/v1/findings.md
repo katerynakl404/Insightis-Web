@@ -492,8 +492,10 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 | Page(s) | Home | Verify | https://insightis.ai/ |
 
 **Current** — "28 years of data tooling" vs "28 Years of data tooling"; "40,000+ companies" vs "40,000+ Companies".
-**Expected** — One casing rule for stat labels.
-**Status history** | 2026-08-04 | Accepted | Filed in v1. |
+**Expected / Decision** — One casing rule: **lowercase** stat labels ("28 years", "40,000+ companies"), not Title Case.
+**Status history**
+| 2026-08-04 | Accepted | Filed in v1. |
+| 2026-08-05 | Accepted | Decision: lowercase stat labels. |
 
 ---
 
@@ -714,7 +716,7 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 
 **Current** — 5 link groups but `.ins-footer__cols` is `repeat(3, 1fr)` at 768–1023px → Company/Legal orphan onto a 2nd row with an empty cell + large blank area; at ≥1024 `justify-content:flex-end` pushes columns right. *Source:* `design-system/components/footer.css:47,52,53`.
 **Current (root cause)** — `.ins-footer__cols` is a row-based **grid**; each row's height equalises to its tallest column, so the short Platform column leaves a large blank gap and Company/Legal drop far down onto row 2. Confirmed on prod (insightis.ai) responsive.
-**Expected / Fix** — Pack the 5 groups into **3 balanced columns via multi-column** (no row-height equalisation → no gap, no orphan): `.ins-footer__cols{ column-count:3; column-gap:var(--ins-space-4xl) }` + `.ins-footer__cols > *{ break-inside:avoid; margin-bottom:var(--ins-space-2xl) }`; drop the ≥1024px `justify-content:flex-end`; `column-count:1` on mobile. See `deliverables/fix-examples.html`.
+**Expected / Fix** — Group the 5 sections into **3 layout-columns** (col1 Platform+Company · col2 Solutions+Legal · col3 Resources) and spread them **proportionally**: `.ins-footer__cols{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); align-items:start; gap:0 var(--ins-space-4xl) }` — each column stacks its own groups, so there's no row-height equalisation → no gap, no orphan. Drop the ≥1024px `justify-content:flex-end`; 1 column on mobile. See `deliverables/fix-examples.html`.
 **Status history** | 2026-08-04 | Accepted | User-reported; verified in source. |
 
 ---
