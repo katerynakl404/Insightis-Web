@@ -979,8 +979,8 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 | Domain | Design | Severity | ⚪ Low | Section | CTA banners | Category | Color |
 | Page(s) | Multiple (e.g. "See it on your own pipeline") | Verify | https://insightis.ai/solutions/revenue-teams |
 
-**Current** — The teal used for the highlighted word ("your own pipeline") differs from the teal on other banners — the same teal-literal drift as AUD-53 (`rgba(9,160,157)` vs the DS teal token). Highlight color isn't driven from one token.
-**Expected** — One highlight token (`--ins-text-highlight` / `--ins-color-teal-*`) for every banner. Related: [[AUD-53]].
+**Current** — The CTA banner's highlighted word ("your own pipeline") is `#07807E` (`--ins-color-teal-600`), while every other highlighted heading word on the same page — e.g. "together by hand", "numbers." — uses `#0EC4C1` (`--ins-color-teal-400` = `--ins-text-highlight`). Verified live via `getComputedStyle` on `/solutions/revenue-teams`. So the banner highlight is driven from the wrong teal token (teal-600, dimmer), not the highlight token. (The "Start for free" `.ins-btn--primary` is teal-600 as well, but that is consistent across every primary button — not part of this finding.)
+**Expected** — The banner highlight uses `--ins-text-highlight` (teal-400 / `#0EC4C1`), matching the other heading highlights. Related: [[AUD-53]].
 **Status history** | 2026-08-04 | Accepted | User-reported (inconsistent highlight). |
 
 ---
