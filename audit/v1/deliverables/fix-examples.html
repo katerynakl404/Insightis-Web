@@ -46,8 +46,11 @@
   .ftr-bad .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 24px}
   /* GOOD footer: 3 columns via MULTI-COLUMN — groups pack top-to-bottom into 3 balanced
      columns with NO row-height equalisation, so there is no gap and no orphan. */
-  .ftr-good .cols{column-count:3;column-gap:28px}
-  .ftr-good .cols > div{break-inside:avoid;-webkit-column-break-inside:avoid;margin-bottom:20px}
+  /* GOOD footer: 3 layout-columns, each stacking its group(s). One row of 3 → no row-height
+     equalisation, so no gap and no orphan. Platform+Company | Solutions+Legal | Resources. */
+  .ftr-good .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 32px;align-items:start}
+  .ftr-good .cols > div > div{margin-bottom:26px}
+  .ftr-good .cols > div > div:last-child{margin-bottom:0}
   /* comparison — neutral vs red */
   .cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
   @media(max-width:640px){.cmp{grid-template-columns:1fr}}
@@ -179,11 +182,17 @@
     <div style="color:var(--teal);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:2px 0 8px">AI Analytics Workspace for instant insights</div>
     <div style="color:var(--muted);font-size:13px;max-width:60ch;margin-bottom:20px">Built by the Devart team — the trusted data partner of 40,000+ companies worldwide for over 28 years.</div>
     <div class="cols">
-      <div><h4>Platform</h4><a>AI Chat</a><a>Integrations</a><a>Semantic Layer</a></div>
-      <div><h4>Solutions</h4><a>For Revenue Teams</a><a>For Executive Teams</a><a>For Marketing Teams</a><a>For Product Teams</a><a>For Analytics Teams</a><a>For Finance Teams</a></div>
-      <div><h4>Resources</h4><a>Documentation</a><a>Prompt Library</a><a>Blog</a><a>Support Center</a><a>Data Connectors</a><a>Roadmap</a></div>
-      <div><h4>Company</h4><a>About Insightis</a><a>About Devart ↗</a><a>Careers ↗</a><a>Contacts</a></div>
-      <div><h4>Legal</h4><a>Privacy</a><a>Terms</a><a>Security</a><a>Cookie Settings</a></div>
+      <div>
+        <div><h4>Platform</h4><a>AI Chat</a><a>Integrations</a><a>Semantic Layer</a></div>
+        <div><h4>Company</h4><a>About Insightis</a><a>About Devart ↗</a><a>Careers ↗</a><a>Contacts</a></div>
+      </div>
+      <div>
+        <div><h4>Solutions</h4><a>For Revenue Teams</a><a>For Executive Teams</a><a>For Marketing Teams</a><a>For Product Teams</a><a>For Analytics Teams</a><a>For Finance Teams</a></div>
+        <div><h4>Legal</h4><a>Privacy</a><a>Terms</a><a>Security</a><a>Cookie Settings</a></div>
+      </div>
+      <div>
+        <div><h4>Resources</h4><a>Documentation</a><a>Prompt Library</a><a>Blog</a><a>Support Center</a><a>Data Connectors</a><a>Roadmap</a></div>
+      </div>
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px"><span>X · YouTube · LinkedIn</span><span>© DevartSoftware Ltd. 2026</span></div>
     <div style="color:var(--muted);font-size:11.5px;margin-top:8px">Reg. no. HE 450349 · VAT CY-60027592L · Office 201, Patsias Court, 143-145 Agias Faneromenis, 6031 Larnaca, Cyprus · legal@insightis.ai</div>

@@ -26,8 +26,8 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 |                | 🔴 Critical | 🟠 High | 🟡 Medium | ⚪ Low | Total |
 |---|---|---|---|---|---|
 | Pending Review | 0 | 0 | 0 | 0 | 0 |
-| Accepted       | 3 | 11 | 27 | 34 | 75 |
-| Declined       | 0 | 0 | 0 | 1 | 1 |
+| Accepted       | 3 | 11 | 27 | 32 | 73 |
+| Declined       | 0 | 0 | 0 | 3 | 3 |
 | Deferred       | 0 | 0 | 0 | 0 | 0 |
 | **Total**      | 3 | 11 | 27 | 35 | 76 |
 
@@ -432,7 +432,7 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 
 ---
 
-### AUD-19 — Secondary CTA label drifts for the same destination (Accepted)
+### AUD-19 — Secondary CTA label drifts for the same destination (Declined — withdrawn by user 2026-08-05)
 
 | | |
 |---|---|
@@ -1179,7 +1179,7 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 
 ---
 
-### AUD-76 — Docs prev/next nav card uses a bespoke teal outline (should match the secondary button) (Accepted)
+### AUD-76 — Docs prev/next nav card uses a bespoke teal outline (Declined — withdrawn by user 2026-08-05)
 
 | | |
 |---|---|

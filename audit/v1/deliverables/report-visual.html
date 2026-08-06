@@ -46,7 +46,7 @@
   <h1>Insightis — UX/UI Audit v1</h1>
   <p class="sub">insightis.ai · dark · verified 2026-08-04 · <b>full site (17 pages)</b></p>
   <p class="sub">Each finding: <b style="color:var(--teal)">Where</b> (page › block + file:line) · <b style="color:var(--crit)">Now</b> (current) · <b>Should be</b> (expected) · <b style="color:var(--teal)">Fix</b> (how) · verify link(s).</p>
-  <p class="sub"><b>75 findings — 3 Critical · 11 High · 27 Medium · 34 Low.</b> (AUD-10 withdrawn.) Body text passes WCAG AA; visual style not redesigned in v1 (proposed redesigns: <a href="fix-examples.html">fix-examples.html</a>, pending sign-off).</p>
+  <p class="sub"><b>73 findings — 3 Critical · 11 High · 27 Medium · 32 Low.</b> (AUD-10, AUD-19, AUD-76 withdrawn.) Body text passes WCAG AA; visual style not redesigned in v1 (proposed redesigns: <a href="fix-examples.html">fix-examples.html</a>, pending sign-off).</p>
 
   <div class="callout"><b>Release blockers:</b> AUD-01, AUD-02, AUD-24 (Critical); AUD-03, AUD-04, AUD-05, AUD-21, AUD-25, AUD-26, AUD-27, AUD-43, AUD-50, AUD-51, AUD-66 (High).</div>
 
@@ -460,8 +460,8 @@
   <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-23</span><span class="ti">Home stat capitalization drift</span><span class="lnk"><a href="https://insightis.ai/">verify ↗</a></span></div>
     <div class="r loc"><span class="k">Where</span><span class="v">Home › stat labels</span></div>
     <div class="r now"><span class="k">Now</span><span class="v">"28 years"/"28 Years"; "companies"/"Companies".</span></div>
-    <div class="r exp"><span class="k">Should be</span><span class="v">One casing rule.</span></div>
-    <div class="r fix"><span class="k">Fix</span><span class="v">Standardize casing.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">One casing rule — <b>lowercase</b> stat labels.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Use lowercase: "28 years", "40,000+ companies" (not "Years"/"Companies").</span></div>
   </div>
   <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-38</span><span class="ti">Finance mockup micro-typography</span><span class="lnk"><a href="https://insightis.ai/solutions/finance-teams">verify ↗</a></span></div>
     <div class="r loc"><span class="k">Where</span><span class="v">Finance Teams › hero mockup</span></div>
@@ -477,12 +477,6 @@
     <div class="r now"><span class="k">Now</span><span class="v">Same features in "Now" &amp; "shipped"; timeline ≠ kanban; "Q2 2026" past-as-present.</span></div>
     <div class="r exp"><span class="k">Should be</span><span class="v">Coherent, current.</span></div>
     <div class="r fix"><span class="k">Fix</span><span class="v">Dedupe; align the two views; update the present-marker date.</span></div>
-  </div>
-  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-19</span><span class="ti">Secondary CTA label drift</span><span class="lnk"><a href="https://insightis.ai/platform/ai-chat">verify ↗</a></span></div>
-    <div class="r loc"><span class="k">Where</span><span class="v">Pricing CTA (Home / Integrations / Semantic Layer vs AI Chat)</span></div>
-    <div class="r now"><span class="k">Now</span><span class="v">"Explore Pricing" vs "Pricing".</span></div>
-    <div class="r exp"><span class="k">Should be</span><span class="v">One label, context-appropriate.</span></div>
-    <div class="r fix"><span class="k">Fix</span><span class="v">Unify the pricing CTA; for a button, "See pricing" reads best (sentence case).</span></div>
   </div>
   <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-71</span><span class="ti">Home built differently from platform pages</span><span class="lnk"><a href="https://insightis.ai/">verify ↗</a></span></div>
     <div class="r loc"><span class="k">Where</span><span class="v">Home › section headers + how-it-works · <code>main.jsx</code></span></div>
@@ -521,13 +515,6 @@
     <div class="r fix"><span class="k">Fix</span><span class="v">Extract to CSS / DS tokens (no visual change).</span></div>
   </div>
 
-  <h2>Docs / links</h2>
-  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-76</span><span class="ti">Docs prev/next nav card bespoke teal outline</span><span class="lnk"><a href="https://insightis.ai/docs/plans-and-tokens">verify ↗</a></span></div>
-    <div class="r loc"><span class="k">Where</span><span class="v">Docs › prev/next navigation card</span></div>
-    <div class="r now"><span class="k">Now</span><span class="v">Green/teal outline border — inconsistent with the button system.</span></div>
-    <div class="r exp"><span class="k">Should be</span><span class="v">Same as the DS secondary button, not a custom outline.</span></div>
-    <div class="r fix"><span class="k">Fix</span><span class="v">Use <code>--ins-button-secondary-*</code> (resting border, teal on hover).</span></div>
-  </div>
 
   <h2>More</h2>
   <p class="sub">Source of truth: <a href="../findings.html">findings</a> · Fixes: <a href="dev-handoff.html">dev-handoff</a> · Proposed redesigns: <a href="fix-examples.html">fix-examples.html</a> · 404 design: <a href="https://katerynakl404.github.io/Insightis-Web/audit/v1/deliverables/404-design.html">404-design.html</a> · Heatmaps: <a href="../evidence/heatmaps/index.html">index</a></p>
