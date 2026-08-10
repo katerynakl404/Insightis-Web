@@ -38,6 +38,10 @@
     font-size:var(--ins-font-size-12);font-weight:500;color:var(--ins-status-success-fg);margin-bottom:var(--ins-space-xl)}
   .cs-status__dot{width:7px;height:7px;border-radius:50%;background:var(--ins-status-success-fg);box-shadow:0 0 6px var(--ins-status-success-fg);flex-shrink:0}
   .cs-search{max-width:580px;margin:32px auto 0}
+  /* Widow control — never leave a single word on the last line of centered copy. */
+  .cs-hero p,
+  .cs-block .ins-empty-state__title,
+  .cs-block .ins-empty-state__description{text-wrap:balance}
 
   /* Help-topics results area (empty) */
   .cs-topics{padding:0 0 80px}
