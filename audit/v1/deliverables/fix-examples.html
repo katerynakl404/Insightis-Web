@@ -5,29 +5,85 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Insightis — Fix Examples (best practice)</title>
 <style>
-  :root{
-    --page:#0A0E13; --card:#131820; --elevated:#1A2230; --heading:#E8F2F5; --text:#C0D4DC;
-    --muted:#7FA0AC; --teal:#0EC4C1; --teal600:#07807E; --teal500:#148F8D;
-    --white06:rgba(255,255,255,0.06); --white24:rgba(255,255,255,0.24);
-    --gray700:#1A2230; --gray500:#4A6070; --line:rgba(255,255,255,0.08);
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--page);color:var(--text);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1180px;margin:0 auto;padding:32px 24px 80px}   /* desktop-first width */
-  h1{color:var(--heading);font-size:21px;margin:0 0 4px}
-  .sub{color:var(--muted);font-size:13px;margin:0 0 8px}
-  h2{color:var(--heading);font-size:16px;margin:36px 0 4px}
-  h3{color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:18px 0 8px}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
-  @media (max-width:760px){.grid2{grid-template-columns:1fr}}
-  .demo{border:1px solid var(--line);border-radius:10px;padding:18px;background:#0D1117}
-  .demo.bad{border-color:rgba(248,113,113,0.35)}
-  .demo.good{border-color:rgba(52,211,153,0.35)}
-  .tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
-  .tag.bad{color:#F87171} .tag.good{color:#34D399}
-  code{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:#0A0E13;color:var(--heading);padding:1px 5px;border-radius:3px}
-  pre{background:#0A0E13;border:1px solid var(--line);border-radius:8px;padding:12px;overflow:auto;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--text);margin:10px 0 0}
-  .note{color:var(--muted);font-size:12.5px;margin:8px 0 0}
+/* >>> report.css shared chrome — synced from report.css, do not hand-edit · see REPORT-STYLE.md <<< */
+:root{
+  --page:#0A0E13; --surface:#0D1117; --card:#131820; --elevated:#1A2230; --line:rgba(255,255,255,0.08);
+  --heading:#E8F2F5; --text:#C0D4DC; --muted:#7FA0AC;
+  --teal:#0EC4C1; --teal500:#148F8D; --teal600:#07807E;
+  --crit:#F87171; --high:#FB923C; --med:#FBBF24; --low:#7FA0AC; --good:#34D399; --bad:#F87171;
+  --code:#131820;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif; --mono:ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--text);font:14px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:32px 20px 80px}
+.wrap--wide{max-width:1180px;padding:32px 24px 80px}
+.bar{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.bar .brand{color:var(--heading);font-weight:700}
+.bar nav{display:flex;gap:14px;flex-wrap:wrap}
+.bar a{color:var(--teal);text-decoration:none;font-size:13px}
+.bar a:hover{text-decoration:underline}
+.bar a[aria-current]{color:var(--muted);pointer-events:none;text-decoration:none}
+h1{color:var(--heading);font-size:22px;margin:0 0 4px;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:13px;margin:0 0 4px}
+h2{color:var(--heading);font-size:14px;margin:30px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line);letter-spacing:.04em;text-transform:uppercase}
+h3{color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:18px 0 8px}
+a{color:var(--teal);text-decoration:none} a:hover{text-decoration:underline}
+code{font-family:var(--mono);font-size:12px;background:var(--code);color:var(--heading);padding:1px 4px;border-radius:3px}
+pre{background:var(--page);border:1px solid var(--line);border-radius:8px;padding:12px;overflow:auto;font-family:var(--mono);font-size:12px;color:var(--text);margin:10px 0 0;line-height:1.6}
+.note{color:var(--muted);font-size:12.5px;margin:8px 0 0}
+.callout{border:1px solid var(--line);background:rgba(255,255,255,0.03);border-radius:8px;padding:12px 14px;margin:14px 0;font-size:13px}
+.callout b{color:var(--heading)}
+.callout--crit{border-color:rgba(248,113,113,0.30);background:rgba(248,113,113,0.05)}
+.f{border-left:3px solid var(--line);border-bottom:1px solid var(--line);padding:11px 0 12px 14px;margin:0 0 4px}
+.f.crit{border-left-color:var(--crit)} .f.high{border-left-color:var(--high)}
+.f.med{border-left-color:var(--med)} .f.low{border-left-color:var(--low)}
+.fh{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+.sv{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 6px;border-radius:3px;white-space:nowrap;align-self:center}
+.sv.crit{color:var(--crit);border:1px solid var(--crit)} .sv.high{color:var(--high);border:1px solid var(--high)}
+.sv.med{color:var(--med);border:1px solid var(--med)} .sv.low{color:var(--low);border:1px solid var(--low)}
+.id{font-family:var(--mono);font-size:11.5px;color:var(--muted);align-self:center;min-width:52px}
+.ti{color:var(--heading);font-weight:600;flex:1;min-width:220px}
+.lnk{font-size:12px;white-space:nowrap;align-self:center}
+.lnk .cx{color:var(--med)}
+.r{display:flex;gap:8px;margin:3px 0;font-size:13px}
+.k{flex:none;width:74px;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:2px}
+.r.loc{background:rgba(255,255,255,0.03);border-radius:5px;padding:5px 8px;margin:2px 0 6px}
+.r.loc .k{color:var(--teal)} .r.loc .v{color:var(--heading);font-size:12.5px}
+.r.now .k{color:var(--crit)} .r.exp .k{color:var(--muted)} .r.fix .k{color:var(--teal)}
+.r .v{flex:1}
+.r .v code{font-size:11.5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+.demo{border:1px solid var(--line);border-radius:10px;padding:18px;background:var(--surface)}
+.demo.bad{border-color:rgba(248,113,113,0.35)}
+.demo.good{border-color:rgba(52,211,153,0.35)}
+.tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.tag.bad{color:var(--bad)} .tag.good{color:var(--good)}
+.doc h1{color:var(--heading);font-size:24px;margin:26px 0 6px;line-height:1.25;text-transform:none;letter-spacing:normal;border:0;padding:0}
+.doc h2{color:var(--heading);font-size:16px;margin:30px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line);letter-spacing:.02em;text-transform:none}
+.doc h3{color:var(--heading);font-size:14.5px;margin:22px 0 6px;text-transform:none;letter-spacing:normal}
+.doc h4{color:var(--heading);font-size:13px;margin:16px 0 4px;text-transform:uppercase;letter-spacing:.04em}
+.doc p{margin:8px 0}
+.doc strong{color:var(--heading)}
+.doc em{color:var(--text);font-style:italic}
+.doc blockquote{border-left:3px solid var(--teal);margin:12px 0;padding:2px 0 2px 14px;color:var(--muted)}
+.doc blockquote p{margin:4px 0}
+.doc ul,.doc ol{margin:8px 0;padding-left:22px}
+.doc li{margin:3px 0}
+.doc hr{border:none;border-top:1px solid var(--line);margin:26px 0}
+.doc table{border-collapse:collapse;width:100%;margin:12px 0;font-size:12.5px;display:block;overflow-x:auto}
+.doc th,.doc td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.doc th{color:var(--heading);background:rgba(255,255,255,0.03);font-weight:600}
+.doc td{color:var(--text)}
+.status{color:var(--muted);font-size:13px;padding:40px 0}
+.more{margin-top:34px}
+/* <<< end shared chrome >>> */
+
+/* ── page-specific (fix-examples demos) ──────────────────────────────────── */
+:root{ --white06:rgba(255,255,255,0.06); --white24:rgba(255,255,255,0.24); --gray700:#1A2230; --gray500:#4A6070; }
+/* the comparison display title is an <h2 class="cmp-title"> — keep it OFF the shared section-h2 look (no uppercase/underline) */
+h2.cmp-title{border:0;padding:0;text-transform:none}
   /* buttons */
   .btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:600;border:1px solid transparent;cursor:pointer;background:none;color:inherit}
   .btn-primary{background:var(--teal600);color:#fff;border-color:var(--teal500)}
@@ -139,7 +195,16 @@
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap wrap--wide">
+  <div class="bar">
+    <span class="brand">&#9670; Insightis &mdash; Audit v1</span>
+    <nav>
+      <a href="report-visual.html">Report</a>
+      <a href="dev-handoff.html">Dev handoff</a>
+      <a href="fix-examples.html" aria-current="page">Fix examples</a>
+      <a href="../findings.html">Findings</a>
+    </nav>
+  </div>
   <h1>Fix examples — best practice</h1>
   <p class="sub">Concrete "how it should be" for two flagged style defects, using the Insightis design-system tokens. Current (left) vs recommended (right).</p>
 
@@ -331,6 +396,9 @@
   </div>
 
 
+
+  <h2 class="more">More</h2>
+  <p class="sub">Report: <a href="report-visual.html">report-visual</a> · Fixes: <a href="dev-handoff.html">dev-handoff</a> · Source of truth: <a href="../findings.html">findings</a></p>
 
 </div>
 </body>
