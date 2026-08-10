@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empty state — Help-topics block (Insightis)</title>
+<meta name="robots" content="noindex,follow">
+<!-- Design reference. Uses the ACTUAL design system (no hand-rolled visual styles):
+     tokens + global + components are pulled from the repo's DS, exactly like
+     deliverables/404-design.html. The block empty state is composed from the
+     canonical .ins-empty-state component + a .ins-btn pill, and echoes the 404
+     page's recovery pattern scaled to a block (clear title → helpful lead →
+     a clear next step). Only *layout* is local CSS. -->
+<link rel="stylesheet" href="../../../design-system/ds/index.css">
+<style>
+  /* Geist lives at /design-system/assets/fonts/ here; the DS @font-face points at
+     the site's /fonts/ root, so re-point it for this standalone preview. */
+  @font-face{font-family:'Geist';src:url('../../../design-system/assets/fonts/Geist-Variable.ttf') format('truetype-variations');font-weight:100 900;font-style:normal;font-display:swap}
+  @font-face{font-family:'Geist Mono';src:url('../../../design-system/assets/fonts/GeistMono-Variable.ttf') format('truetype-variations');font-weight:100 900;font-style:normal;font-display:swap}
+
+  /* ── Layout only — every colour, font, radius, border and button comes from the DS. ── */
+  html,body{min-height:100%}
+  html{background:var(--ins-surface-page)}
+  body{margin:0;color:var(--ins-text-body)}
+  .pg{max-width:1080px;margin:0 auto;padding:40px 24px 96px}
+
+  .pg-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .pg-head svg{width:24px;height:22px;display:block}
+  .pg-kicker{margin:26px 0 10px}
+  .pg-note{max-width:64ch;margin:0 0 22px}
+
+  /* The "block" shell = a real .ins-card; these only add width + inner rhythm. */
+  .block{max-width:860px;margin:0 auto;padding:28px}
+  .block-top{display:flex;flex-direction:column;gap:16px;padding-bottom:8px;border-bottom:1px solid var(--ins-border-default);margin-bottom:8px}
+  .block-search{max-width:520px;width:100%}
+
+  /* Empty-state extras (the component ships icon+title+desc; actions & links are
+     documented as "drop-in last children"). All colours are DS tokens. */
+  .es-badge{
+    width:96px;height:96px;border-radius:var(--ins-radius-2xl);
+    display:flex;align-items:center;justify-content:center;
+    background:var(--ins-color-teal-a-08);
+    border:1px solid var(--ins-color-teal-a-20);
+    color:var(--ins-color-teal-400);
+    box-shadow:0 0 40px -12px var(--ins-color-teal-a-30);
+    margin-bottom:var(--ins-space-lg);
+  }
+  .es-badge svg{width:48px;height:48px}
+  .es-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:var(--ins-space-lg)}
+
+  /* Before / After */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px}
+  @media (max-width:760px){.ba{grid-template-columns:1fr}}
+  .pane{border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-2xl);padding:18px;background:var(--ins-color-black-a-30)}
+  .pane__tag{display:inline-flex;align-items:center;gap:7px;font-size:var(--ins-font-size-11);font-weight:var(--ins-font-weight-600);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+  .pane__tag::before{content:'';width:8px;height:8px;border-radius:50%;background:currentColor}
+  .pane--now .pane__tag{color:var(--ins-text-inactive)}
+  .pane--new .pane__tag{color:var(--ins-color-teal-400)}
+  .pane__stage{display:flex;align-items:center;justify-content:center;min-height:210px}
+
+  /* Compact empty state used inside the After pane */
+  .es-mini .ins-empty-state{padding:var(--ins-space-2xl) var(--ins-space-md)}
+  .es-mini .es-badge{width:68px;height:68px;margin-bottom:var(--ins-space-sm)}
+  .es-mini .es-badge svg{width:34px;height:34px}
+
+  /* Spec strip */
+  .spec{margin-top:12px;border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-2xl);padding:20px 22px;background:var(--ins-color-black-a-30)}
+  .spec dl{display:grid;grid-template-columns:120px 1fr;gap:8px 18px;margin:0}
+  .spec dt{color:var(--ins-text-inactive);font-size:var(--ins-font-size-12);text-transform:uppercase;letter-spacing:.06em}
+  .spec dd{margin:0;font-size:var(--ins-font-size-13)}
+  .spec code{font-family:var(--ins-font-family-mono);font-size:var(--ins-font-size-12);background:var(--ins-color-white-a-06);color:var(--ins-text-heading);padding:1px 6px;border-radius:6px}
+</style>
+</head>
+<body class="ins-section--tint">
+<div class="pg">
+
+  <header class="pg-head">
+    <svg viewBox="0 0 25.5 22.84" aria-hidden="true"><path d="M25.4928 10.4151L21.6736 12.7512L25.4928 15.0767L12.7464 22.8371L0 15.0767L3.81921 12.7512L0 10.4151L5.73562 6.92339L7.64785 8.08747L3.82392 10.4151L12.7464 15.8473L21.6689 10.4151L17.845 8.08747L19.7572 6.92339L25.4928 10.4151ZM12.7464 18.1755L5.72881 13.9031L3.8234 15.0767L12.7464 20.5095L21.6694 15.0767L19.7635 13.9031L12.7464 18.1755ZM17.845 10.4209L12.7464 13.525L7.64785 10.4209L9.56426 9.25421L12.7464 11.1915L15.9286 9.25421L17.845 10.4209ZM17.845 5.75931L12.7464 8.86335L7.64785 5.75931L12.7464 2.65527L17.845 5.75931ZM11.4718 5.75878L12.7464 6.53519L14.0211 5.75878L12.7464 4.9829L11.4718 5.75878Z" fill="var(--ins-color-teal-400)"/></svg>
+    <span class="ins-text-h4" style="letter-spacing:-.01em">Insightis</span>
+  </header>
+  <h1 class="ins-text-h2">Empty state — Help-topics block</h1>
+  <p class="ins-text-body ins-text--muted pg-note">Contact&nbsp;Support › “Help topics” grid, no-results state (<code style="font-family:var(--ins-font-family-mono);font-size:var(--ins-font-size-12)">contact-support.jsx:200</code>). Built from the DS <code style="font-family:var(--ins-font-family-mono);font-size:var(--ins-font-size-12)">.ins-empty-state</code> component and given the 404 page's recovery shape — title → lead → a clear next step.</p>
+
+  <!-- ═══════════════ IN CONTEXT ═══════════════ -->
+  <p class="ins-eyebrow pg-kicker">In context — search returns nothing</p>
+
+  <section class="ins-card block" aria-label="Help topics">
+    <div class="block-top">
+      <p class="ins-eyebrow">Help topics</p>
+      <div class="ins-input-wrap block-search">
+        <svg class="ins-input-wrap__icon ins-input-wrap__icon--leading" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input class="ins-input ins-input--lg ins-input--with-leading" value="kubernetes audit logs" readonly aria-label="Search help topics">
+      </div>
+    </div>
+
+    <div class="ins-empty-state">
+      <div class="es-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-3.6-3.6"/><path d="M9 9l4 4M13 9l-4 4"/></svg>
+      </div>
+      <div class="ins-empty-state__title">No topics match “kubernetes audit logs”</div>
+      <p class="ins-empty-state__description">We couldn’t find a help article for that. Try a broader search term, or reach our team directly — we reply within one business day.</p>
+      <div class="es-actions">
+        <a class="ins-btn ins-btn--secondary" href="#contact">
+          <svg class="ins-btn__icon ins-btn__icon--leading" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M4.93 4.93l3.54 3.54M15.53 15.53l3.54 3.54M15.53 8.47l3.54-3.54M4.93 19.07l3.54-3.54"/></svg>
+          Contact support
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ BEFORE / AFTER ═══════════════ -->
+  <p class="ins-eyebrow pg-kicker">Before / after</p>
+  <div class="ba">
+
+    <!-- CURRENT — reproduced 1:1 from contact-support.jsx:200-206 (exact inline styles). -->
+    <div class="pane pane--now">
+      <span class="pane__tag">Current · live</span>
+      <div class="pane__stage">
+        <div style="grid-column:1/-1;padding:40px 24px;text-align:center;border:1px dashed var(--ins-color-white-a-08);border-radius:var(--ins-radius-12);color:var(--ins-text-body);font-size:var(--ins-font-size-14);line-height:1.6">
+          No results match your search — try different keywords or <a class="ins-link--inline" href="#contact">contact support</a>.
+        </div>
+      </div>
+    </div>
+
+    <!-- PROPOSED — the DS component, compact. -->
+    <div class="pane pane--new es-mini">
+      <span class="pane__tag">Proposed · DS component</span>
+      <div class="pane__stage">
+        <div class="ins-empty-state">
+          <div class="es-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-3.6-3.6"/><path d="M9 9l4 4M13 9l-4 4"/></svg>
+          </div>
+          <div class="ins-empty-state__title">No topics match your search</div>
+          <p class="ins-empty-state__description">Try a broader term, or contact our support team.</p>
+          <div class="es-actions">
+            <a class="ins-btn ins-btn--secondary ins-btn--sm" href="#contact">Contact support</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SPEC ═══════════════ -->
+  <p class="ins-eyebrow pg-kicker">Spec</p>
+  <div class="spec">
+    <dl>
+      <dt>Component</dt><dd><code>.ins-empty-state</code> → <code>__icon</code> · <code>__title</code> · <code>__description</code></dd>
+      <dt>Action</dt><dd><code>.ins-btn--secondary</code> (Contact support), pill radius default</dd>
+      <dt>Tokens</dt><dd>badge <code>--ins-color-teal-a-08 / -a-20 / teal-400</code> · dividers <code>--ins-border-default</code> · copy <code>--ins-text-heading / -body</code></dd>
+      <dt>Where</dt><dd><code>insightis-site/src/pages/contact-support.jsx:200</code> (replaces the dashed one-liner)</dd>
+    </dl>
+  </div>
+
+</div>
+</body>
+</html>
