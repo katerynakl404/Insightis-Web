@@ -26,10 +26,10 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 |                | 🔴 Critical | 🟠 High | 🟡 Medium | ⚪ Low | Total |
 |---|---|---|---|---|---|
 | Pending Review | 0 | 0 | 0 | 0 | 0 |
-| Accepted       | 3 | 11 | 27 | 32 | 73 |
+| Accepted       | 3 | 11 | 27 | 36 | 77 |
 | Declined       | 0 | 0 | 0 | 3 | 3 |
 | Deferred       | 0 | 0 | 0 | 0 | 0 |
-| **Total**      | 3 | 11 | 27 | 35 | 76 |
+| **Total**      | 3 | 11 | 27 | 39 | 80 |
 
 ---
 
@@ -520,8 +520,11 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 | Page(s) | Contact Support | Verify | https://insightis.ai/resources/contact-support |
 
 **Current** — The "Ask a question / Ask AI" panel shows, for ANY query, "Found results for <query>", "Read 1 file", and one canned `SAMPLE_RESPONSE`. No real search happens; it fabricates activity.
-**Expected** — Wire to a real knowledge base or remove the Ask-AI experience before release. Presenting fake "results / read 1 file" on production is misleading.
-**Status history** | 2026-08-04 | Accepted | Filed in v1. |
+**Expected** — **Decision (2026-08-10): remove it.** Delete the "Ask a question / Ask AI" input and its mock assistant response before release (do not wire a fake KB). Presenting fake "results / read 1 file" on production is misleading. Removing the panel also resolves AUD-30 (its non-functional controls).
+**Fix** — In `contact-support.jsx`, delete the Ask-AI input (~:276), the "Ask AI" button (~:303) and the mock response component (~:326).
+**Status history**
+| 2026-08-04 | Accepted | Filed in v1. |
+| 2026-08-10 | Accepted · decision | Remove (not wire) — user decision. |
 
 ---
 
@@ -1192,6 +1195,62 @@ Severity: 🔴 Critical · 🟠 High · 🟡 Medium · ⚪ Low
 **Expected** — Same styling/behaviour as the DS **secondary button** (border, hover), not a custom teal outline.
 **Fix** — Style the nav card with the secondary-button tokens/behaviour (`--ins-button-secondary-*`) — resting border like AUD-39, teal only on hover; drop the bespoke green outline.
 **Status history** | 2026-08-04 | Accepted | User-reported (docs/plans-and-tokens). |
+
+---
+
+### AUD-77 — Footer social icons rendered in the disabled text token (Accepted)
+
+| | |
+|---|---|
+| Domain | Design | Severity | ⚪ Low | Section | Global — footer social row | Category | Consistency |
+| Page(s) | Global (footer) | Verify | https://insightis.ai/ |
+
+**Current** — The X / YouTube / LinkedIn icons render at `--ins-text-disabled` (`#6E8D9A`, verified live via getComputedStyle) — they read as inactive; hover only reaches `--ins-text-secondary`.
+**Expected** — Resting icons at the primary text colour, `--ins-text-primary`.
+**Fix** — `Footer.jsx:133-136`: set the resting icon colour to `--ins-text-primary`; re-tune the hover (currently dimmer than the new resting state).
+**Status history** | 2026-08-10 | Accepted | User-reported; verified live. |
+
+---
+
+### AUD-78 — Home hero animation overlays step/status text labels (Accepted)
+
+| | |
+|---|---|
+| Domain | Design | Severity | ⚪ Low | Section | Home — hero connect-flow mockup | Category | Content |
+| Page(s) | Home | Verify | https://insightis.ai/ |
+
+**Current** — The hero connect-flow animation prints descriptive labels over the top — "Connect your data", "Live in minutes, not months", "Connect HubSpot" → "Connected!", "Data Sources", plus connector names (HubSpot / Salesforce / Stripe / Slack / PostgreSQL / Snowflake / Databricks). Verified live.
+**Expected** — The hero animation without the descriptive top text (visual only).
+**Fix** — Remove the text labels rendered over the top of the hero connect animation (hero mockup in `main.jsx`).
+**Status history** | 2026-08-10 | Accepted | User-reported; verified live. |
+
+---
+
+### AUD-79 — AI Chat "Thinking": logo colour ≠ label colour at animation end (Accepted)
+
+| | |
+|---|---|
+| Domain | Design | Severity | ⚪ Low | Section | AI Chat — chat demo "Thinking" indicator | Category | Consistency |
+| Page(s) | AI Chat | Verify | https://insightis.ai/platform/ai-chat |
+
+**Current** — At the end (done state) the logo path stays full teal `rgb(14,196,193)` (`--ins-text-highlight`) while the "Thinking" label fades to muted teal `rgba(9,160,157,0.6)` — the two no longer match. Verified live (path-fill measured).
+**Expected** — Logo and label share the same colour/opacity in the done state.
+**Fix** — `ai-chat.jsx:1066-1067`: in the done state fade the logo to the label's muted token too (or keep both full). Related: AUD-08 ("Thinking" contrast).
+**Status history** | 2026-08-10 | Accepted | User-reported; verified live. |
+
+---
+
+### AUD-80 — Prompt Library "View prompts" toggle shifts on hover / press (Accepted)
+
+| | |
+|---|---|
+| Domain | Design | Severity | ⚪ Low | Section | Prompt Library — prompt-card toggle | Category | Interaction |
+| Page(s) | Prompt Library | Verify | https://insightis.ai/resources/prompt-library |
+
+**Current** — `.view-btn` has `transition: gap .15s` and `:hover { gap: 10px }` (base `gap: 6px`), so hovering shifts the text + chevron ~4px; clicking swaps the label "View prompts"↔"Hide prompt" (different widths) so the right-aligned button reflows. Verified live.
+**Expected** — No positional shift on hover or press.
+**Fix** — `prompt-library.jsx:452`: drop the `gap` hover animation (or move only the chevron via `transform`, not layout); give the label a fixed `min-width` so the toggle text swap doesn't reflow.
+**Status history** | 2026-08-10 | Accepted | User-reported; verified live. |
 
 ---
 

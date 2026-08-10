@@ -64,6 +64,7 @@ is the source of truth; the inline blocks are synced copies.
       <a href="report-visual.html" aria-current="page">Report</a>
       <a href="dev-handoff.html">Dev handoff</a>
       <a href="fix-examples.html">Fix examples</a>
+      <a href="concepts.html">Concepts</a>
       <a href="../findings.html">Findings</a>
     </nav>
   </div>

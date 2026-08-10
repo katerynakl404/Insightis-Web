@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Insightis — Audit v1 · Dev handoff (ready-to-apply fixes)</title>
+<title>Insightis — Audit v1 · Concept pages</title>
 <style>
 /* >>> report.css shared chrome — synced from report.css, do not hand-edit · see REPORT-STYLE.md <<< */
 :root{
@@ -79,26 +79,59 @@ pre{background:var(--page);border:1px solid var(--line);border-radius:8px;paddin
 .status{color:var(--muted);font-size:13px;padding:40px 0}
 .more{margin-top:34px}
 /* <<< end shared chrome >>> */
+
+/* page-specific: concept cards */
+.concepts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px}
+@media (max-width:720px){.concepts{grid-template-columns:1fr}}
+.concept{border:1px solid var(--line);border-radius:10px;padding:18px;background:var(--surface);display:flex;flex-direction:column;gap:6px}
+.concept .cname{color:var(--heading);font-weight:600;font-size:14.5px}
+.concept .caud{font-family:var(--mono);font-size:11px;color:var(--teal)}
+.concept .cdesc{color:var(--muted);font-size:12.5px;flex:1}
+.concept .copen{font-size:12.5px;font-weight:600}
 </style>
 </head>
 <body>
 <div class="wrap">
+
   <div class="bar">
     <span class="brand">&#9670; Insightis &mdash; Audit v1</span>
     <nav>
       <a href="report-visual.html">Report</a>
-      <a href="dev-handoff.html" aria-current="page">Dev handoff</a>
+      <a href="dev-handoff.html">Dev handoff</a>
       <a href="fix-examples.html">Fix examples</a>
-      <a href="concepts.html">Concepts</a>
+      <a href="concepts.html" aria-current="page">Concepts</a>
       <a href="../findings.html">Findings</a>
     </nav>
   </div>
-  <div id="doc" class="doc"><p class="status">Loading dev-handoff.md&hellip;</p></div>
 
-  <h2 class="more">More</h2>
-  <p class="sub">Report: <a href="report-visual.html">report-visual</a> · Proposed redesigns: <a href="fix-examples.html">fix-examples.html</a> · Source of truth: <a href="../findings.html">findings</a></p>
+  <h1>Concept pages — design references</h1>
+  <p class="sub">DS-driven mockups showing a proposed fix in real UI. Unlike the reports, these link the <b>live design system</b> and reproduce the site 1:1 — open each to review.</p>
+
+  <h2>Pages</h2>
+  <div class="concepts">
+    <div class="concept">
+      <span class="caud">AUD-04</span>
+      <span class="cname">Branded 404 page</span>
+      <span class="cdesc">The custom 404 (recovery pattern: title → lead → primary/secondary action → popular pages), built from the DS. Reference for <code>public/404.html</code>.</span>
+      <span class="copen"><a href="https://katerynakl404.github.io/Insightis-Web/audit/v1/deliverables/404-design.html">Open 404 design →</a></span>
+    </div>
+    <div class="concept">
+      <span class="caud">Contact Support</span>
+      <span class="cname">Empty state — Help-topics block</span>
+      <span class="cdesc">The no-results state for the Help-topics search, composed from the DS <code>.ins-empty-state</code> component (before/after + spec).</span>
+      <span class="copen"><a href="https://katerynakl404.github.io/Insightis-Web/audit/v1/deliverables/empty-state-block-design.html">Open empty-state block →</a></span>
+    </div>
+    <div class="concept">
+      <span class="caud">Contact Support</span>
+      <span class="cname">Empty state — full page</span>
+      <span class="cdesc">The whole Contact Support page in its "search returns nothing" state, so the redesigned empty state is shown in real context.</span>
+      <span class="copen"><a href="https://katerynakl404.github.io/Insightis-Web/audit/v1/deliverables/empty-state-contact-support-page.html">Open full-page empty state →</a></span>
+    </div>
+  </div>
+
+  <h2>More</h2>
+  <p class="sub more">Report: <a href="report-visual.html">report-visual</a> · Fixes: <a href="dev-handoff.html">dev-handoff</a> · Proposed redesigns: <a href="fix-examples.html">fix-examples.html</a> · Source of truth: <a href="../findings.html">findings</a></p>
+
 </div>
-<script src="../md-view.js"></script>
-<script>renderMarkdownDoc('dev-handoff.md');</script>
 </body>
 </html>

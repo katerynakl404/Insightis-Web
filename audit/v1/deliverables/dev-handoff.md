@@ -1,7 +1,7 @@
 # Developer Handoff — Insightis Audit v1
 
 **For:** the maintainer of the site repository (`insightis-site`, with commit/deploy access).
-**Source:** generated from [`../findings.md`](../findings.md) (Accepted findings AUD-01 … AUD-12).
+**Source:** generated from [`../findings.md`](../findings.md) — **all 77 Accepted findings**. Regenerate via [`HANDOFF-GEN.md`](HANDOFF-GEN.md) after any findings change.
 If a step and the findings disagree, the findings file wins — regenerate this handoff.
 
 > This file is a **Claude-executable instruction**. Hand the prompt block below to Claude Code (or
@@ -13,7 +13,7 @@ If a step and the findings disagree, the findings file wins — regenerate this 
 
 ## Scope note
 
-This handoff details the prioritized, mechanically-actionable fixes (content, links, 404, a11y quick wins). The **full 74-finding set** — including the design-system consistency findings (AUD-39…63) and IA/structure findings (AUD-64…74) from the source audit — lives in [`../findings.md`](../findings.md) and [`report-visual.html`](report-visual.html). Some need design sign-off first (see [`fix-examples.html`](fix-examples.html)). The branded 404 (Task 4 below) has a design reference at [`404-design.html`](404-design.html).
+This handoff is the **complete, prioritized action list — all 77 Accepted findings** (P0 → P3), generated from [`../findings.md`](../findings.md). [`report-visual.html`](report-visual.html) is the same findings as a visual report (why-it-matters + before/after). Tasks 1–16 cover AUD-01…23; the **Continuation** section below covers AUD-24…80 (blockers first, then a compact P2/P3 list so nothing is dropped). Larger design-system refactors and some items need design sign-off first (see [`fix-examples.html`](fix-examples.html)). Concept/design references (branded 404, empty states) are linked from the report's **Concepts** section; the 404 body is in Task 4.
 
 ## PROMPT (copy the whole block)
 
@@ -192,6 +192,50 @@ This handoff details the prioritized, mechanically-actionable fixes (content, li
 >
 > Most of Task 15–16 are content decisions — confirm the canonical values/terms with product first.
 >
+> ### Continuation — the rest of the audit (AUD-24 … AUD-80)
+> Generated from findings.md so nothing is dropped (see `HANDOFF-GEN.md`). Blockers first.
+>
+> #### P0 / P1 — remaining release blockers
+> **Task 17 — 30 dead help-topic links (AUD-24, 🔴).** Contact Support self-service grid: all 30 `href="#"` links go nowhere. Point each to its real doc URL, or remove until docs exist.
+> **Task 18 — Remove the Ask-AI mock (AUD-25, 🟠).** Delete the "Ask a question / Ask AI" input (`contact-support.jsx` ~:276), the "Ask AI" button (~:303) and the mock response (~:326). Decision: **remove, don't wire.** Resolves AUD-30 too.
+> **Task 19 — Associate Support form labels (AUD-26, 🟠).** SupportTicketModal fields need `id`+`htmlFor` (or `aria-label`) — Subject / Details / Email.
+> **Task 20 — Connector CTA reachable without hover (AUD-27, 🟠).** Shared ConnectorCard "Sign in to connect" is hover-only. Reveal on `:focus-within`; keep visible under `@media (hover:none)`.
+> **Task 21 — Modals use the DS shell (AUD-43, 🟠).** `SupportTicketModal.jsx` / `SalesEnquiryModal.jsx` → `.ins-modal` header/body/footer with focus trap + Esc.
+> **Task 22 — One primary button (AUD-50, 🟠).** Replace the hand-rolled gradient/pill CTAs (`success-stories.jsx:290`, `WaitlistForm.jsx`, `app.css:160`) with `<Button variant="primary">`; make any gradient a DS variant.
+> **Task 23 — One comparison component (AUD-51, 🟠).** Standardize on `<ComparisonCards>` (Home / `ai-chat.jsx:884` / `semantic-layer.jsx:442` / `integrations.jsx:558`); deprecate the duplicate class; remove dead imports.
+> **Task 24 — Fix Security privacy link (AUD-66, 🟠).** `security.jsx:140` `href="Privacy"` → `/privacy` (currently 404s at `/security/Privacy`).
+>
+> #### P2 — content, functionality & DS consistency (🟡)
+> - **AUD-28 / AUD-67** support email `support@insightis.io` → canonical domain; unify contact domain (.ai vs .io) everywhere + boilerplate.
+> - **AUD-29** Contact Support status badge hardcoded "All systems operational · 2 min ago" — bind to real status or drop the line.
+> - **AUD-31** Roadmap contradicts itself (Now vs shipped; timeline vs kanban; "Q2 2026" past-as-present) — dedupe + align + update the present marker.
+> - **AUD-32** Blog 2026 titles vs 2024 body — fix frontmatter `description` + body years.
+> - **AUD-65** FAQPage JSON-LD with no on-page FAQ (AI Chat, Integrations) — render `<FAQAccordion>` or drop the schema.
+> - **AUD-69** Success Stories closing CTA form does nothing (`success-stories.jsx:288`) — wire to sign-up or use `<BottomCTA>`.
+> - **AUD-39** secondary button resting border too faint — dedicated `--ins-button-secondary-border` (see `fix-examples.html`).
+> - **AUD-40** footer reflow gap at tablet — 3-col `1fr` grid, `align-items:start`, drop `justify-content:flex-end`.
+> - **AUD-44** chat widgets diverge — codify the site's chat look into the DS component; site consumes it (no visual change).
+> - **AUD-47** eyebrows overridden to 10px mono (~14 pages) — put text in `.ins-eyebrow`, remove overrides.
+> - **AUD-48** parallel stat system — use `.ins-stat-kpi` / `StatStrip`.
+> - **AUD-52** hand-rolled bottom CTA (`success-stories.jsx:279`, `security.jsx:232`) → `<BottomCTA>` + `.ins-section--tint`.
+> - **AUD-53** raw colours/radii → tokens (`--ins-color-teal-*` / `--ins-radius-*` / `--ins-surface-*`).
+> - **AUD-54** DS control primitives bypassed — use `.ins-badge--tab`, `.ins-segmented`, `.ins-input-group`.
+> - **AUD-56** comparison "before" card uses red — neutral grey (keep glow); red only for real errors.
+> - **AUD-58** Semantic-Layer subhead teal too low-contrast — raise to `--ins-text-highlight` (keep it green).
+> - **AUD-64** heading hierarchy skips h1→h3 (Blog, Connectors, Prompt Library, Contact Support, Solutions heroes) — section titles = h2; demote decorative headings.
+>
+> #### P3 — polish: consistency / copy / IA / a11y / hygiene (⚪)
+> - **Content:** AUD-42 remove duplicate "Data Sources" eyebrow (Integrations connect-flow); AUD-70 rename Security "certifications" heading to match content.
+> - **Broken:** AUD-34 drop "or data source" placeholder (Prompt Library) or add the facet; AUD-35 add trailing slash to Docs sign-up link (`content/welcome.md:9`).
+> - **Numbers/terms:** AUD-15 one accuracy notation ("3×"); AUD-57 Semantic metrics footer "498 / 20" uniform colour + typeface.
+> - **Design-system:** AUD-41 remove button glow/box-shadows (`app.css:167`, `main.jsx:372`); AUD-45 heading letter-spacing from tokens (~-.02em); AUD-46 Success-Stories cards → `.ins-article-card` / `.ins-card`; AUD-55 remove copied `SearchInput` markup + dead/undefined classes (`docs.jsx:251`); AUD-59 sentence-case button labels ("Explore pricing"); AUD-60 banner highlight → `--ins-text-highlight` (teal-400, not teal-600); AUD-61 "See all 200+ integrations" → `<Button variant="secondary">`; AUD-63 ConnectorCard hover eased + DS button; AUD-68 delete dead imports/stubs (`product-teams.jsx`, `analytics-teams.jsx`).
+> - **Accessibility:** AUD-33 Solutions integrations pill ≥44px; AUD-36 Blog thumbnails descriptive `alt` (`blog.jsx:96`); AUD-37 Roadmap/Executive mockup text ≥12px or text alt; AUD-49 `.ins-link` keeps underline on hover; AUD-62 FAQ row clear hover state; AUD-73 Roadmap SVG milestones in the DOM outline; AUD-75 Docs sidebar hover only brightens label — fill reserved for `[aria-current]`.
+> - **Copy:** AUD-16 space in "12×faster" / "90%fewer" / "3×more"; AUD-11 fix `<br>` glue + double space; AUD-18 one H1 terminal-punctuation rule; AUD-23 lowercase Home stat labels; AUD-38 Finance mockup interpunct / casing.
+> - **IA:** AUD-71 Home uses `<SectionHeader>` / `<StepsProcess>` (overview first); AUD-72 reframe Solutions Use Cases vs Feature Spotlights.
+> - **Responsive:** AUD-74 Pricing table stack/scroll at 320px (`pricing.jsx:170`).
+> - **Code hygiene:** AUD-12 — already Task 12.
+> - **New (v1 live pass, 2026-08-10):** AUD-77 footer socials → `--ins-text-primary` (`Footer.jsx:133`); AUD-78 remove home hero animation text labels (`main.jsx`); AUD-79 AI-chat "Thinking" logo matches label colour at end (`ai-chat.jsx:1066`); AUD-80 "View prompts" no hover/press shift (`prompt-library.jsx:452`).
+>
 > ### Verification
 > 1. `npm run dev` — open `/pricing`: discount figure matches between cards and FAQ (Task 1); FAQ
 >    names only Free/Starter/Pro (Task 2).
@@ -199,8 +243,9 @@ This handoff details the prioritized, mechanically-actionable fixes (content, li
 > 3. Open `http://localhost:5173/404.html` — dark branded 404 with teal "404", logo, buttons (Task 4).
 > 4. Grep confirms the metric numbers now match across Home / Integrations / Semantic Layer (Task 5).
 > 5. Keyboard-test the nav menus: `aria-expanded` toggles, Esc closes (Task 6).
-> 6. `npm run build` — no errors.
-> 7. After deploy — open any non-existent URL (e.g. `/nope`): branded 404, not the raw Vercel page.
+> 6. Contact Support: help-topic links resolve or are removed (Task 17); the Ask-AI panel is gone (Task 18); the support/sales modals trap focus + close on Esc (Task 21); the connector "Sign in to connect" CTA is reachable by keyboard (Task 20).
+> 7. `npm run build` — no errors.
+> 8. After deploy — open any non-existent URL (e.g. `/nope`): branded 404, not the raw Vercel page.
 
 ---
 
