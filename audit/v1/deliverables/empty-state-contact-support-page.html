@@ -27,6 +27,9 @@
     background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E")}
 
   .cs-headwrap{position:relative;z-index:var(--ins-z-sticky);padding-top:var(--ins-space-md)}
+  /* DS .ins-navbar pins itself with a fixed gutter (margin-inline: space-md); the live header
+     sits in a centered 1240px wrapper. Restore that centering here so it isn't left-aligned. */
+  .cs-headwrap .ins-navbar{margin-inline:auto}
   main{position:relative;z-index:1}
   .cs-container{max-width:1280px;margin:0 auto;padding:0 24px}
 
@@ -46,6 +49,21 @@
   /* Help-topics results area (empty) */
   .cs-topics{padding:0 0 80px}
   .cs-block{background:var(--ins-color-white-a-02);border:1px solid var(--ins-border-default);border-radius:var(--ins-radius-2xl)}
+
+  /* Help-topics grid — the default page state (reproduced from contact-support.jsx) */
+  .cs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--ins-size-5)}
+  @media (max-width:900px){.cs-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:600px){.cs-grid{grid-template-columns:1fr}}
+  .cs-topic{background:var(--ins-color-white-a-02);border:1px solid var(--ins-color-white-a-05);border-radius:14px;padding:var(--ins-size-5);transition:border-color .2s}
+  .cs-topic:hover{border-color:var(--ins-color-white-a-12)}
+  .cs-topic__hd{display:flex;align-items:center;gap:var(--ins-size-3);margin-bottom:var(--ins-size-4)}
+  .cs-topic__icon{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .cs-topic__icon svg{width:16px;height:16px}
+  .cs-topic__title{font-size:var(--ins-font-size-14);font-weight:600;color:var(--ins-text-heading-soft)}
+  .cs-topic__item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:5px 0;font-size:var(--ins-font-size-14);color:var(--ins-text-body);text-decoration:none;border-bottom:1px solid var(--ins-color-white-a-04);transition:color .15s}
+  .cs-topic__item:last-child{border-bottom:none}
+  .cs-topic__item:hover{color:var(--ins-text-highlight)}
+  .cs-topic__item svg{width:12px;height:12px;flex-shrink:0;opacity:.5}
 
   /* Empty state — bigger illustrative badge (was too small). */
   .es-badge{width:96px;height:96px;border-radius:var(--ins-radius-2xl);display:flex;align-items:center;justify-content:center;
@@ -113,23 +131,26 @@
         <p class="ins-text-body-xl" style="max-width:520px;margin:var(--ins-space-lg) auto 0">Search our help resources or reach out to the support team directly.</p>
         <div class="ins-input-wrap cs-search">
           <svg class="ins-input-wrap__icon ins-input-wrap__icon--leading" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-          <input class="ins-input ins-input--lg ins-input--with-leading ins-input--with-trailing" value="kubernetes audit logs" aria-label="Search help topics">
-          <button class="ins-input-wrap__action" type="button" aria-label="Clear search" onclick="var i=this.parentNode.querySelector('input');i.value='';i.focus();">
+          <input id="csSearch" class="ins-input ins-input--lg ins-input--with-leading ins-input--with-trailing" value="kubernetes audit logs" aria-label="Search help topics" oninput="renderTopics()">
+          <button class="ins-input-wrap__action" type="button" aria-label="Clear search" onclick="clearSearch()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
         </div>
       </div></div>
     </section>
 
-    <!-- ═══════════ HELP TOPICS — no results (redesigned empty state) ═══════════ -->
+    <!-- ═══════════ HELP TOPICS — default grid + no-results empty state ═══════════ -->
     <section class="cs-topics">
       <div class="cs-container">
-        <div class="cs-block">
+        <!-- Default state: the topic grid (shown when the search is empty). Filled by JS. -->
+        <div id="csGrid" class="cs-grid" style="display:none"></div>
+        <!-- No-results state: shown only when a query matches nothing. -->
+        <div id="csEmpty" class="cs-block">
           <div class="ins-empty-state">
             <div class="es-badge">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-3.6-3.6"/><path d="M9 9l4 4M13 9l-4 4"/></svg>
             </div>
-            <div class="ins-empty-state__title">No topics match “kubernetes audit logs”</div>
+            <div class="ins-empty-state__title" id="csEmptyTitle">No topics match “kubernetes audit logs”</div>
             <p class="ins-empty-state__description">We couldn’t find a help article for that. Try a broader search term, or reach our team directly — we reply within one business day.</p>
             <div class="es-actions">
               <a class="ins-btn ins-btn--secondary" href="#contact">
@@ -224,6 +245,59 @@
       </div>
     </div>
   </footer>
+
+  <!-- Interactive: empty search → default topic grid; a query with no match → empty state;
+       the clear (×) returns to the default state. Topic data mirrors contact-support.jsx. -->
+  <script>
+  (function(){
+    var ICON={
+      user:'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+      link:'<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+      chat:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+      layers:'<path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12l8.58 3.91a2 2 0 0 0 1.66 0L21 12"/><path d="M2 17l8.58 3.91a2 2 0 0 0 1.66 0L21 17"/>',
+      file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/>',
+      shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'
+    };
+    var TOPICS=[
+      {t:'Account & Billing',c:'99,102,241',i:'user',items:['Reset my password','Change my plan','Update billing information','Cancel my subscription','Request an invoice']},
+      {t:'Connecting Data Sources',c:'20,168,185',i:'link',items:['My connection failed','Authentication errors','Data not syncing','Supported data sources','Request a new connector']},
+      {t:'AI Chat & Answers',c:'14,196,193',i:'chat',items:['My answer seems wrong',"AI doesn't understand my question",'Charts not displaying','Export not working','Token usage questions']},
+      {t:'Semantic Layer',c:'168,85,247',i:'layers',items:['Metric definition errors','Cross-source join issues','Certification failed','Formula not calculating','Duplicate metric names']},
+      {t:'Reports',c:'251,146,60',i:'file',items:['Schedule a report','Export formats','Share with team','Report not generating','Edit saved reports']},
+      {t:'Security & Privacy',c:'52,211,153',i:'shield',items:['SSO setup (Enterprise)','Data retention questions','Export my data','Delete my account','Compliance documentation']}
+    ];
+    var CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+    function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+    function card(t){
+      var items=t.items.map(function(it){return '<a class="cs-topic__item" href="#"><span>'+esc(it)+'</span>'+CHEV+'</a>';}).join('');
+      return '<div class="cs-topic"><div class="cs-topic__hd"><div class="cs-topic__icon" style="background:rgba('+t.c+',0.08);border:1px solid rgba('+t.c+',0.18);color:rgba('+t.c+',0.95)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+ICON[t.i]+'</svg></div><h3 class="cs-topic__title">'+esc(t.t)+'</h3></div>'+items+'</div>';
+    }
+    var grid=document.getElementById('csGrid'),empty=document.getElementById('csEmpty'),
+        emptyTitle=document.getElementById('csEmptyTitle'),input=document.getElementById('csSearch');
+    window.renderTopics=function(){
+      var raw=input.value.trim(),q=raw.toLowerCase(),list;
+      if(!q){list=TOPICS;}
+      else{
+        list=TOPICS.map(function(t){
+          if(t.t.toLowerCase().indexOf(q)>-1)return t;
+          var items=t.items.filter(function(it){return it.toLowerCase().indexOf(q)>-1;});
+          return items.length?{t:t.t,c:t.c,i:t.i,items:items}:null;
+        }).filter(Boolean);
+      }
+      if(q&&list.length===0){
+        grid.style.display='none';empty.style.display='block';
+        emptyTitle.textContent='No topics match “'+raw+'”';
+      }else{
+        grid.innerHTML=list.map(card).join('');
+        grid.style.display='grid';empty.style.display='none';
+      }
+    };
+    window.clearSearch=function(){input.value='';renderTopics();if(input.focus)input.focus();};
+    // optional deep-link: ?q=<term> pre-fills the search (?q= with no value shows the default grid)
+    try{var _p=new URLSearchParams(location.search);if(_p.has('q'))input.value=_p.get('q');}catch(e){}
+    renderTopics();
+  })();
+  </script>
 
 </body>
 </html>
