@@ -55,7 +55,7 @@ is the source of truth; the inline blocks are synced copies.
   <style>/* shared chrome (inline copy) + page-specific */</style>
 </head>
 <body>
-<div class="wrap">            <!-- .wrap--wide for demo-heavy pages -->
+<div class="wrap">            <!-- .wrap = 1180px, the unified content width for every audit page -->
 
   <!-- top bar: brand left, cross-links right, current page marked -->
   <div class="bar">
