@@ -12,7 +12,7 @@ This handoff is **just the instruction for applying them** — it does not resta
 > You are working in the Insightis site repository (`insightis-site`).
 > Stack: Vite + React, multi-page — dev `npm run dev`, build `npm run build`, deploy Vercel (`vercel.json`, no catch-all rewrite).
 >
-> 1. Open **`findings.md`** (Insightis Audit v1) — the complete, prioritized list of all 77 Accepted findings (P0 → P3). Each finding gives **Where** (page › block + `file:line`), **Now** (current), **Should be** (expected), and **Fix** (how).
+> 1. Open `findings.md` (Insightis Audit v1) — the complete, prioritized list of all 77 Accepted findings (P0 → P3). Each finding gives its location (page › block + `file:line`), the current state, the expected state, and the fix.
 > 2. Apply the fixes **in priority order**: P0 ship-blockers first, then P1 → P2 → P3. Do **not** restyle the site — these are targeted fixes only.
 > 3. Some items are **content/product decisions** (exact discount %, whether the Team/Enterprise tiers are real, the canonical metric values and terminology). Confirm those with product/content first, then apply the agreed value. They are flagged in `findings.md`.
 > 4. Some items need **design sign-off** or are larger DS refactors — see [`fix-examples.html`](fix-examples.html) before touching them.
