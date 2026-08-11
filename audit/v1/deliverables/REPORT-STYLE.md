@@ -11,7 +11,7 @@ report.
 | Category | Files | Styling |
 |---|---|---|
 | **Report** (findings, handoffs, concepts) | `report-visual.html`, `dev-handoff.html`, `fix-examples.html`, any future index/summary | Use the shared **report chrome** in `report.css`. |
-| **DS mockup** (a pixel of the real product) | `404-design.html`, `empty-state-block-design.html` | Link the real design system (`design-system/ds/index.css`); reproduce the live site. **Never** apply the report chrome to these. |
+| **DS mockup** (a pixel of the real product) | `404-design.html` | Link the real design system (`design-system/ds/index.css`); reproduce the live site. **Never** apply the report chrome to these. |
 
 A report *describes* the site. A DS mockup *is* a slice of the site. They look
 different on purpose.

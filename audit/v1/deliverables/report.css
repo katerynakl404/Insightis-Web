@@ -18,8 +18,8 @@
    …then adds ONLY its page-specific styles after the end marker.
    Edit this file first, then re-sync the inline copies. See REPORT-STYLE.md.
 
-   NOT COVERED HERE: the DS *mockup* deliverables (404-design.html,
-   empty-state-block-design.html) are a different category — they link the real
+   NOT COVERED HERE: the DS *mockup* deliverables (e.g. 404-design.html)
+   are a different category — they link the real
    design system (design-system/ds/index.css) and reproduce the live site, so
    they must NOT use this chrome. See REPORT-STYLE.md § Two categories.
    ============================================================================ */
