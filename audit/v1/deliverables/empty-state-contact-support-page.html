@@ -131,8 +131,8 @@
         <p class="ins-text-body-xl" style="max-width:520px;margin:var(--ins-space-lg) auto 0">Search our help resources or reach out to the support team directly.</p>
         <div class="ins-input-wrap cs-search">
           <svg class="ins-input-wrap__icon ins-input-wrap__icon--leading" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-          <input id="csSearch" class="ins-input ins-input--lg ins-input--with-leading ins-input--with-trailing" value="kubernetes audit logs" aria-label="Search help topics" oninput="renderTopics()">
-          <button class="ins-input-wrap__action" type="button" aria-label="Clear search" onclick="clearSearch()">
+          <input id="csSearch" class="ins-input ins-input--lg ins-input--with-leading ins-input--with-trailing" value="kubernetes audit logs" placeholder="Search help topics..." aria-label="Search help topics" oninput="renderTopics()">
+          <button id="csClear" class="ins-input-wrap__action" type="button" aria-label="Clear search" onclick="clearSearch()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
         </div>
@@ -273,9 +273,11 @@
       return '<div class="cs-topic"><div class="cs-topic__hd"><div class="cs-topic__icon" style="background:rgba('+t.c+',0.08);border:1px solid rgba('+t.c+',0.18);color:rgba('+t.c+',0.95)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+ICON[t.i]+'</svg></div><h3 class="cs-topic__title">'+esc(t.t)+'</h3></div>'+items+'</div>';
     }
     var grid=document.getElementById('csGrid'),empty=document.getElementById('csEmpty'),
-        emptyTitle=document.getElementById('csEmptyTitle'),input=document.getElementById('csSearch');
+        emptyTitle=document.getElementById('csEmptyTitle'),input=document.getElementById('csSearch'),
+        clearBtn=document.getElementById('csClear');
     window.renderTopics=function(){
       var raw=input.value.trim(),q=raw.toLowerCase(),list;
+      clearBtn.style.display=input.value?'':'none';   /* no clear (×) on an empty field */
       if(!q){list=TOPICS;}
       else{
         list=TOPICS.map(function(t){
