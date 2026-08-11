@@ -98,9 +98,126 @@ pre{background:var(--page);border:1px solid var(--line);border-radius:8px;paddin
   <h1>Insightis — UX/UI Audit v1</h1>
   <p class="sub">insightis.ai · dark · verified 2026-08-04 · <b>full site (17 pages)</b></p>
   <p class="sub">Each finding: <b style="color:var(--teal)">Where</b> (page › block + file:line) · <b style="color:var(--crit)">Now</b> (current) · <b>Should be</b> (expected) · <b style="color:var(--teal)">Fix</b> (how) · verify link(s).</p>
-  <p class="sub"><b>77 findings — 3 Critical · 11 High · 27 Medium · 36 Low.</b> (AUD-10, AUD-19, AUD-76 withdrawn.) Body text passes WCAG AA; visual style not redesigned in v1 (proposed redesigns: <a href="fix-examples.html">fix-examples.html</a>, pending sign-off).</p>
+  <p class="sub"><b>78 findings — 3 Critical · 11 High · 28 Medium · 36 Low.</b> (AUD-10, AUD-19, AUD-75, AUD-76 withdrawn.) Body text passes WCAG AA; visual style not redesigned in v1 (proposed redesigns: <a href="fix-examples.html">fix-examples.html</a>, pending sign-off).</p>
 
   <div class="callout callout--crit"><b>Release blockers:</b> AUD-01, AUD-02, AUD-24 (Critical); AUD-03, AUD-04, AUD-05, AUD-21, AUD-25, AUD-26, AUD-27, AUD-43, AUD-50, AUD-51, AUD-66 (High).</div>
+
+  <h2 id="changelog">Newly added · 2026-08-11</h2>
+  <p class="sub">Items found reviewing the live site against the design system — <b>proposed edits to apply</b>, each with where it applies. Not in code yet; for developers to implement.</p>
+
+  <p class="note">Grouped logically and sorted by priority (severity), highest first.</p>
+
+  <div class="f med"><div class="fh"><span class="sv med">Medium</span><span class="id">DSC-1</span><span class="ti">Accent-bordered buttons: one behaviour + style, four implementations</span><span class="lnk"><a href="https://insightis.ai/">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Solutions "See all 200+ integrations" ×6 (<code>analytics-teams.jsx:226</code>, <code>executive-teams.jsx:222</code>, <code>finance-teams.jsx:708</code>, <code>marketing-teams.jsx:573</code>, <code>product-teams.jsx:248</code>, <code>revenue-teams.jsx:628</code>) · Prompt Library "Clear all" (<code>prompt-library.jsx:388</code>) · Docs Prev/Next ×2 (<code>docs.jsx:615</code>, <code>:638</code>) · Press-media "Copy" (<code>press-media.jsx:257</code>)</span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">Four different accent borders — two teal bases (<code>rgba(9,160,157,…)</code> vs <code>rgba(10,152,150,…)</code>), alphas <code>.25</code>/<code>.3</code>, one <code>var(--ins-border-brand)</code> token — and mixed triggers (some show the border at rest, some only on hover).</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v"><b>One</b> accent-border colour/alpha and <b>one</b> hover behaviour everywhere. Radius may differ per context — that is fine — but the border style + interaction must be a single standard.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Adopt a single accent-outline treatment (DS <code>&lt;Button variant="secondary"&gt;</code> or one <code>--ins-border-brand</code> + shared hover rule); keep per-context radius.</span></div>
+  </div>
+
+  <div class="f med"><div class="fh"><span class="sv med">Medium</span><span class="id">DSC-3</span><span class="ti">Terminology: "connector" should be "connections"</span><span class="lnk"><a href="https://insightis.ai/resources/connectors">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Site-wide — ~211 refs in <code>src</code>; the <code>/resources/connectors</code> route (~15 links, canonical, sitemap); 5 files named *Connector* (<code>ConnectorCard</code>, <code>ConnectorIcon</code>, <code>RequestConnectorModal</code>, <code>connectors.jsx</code>, <code>connectors.html</code>); copy such as "200+ connectors"; privacy policy prose.</span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">Product says "connector(s)".</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">"connection(s)" (product terminology decision).</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Rename user-facing copy first (Connectors→Connections). Decide separately whether to also rename the <code>/connectors</code> route (needs redirects + canonical/sitemap) and the code identifiers/filenames.</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">DSC-4</span><span class="ti">Home hero "Send" button is not the DS button</span><span class="lnk"><a href="https://insightis.ai/">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Home (/) › hero chat input send button · <code>main.jsx:368</code></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">Hand-rolled <code>&lt;button&gt;</code> with an inline <code>linear-gradient</code> + teal glow <code>box-shadow</code> and a fixed <code>rounded-xl</code> (12px) radius.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">DS <code>&lt;Button variant="primary"&gt;</code> — flat teal-600, no glow, proportional pill radius; empty state = DS <code>disabled</code>.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Replace with <code>&lt;Button variant="primary" size="md"&gt;</code>. Relates to <b>AUD-41</b> (glow) / <b>AUD-50</b> (one primary).</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">DSC-7</span><span class="ti">Connectors "Request a connector" (sidebar) is not the DS button</span><span class="lnk"><a href="https://insightis.ai/resources/connectors">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Connectors › left sidebar "Request a connector" · <code>connectors.jsx:66</code></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">Hand-rolled <code>&lt;button&gt;</code> — teal-tint bg + teal border + teal text + manual hover handlers.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">DS <code>&lt;Button variant="secondary"&gt;</code>.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Replace with <code>&lt;Button variant="secondary" size="sm" radius="md"&gt;</code>.</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">DSC-8</span><span class="ti">Docs "Copy page" is not the DS button</span><span class="lnk"><a href="https://insightis.ai/docs/">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Docs › page header "Copy page" · <code>docs.jsx:385</code></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">Hand-rolled <code>&lt;button&gt;</code> — white-a-05 bg / white-a-08 border / disabled-grey text + a teal "copied" state + manual hover.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">DS <code>&lt;Button variant="secondary"&gt;</code>.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Replace with <code>&lt;Button variant="secondary" size="sm" radius="md"&gt;</code>; keep the copied feedback via icon + label.</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">DSC-5</span><span class="ti">Prompt Library filter checkbox uses the wrong teal + dark check</span><span class="lnk"><a href="https://insightis.ai/resources/prompt-library">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Prompt Library › Teams filter sidebar checkbox · <code>resources/prompt-library.html</code> style + <code>prompt-library.jsx:358</code></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">Checked fill = teal-400 (<code>--ins-text-highlight</code>) with a dark checkmark.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">DS teal-600 fill + white checkmark (match DS <code>.ins-checkbox</code>).</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Checked bg/border → <code>var(--ins-color-teal-600)</code>; checkmark colour → <code>#fff</code>.</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">DSC-11</span><span class="ti">Request-a-connector field: visible label to remove + placeholder</span><span class="lnk"><a href="https://insightis.ai/resources/connectors">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Request-a-connector modal › connector name input · <code>RequestConnectorModal.jsx:232</code></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">Visible "Connector name" label + placeholder "e.g. Pipedrive".</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">No visible label (kept for screen readers); the placeholder carries the hint.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">DS <code>Input</code> with <code>hideLabel</code>; placeholder → "Enter connection name".</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-80</span><span class="ti">"View prompts" toggle shifts on hover / press</span><span class="lnk"><a href="https://insightis.ai/resources/prompt-library">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Prompt Library › prompt-card toggle · <code>.view-btn</code> (<code>prompt-library.jsx:452</code>)</span></div>
+    <div class="r now"><span class="k">Now</span><span class="v"><code>:hover</code> animates <code>gap</code> 6px→10px (text+chevron shift ~4px); clicking swaps the label "View prompts"↔"Hide prompt" (different widths) so the right-aligned button reflows. Verified live.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">No positional shift on hover or press.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Drop the <code>gap</code> hover animation (or move only the chevron via <code>transform</code>, not layout); give the label a fixed <code>min-width</code> so the toggle text swap doesn't reflow.</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">DSC-9</span><span class="ti">Breadcrumb clickable crumb reads as less prominent than the current one</span><span class="lnk"><a href="https://insightis.ai/docs/">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Global › breadcrumbs clickable crumb (e.g. Docs) · DS <code>breadcrumbs.css</code></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">Clickable crumb = muted (<code>--ins-text-inactive</code>) — dimmer than the non-clickable current crumb, and no clear hover.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">Clickable crumb = brand teal with a hover intensify; current crumb stays neutral.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Colour <code>a</code>/<code>button</code> crumbs <code>var(--ins-text-highlight)</code>; hover <code>var(--ins-color-teal-300)</code>.</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">DSC-10</span><span class="ti">Sales modal "email us" link is styled by hand, not the DS link</span><span class="lnk"><a href="https://insightis.ai/">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Sales enquiry modal › "Or email us at …" · <code>SalesEnquiryModal.jsx:309</code></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v"><code>&lt;a&gt;</code> with an inline <code>color: var(--ins-text-highlight)</code>.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">DS <code>.ins-link--inline</code> (as the connector modal already uses).</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Add <code>className="ins-link--inline"</code>; drop the inline style.</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-81</span><span class="ti">Underlined links lose their underline on hover (site-wide, one root cause)</span><span class="lnk"><a href="https://insightis.ai/legal/privacy">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Links hover — in-prose <code>.ins-link--inline</code>, cookie banner <code>.ins-cookie-notice__link</code> (every page), docs <code>.doc-section-body a</code> · root at <code>design-system/global.css:76</code></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">Every underlined <code>&lt;a&gt;</code> loses its underline on hover (colour-only change). Root cause: the global reset <code>a:not(.ins-btn):hover { text-decoration: none }</code> wins over each link's underline. Verified live (CSSOM); reach ~31 places across 8 files + the cookie banner on every page.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">Underlined links keep and intensify their underline on hover.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">One line at <code>global.css:76</code> — remove <code>text-decoration: none</code> from <code>a:not(.ins-btn):hover</code> (keep the colour). Fixes all affected surfaces at once.</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-82</span><span class="ti">Docs bold links render in body colour, not link colour</span><span class="lnk"><a href="https://insightis.ai/docs/create-an-account">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Docs › in-body prose bold links · <code>docs/index.html</code> <code>.doc-section-body strong</code></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">A bold link <code>[**Start for free**]</code> renders <code>&lt;a&gt;&lt;strong&gt;</code>; <code>.doc-section-body strong { color: var(--ins-text-body) }</code> (set on the element) beats the link colour → teal underline + white bold text that doesn't read as a link. Verified live.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">Bold links use the link colour (teal), keeping the bold weight + underline.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v"><code>docs/index.html</code>: add <code>.doc-section-body a strong { color: inherit; }</code>.</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">DSC-2</span><span class="ti">Sidebar item hover diverges from the DS component</span><span class="lnk"><a href="https://insightis.ai/resources/connectors">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Connectors <code>.cat-item</code> (<code>resources/connectors.html:133</code>) · Prompt Library <code>.filter-item</code> (<code>resources/prompt-library.html:176</code>) vs the DS <code>.ins-doc-nav__item</code> used by Docs</span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">Docs uses the DS doc-nav item; Connectors &amp; Prompt Library re-implement the hover with bespoke classes / raw <code>rgba</code> (near-equal values, but not the DS component).</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">All sidebars share one DS sidebar-item pattern (same hover + active treatment).</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Migrate <code>.cat-item</code> / <code>.filter-item</code> to <code>.ins-doc-nav__item</code> (or a shared sidebar-item token).</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-78</span><span class="ti">Home hero animation overlays step/status text</span><span class="lnk"><a href="https://insightis.ai/">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Home (/) › hero connect-flow mockup (top of page) · hero mockup in <code>main.jsx</code></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">Animation prints descriptive labels at the top — "Connect your data", "Live in minutes, not months", "Connect HubSpot" → "Connected!", "Data Sources" + connector names (HubSpot/Salesforce/Stripe/Slack/PostgreSQL/Snowflake/Databricks). Verified live.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">The hero animation without the descriptive top text (visual only).</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Remove the text labels rendered over the top of the hero connect animation.</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-79</span><span class="ti">"Thinking" logo ≠ label color at animation end</span><span class="lnk"><a href="https://insightis.ai/platform/ai-chat">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">AI Chat › chat demo "Thinking" indicator · <code>ai-chat.jsx:1066-1067</code></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">At the <b>end</b> (done state) the logo stays <b>full</b> teal <code>rgb(14,196,193)</code> (<code>--ins-text-highlight</code>) while the "Thinking" label fades to <b>muted</b> teal <code>rgba(9,160,157,0.6)</code> — the two no longer match. Verified live.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">Logo and label share the same color/opacity in the done state.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">In the done state fade the logo to the label's muted token too (or keep both full). Logo color must track the label. See AUD-08 ("Thinking" contrast).</span></div>
+  </div>
+
+  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-77</span><span class="ti">Footer social icons too dim (disabled token)</span><span class="lnk"><a href="https://insightis.ai/">verify ↗</a></span></div>
+    <div class="r loc"><span class="k">Where</span><span class="v">Global › footer social icons (X / YouTube / LinkedIn) · <code>Footer.jsx:133-136</code></span></div>
+    <div class="r now"><span class="k">Now</span><span class="v">Icons render at <code>--ins-text-disabled</code> (<code>#6E8D9A</code> — verified live) → read as inactive; hover only reaches <code>--ins-text-secondary</code>.</span></div>
+    <div class="r exp"><span class="k">Should be</span><span class="v">Resting icons at the primary text color — <code>--ins-text-primary</code>.</span></div>
+    <div class="r fix"><span class="k">Fix</span><span class="v">Set the resting icon color to <code>--ins-text-primary</code>; re-tune hover (it's currently dimmer than the new resting state).</span></div>
+  </div>
 
   <h2>A · Content correctness &amp; fabricated content</h2>
 
@@ -384,33 +501,6 @@ pre{background:var(--page);border:1px solid var(--line);border-radius:8px;paddin
     <div class="r fix"><span class="k">Fix</span><span class="v">Delete the dead imports + stubs.</span></div>
   </div>
 
-  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-77</span><span class="ti">Footer social icons too dim (disabled token)</span><span class="lnk"><a href="https://insightis.ai/">verify ↗</a></span></div>
-    <div class="r loc"><span class="k">Where</span><span class="v">Global › footer social icons (X / YouTube / LinkedIn) · <code>Footer.jsx:133-136</code></span></div>
-    <div class="r now"><span class="k">Now</span><span class="v">Icons render at <code>--ins-text-disabled</code> (<code>#6E8D9A</code> — verified live) → read as inactive; hover only reaches <code>--ins-text-secondary</code>.</span></div>
-    <div class="r exp"><span class="k">Should be</span><span class="v">Resting icons at the primary text color — <code>--ins-text-primary</code>.</span></div>
-    <div class="r fix"><span class="k">Fix</span><span class="v">Set the resting icon color to <code>--ins-text-primary</code>; re-tune hover (it's currently dimmer than the new resting state).</span></div>
-  </div>
-
-  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-78</span><span class="ti">Home hero animation overlays step/status text</span><span class="lnk"><a href="https://insightis.ai/">verify ↗</a></span></div>
-    <div class="r loc"><span class="k">Where</span><span class="v">Home (/) › hero connect-flow mockup (top of page) · hero mockup in <code>main.jsx</code></span></div>
-    <div class="r now"><span class="k">Now</span><span class="v">Animation prints descriptive labels at the top — "Connect your data", "Live in minutes, not months", "Connect HubSpot" → "Connected!", "Data Sources" + connector names (HubSpot/Salesforce/Stripe/Slack/PostgreSQL/Snowflake/Databricks). Verified live.</span></div>
-    <div class="r exp"><span class="k">Should be</span><span class="v">The hero animation without the descriptive top text (visual only).</span></div>
-    <div class="r fix"><span class="k">Fix</span><span class="v">Remove the text labels rendered over the top of the hero connect animation.</span></div>
-  </div>
-  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-79</span><span class="ti">"Thinking" logo ≠ label color at animation end</span><span class="lnk"><a href="https://insightis.ai/platform/ai-chat">verify ↗</a></span></div>
-    <div class="r loc"><span class="k">Where</span><span class="v">AI Chat › chat demo "Thinking" indicator · <code>ai-chat.jsx:1066-1067</code></span></div>
-    <div class="r now"><span class="k">Now</span><span class="v">At the <b>end</b> (done state) the logo stays <b>full</b> teal <code>rgb(14,196,193)</code> (<code>--ins-text-highlight</code>) while the "Thinking" label fades to <b>muted</b> teal <code>rgba(9,160,157,0.6)</code> — the two no longer match. Verified live.</span></div>
-    <div class="r exp"><span class="k">Should be</span><span class="v">Logo and label share the same color/opacity in the done state.</span></div>
-    <div class="r fix"><span class="k">Fix</span><span class="v">In the done state fade the logo to the label's muted token too (or keep both full). Logo color must track the label. See AUD-08 ("Thinking" contrast).</span></div>
-  </div>
-
-  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-80</span><span class="ti">"View prompts" toggle shifts on hover / press</span><span class="lnk"><a href="https://insightis.ai/resources/prompt-library">verify ↗</a></span></div>
-    <div class="r loc"><span class="k">Where</span><span class="v">Prompt Library › prompt-card toggle · <code>.view-btn</code> (<code>prompt-library.jsx:452</code>)</span></div>
-    <div class="r now"><span class="k">Now</span><span class="v"><code>:hover</code> animates <code>gap</code> 6px→10px (text+chevron shift ~4px); clicking swaps the label "View prompts"↔"Hide prompt" (different widths) so the right-aligned button reflows. Verified live.</span></div>
-    <div class="r exp"><span class="k">Should be</span><span class="v">No positional shift on hover or press.</span></div>
-    <div class="r fix"><span class="k">Fix</span><span class="v">Drop the <code>gap</code> hover animation (or move only the chevron via <code>transform</code>, not layout); give the label a fixed <code>min-width</code> so the toggle text swap doesn't reflow.</span></div>
-  </div>
-
   <h2>E · Accessibility</h2>
 
   <div class="f high"><div class="fh"><span class="sv high">High</span><span class="id">AUD-26</span><span class="ti">Support form labels not associated</span><span class="lnk"><a href="https://insightis.ai/resources/contact-support">verify ↗</a></span></div>
@@ -496,12 +586,6 @@ pre{background:var(--page);border:1px solid var(--line);border-radius:8px;paddin
     <div class="r now"><span class="k">Now</span><span class="v">Hovering a question barely changes anything.</span></div>
     <div class="r exp"><span class="k">Should be</span><span class="v">A clear hover state for the clickable row.</span></div>
     <div class="r fix"><span class="k">Fix</span><span class="v">Add a background/border shift in <code>&lt;FAQAccordion&gt;</code>.</span></div>
-  </div>
-  <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-75</span><span class="ti">Sidebar nav hover paints the whole row</span><span class="lnk"><a href="https://insightis.ai/docs/">verify ↗</a></span></div>
-    <div class="r loc"><span class="k">Where</span><span class="v">Docs › left sidebar nav items</span></div>
-    <div class="r now"><span class="k">Now</span><span class="v">Hover fills the entire row — heavy; confused with the active state.</span></div>
-    <div class="r exp"><span class="k">Should be</span><span class="v">Hover only brightens the label; fill + bar = active only.</span></div>
-    <div class="r fix"><span class="k">Fix</span><span class="v">Text-color shift on hover (→ <code>--ins-text-heading</code>); reserve fill for <code>[aria-current]</code>.</span></div>
   </div>
   <div class="f low"><div class="fh"><span class="sv low">Low</span><span class="id">AUD-73</span><span class="ti">Roadmap content only in SVG</span><span class="lnk"><a href="https://insightis.ai/resources/roadmap">verify ↗</a></span></div>
     <div class="r loc"><span class="k">Where</span><span class="v">Roadmap › SVG timeline (milestones as <code>&lt;text&gt;</code>)</span></div>
