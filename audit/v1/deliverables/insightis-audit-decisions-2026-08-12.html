@@ -226,7 +226,7 @@
   <header class="mast">
     <div class="eyebrow">UX/UI Audit v1 · full re-check, all severities</div>
     <h1>All 77 findings, re-verified</h1>
-    <p class="lede">25 audit commits have merged to production since the review. Every finding — Critical through Low — was re-read against the code as it stands, not against what the commits claim. All three Criticals are closed and no High is fully open. 34 findings remain, and the 20 that were waiting on a decision now each carry one inline below — design calls made, content and product items flagged.</p>
+    <p class="lede">The audit&rsquo;s 20 findings that were blocked on a decision &mdash; not on effort &mdash; collected here, each with a recommended decision. Design calls are made; the two content and product items are flagged for their owners. Findings that needed no decision (already closed, or straightforward dev work) are intentionally omitted.</p>
     <div class="meta">
       <span>source <b>findings.md</b> (authoritative) · v1, verified 2026-08-04</span>
       <span>code <b>master @ cd9186a</b></span>
@@ -235,42 +235,8 @@
     </div>
   </header>
 
-  <section style="display:flex;flex-direction:column;gap:18px">
-    <div class="eyebrow">State of play</div>
-    <div class="score">
-      <div class="s-done"><span class="n">42</span><span class="k">landed and verified</span><span class="bar"></span></div>
-      <div class="s-part"><span class="n">14</span><span class="k">partial — goal unmet</span><span class="bar"></span></div>
-      <div class="s-open"><span class="n">20</span><span class="k">not landed</span><span class="bar"></span></div>
-      <div><span class="n">11<span style="font-size:.5em;color:var(--ink-3)">/14</span></span><span class="k">release blockers fully closed</span><span class="bar"></span></div>
-    </div>
-    <p style="max-width:74ch"><strong style="color:var(--ink)">The gate is nearly clear.</strong> Of the report's 14 named release blockers, 11 are fully closed and the remaining 3 — AUD-43, AUD-50, AUD-51 — are partial in the same way: the correctness and accessibility halves shipped, the design-system half needs a look you have to approve. Every Critical and every High is now either closed or waiting only on that.</p>
-    <p style="max-width:74ch">The open list is now dominated by Lows, and that is the expected shape: every wave deliberately took correctness first and stopped at anything that changes how a page looks. What is left is mostly appearance.</p>
-    <div class="legend">
-      <span class="i"><span class="chip chip-open">Not landed</span> defect still reproducible</span>
-      <span class="i"><span class="chip chip-part">Partial</span> shipped, goal unmet</span>
-      <span class="i"><span class="tag tag-d">Design</span> your call</span>
-      <span class="i"><span class="tag">Dev</span> no decision needed</span>
-    </div>
-  </section>
-
-  <section style="display:flex;flex-direction:column;gap:16px">
-    <div class="eyebrow">Severity × status</div>
-    <div class="mx-scroll">
-      <table class="mx">
-        <thead><tr><th scope="col" style="text-align:left">&nbsp;</th><th scope="col">Not landed</th><th scope="col">Partial</th><th scope="col">Closed</th><th scope="col">Total</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Critical</th><td class="z">0</td><td class="z">0</td><td>3</td><td>3</td></tr>
-          <tr><th scope="row">High</th><td class="z">0</td><td class="">3</td><td>8</td><td>11</td></tr>
-          <tr><th scope="row">Medium</th><td class="hot">3</td><td class="">9</td><td>15</td><td>27</td></tr>
-          <tr><th scope="row">Low</th><td class="hot">17</td><td class="">2</td><td>17</td><td>36</td></tr>
-        </tbody>
-        <tfoot><tr><th scope="row">Total</th><td>20</td><td>14</td><td>43</td><td>77</td></tr></tfoot>
-      </table>
-    </div>
-  </section>
-
   <section class="group">
-    <div class="group-head"><h2>High</h2><span class="count">11 findings · 8 closed · 3 open</span></div>
+    <div class="group-head"><h2>High</h2><span class="count">3 decisions</span></div>
     <article class="f part">
       <div class="f-top"><span class="id">AUD-43</span><span class="f-title">Sales/Support modals bypass the DS</span><span class="spacer"></span><span class="tag">medium</span><span class="tag tag-d">Design</span><span class="chip chip-part">Partial</span></div>
       <p>The accessibility half landed: both dialogs now share ModalShell, which adds role=dialog, aria-modal, an accessible name, Escape, focus-in and focus-return, and a Tab trap. The DS shell half did not: overlay, z-layer, radius, surface and max-width are still inline, box-shadow is explicitly none, and no .ins-modal__header/__body/__footer is used.</p>
@@ -292,7 +258,7 @@
   </section>
 
   <section class="group">
-    <div class="group-head"><h2>Medium</h2><span class="count">27 findings · 15 closed · 12 open</span></div>
+    <div class="group-head"><h2>Medium</h2><span class="count">8 decisions</span></div>
     <article class="f open">
       <div class="f-top"><span class="id">AUD-44</span><span class="f-title">Chat widgets diverge</span><span class="spacer"></span><span class="tag">large</span><span class="tag tag-d">Design</span><span class="chip chip-open">Not landed</span></div>
       <p>Structurally identical to the audit-era file (only color tokens were renamed). The AI bubble is still inline-overridden, the two chat surfaces still diverge (stretched full-width 14px reply card vs 90% max-width 12px bubble), the chart/sources/action cards are still hand-styled inline, and no DS chat component exists in src/components.</p>
@@ -318,11 +284,6 @@
       <div class="decision"><span class="lbl">✓ Decision</span><p>Keep the muted look but change the colour to <code>--ins-text-inactive</code> (muted, but ≥4.5:1) — no more <code>#505068</code>. Fix the glow at the <strong style="color:var(--ink)">token</strong> level for both cards (neutral gray + teal), not inline <code>rgba</code>, and adapt PanelSide.</p><p class="why">Meaning must not ride on failing contrast; the muted grey still reads as "generic". Target look = <code>fix-examples.html</code>. The ✗ non-color cue is optional since the muted grey remains.</p></div>
     </article>
     <article class="f part">
-      <div class="f-top"><span class="id">AUD-09</span><span class="f-title">Body paragraphs default to 14px</span><span class="spacer"></span><span class="tag">small</span><span class="tag">Dev</span><span class="chip chip-part">Partial</span></div>
-      <p>A 15px description class was created and applied to platform how-it-works steps, Solutions use-case descriptions and pricing plan taglines/features. But Home's how-it-works descriptions (.sc-desc, src/app.css:281) and every FAQ answer on all six Solutions pages are still 14px.</p>
-      
-    </article>
-    <article class="f part">
       <div class="f-top"><span class="id">AUD-14</span><span class="f-title">Four terms for "built-in metrics"</span><span class="spacer"></span><span class="tag">trivial</span><span class="tag">Content</span><span class="chip chip-part">Partial</span></div>
       <p>"Pre-built" and "Predefined" are at zero site-wide and "built-in metrics" is used on Home, Semantic Layer and the plan cards. But the fourth flagged term survives: the Pricing comparison table still has a "Metric definitions" row two rows above "Built-in metrics" in the same Semantic Layer group.</p>
       <div class="ask"><span class="lbl">Decision needed</span><p>In the Pricing comparison table's Semantic Layer group, is "Metric definitions" (Read-only / Full access / Full access) a genuinely separate entitlement from the "Built-in metrics" and "Custom metrics" rows, or should that row be renamed/removed so "built-in metrics" is the only name for the shipped library?</p></div>
@@ -346,55 +307,15 @@
       <div class="ask"><span class="lbl">Decision needed</span><p>fix-examples prescribes 3 proportional columns with no gap and no orphan, but its own recommended markup keeps all FIVE link groups - which still orphans a cell and still leaves dead space under the three-link Platform column. How should the five groups actually be arranged between 640 and 1279px?</p></div>
       <div class="decision"><span class="lbl">✓ Decision</span><p>Desktop (≥1024px) — all five groups in <strong style="color:var(--ink)">one horizontal row</strong> (Platform · Solutions · Resources · Company · Legal), top-aligned; the orphan cell and dead space the 3-column markup leaves both disappear. Tablet 640–1023px — reorder so the short Platform column does not share a row with the two 6-link columns. Mobile — single-column stack. Remove the dead <code>footer.css:53</code> <code>justify-content:flex-end</code>.</p></div>
     </article>
-    <article class="f part">
-      <div class="f-top"><span class="id">AUD-53</span><span class="f-title">Raw colours and radii instead of tokens</span><span class="spacer"></span><span class="tag">medium</span><span class="tag">Dev</span><span class="chip chip-part">Partial</span></div>
-      <p>The three named literals are gone: rgba(9,160,157) is zero in code, 999px is zero, #0D0D1A only defines --ins-color-promo-solid. But 52 raw rgba(7,128,126,…) teal-600 alphas remain (app.css 27, main.jsx 7, integrations 3, UseCases 1), #0C1117 is hardcoded in 5 files with no token, and raw radii persist (10px, 3px, 4px 16px 16px 16px).</p>
-      
-    </article>
-    <article class="f part">
-      <div class="f-top"><span class="id">AUD-54</span><span class="f-title">DS control primitives bypassed</span><span class="spacer"></span><span class="tag">medium</span><span class="tag">Dev</span><span class="chip chip-part">Partial</span></div>
-      <p>Filter pills on integrations and ai-chat use Chip variant="tab" (.ins-badge--tab); blog still uses variant brand/neutral with inline padding/fontSize. BillingToggle is fully hand-rolled inline styles and .ins-segmented is used nowhere in src. .ins-input-group is used only by BottomCTA; WaitlistForm's email group is hand-rolled with raw rgba borders, 10px radius and a gradient button.</p>
-      
-    </article>
-    <article class="f part">
-      <div class="f-top"><span class="id">AUD-64</span><span class="f-title">Heading hierarchy skips h1 to h3</span><span class="spacer"></span><span class="tag">small</span><span class="tag">Dev</span><span class="chip chip-part">Partial</span></div>
-      <p>The four listing pages and all six Solutions heroes now run h1 -&gt; h2 with no skip. Every blog article still renders h1 -&gt; h3 (TL;DR / Quick Summary) before its first h2, and company/contacts.jsx:62-84 plus pricing.jsx:68 keep the same decorative-h3-before-h2 pattern.</p>
-      
-    </article>
-  </section>
+    </section>
 
   <section class="group">
-    <div class="group-head"><h2>Low</h2><span class="count">36 findings · 17 closed · 19 open</span></div>
-    <article class="f open">
-      <div class="f-top"><span class="id">AUD-12</span><span class="f-title">Inline &lt;style&gt; blocks inside &lt;main&gt;</span><span class="spacer"></span><span class="tag">medium</span><span class="tag">Dev</span><span class="chip chip-open">Not landed</span></div>
-      <p>All four inline &lt;style dangerouslySetInnerHTML&gt; blocks with media queries are byte-identical to the audit-date commit 02375d8 and none of their selectors exist in design-system/. BlogPost.jsx:882 sits after &lt;/main&gt; so it is out of scope.</p>
-      
-    </article>
+    <div class="group-head"><h2>Low</h2><span class="count">9 decisions</span></div>
     <article class="f open">
       <div class="f-top"><span class="id">AUD-18</span><span class="f-title">Inconsistent H1 terminal punctuation</span><span class="spacer"></span><span class="tag">trivial</span><span class="tag">Content</span><span class="chip chip-open">Not landed</span></div>
       <p>AI Chat's H1 still ends in a period and Integrations, Semantic Layer, Home and all six Solutions H1s still do not. The only edit these H1s received was the {' '} spacing fix for AUD-11; no punctuation rule was applied.</p>
       <div class="ask"><span class="lbl">Decision needed</span><p>Which rule: drop the terminal period from AI Chat's H1 so no H1 ends in punctuation, or add terminal periods to every H1 site-wide?</p></div>
       <div class="decision"><span class="lbl">✓ Decision</span><p>Rule: <strong style="color:var(--ink)">no terminal period at the end of an H1</strong>; a period is used only to separate sentences inside a multi-sentence H1. Drop AI Chat's trailing period. Single-sentence H1s with no period stay as they are.</p></div>
-    </article>
-    <article class="f open">
-      <div class="f-top"><span class="id">AUD-23</span><span class="f-title">Home stat capitalisation drift</span><span class="spacer"></span><span class="tag">trivial</span><span class="tag">Dev</span><span class="chip chip-open">Not landed</span></div>
-      <p>Home still ships Title-case stat labels ("Connectors", "Built-in metrics", "Years of data tooling", "Companies") while the hero trust pills on the same page say "40,000+ companies" and "28 years" lowercase. Identical to pre-audit c7ae0cd; nothing touched the casing.</p>
-      
-    </article>
-    <article class="f open">
-      <div class="f-top"><span class="id">AUD-33</span><span class="f-title">Integrations pill sub-44px</span><span class="spacer"></span><span class="tag">small</span><span class="tag">Dev</span><span class="chip chip-open">Not landed</span></div>
-      <p>The "See all 200+ connectors" pill is still roughly 34-36px tall on all six Solutions pages: 13px label, 8px vertical padding, no min-height. The styles are inline so no stylesheet lifts them, and dist/solutions/executive-teams.html ships that exact inline style.</p>
-      
-    </article>
-    <article class="f open">
-      <div class="f-top"><span class="id">AUD-36</span><span class="f-title">Blog thumbnails empty alt</span><span class="spacer"></span><span class="tag">trivial</span><span class="tag">Dev</span><span class="chip chip-open">Not landed</span></div>
-      <p>Unchanged: every post thumbnail is still alt="", with nothing in the code recording a decorative decision. The card link already exposes the title (blog.jsx:112) and the covers are generic stock, so alt="" is defensible, but the finding asked for that call to be made explicitly.</p>
-      
-    </article>
-    <article class="f open">
-      <div class="f-top"><span class="id">AUD-38</span><span class="f-title">Finance mockup micro-typography</span><span class="spacer"></span><span class="tag">trivial</span><span class="tag">Dev</span><span class="chip chip-open">Not landed</span></div>
-      <p>The interpunct is still spaced in the mockup caption and unspaced in the Sources metric tile, in the same hero mockup, unchanged since the audit. The casing half is not reproducible: the only Finance in the hero mockup is Title Case at :42 and :65, matching the five sibling Solutions pages; the finance/Finance drift is page-wide (:616 "finance teams" vs :694 "Your Finance Stack" vs :373 owner "Finance").</p>
-      
     </article>
     <article class="f open">
       <div class="f-top"><span class="id">AUD-42</span><span class="f-title">Duplicated label</span><span class="spacer"></span><span class="tag">trivial</span><span class="tag tag-d">Design</span><span class="chip chip-open">Not landed</span></div>
@@ -415,21 +336,6 @@
       <div class="decision"><span class="lbl">✓ Decision</span><p>Adopt <code>.ins-article-card</code> as-is (12px radius, opaque <code>--ins-surface-card</code>, DS hover). Approved.</p><p class="why">One card. No translucent variant for a single page.</p></div>
     </article>
     <article class="f open">
-      <div class="f-top"><span class="id">AUD-59</span><span class="f-title">Button label casing inconsistent</span><span class="spacer"></span><span class="tag">small</span><span class="tag">Dev</span><span class="chip chip-open">Not landed</span></div>
-      <p>"Explore Pricing" is still Title Case in 17 call sites; grep for the sentence-case "Explore pricing" returns zero. main.jsx:221 also ships "Sign Up Free" in the hero attach/unlock tooltip. Header and other CTAs are already sentence case, so the inconsistency the finding names is intact.</p>
-      
-    </article>
-    <article class="f open">
-      <div class="f-top"><span class="id">AUD-61</span><span class="f-title">"See all" pill custom outline</span><span class="spacer"></span><span class="tag">small</span><span class="tag">Dev</span><span class="chip chip-open">Not landed</span></div>
-      <p>Still a hand-rolled inline-styled &lt;a&gt;: 13px --ins-text-body, 1px --ins-color-white-a-07 border, radius-pill, padding 8px 20px, background white-a-02, plus JS onMouseEnter/onMouseLeave color+border swaps. No &lt;Button variant="secondary"&gt; anywhere near it, and the 8px padding on a 13px label leaves the target around 33px tall, not 44px. Identical in all six Solutions pages.</p>
-      
-    </article>
-    <article class="f open">
-      <div class="f-top"><span class="id">AUD-62</span><span class="f-title">FAQ hover feedback too weak</span><span class="spacer"></span><span class="tag">trivial</span><span class="tag">Dev</span><span class="chip chip-open">Not landed</span></div>
-      <p>Hover still only lifts the question text from #c0d4dc to white. No background and no border change: .ins-faq__row transitions border-color but only .is-open sets it. Affects every FAQAccordion call site (six Solutions pages, pricing, ai-chat, integrations, security).</p>
-      
-    </article>
-    <article class="f open">
       <div class="f-top"><span class="id">AUD-71</span><span class="f-title">Home built differently from platform pages</span><span class="spacer"></span><span class="tag">large</span><span class="tag tag-d">Design</span><span class="chip chip-open">Not landed</span></div>
       <p>Home still hand-rolls every section header with raw eyebrow span + bespoke &lt;h2&gt; type scales, still drives how-it-works through imperative showcase.js and a &lt;template&gt; in index.html, and still renders the Architecture deep-dive ahead of the WhatIsInsightis overview.</p>
       <div class="ask"><span class="lbl">Decision needed</span><p>Is Home allowed to change visually -- its four hand-rolled headers adopting &lt;SectionHeader&gt;'s type scale and the animated three-screen showcase becoming the static &lt;StepsProcess&gt; stepper -- or must Home keep its current look?</p></div>
@@ -448,11 +354,6 @@
       <div class="decision"><span class="lbl">✓ Decision</span><p>Follow <code>sidebar-concept.html</code>: hover keeps a neutral fill, and the active item is distinguished by a <strong style="color:var(--ink)">teal-tinted fill plus a teal left border</strong> — not by removing the hover fill. The finding's premise (shared fill) was wrong; concept and active state differ by colour + border.</p><p class="why">Implement via <strong style="color:var(--ink)">semantic tokens</strong> (hover-surface, selected/active bg, active accent border, <code>--ins-text-heading</code>) — not the concept's base-palette values; add semantic tokens to the DS if missing.</p></div>
     </article>
     <article class="f open">
-      <div class="f-top"><span class="id">AUD-77</span><span class="f-title">Footer social icons too dim</span><span class="spacer"></span><span class="tag">trivial</span><span class="tag">Dev</span><span class="chip chip-open">Not landed</span></div>
-      <p>The social row still resting-renders at the disabled token: Footer.jsx:136 sets text-text-disabled (--ins-text-disabled = #6E8D9A, colors.css:203) on the container and each icon only hovers to text-text-secondary (--ins-text-body #C0D4DC, colors.css:201). The requested --ins-text-primary aliases --ins-text-heading = white (colors.css:310,111) and appears nowhere here. This is the only footer social block in the repo — the DS .ins-footer__social rule has zero consumers.</p>
-      
-    </article>
-    <article class="f open">
       <div class="f-top"><span class="id">AUD-78</span><span class="f-title">Hero animation overlays step text</span><span class="spacer"></span><span class="tag">small</span><span class="tag tag-d">Design</span><span class="chip chip-open">Not landed</span></div>
       <p>Labels still print over the top of the connect animation: index.html:109 emits the chrome bar with #p0-lbl and showcase.js flips its text Data Sources → Connect HubSpot → Connected!. Root cause is that .aw-bar/.aw-dots/.aw-dot/.aw-lbl have zero CSS anywhere (src/app.css:261 records them as removed as unused) while the markup survived, so the bar renders as raw unstyled text. Note the audit mislocated it: this animation is not the hero — the Home hero (main.jsx:227-415) is a static chat mockup; the connect flow is #showcase-mount in HowItWorks (main.jsx:821, composed 4th at main.jsx:982).</p>
       <div class="ask"><span class="lbl">Decision needed</span><p>Should the mock-app chrome bar in the connect-flow showcase be deleted outright, or restyled (dots plus a dim title) as its now-deleted .aw-bar CSS intended?</p></div>
@@ -464,12 +365,7 @@
       <div class="ask"><span class="lbl">Decision needed</span><p>Should the Executive mockup micro-labels be raised to 12px and the mockup cards allowed to grow/reflow, or stay at 9.5px and be treated as decorative imagery with an sr-only text equivalent?</p></div>
       <div class="decision"><span class="lbl">✓ Decision</span><p>Keep the Executive mockups as decorative imagery with an sr-only text alternative and <code>aria</code>; nudge the micro-labels 9.5px → 10px.</p><p class="why">Not 12px — that would force card reflow and break the "product screenshot" illusion. 10px is within the site's existing micro-label range; accessibility is carried by the text alternative.</p></div>
     </article>
-    <article class="f part">
-      <div class="f-top"><span class="id">AUD-57</span><span class="f-title">Inline stat numbers differ in colour</span><span class="spacer"></span><span class="tag">trivial</span><span class="tag">Dev</span><span class="chip chip-part">Partial</span></div>
-      <p>Typeface is now uniform (mono on the whole .ins-mcat__foot) and the count is canonical — dist/platform/semantic-layer.html renders "500+ built-in metrics · across 20 sources". But the colour is still split: the line is #A8BFC8 (--ins-text-inactive) while the two numbers are teal-400 via `b`. The audit asked for one colour with weight-only emphasis, matching the integrations footer line which is a single --ins-text-body.</p>
-      
-    </article>
-  </section>
+    </section>
 
   <section class="idx">
     <div class="group-head"><h2>Decision index</h2><span class="count">20 findings — each now carries a recorded decision inline above</span></div>
@@ -511,104 +407,15 @@
         <li><span class="id">AUD-31</span><span>Which release (V1-V4) does each Now/Next/Later card belong to, so the SVG milestone subtitles can be generated from the same list instead of naming features the kanban never mentions?</span></li>
       </ul>
     </div>
-    <div class="idx-block">
-      <h3>No decision needed — dev work, ready to schedule <span class="count">14</span></h3>
-      <ul>
-        <li><span class="id">AUD-09</span><span>Body paragraphs default to 14px — small</span></li>
-        <li><span class="id">AUD-53</span><span>Raw colours and radii instead of tokens — medium</span></li>
-        <li><span class="id">AUD-54</span><span>DS control primitives bypassed — medium</span></li>
-        <li><span class="id">AUD-64</span><span>Heading hierarchy skips h1 to h3 — small</span></li>
-        <li><span class="id">AUD-12</span><span>Inline &lt;style&gt; blocks inside &lt;main&gt; — medium</span></li>
-        <li><span class="id">AUD-23</span><span>Home stat capitalisation drift — trivial</span></li>
-        <li><span class="id">AUD-33</span><span>Integrations pill sub-44px — small</span></li>
-        <li><span class="id">AUD-36</span><span>Blog thumbnails empty alt — trivial</span></li>
-        <li><span class="id">AUD-38</span><span>Finance mockup micro-typography — trivial</span></li>
-        <li><span class="id">AUD-57</span><span>Inline stat numbers differ in colour — trivial</span></li>
-        <li><span class="id">AUD-59</span><span>Button label casing inconsistent — small</span></li>
-        <li><span class="id">AUD-61</span><span>"See all" pill custom outline — small</span></li>
-        <li><span class="id">AUD-62</span><span>FAQ hover feedback too weak — trivial</span></li>
-        <li><span class="id">AUD-77</span><span>Footer social icons too dim — trivial</span></li>
-      </ul>
-    </div>
-  </section>
+    </section>
 
   <section style="display:flex;flex-direction:column;gap:16px">
     <div class="group-head"><h2>Corrections to my own reporting</h2><span class="count">stated so the record is straight</span></div>
     <div class="note">
-      <h3>Two items I listed as ready, then withdrew</h3>
-      <p>Both looked settled by a deliverable and neither survived reading the source. <span class="id">AUD-40</span> — <code>fix-examples</code> promises "3 proportional columns&hellip; no gap, no orphan", but its own recommended markup keeps all <strong>five</strong> link groups: five groups in three columns still orphans a cell and still leaves dead space under the three-link Platform column, so the stated outcome does not follow from the stated fix. <span class="id">AUD-75</span> — the sidebar concept's <code>.ins-doc-nav__item:hover</code> is <strong>byte-identical to production</strong>, and its model <code>.cat-item</code> also keeps a hover fill, which contradicts the finding's "reserve fill for the active item". Two of the audit's own documents disagree. Both are now in the decision index.</p>
-    </div>
-    <div class="note">
       <h3><span class="id">AUD-04</span> &nbsp;The live 404 still diverges from 404-design.html</h3>
       <p>I marked this closed and claimed parity with the audit's own <code>404-design.html</code>. Re-checked against the live page, two things do not match. First, the design leads with a large <strong>display numeral</strong> &mdash; "404" at ~150px Geist, weight 800, letter-spacing -6px &mdash; while the live page renders only a small <code>ERROR 404</code> eyebrow in its place. Second, the "Popular pages" label ships live as an all-caps teal eyebrow, where the design uses sentence-case white at 15px / weight 600. The heading, body copy and both buttons (teal pill <code>#07807E</code> primary, dark <code>#131820</code> secondary) do match. So the block structure landed; the 404 numeral and the popular-pages label styling did not.</p>
     </div>
-    <div class="note">
-      <h3><span class="id">AUD-49</span> &nbsp;I misdiagnosed this one</h3>
-      <p>I reported it as a specificity collision. It is a <em>shorthand</em> bug: <code>text-decoration: none</code> resets the decoration <strong>line</strong>, while the inline-link hover rule only ever set the <strong>colour</strong> — so it was recolouring an underline that had already been erased. Same fix, wrong reasoning given. Now shipped.</p>
-    </div>
-    <div class="note">
-      <h3><span class="id">AUD-42</span> / <span class="id">AUD-78</span> &nbsp;An orphaned label, and who orphaned it</h3>
-      <p><code>index.html:109</code> still ships <code>class="aw-bar"</code> with its dots and label, and there is now <strong>zero CSS</strong> for <code>.aw-bar</code>, <code>.aw-dots</code>, <code>.aw-dot</code> or <code>.aw-lbl</code> anywhere in the repo — so the showcase's step label renders as unstyled body text over the animation. That is the visible half of both findings.</p>
-      <p>Worth being precise about the cause, since a re-check agent attributed it to the recent sweeps: it was not. <code>app.css</code> records the rules as "removed in PR 6 — superseded by CodeChip… no consumers in src/ (verified via grep)". That grep covered <code>src/</code> only and never saw <code>index.html</code>'s showcase template. It predates every audit wave. The lesson generalises to this repo: the showcase template is static HTML outside <code>src/</code>, and a dead-code grep that misses it deletes live styles.</p>
-    </div>
-    <div class="note">
-      <h3>Where the report itself is off</h3>
-      <p>Its header says "27 Medium · 36 Low"; the body holds <strong>28 and 35</strong>. Total 77 is right. Separately, <span class="id">AUD-66</span> prescribed linking to <code>/privacy</code> — there is no such route, so following it literally would have shipped a second 404. The real page is <code>/security/privacy</code>, which is what the fix used. And <span class="id">AUD-35</span> is stale in the opposite direction: it asked for a trailing slash that the site has since removed site-wide, and a test now fails the build on a redirecting URL, so adding one would be the wrong form.</p>
-    </div>
-  </section>
-
-  <section style="display:flex;flex-direction:column;gap:16px">
-    <div class="group-head"><h2>Closed and verified</h2><span class="count">43 findings · re-checked in source, then challenged</span></div>
-    <p style="max-width:74ch">Each was confirmed by finding the fix <em>and</em> grepping the old defect to zero across every location the finding named, then a second adversarial pass tried to find a survivor. All 43 claims held this round — unlike the previous re-check, where 8 of 22 were downgraded.</p>
-    <details class="done">
-      <summary><span class="chip chip-done">Closed</span> <span>expand for what changed in each</span></summary>
-      <div class="body">
-        <div class="done-row"><span class="id">AUD-01</span><span>Critical — Badge is 'LAUNCH · 50% OFF' and card math is exactly 50% (15.99→7.99, 19.99→9.99). The FAQ now names 20% as the separate annual-billing saving and spells out how the two stack, so the figures no longer contradict.</span></div>
-        <div class="done-row"><span class="id">AUD-02</span><span>Critical — The pricing FAQ's five answers name no Team or Enterprise tier, and PLANS is Free/Starter/Pro only. Shipped HTML and its FAQPage JSON-LD carry zero tier references; the only 'Team' strings are footer 'For X Teams' nav links.</span></div>
-        <div class="done-row"><span class="id">AUD-24</span><span>Critical — The 30 topic rows are now non-interactive &lt;div&gt;/&lt;span&gt; pairs, not anchors. No href="#" survives anywhere in source (only two prose comments mention the old markup) and the prerendered page ships zero. Rows still feed the search filter.</span></div>
-        <div class="done-row"><span class="id">AUD-03</span><span>High — Fallback CTA now reads href="/auth/sign-up" and href="/platform/integrations". The 404 route is gone and "Start for free" no longer points at /pricing. Slashless sign-up is the current canonical, so it answers 200.</span></div>
-        <div class="done-row"><span class="id">AUD-04</span><span>High — Also closed the gap against the audit own 404-design.html: popular-pages block, Contact support secondary, reference lead copy, and the stale button-token copy corrected.</span></div>
-        <div class="done-row"><span class="id">AUD-05</span><span>High — One constant CATALOG_CLAIM="500+" now feeds Home stat, Semantic-Layer catalog footer and the how-it-works copy; 498 exists only in comments/CATALOG_TOTAL and never renders (dist hits are SVG path data). Connector counts all read "200+" and the gallery total is computed from CONNECTORS (203).</span></div>
-        <div class="done-row"><span class="id">AUD-21</span><span>High — The hardcoded "+180 more" is gone: 203 master connectors minus the 20 tiles shown = 183, so 20 shown + 183 more = 203, consistent with "200+". Grep for "+180"/"180 more" returns only the explanatory comment at integrations.jsx:476-477.</span></div>
-        <div class="done-row"><span class="id">AUD-25</span><span>High — The Ask-a-question input, the canned assistant answer and both host components (FloatingChat, AIAssistantPanel) are gone from the page tree and from the shipped bundle. Only a comment at :273-278 records the removal.</span></div>
-        <div class="done-row"><span class="id">AUD-26</span><span>High — All three named fields now pair label htmlFor with a matching input/textarea id, and the association survives into the shipped bundle. Aside: the CATEGORY (:203) and ATTACHMENTS (:278) labels are still orphan &lt;label&gt;s with no control, but neither field is named by this finding.</span></div>
-        <div class="done-row"><span class="id">AUD-27</span><span>High — Overlay now reveals on :focus-within for both .connector-tile and .connector-card.has-overlay, and under @media (hover:none) it leaves the cover role entirely (position:static, opacity:1, pointer-events:auto). Rules confirmed in the shipped dist CSS.</span></div>
-        <div class="done-row"><span class="id">AUD-66</span><span>High — The relative href="Privacy" is gone; only a comment at security.jsx:144-147 mentions it. Destination is /security/privacy (the real page - there is no /privacy route, so the audit's literal target would 404).</span></div>
-        <div class="done-row"><span class="id">AUD-06</span><span>Medium — Each Platform/Solutions/Resources trigger is a button with aria-haspopup="true", aria-expanded bound to activeDropdown, and aria-controls pointing at the rendered panel id; a keydown effect closes on Escape and returns focus to the opener.</span></div>
-        <div class="done-row"><span class="id">AUD-07</span><span>Medium — Mobile Platform submenu rows and section summaries now carry min-h-[44px] (git diff against the audit baseline shows these were added after it). In the Home "Made for every team" widget the pointer target is the whole panel via the trigger's ::after on desktop, and a 208px card link below lg.</span></div>
-        <div class="done-row"><span class="id">AUD-13</span><span>Medium — All three Home surfaces carrying the 200+ figure (marquee strip, stat band, architecture card) label it "Connectors". No Home stat or strip uses "Integrations"; the only "Integrations" on the page is the nav/footer link to /platform/integrations, i.e. the product page name.</span></div>
-        <div class="done-row"><span class="id">AUD-20</span><span>Medium — The struck standard price is aria-hidden and a preceding sr-only span restates the relation ('— launch price, 50% off the standard $15.99'), so a reader hears one price with was/now context instead of two bare numbers. .ins-u-sr-only is defined and both instances ship.</span></div>
-        <div class="done-row"><span class="id">AUD-22</span><span>Medium — Closed. The last two counts hung on "tools" — Home meta description and the marketing-teams FAQ, which contradicted itself one clause after saying "Native connectors for Google Ads". Both read connectors now. Legitimate tool counts (the visitor own 4 tools, the blog 78 tools) deliberately untouched.</span></div>
-        <div class="done-row"><span class="id">AUD-28</span><span>Medium — The wrong-domain address vanished with the Ask-AI panel it lived in (AUD-25), and insightis.io appears nowhere in the repo. The only support address in source is support@insightis.ai on the canonical domain.</span></div>
-        <div class="done-row"><span class="id">AUD-29</span><span>Medium — The whole badge is gone, not just the fabricated timestamp — no uptime claim is rendered on the page or in the shipped HTML. The 'no claim' branch of the finding is satisfied.</span></div>
-        <div class="done-row"><span class="id">AUD-30</span><span>Medium — Both halves are done: the dead controls and their placeholder '#' resource links are absent because the panel was deleted, and the previously missing #contact anchor now exists and is the target of the no-results link.</span></div>
-        <div class="done-row"><span class="id">AUD-32</span><span>Medium — Titles, frontmatter descriptions and bodies are all 2026. Listing cards and article meta are derived from the same markdown frontmatter (blog.jsx:116, BlogPost.jsx:102/702/807), so no second copy can drift.</span></div>
-        <div class="done-row"><span class="id">AUD-39</span><span>Medium — Hover corrected from white 0.20 to the 0.24 the designer specified in fix-examples.html.</span></div>
-        <div class="done-row"><span class="id">AUD-52</span><span>Medium — Both pages now render the shared &lt;BottomCTA&gt; (imports at success-stories.jsx:7, security.jsx:9); no local shadowing component or hand-rolled input rail remains. .ins-bottom-cta background is var(--ins-section-tint), the same declaration .ins-section--tint consumes.</span></div>
-        <div class="done-row"><span class="id">AUD-58</span><span>Medium — The italic teal line on Semantic Layer (the "With Insightis Semantic Layer" caption) is now opaque teal-700; I measured 4.78:1 over the brand glow card (teal-a-08 over gray-900). Old rgba(9,160,157,0.60) is gone from all live code; hue kept teal, not gray.</span></div>
-        <div class="done-row"><span class="id">AUD-65</span><span>Medium — Both pages now render FAQAccordion with schemaInJsonLd={false}, Q&amp;A copy verbatim against the head FAQPage graph. Confirmed in the prerendered output: answer text appears twice in dist/platform/ai-chat.html and dist/platform/integrations.html (head + DOM).</span></div>
-        <div class="done-row"><span class="id">AUD-67</span><span>Medium — One domain everywhere. Eight distinct addresses all on insightis.ai (privacy, legal, support, security, sales, press, copyright, billing) and the press boilerplate ends "visit insightis.ai". No .io string survives anywhere, including dist.</span></div>
-        <div class="done-row"><span class="id">AUD-69</span><span>Medium — The local dead rail was replaced by the shared organism, which emits a real form posting to /auth/sign-up (auth/sign-up.html exists), so submitting routes the user. The email value is deliberately not carried (inputName={null}), which the audit's own fix permitted.</span></div>
-        <div class="done-row"><span class="id">AUD-11</span><span>Low — Both named defects are gone. The &lt;br&gt; glue is fixed at every heading on Semantic Layer, Home and AI Chat, and the "about  which" double space collapsed. Residual outside the named scope: all six Solutions H1s still glue across &lt;br/&gt; (e.g. finance-teams.jsx:46-48), as do the "Insightis&lt;br/&gt;Semantic AI" diagram labels at main.jsx:667,748 and integrations.jsx:189.</span></div>
-        <div class="done-row"><span class="id">AUD-15</span><span>Low — Home was the last X3; it now reads 3x accuracy like Semantic Layer and AI Chat.</span></div>
-        <div class="done-row"><span class="id">AUD-16</span><span>Low — Value and label are separate flex children with a literal space and a gap token, so the shipped HTML reads "12× faster time to insight" / "90% fewer data requests". Semantic Layer's only remaining instance is prose ("3× more accurate", semantic-layer.jsx:390). A regex sweep for [0-9](×|%)[A-Za-z] across every dist page returns zero hits.</span></div>
-        <div class="done-row"><span class="id">AUD-34</span><span>Low — The false promise is gone and the placeholder now names only what the field searches. Search actually matches title, prompt body and team, a superset of the placeholder, so nothing typed per the label returns empty. Placeholder also serves as the aria-label.</span></div>
-        <div class="done-row"><span class="id">AUD-35</span><span>Low · stale, not a fix — The link is unchanged, but the canonical inverted after the audit: slashless is now the 200 form site-wide and /auth/sign-up/ 308-redirects. welcome.md already matches; applying the audit's fix would introduce a redirect.</span></div>
-        <div class="done-row"><span class="id">AUD-41</span><span>Low — The hero chat Send button lost the last teal glow on a button.</span></div>
-        <div class="done-row"><span class="id">AUD-49</span><span>Low — Root cause was the text-decoration SHORTHAND resetting the line, not specificity. The inline-link hover now re-declares text-decoration-line.</span></div>
-        <div class="done-row"><span class="id">AUD-55</span><span>Low — Closed. .ins-segmented had zero consumers yet shipped in every page bundle — file and @import deleted. .blog-related-card was the mirror image: class on every card, rule deleted long ago.</span></div>
-        <div class="done-row"><span class="id">AUD-56</span><span>Low — Neutral .ins-card--glow--neutral on all four comparison blocks, built from the designer sign-off in fix-examples.html. Zero error cards left in the built output.</span></div>
-        <div class="done-row"><span class="id">AUD-60</span><span>Low — UseCases.Highlight moved from --ins-button-primary-bg (teal-600) to --ins-text-highlight, so the promo heading matches its siblings on all six Solutions pages.</span></div>
-        <div class="done-row"><span class="id">AUD-63</span><span>Low — All three asks are present. connector-gallery.css:111-113 fades card content and :130 fades the overlay over .18s (default ease); :115-116 and :45-46 add the :focus-within twins for keyboard. The CTA is the DS button (.ins-btn ins-btn--secondary ins-btn--sm) in both ConnectorCard.jsx:30 and connectors.jsx:114, and .overlay-btn has zero rules anywhere in src/, design-system/ or the page shells (only prose mentions remain). Durations are literal .18s rather than motion tokens, which is cosmetic and not the reported defect.</span></div>
-        <div class="done-row"><span class="id">AUD-68</span><span>Low — Dead imports removed, each verified by usage count: Card in main.jsx, Chip in semantic-layer.jsx, useCallback in all four files. Chip kept where still used.</span></div>
-        <div class="done-row"><span class="id">AUD-70</span><span>Low — Heading now describes what the three cards actually are (read-only/encrypted, GDPR-aligned, no AI training) and no longer contradicts the FAQ. The hero's certification claim is gone too; the security shell makes no certification claim.</span></div>
-        <div class="done-row"><span class="id">AUD-73</span><span>Low — The five milestones now exist as a real ordered list in the DOM ahead of the graphic, generated from the same data array, with the SVG aria-hidden so they are announced once. The list is visually hidden, so it restores the outline but not visual reflow.</span></div>
-        <div class="done-row"><span class="id">AUD-74</span><span>Low — ≤768px overrides the wrapper's inline overflow:hidden with overflow-x:auto!important; ≤640px adds min-width:600px on the row groups, so the 4-col table scrolls horizontally rather than squishing at 320px. Rules ship in the built CSS.</span></div>
-        <div class="done-row"><span class="id">AUD-79</span><span>Low — The Thinking logo takes a colour prop and the call site passes the label own expression, so logo and label share one state.</span></div>
-        <div class="done-row"><span class="id">AUD-80</span><span>Low — Closed. Both shift sources gone: the gap 6px-to-10px hover animation that slid label and chevron sideways, and the label reflow — the label now reserves 12ch so the right-aligned chevron cannot move. The plural was also wrong; a card holds one prompt, so both labels are now 11 characters.</span></div>
-      </div>
-    </details>
-  </section>
+    </section>
 
   <footer class="sig">
     <span>Re-verified against master @ cd9186a on 2026-08-11. 12 agents read the source in parallel, then 2 adversarial passes attempted to refute every claim of "fixed"; 33 claims examined, 0 downgraded.</span>
